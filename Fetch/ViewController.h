@@ -19,17 +19,20 @@ typedef NSUInteger HttpMethod;
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSComboBox *methodCombo;
 @property (weak) IBOutlet NSButton *fetchButton;
+@property (weak) IBOutlet NSButton *customPostBodyCheckBox;
+@property (weak) IBOutlet NSButton *logRequestCheckBox;
+@property (weak) IBOutlet NSButton *clearOutputButton;
 @property (weak) IBOutlet NSTableView *headersTableView;
 @property (weak) IBOutlet NSTableView *parametersTableView;
 @property (weak) IBOutlet NSSegmentedControl *headerSegCont;
 @property (weak) IBOutlet NSSegmentedControl *paramSegCont;
-@property (weak) IBOutlet NSButton *customPostBodyCheckBox;
-@property (weak) IBOutlet NSButton *logRequestCheckBox;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextView;
+@property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView;
 
 -(IBAction)fetchAction:(id)sender;
 -(IBAction)headerSegContAction:(id)sender;
 -(IBAction)parameterSegContAction:(id)sender;
 -(IBAction)customPostBodyAction:(id)sender;
+-(IBAction)clearOutput:(id)sender;
 
 @end

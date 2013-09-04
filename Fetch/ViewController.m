@@ -50,6 +50,8 @@ static NSString *const kParameterName = @"Parameter Name";
     [self setParamDataSource:[[NSMutableArray alloc] init]];
     
     [self setupSegmentedControls];
+    
+    [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
 }
 
 -(void)setupSegmentedControls
@@ -80,6 +82,8 @@ static NSString *const kParameterName = @"Parameter Name";
         
         [[[self outputTextView] textStorage] appendAttributedString:attributedString];
         [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
+        
+        [[self clearOutputButton] setEnabled:YES];
     });
 }
 
@@ -92,26 +96,29 @@ static NSString *const kParameterName = @"Parameter Name";
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
     
-    NSString *httpMethod = [[self methodCombo] objectValueOfSelectedItem];
-    
-    [request setHTTPMethod:httpMethod];
+    [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
     
     for (NSDictionary *tempDict in [self headerDataSource]) {
         [request setValue:tempDict[kValue] forHTTPHeaderField:tempDict[kHeaderName]];
     }
     
-    NSMutableString *postBody = [[NSMutableString alloc] init];
-    
-    for (NSDictionary *tempDict in [self paramDataSource]) {
-        if (tempDict == [[self paramDataSource] firstObject]) {
-            [postBody appendString:[NSString stringWithFormat:@"%@=%@", tempDict[kParameterName], tempDict[kValue]]];
-        }
-        else {
-            [postBody appendString:[NSString stringWithFormat:@"&%@=%@", tempDict[kParameterName], tempDict[kValue]]];
-        }
+    if ([[self customPostBodyCheckBox] state] == NSOnState) {
+        [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
     }
-    
-    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    else {
+        NSMutableString *postBody = [[NSMutableString alloc] init];
+        
+        for (NSDictionary *tempDict in [self paramDataSource]) {
+            if (tempDict == [[self paramDataSource] firstObject]) {
+                [postBody appendString:[NSString stringWithFormat:@"%@=%@", tempDict[kParameterName], tempDict[kValue]]];
+            }
+            else {
+                [postBody appendString:[NSString stringWithFormat:@"&%@=%@", tempDict[kParameterName], tempDict[kValue]]];
+            }
+        }
+        
+        [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     if ([[self logRequestCheckBox] state] == NSOnState) {
         [self appendToOutput:[request HTTPMethod] color:[NSColor greenColor]];
@@ -123,7 +130,14 @@ static NSString *const kParameterName = @"Parameter Name";
                                                                                                             NSData *data,
                                                                                                             NSError *connectionError) {
         
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+       
+        
+        if (NSLocationInRange([(NSHTTPURLResponse *)response statusCode], NSMakeRange(200, (299 - 200)))) {
+            [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor greenColor]];
+        }
+        else {
+            [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor redColor]];
+        }
         
         if (!connectionError) {
             id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -140,6 +154,10 @@ static NSString *const kParameterName = @"Parameter Name";
             }
         }
         else {
+            NSAlert *errorAlert = [NSAlert alertWithError:connectionError];
+            
+            [errorAlert runModal];
+            
             NSLog(@"There was a connection error - %@", [connectionError localizedDescription]);
         }
     }];
@@ -194,6 +212,22 @@ static NSString *const kParameterName = @"Parameter Name";
 -(IBAction)customPostBodyAction:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
+    
+    if ([[self customPostBodyCheckBox] state] == NSOnState) {
+        [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
+    }
+    else {
+        [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
+    }
+}
+
+-(IBAction)clearOutput:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    [[self outputTextView] setString:@""];
+    
+    [[self clearOutputButton] setEnabled:NO];
 }
 
 #pragma mark
