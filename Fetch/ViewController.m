@@ -40,6 +40,13 @@ static NSString *const kParameterName = @"Parameter Name";
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
     
     [self setHeaderDataSource:[[NSMutableArray alloc] init]];
+    
+    //FIXME
+    [[self headerDataSource] addObject:@{kHeaderName: @"content-type", kValue: @"application/json"}];
+    [[self headerDataSource] addObject:@{kHeaderName: @"accept", kValue: @"application/json"}];
+    
+    [[self headersTableView] reloadData];
+    
     [self setParamDataSource:[[NSMutableArray alloc] init]];
     
     [self setupSegmentedControls];
@@ -119,7 +126,18 @@ static NSString *const kParameterName = @"Parameter Name";
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         
         if (!connectionError) {
-            [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:nil];
+            id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (jsonData) {
+                NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
+                
+                if (jsonHolder) {
+                    [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:nil];
+                }
+            }
+            else {
+                [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:nil];
+            }
         }
         else {
             NSLog(@"There was a connection error - %@", [connectionError localizedDescription]);

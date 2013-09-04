@@ -201,7 +201,7 @@
         <window title="Fetch" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="543" y="138" width="681" height="644"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
             <value key="minSize" type="size" width="681" height="644"/>
             <value key="maxSize" type="size" width="681" height="644"/>
             <view key="contentView" id="372">
@@ -321,7 +321,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="TAz-6J-Xgk">
-                            <rect key="frame" x="667" y="17" width="16" height="11"/>
+                            <rect key="frame" x="667" y="17" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="xT6-xW-0bv">
@@ -449,32 +449,31 @@
                             <action selector="customPostBodyAction:" target="gb6-4z-C70" id="sTd-Hx-EIt"/>
                         </connections>
                     </button>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBa-EL-kvj">
+                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mF4-YQ-9Gv">
                         <rect key="frame" x="-1" y="-1" width="683" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="Z9J-AK-Dje">
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="K7Z-fD-Uxn">
                             <rect key="frame" x="1" y="1" width="681" height="268"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" importsGraphics="NO" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="kod-bm-0bf">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="268"/>
+                                <textView ambiguous="YES" importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="FmK-8P-iza">
+                                    <rect key="frame" x="0.0" y="0.0" width="681" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="0.0" height="268"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="681" height="268"/>
                                     <size key="maxSize" width="681" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="0.0" height="268"/>
+                                    <size key="minSize" width="681" height="268"/>
                                     <size key="maxSize" width="681" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="zHK-ZH-L5K">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="7gn-zG-sj7">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="G4U-pn-2TI">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="YdV-xO-Tzb">
                             <rect key="frame" x="666" y="1" width="16" height="268"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -518,7 +517,7 @@
                 <outlet property="headersTableView" destination="bDb-BA-qyy" id="3mE-ey-M4a"/>
                 <outlet property="logRequestCheckBox" destination="iZh-5R-nte" id="PcW-9P-u0W"/>
                 <outlet property="methodCombo" destination="OBs-rv-rA0" id="c5Y-xf-oAR"/>
-                <outlet property="outputTextView" destination="kod-bm-0bf" id="MKq-cq-bUD"/>
+                <outlet property="outputTextView" destination="FmK-8P-iza" id="n8j-bV-Zpp"/>
                 <outlet property="paramSegCont" destination="Ijc-X7-qiX" id="f1R-Uw-GpU"/>
                 <outlet property="parametersTableView" destination="izJ-cx-bKU" id="Zp0-F8-KmD"/>
                 <outlet property="urlTextField" destination="ErE-OB-rrH" id="S6e-uM-eWk"/>
