@@ -11,6 +11,10 @@
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
+
+@property (strong, nonatomic) NSArray *headerNames;
+@property (strong, nonatomic) NSMutableArray *urlList;
+
 @end
 
 @implementation ViewController
@@ -28,7 +32,24 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
+        if (![self headerDataSource]) {
+            [self setHeaderDataSource:[[NSMutableArray alloc] init]];
+        }
+        
+        if (![self paramDataSource]) {
+            [self setParamDataSource:[[NSMutableArray alloc] init]];
+        }
+        
+        if (![self headerNames]) {
+            [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
+        }
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"urls"]) {
+            [self setUrlList:[[[NSUserDefaults standardUserDefaults] objectForKey:@"urls"] mutableCopy]];
+        }
+        else {
+            [self setUrlList:[[NSMutableArray alloc] init]];
+        }
     }
     return self;
 }
@@ -37,25 +58,17 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self methodCombo] selectItemAtIndex:GET_METHOD];
-    
-    [self setHeaderDataSource:[[NSMutableArray alloc] init]];
-    
-    //FIXME
-    [[self headerDataSource] addObject:@{kHeaderName: @"content-type", kValue: @"application/json"}];
-    [[self headerDataSource] addObject:@{kHeaderName: @"accept", kValue: @"application/json"}];
-    
-    [[self headersTableView] reloadData];
-    
-    [self setParamDataSource:[[NSMutableArray alloc] init]];
-    
     [self setupSegmentedControls];
     
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
+    [[self methodCombo] selectItemAtIndex:GET_METHOD];
+    
 }
 
 -(void)setupSegmentedControls
 {
+    NSLog(@"%s", __FUNCTION__);
+
     if ([[self headerDataSource] count] == 0) {
         [[self headerSegCont] setEnabled:NO forSegment:1];
     }
@@ -94,6 +107,13 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     NSLog(@"%s", __FUNCTION__);
     
+    [[self urlList] addObject:[[self urlTextField] stringValue]];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[self urlList] forKey:@"urls"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[self urlTextField] reloadData];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
     
     [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
@@ -129,9 +149,7 @@ static NSString *const kParameterName = @"Parameter Name";
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                             NSData *data,
                                                                                                             NSError *connectionError) {
-        
        
-        
         if (NSLocationInRange([(NSHTTPURLResponse *)response statusCode], NSMakeRange(200, (299 - 200)))) {
             [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor greenColor]];
         }
@@ -170,17 +188,23 @@ static NSString *const kParameterName = @"Parameter Name";
     NSSegmentedControl *tempSegCont = sender;
     
     if ([tempSegCont selectedSegment] == 0) {
-        NSDictionary *tempDict = @{kHeaderName: kInsertName, kValue: kInsertValue};
+        NSDictionary *tempDict = @{kHeaderName: @"Choose or insert header name", kValue: kInsertValue};
         
         [[self headerDataSource] addObject:tempDict];
+        
+        [[self headersTableView] beginUpdates];
+        [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:([[self headerDataSource] count] - 1)] withAnimation:NSTableViewAnimationEffectFade];
+        [[self headersTableView] endUpdates];
     }
     else {
-        NSUInteger selectedRow = [[self headersTableView] selectedRow];
+        if ([[self headersTableView] selectedRow] == -1) {
+            return;
+        }
         
-        [[self headerDataSource] removeObjectAtIndex:selectedRow];
+        [[self headerDataSource] removeObjectAtIndex:[[self headersTableView] selectedRow]];
+        
+        [[self headersTableView] reloadData];
     }
-    
-    [[self headersTableView] reloadData];
     
     [self setupSegmentedControls];
 }
@@ -191,20 +215,25 @@ static NSString *const kParameterName = @"Parameter Name";
     
     NSSegmentedControl *tempSegCont = sender;
     
+
     if ([tempSegCont selectedSegment] == 0) {
         NSDictionary *tempDict = @{kParameterName: kInsertName, kValue: kInsertValue};
         
         [[self paramDataSource] addObject:tempDict];
+        
+        [[self parametersTableView] beginUpdates];
+        [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:[[self paramDataSource] count] - 1] withAnimation:NSTableViewAnimationEffectFade];
+        [[self parametersTableView] endUpdates];
     }
     else {
-        NSUInteger selectedRow = [[self headersTableView] selectedRow];
+        if ([[self parametersTableView] selectedRow] == -1) {
+            return;
+        }
         
-        [[self paramDataSource] removeObjectAtIndex:selectedRow];
+        [[self paramDataSource] removeObjectAtIndex:[[self parametersTableView] selectedRow]];
         
         [[self parametersTableView] reloadData];
     }
-    
-    [[self parametersTableView] reloadData];
     
     [self setupSegmentedControls];
 }
@@ -215,9 +244,13 @@ static NSString *const kParameterName = @"Parameter Name";
     
     if ([[self customPostBodyCheckBox] state] == NSOnState) {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
+        
+        [[self paramSegCont] setHidden:YES];
     }
     else {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
+        
+        [[self paramSegCont] setHidden:NO];
     }
 }
 
@@ -280,7 +313,7 @@ static NSString *const kParameterName = @"Parameter Name";
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = [tableColumn identifier];
-    
+   
     if (tableView == [self headersTableView]) {
         NSMutableDictionary *tempDict = [[self headerDataSource][row] mutableCopy];
         
@@ -296,4 +329,18 @@ static NSString *const kParameterName = @"Parameter Name";
         [[self paramDataSource] replaceObjectAtIndex:row withObject:tempDict];
     }
 }
+
+#pragma mark
+#pragma mark NSComboBoxDataSource
+
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+{
+    return [[self urlList] count];
+}
+
+- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
+{
+    return [self urlList][index];
+}
+
 @end
