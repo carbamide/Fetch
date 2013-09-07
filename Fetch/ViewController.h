@@ -14,7 +14,7 @@ enum {
 };
 typedef NSUInteger HttpMethod;
 
-@interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource>
+@interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate>
 
 @property (weak) IBOutlet NSComboBox *urlTextField;
 @property (weak) IBOutlet NSComboBox *methodCombo;

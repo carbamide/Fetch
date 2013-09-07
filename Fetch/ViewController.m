@@ -347,4 +347,12 @@ static NSString *const kParameterName = @"Parameter Name";
     return [self urlList][index];
 }
 
+#pragma mark
+#pragma mark NSComboBoxDelegate
+
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification
+{
+    [[self fetchButton] setEnabled:YES];
+}
+
 @end
