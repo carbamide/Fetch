@@ -8,6 +8,7 @@
 
 #import "PreferencesWindowController.h"
 #import "NSUserDefaults+NSColor.h"
+#import "Constants.h"
 
 @interface PreferencesWindowController ()
 
@@ -28,7 +29,7 @@
 {
     [super windowDidLoad];
     
-    NSArray *preferenceKeys = @[@"separator_color", @"background_color", @"foreground_color", @"success_color", @"failure_color"];
+    NSArray *preferenceKeys = @[kSeparatorColor, kBackgroundColor, kForegroundColor, kSuccessColor, kFailureColor];
     
     for (int i = 0; i < [preferenceKeys count]; i++) {
         NSColor *color = nil;
@@ -67,21 +68,21 @@
 
     switch ([sender tag]) {
         case 0:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:@"separator_color"];
+            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kSeparatorColor];
             break;
         case 1:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:@"background_color"];
+            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kBackgroundColor];
             break;
         case 2:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:@"foreground_color"];
+            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kForegroundColor];
 
             break;
         case 3:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:@"success_color"];
+            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kSuccessColor];
 
             break;
         case 4:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:@"failure_color"];
+            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kFailureColor];
 
             break;
         default:

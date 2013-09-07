@@ -45,6 +45,7 @@
 /* Begin PBXFileReference section */
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
+		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -172,10 +173,11 @@
 			children = (
 				29F4A7E517D64EFE00FAA098 /* AppDelegate.h */,
 				29F4A7E617D64EFE00FAA098 /* AppDelegate.m */,
-				29EF763417D65D9400F89D72 /* ViewController.h */,
-				29EF763517D65D9400F89D72 /* ViewController.m */,
+				291BBA9D17DAF18200C771F5 /* Constants.h */,
 				2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */,
 				2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */,
+				29EF763417D65D9400F89D72 /* ViewController.h */,
+				29EF763517D65D9400F89D72 /* ViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -227,9 +229,9 @@
 		29F4A7D917D64EFC00FAA098 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
-				2983B07A17DAC141001852F2 /* CoreData */,
-				29EF763817D65E7D00F89D72 /* Classes */,
 				291BBA9C17DAED2500C771F5 /* Catagories */,
+				29EF763817D65E7D00F89D72 /* Classes */,
+				2983B07A17DAC141001852F2 /* CoreData */,
 				29F4A7DA17D64EFD00FAA098 /* Supporting Files */,
 			);
 			path = Fetch;

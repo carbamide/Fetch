@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Urls.h"
 #import "NSUserDefaults+NSColor.h"
+#import "Constants.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -21,13 +22,7 @@
 
 @implementation ViewController
 
-static NSString *const kInsertValue = @"Insert Value";
-static NSString *const kInsertName = @"Insert Name";
-static NSString *const kValue = @"Value";
-static NSString *const kHeaderName = @"Header Name";
-static NSString *const kParameterName = @"Parameter Name";
-static NSString *const kRequestSeparator = @"---------------------------------REQUEST--------------------------------------";
-static NSString *const kResponseSeparator = @"---------------------------------RESPONSE------------------------------------";
+
 
 #pragma mark
 #pragma mark Lifecycle
@@ -76,8 +71,8 @@ static NSString *const kResponseSeparator = @"---------------------------------R
 
 -(void)preferencesChanges:(NSNotification *)aNotification
 {
-    NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:@"background_color"];
-    NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:@"foreground_color"];
+    NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kBackgroundColor];
+    NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kForegroundColor];
     
     [[self outputTextView] setTextColor:foregroundColor];
     [[self outputTextView] setBackgroundColor:backgroundColor];
@@ -105,7 +100,7 @@ static NSString *const kResponseSeparator = @"---------------------------------R
 - (void)appendToOutput:(NSString *)text color:(NSColor *)color
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
         
@@ -144,24 +139,29 @@ static NSString *const kResponseSeparator = @"---------------------------------R
     }
 }
 
+-(void)logReqest:(NSMutableURLRequest *)request
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
+    
+    [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:kSuccessColor]];
+    [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
+    [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kSuccessColor]];
+}
+
 #pragma mark
 #pragma mark IBActions
 
 -(IBAction)fetchAction:(id)sender
 {
-       // NSArray *preferenceKeys = @[@"separator_color", @"background_color", @"foreground_color", @"success_color", @"failure_color"];
-    
     NSLog(@"%s", __FUNCTION__);
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self addToUrlListIfUnique];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
     
     [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
-    
-    [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:@"separator_color"]];
     
     for (NSDictionary *tempDict in [self headerDataSource]) {
         [request setValue:tempDict[kValue] forHTTPHeaderField:tempDict[kHeaderName]];
@@ -186,24 +186,27 @@ static NSString *const kResponseSeparator = @"---------------------------------R
     }
     
     if ([[self logRequestCheckBox] state] == NSOnState) {
-        [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:@"success_color"]];
-        [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:@"success_color"]];
-        [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:@"success_color"]];
+        [self logReqest:request];
     }
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                             NSData *data,
                                                                                                             NSError *connectionError) {
-        [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:@"separator_color"]];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+        NSInteger responseCode = [urlResponse statusCode];
+        NSString *responseCodeString = [NSString stringWithFormat:@"Response - %li\n", responseCode];
         
-        if (NSLocationInRange([(NSHTTPURLResponse *)response statusCode], NSMakeRange(200, (299 - 200)))) {
-            [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[userDefaults colorForKey:@"success_color"]];
+        [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
+        
+        if (NSLocationInRange(responseCode, NSMakeRange(200, (299 - 200)))) {
+            [self appendToOutput:responseCodeString color:[userDefaults colorForKey:kSuccessColor]];
         }
         else {
-            [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[userDefaults colorForKey:@"failure_color"]];
+            [self appendToOutput:responseCodeString color:[userDefaults colorForKey:kFailureColor]];
         }
         
-        [self appendToOutput:[NSString stringWithFormat:@"%@", [(NSHTTPURLResponse *)response allHeaderFields]] color:[userDefaults colorForKey:@"success_color"]];
+        [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
         
         if (!connectionError) {
             id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
