@@ -66,6 +66,29 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="File" id="GfU-w3-CkO">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="File" id="QCv-xI-ofD">
+                        <items>
+                            <menuItem title="New" keyEquivalent="n" id="rl8-Pb-J1T">
+                                <connections>
+                                    <action selector="newProject:" target="Oji-mK-1SW" id="1Ek-Sj-ygW"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Open…" keyEquivalent="o" id="Viq-aK-4xm">
+                                <connections>
+                                    <action selector="openProject:" target="Oji-mK-1SW" id="64h-Co-ulX"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="ESB-LV-r8X"/>
+                            <menuItem title="Close" keyEquivalent="w" id="4j8-l4-AtK">
+                                <connections>
+                                    <action selector="closeWindow:" target="Oji-mK-1SW" id="CXh-Xg-A6b"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Edit" id="217">
                     <menu key="submenu" title="Edit" id="205">
                         <items>
@@ -184,6 +207,13 @@
                             <menuItem isSeparatorItem="YES" id="92">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Fetch" id="foc-xw-hmG">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showMainWindow:" target="Oji-mK-1SW" id="BiA-9f-4Qc"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="5lJ-yb-jt6"/>
                             <menuItem title="Bring All to Front" id="5">
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="39"/>

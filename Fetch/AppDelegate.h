@@ -14,5 +14,10 @@
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
 
 -(IBAction)showPreferences:(id)sender;
+-(IBAction)newProject:(id)sender;
+-(IBAction)openProject:(id)sender;
+-(IBAction)closeWindow:(id)sender;
+
+-(IBAction)showMainWindow:(id)sender;
 
 @end
