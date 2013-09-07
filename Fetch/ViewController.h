@@ -37,6 +37,7 @@ typedef NSUInteger HttpMethod;
 -(IBAction)customPostBodyAction:(id)sender;
 -(IBAction)clearOutput:(id)sender;
 -(IBAction)projectSegContAction:(id)sender;
+-(IBAction)projectTableViewAction:(id)sender;
 
 -(void)showProjects;
 

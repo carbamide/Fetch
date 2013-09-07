@@ -14,9 +14,11 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="headers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Headers" inverseName="project" inverseEntity="Headers" syncable="YES"/>
         <relationship name="parameters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Parameters" inverseName="project" inverseEntity="Parameters" syncable="YES"/>
+        <relationship name="urls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Urls" inverseName="project" inverseEntity="Urls" syncable="YES"/>
     </entity>
     <entity name="Urls" representedClassName="Url" syncable="YES">
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="urls" inverseEntity="Projects" syncable="YES"/>
     </entity>
     <elements>
         <element name="Headers" positionX="0" positionY="0" width="0" height="0"/>

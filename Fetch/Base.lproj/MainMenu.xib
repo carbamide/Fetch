@@ -592,6 +592,7 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
+                                        <action selector="projectTableViewAction:" target="gb6-4z-C70" id="Hna-tP-m2u"/>
                                         <outlet property="dataSource" destination="gb6-4z-C70" id="YBe-Ta-Vtt"/>
                                         <outlet property="delegate" destination="gb6-4z-C70" id="8Xj-V8-Esf"/>
                                     </connections>
@@ -626,11 +627,14 @@
                             </segments>
                         </segmentedCell>
                         <connections>
-                            <action selector="projectSegContAction:" target="gb6-4z-C70" id="eUT-Rc-n0a"/>
+                            <action selector="projectSegContAction:" target="gb6-4z-C70" id="F08-Vz-CKk"/>
                         </connections>
                     </segmentedControl>
                 </subviews>
             </view>
+            <connections>
+                <binding destination="gb6-4z-C70" name="title" keyPath="currentProject.name" id="Xyz-oL-Hw5"/>
+            </connections>
         </window>
         <customObject id="420" customClass="NSFontManager"/>
         <customObject id="Oji-mK-1SW" customClass="AppDelegate">

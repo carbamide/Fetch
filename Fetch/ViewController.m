@@ -11,6 +11,8 @@
 #import "NSUserDefaults+NSColor.h"
 #import "Constants.h"
 #import "Projects.h"
+#import "Headers.h"
+#import "Parameters.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -19,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *projectList;
 
 @property (strong, nonatomic) NSArray *headerNames;
+
+@property (strong, nonatomic) Projects *currentProject;
 
 @end
 
@@ -137,13 +141,27 @@
         Urls *tempUrl = [Urls create];
         
         [tempUrl setUrl:[[self urlTextField] stringValue]];
-        [tempUrl save];
         
-        [[self urlList] removeAllObjects];
-        
-        [[Urls all] each:^(Urls *object) {
-            [[self urlList] addObject:[object url]];
-        }];
+        if ([self currentProject]) {
+            [[self currentProject] addUrlsObject:tempUrl];
+            
+            [[self currentProject] save];
+            
+            [[self urlList] removeAllObjects];
+            
+            for (Urls *url in [[self currentProject] urls]) {
+                [[self urlList] addObject:[url url]];
+            }
+        }
+        else {
+            [tempUrl save];
+            
+            [[self urlList] removeAllObjects];
+            
+            [[Urls all] each:^(Urls *object) {
+                [[self urlList] addObject:[object url]];
+            }];
+        }
     }
 }
 
@@ -164,15 +182,18 @@
         [[[self projectSourceList] enclosingScrollView] setHidden:YES];
         [[self projectSegControl] setHidden:YES];
         
-        [[self headersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.headersTableView.frame), 150, 0))];
-        [[self parametersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.parametersTableView.frame), 150, 0))];
+        [[[self headersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.headersTableView.enclosingScrollView.frame.origin.x - 160, self.headersTableView.enclosingScrollView.frame.origin.y, self.headersTableView.enclosingScrollView.frame.size.width + 160, self.headersTableView.enclosingScrollView.frame.size.height))];
+        
+        [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x - 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width + 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
+        
     }
     else {
         [[[self projectSourceList] enclosingScrollView] setHidden:NO];
         [[self projectSegControl] setHidden:NO];
         
-        [[self headersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.headersTableView.frame), -150, 0))];
-        [[self parametersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.parametersTableView.frame), -150, 0))];
+        [[[self headersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.headersTableView.enclosingScrollView.frame.origin.x + 160, self.headersTableView.enclosingScrollView.frame.origin.y, self.headersTableView.enclosingScrollView.frame.size.width - 160, self.headersTableView.enclosingScrollView.frame.size.height))];
+        
+        [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x + 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width - 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
         
         [[self projectSourceList] reloadData];
     }
@@ -326,6 +347,8 @@
         [tempProject setName:@"Project Name"];
         [tempProject save];
         
+        [self setCurrentProject:tempProject];
+        
         [[self projectList] addObject:tempProject];
         
         [[self projectSourceList] reloadData];
@@ -333,7 +356,12 @@
     else {
         Projects *tempProject = [self projectList][[[self projectSourceList] selectedRow]];
         
+        if (tempProject == [self currentProject]) {
+            [self setCurrentProject:nil];
+        }
+        
         [tempProject delete];
+        
         
         [[self projectSourceList] reloadData];
     }
@@ -366,6 +394,57 @@
     [[self clearOutputButton] setEnabled:NO];
 }
 
+-(IBAction)projectTableViewAction:(id)sender
+{
+    [[self headerDataSource] removeAllObjects];
+    [[self headersTableView] reloadData];
+    
+    [[self paramDataSource] removeAllObjects];
+    [[self parametersTableView] reloadData];
+    
+    [[self urlList] removeAllObjects];
+
+    [[self urlTextField] setStringValue:@""];
+    
+    Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
+    
+    [self setCurrentProject:tempProject];
+    
+    [[self headersTableView] beginUpdates];
+    
+    int index = 0;
+    
+    for (Headers *tempHeader in [tempProject headers]) {
+        [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
+        
+        [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+        
+        index++;
+    }
+    
+    [[self headersTableView] endUpdates];
+    
+    index = 0;
+    
+    [[self parametersTableView] beginUpdates];
+    
+    for (Parameters *tempParam in [tempProject parameters]) {
+        [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
+        
+        [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+        
+        index++;
+    }
+    
+    [[self parametersTableView] endUpdates];
+    
+    for (Urls *url in [tempProject urls]) {
+        [[self urlList] addObject:[url url]];
+    }
+    
+    [self setupSegmentedControls];
+}
+
 #pragma mark
 #pragma mark NSControlTextDelegate
 
@@ -377,6 +456,15 @@
         }
         else {
             [[self fetchButton] setEnabled:NO];
+        }
+    }
+}
+
+-(void)controlTextDidEndEditing:(NSNotification *)notification
+{
+    if ([notification object] == [self urlTextField]) {
+        if ([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
+            [self fetchAction:nil];
         }
     }
 }
@@ -422,12 +510,38 @@
         
         [tempDict setObject:object forKey:identifier];
         
+        if ([self currentProject]) {
+            if (![tempDict[kValue] isEqualToString:kInsertValue]) {
+                Headers *tempHeader = [Headers create];
+                
+                [tempHeader setName:tempDict[kHeaderName]];
+                [tempHeader setValue:tempDict[kValue]];
+                
+                [[self currentProject] addHeadersObject:tempHeader];
+                
+                [[self currentProject] save];
+            }
+        }
+        
         [[self headerDataSource] replaceObjectAtIndex:row withObject:tempDict];
     }
     else {
         NSMutableDictionary *tempDict = [[self paramDataSource][row] mutableCopy];
         
         [tempDict setObject:object forKey:identifier];
+        
+        if ([self currentProject]) {
+            if (![tempDict[kValue] isEqualToString:kInsertValue]) {
+                Parameters *tempParam = [Parameters create];
+                
+                [tempParam setName:tempDict[kParameterName]];
+                [tempParam setValue:tempDict[kValue]];
+                
+                [[self currentProject] addParametersObject:tempParam];
+                
+                [[self currentProject] save];
+            }
+        }
         
         [[self paramDataSource] replaceObjectAtIndex:row withObject:tempDict];
     }
@@ -490,4 +604,5 @@
     
     [tempProject save];
 }
+
 @end
