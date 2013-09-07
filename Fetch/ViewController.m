@@ -299,6 +299,14 @@
             return;
         }
         
+        if ([self currentProject]) {
+            id tempDict = [self headerDataSource][[[self headersTableView] selectedRow]];
+            
+            Headers *tempHeader = [[Headers whereFormat:@"name == '%@' AND value == '%@'", tempDict[kHeaderName], tempDict[kValue]] first];
+            
+            [tempHeader delete];
+        }
+
         [[self headerDataSource] removeObjectAtIndex:[[self headersTableView] selectedRow]];
         
         [[self headersTableView] reloadData];
@@ -325,6 +333,14 @@
     else {
         if ([[self parametersTableView] selectedRow] == -1) {
             return;
+        }
+        
+        if ([self currentProject]) {
+            id tempDict = [self paramDataSource][[[self parametersTableView] selectedRow]];
+            
+            Parameters *tempParameter = [[Parameters whereFormat:@"name == '%@' AND value == '%@'", tempDict[kParameterName], tempDict[kValue]] first];
+            
+            [tempParameter delete];
         }
         
         [[self paramDataSource] removeObjectAtIndex:[[self parametersTableView] selectedRow]];
