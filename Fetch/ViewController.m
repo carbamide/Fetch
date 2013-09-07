@@ -187,6 +187,8 @@
         
         [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x - 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width + 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
         
+        [[[self customPayloadTextView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.customPayloadTextView.enclosingScrollView.frame.origin.x - 160, self.customPayloadTextView.enclosingScrollView.frame.origin.y, self.customPayloadTextView.enclosingScrollView.frame.size.width + 160, self.customPayloadTextView.enclosingScrollView.frame.size.height))];
+        
     }
     else {
         [[[self projectSourceList] enclosingScrollView] setHidden:NO];
@@ -195,6 +197,8 @@
         [[[self headersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.headersTableView.enclosingScrollView.frame.origin.x + 160, self.headersTableView.enclosingScrollView.frame.origin.y, self.headersTableView.enclosingScrollView.frame.size.width - 160, self.headersTableView.enclosingScrollView.frame.size.height))];
         
         [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x + 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width - 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
+        
+        [[[self customPayloadTextView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.customPayloadTextView.enclosingScrollView.frame.origin.x + 160, self.customPayloadTextView.enclosingScrollView.frame.origin.y, self.customPayloadTextView.enclosingScrollView.frame.size.width - 160, self.customPayloadTextView.enclosingScrollView.frame.size.height))];
         
         [[self projectSourceList] reloadData];
     }
@@ -307,7 +311,7 @@
             
             [tempHeader delete];
         }
-
+        
         [[self headerDataSource] removeObjectAtIndex:[[self headersTableView] selectedRow]];
         
         [[self headersTableView] reloadData];
@@ -422,7 +426,7 @@
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
     
     [[self urlList] removeAllObjects];
-
+    
     [[self urlTextField] setStringValue:@""];
     
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
