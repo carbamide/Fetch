@@ -25,6 +25,8 @@ static NSString *const kInsertName = @"Insert Name";
 static NSString *const kValue = @"Value";
 static NSString *const kHeaderName = @"Header Name";
 static NSString *const kParameterName = @"Parameter Name";
+static NSString *const kRequestSeparator = @"---------------------------------REQUEST--------------------------------------";
+static NSString *const kResponseSeparator = @"---------------------------------RESPONSE------------------------------------";
 
 #pragma mark
 #pragma mark Lifecycle
@@ -60,11 +62,54 @@ static NSString *const kParameterName = @"Parameter Name";
         [[self urlList] addObject:[object url]];
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
+    
     [self setupSegmentedControls];
     
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
 }
+
+-(void)preferencesChanges
+{
+    NSColor *separatorColor = nil;
+    NSColor *backgroundColor = nil;
+    NSColor *foregroundColor = nil;
+    NSColor *successColor = nil;
+    NSColor *failureColor = nil;
+    
+    NSData *separatorData = [[NSUserDefaults standardUserDefaults] dataForKey:@"separator_color"];
+    
+    if (separatorData) {
+        separatorColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:separatorData];
+    }
+
+    NSData *backgroundData = [[NSUserDefaults standardUserDefaults] dataForKey:@"background_color"];
+    
+    if (backgroundData) {
+        backgroundColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:separatorData];
+    }
+    
+    NSData *foregroundData = [[NSUserDefaults standardUserDefaults] dataForKey:@"foreground_color"];
+    
+    if (foregroundData) {
+        foregroundColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:foregroundData];
+    }
+    
+    NSData *successData = [[NSUserDefaults standardUserDefaults] dataForKey:@"success_color"];
+    
+    if (successData) {
+        successColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:successData];
+    }
+    
+    NSData *failureData = [[NSUserDefaults standardUserDefaults] dataForKey:@"failure_color"];
+    
+    if (failureData) {
+        failureColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:failureData];
+    }
+    
+}
+
 
 -(void)setupSegmentedControls
 {
@@ -103,6 +148,30 @@ static NSString *const kParameterName = @"Parameter Name";
     });
 }
 
+-(void)addToUrlListIfUnique
+{
+    BOOL addURL = YES;
+    
+    for (NSString *tempURL in [self urlList]) {
+        if ([tempURL isEqualToString:[[self urlTextField] stringValue]]) {
+            addURL = NO;
+        }
+    }
+    
+    if (addURL) {
+        Urls *tempUrl = [Urls create];
+        
+        [tempUrl setUrl:[[self urlTextField] stringValue]];
+        [tempUrl save];
+        
+        [[self urlList] removeAllObjects];
+        
+        [[Urls all] each:^(Urls *object) {
+            [[self urlList] addObject:[object url]];
+        }];
+    }
+}
+
 #pragma mark
 #pragma mark IBActions
 
@@ -110,18 +179,13 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     NSLog(@"%s", __FUNCTION__);
     
-    Urls *tempUrl = [Urls create];
-    
-    [tempUrl setUrl:[[self urlTextField] stringValue]];
-    [tempUrl save];
-    
-    [[Urls all] each:^(Urls *object) {
-        [[self urlList] addObject:[object url]];
-    }];
+    [self addToUrlListIfUnique];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
     
     [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
+    
+    [self appendToOutput:kRequestSeparator color:[NSColor blueColor]];
     
     for (NSDictionary *tempDict in [self headerDataSource]) {
         [request setValue:tempDict[kValue] forHTTPHeaderField:tempDict[kHeaderName]];
@@ -154,6 +218,7 @@ static NSString *const kParameterName = @"Parameter Name";
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                             NSData *data,
                                                                                                             NSError *connectionError) {
+        [self appendToOutput:kResponseSeparator color:[NSColor blueColor]];
         
         if (NSLocationInRange([(NSHTTPURLResponse *)response statusCode], NSMakeRange(200, (299 - 200)))) {
             [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor greenColor]];
@@ -161,6 +226,8 @@ static NSString *const kParameterName = @"Parameter Name";
         else {
             [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor redColor]];
         }
+        
+        [self appendToOutput:[NSString stringWithFormat:@"%@", [(NSHTTPURLResponse *)response allHeaderFields]] color:[NSColor grayColor]];
         
         if (!connectionError) {
             id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
