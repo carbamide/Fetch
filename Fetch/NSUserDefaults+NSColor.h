@@ -10,4 +10,8 @@
 
 @interface NSUserDefaults (NSColor)
 
+-(void)setColor:(NSColor *)color forKey:(NSString *)key;
+
+-(NSColor *)colorForKey:(NSString *)key;
+
 @end

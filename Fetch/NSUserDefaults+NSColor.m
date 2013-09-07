@@ -10,4 +10,24 @@
 
 @implementation NSUserDefaults (NSColor)
 
+-(void)setColor:(NSColor *)color forKey:(NSString *)key
+{
+    NSData *colorData = [NSArchiver archivedDataWithRootObject:color];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:key];
+}
+
+-(NSColor *)colorForKey:(NSString *)key
+{
+    NSColor *color = nil;
+    
+    NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:key];
+    
+    if (data) {
+        color = (NSColor *)[NSUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    return color;
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PreferencesWindowController.h"
+#import "NSUserDefaults+NSColor.h"
 
 @interface PreferencesWindowController ()
 
