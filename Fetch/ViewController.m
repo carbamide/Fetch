@@ -282,6 +282,8 @@
             [errorAlert runModal];
         }
     }];
+    
+    [[self projectSourceList] reloadData];
 }
 
 -(IBAction)headerSegContAction:(id)sender
@@ -600,24 +602,61 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-    return [[self projectList] objectAtIndex:index];
+    if (!item) {
+        return [[self projectList] objectAtIndex:index];
+    }
+    else {
+        Projects *tempProject = item;
+        
+        NSArray *tempArray = [NSArray arrayWithArray:[[tempProject urls] allObjects]];
+        
+        return tempArray[index];
+    }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
+    if ([item isKindOfClass:[Projects class]]) {
+        Projects *tempProject = item;
+        
+        if ([[tempProject urls] count] > 0) {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-    return [[self projectList] count];
+    if (!item) {
+        return [[self projectList] count];
+    }
+    else {
+        if ([item isKindOfClass:[Projects class]]) {
+            Projects *tempProject = item;
+            
+            return [[tempProject urls] count];
+        }
+    }
+    
+    return 0;
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    Projects *tempProject = item;
+    NSLog(@"%@", [tableColumn identifier]);
     
-    return [tempProject name];
+    if ([item isKindOfClass:[Projects class]]) {
+        Projects *tempProject = item;
+        
+        return [tempProject name];
+    }
+    else {
+        Urls *tempUrl = item;
+        
+        return [tempUrl url];
+    }
 }
 
 #pragma mark
