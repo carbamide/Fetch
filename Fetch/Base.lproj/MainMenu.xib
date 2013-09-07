@@ -70,12 +70,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="QCv-xI-ofD">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="rl8-Pb-J1T">
+                            <menuItem title="Show Projects" keyEquivalent="P" id="rl8-Pb-J1T">
                                 <connections>
-                                    <action selector="newProject:" target="Oji-mK-1SW" id="1Ek-Sj-ygW"/>
+                                    <action selector="showProjects:" target="Oji-mK-1SW" id="l0Z-pr-YRO"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="Viq-aK-4xm">
+                            <menuItem title="Import Project" keyEquivalent="I" id="Viq-aK-4xm">
                                 <connections>
                                     <action selector="openProject:" target="Oji-mK-1SW" id="64h-Co-ulX"/>
                                 </connections>
@@ -563,6 +563,72 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <scrollView hidden="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="dYO-Bc-SGG">
+                        <rect key="frame" x="-1" y="335" width="150" height="271"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" id="H5a-DL-bQR">
+                            <rect key="frame" x="1" y="1" width="148" height="269"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" indentationPerLevel="16" outlineTableColumn="hY9-Tf-Uie" id="KfX-RV-wJh">
+                                    <rect key="frame" x="0.0" y="0.0" width="148" height="269"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="0.0"/>
+                                    <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="145" minWidth="16" maxWidth="1000" id="hY9-Tf-Uie">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="IWG-Ue-0YE">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="gb6-4z-C70" id="YBe-Ta-Vtt"/>
+                                        <outlet property="delegate" destination="gb6-4z-C70" id="8Xj-V8-Esf"/>
+                                    </connections>
+                                </outlineView>
+                            </subviews>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="78V-AD-qxc">
+                            <rect key="frame" x="1" y="119" width="238" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="k5f-6d-Wtr">
+                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <segmentedControl hidden="YES" verticalHuggingPriority="750" id="Plq-kc-wgi">
+                        <rect key="frame" x="0.0" y="315" width="149" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="momentary" id="3Tf-Ac-7Nk">
+                            <font key="font" metaFont="system"/>
+                            <segments>
+                                <segment image="NSAddTemplate" width="40">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment image="NSRemoveTemplate" width="40" tag="1">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment width="65">
+                                    <nil key="label"/>
+                                </segment>
+                            </segments>
+                        </segmentedCell>
+                        <connections>
+                            <action selector="projectSegContAction:" target="gb6-4z-C70" id="eUT-Rc-n0a"/>
+                        </connections>
+                    </segmentedControl>
                 </subviews>
             </view>
         </window>
@@ -586,11 +652,14 @@
                 <outlet property="outputTextView" destination="rcz-YS-4nI" id="GTX-hn-4hx"/>
                 <outlet property="paramSegCont" destination="Ijc-X7-qiX" id="f1R-Uw-GpU"/>
                 <outlet property="parametersTableView" destination="izJ-cx-bKU" id="Zp0-F8-KmD"/>
+                <outlet property="projectSegControl" destination="Plq-kc-wgi" id="Fcd-x7-17v"/>
+                <outlet property="projectSourceList" destination="KfX-RV-wJh" id="Af8-MS-4ZG"/>
                 <outlet property="urlTextField" destination="VFy-cv-NY8" id="FoP-SL-mFO"/>
                 <outlet property="view" destination="372" id="27R-cS-tdB"/>
             </connections>
         </customObject>
         <userDefaultsController id="hFg-4c-zT1"/>
+        <userDefaultsController id="mJV-yW-0ZC"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

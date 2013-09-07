@@ -24,9 +24,9 @@
     [[_preferencesWindow window] makeKeyAndOrderFront:self];
 }
 
--(IBAction)newProject:(id)sender
+-(IBAction)showProjects:(id)sender
 {
-    //not implemented
+    [[self viewController] showProjects];
 }
 
 -(IBAction)openProject:(id)sender

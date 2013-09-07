@@ -10,19 +10,19 @@
 #import "Urls.h"
 #import "NSUserDefaults+NSColor.h"
 #import "Constants.h"
+#import "Projects.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
 @property (strong, nonatomic) NSMutableArray *urlList;
+@property (strong, nonatomic) NSMutableArray *projectList;
 
 @property (strong, nonatomic) NSArray *headerNames;
 
 @end
 
 @implementation ViewController
-
-
 
 #pragma mark
 #pragma mark Lifecycle
@@ -46,6 +46,10 @@
         if (![self urlList]) {
             [self setUrlList:[NSMutableArray array]];
         }
+        
+        if (![self projectList]) {
+            [self setProjectList:[NSMutableArray array]];
+        }
     }
     return self;
 }
@@ -56,6 +60,10 @@
     
     [[Urls all] each:^(Urls *object) {
         [[self urlList] addObject:[object url]];
+    }];
+    
+    [[Projects all] each:^(Projects *object) {
+        [[self projectList] addObject:object];
     }];
     
     [self preferencesChanges:nil];
@@ -148,6 +156,26 @@
     [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:kSuccessColor]];
     [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
     [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kSuccessColor]];
+}
+
+-(void)showProjects
+{
+    if (![[self projectSegControl] isHidden]) {
+        [[[self projectSourceList] enclosingScrollView] setHidden:YES];
+        [[self projectSegControl] setHidden:YES];
+        
+        [[self headersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.headersTableView.frame), 150, 0))];
+        [[self parametersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.parametersTableView.frame), 150, 0))];
+    }
+    else {
+        [[[self projectSourceList] enclosingScrollView] setHidden:NO];
+        [[self projectSegControl] setHidden:NO];
+        
+        [[self headersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.headersTableView.frame), -150, 0))];
+        [[self parametersTableView] setFrame:NSRectFromCGRect(CGRectOffset(NSRectToCGRect(self.parametersTableView.frame), -150, 0))];
+        
+        [[self projectSourceList] reloadData];
+    }
 }
 
 #pragma mark
@@ -286,6 +314,31 @@
     [self setupSegmentedControls];
 }
 
+-(IBAction)projectSegContAction:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSSegmentedControl *tempSegCont = sender;
+    
+    if ([tempSegCont selectedSegment] == 0) {
+        Projects *tempProject = [Projects create];
+        
+        [tempProject setName:@"Project Name"];
+        [tempProject save];
+        
+        [[self projectList] addObject:tempProject];
+        
+        [[self projectSourceList] reloadData];
+    }
+    else {
+        Projects *tempProject = [self projectList][[[self projectSourceList] selectedRow]];
+        
+        [tempProject delete];
+        
+        [[self projectSourceList] reloadData];
+    }
+}
+
 -(IBAction)customPostBodyAction:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
@@ -293,12 +346,14 @@
     if ([[self customPostBodyCheckBox] state] == NSOnState) {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
         
-        [[self paramSegCont] setHidden:YES];
+        [[[self paramSegCont] animator] setAlphaValue:0.0];
+        [[self paramSegCont] setEnabled:NO];
     }
     else {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
         
-        [[self paramSegCont] setHidden:NO];
+        [[self paramSegCont] setEnabled:YES];
+        [[[self paramSegCont] animator] setAlphaValue:1.0];
     }
 }
 
@@ -399,4 +454,40 @@
     [[self fetchButton] setEnabled:YES];
 }
 
+#pragma mark
+#pragma mark NSOutlineViewDataSource
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+    return [[self projectList] objectAtIndex:index];
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+    return NO;
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+    return [[self projectList] count];
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    Projects *tempProject = item;
+    
+    return [tempProject name];
+}
+
+#pragma mark
+#pragma mark NSOutlineViewDelegate
+
+- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    Projects *tempProject = item;
+    
+    [tempProject setName:object];
+    
+    [tempProject save];
+}
 @end

@@ -7,14 +7,17 @@
 //
 
 #import "PreferencesWindowController.h"
+#import "ViewController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (strong, nonatomic) IBOutlet ViewController *viewController;
+
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
 
 -(IBAction)showPreferences:(id)sender;
--(IBAction)newProject:(id)sender;
+-(IBAction)showProjects:(id)sender;
 -(IBAction)openProject:(id)sender;
 -(IBAction)closeWindow:(id)sender;
 

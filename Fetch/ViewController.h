@@ -14,7 +14,7 @@ enum {
 };
 typedef NSUInteger HttpMethod;
 
-@interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate>
+@interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (weak) IBOutlet NSComboBox *urlTextField;
 @property (weak) IBOutlet NSComboBox *methodCombo;
@@ -26,6 +26,8 @@ typedef NSUInteger HttpMethod;
 @property (weak) IBOutlet NSTableView *parametersTableView;
 @property (weak) IBOutlet NSSegmentedControl *headerSegCont;
 @property (weak) IBOutlet NSSegmentedControl *paramSegCont;
+@property (weak) IBOutlet NSSegmentedControl *projectSegControl;
+@property (weak) IBOutlet NSOutlineView *projectSourceList;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView;
 
@@ -34,5 +36,8 @@ typedef NSUInteger HttpMethod;
 -(IBAction)parameterSegContAction:(id)sender;
 -(IBAction)customPostBodyAction:(id)sender;
 -(IBAction)clearOutput:(id)sender;
+-(IBAction)projectSegContAction:(id)sender;
+
+-(void)showProjects;
 
 @end

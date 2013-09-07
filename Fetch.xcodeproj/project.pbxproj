@@ -130,7 +130,6 @@
 		2983B07B17DAC148001852F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2983B07D17DAC154001852F2 /* Entities */,
 				2983B07C17DAC14C001852F2 /* Generated */,
 			);
 			name = Models;
@@ -149,13 +148,6 @@
 				2983B09717DACDCE001852F2 /* Parameters.m */,
 			);
 			name = Generated;
-			sourceTree = "<group>";
-		};
-		2983B07D17DAC154001852F2 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Entities;
 			sourceTree = "<group>";
 		};
 		29EF763717D65E6F00F89D72 /* User Interface */ = {
