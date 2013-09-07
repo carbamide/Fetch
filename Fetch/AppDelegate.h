@@ -6,8 +6,13 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
+#import "PreferencesWindowController.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
+
+-(IBAction)showPreferences:(id)sender;
 
 @end

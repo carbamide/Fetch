@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="13A569" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Headers" representedClassName="Headers" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="headers" inverseEntity="Projects" syncable="YES"/>
+    </entity>
+    <entity name="Parameters" representedClassName="Parameters" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="parameters" inverseEntity="Projects" syncable="YES"/>
+    </entity>
+    <entity name="Projects" representedClassName="Projects" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="headers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Headers" inverseName="project" inverseEntity="Headers" syncable="YES"/>
+        <relationship name="parameters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Parameters" inverseName="project" inverseEntity="Parameters" syncable="YES"/>
+    </entity>
+    <entity name="Urls" representedClassName="Url" syncable="YES">
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Headers" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Parameters" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Projects" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Urls" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

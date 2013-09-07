@@ -5,5 +5,7 @@
 //
 
 #ifdef __OBJC__
+#import <ObjectiveRecord/ObjectiveRecord.h>
+#import <ObjectiveSugar/ObjectiveSugar.h>
     #import <Cocoa/Cocoa.h>
 #endif

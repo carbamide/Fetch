@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Urls.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -44,11 +45,8 @@ static NSString *const kParameterName = @"Parameter Name";
             [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
         }
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"urls"]) {
-            [self setUrlList:[[[NSUserDefaults standardUserDefaults] objectForKey:@"urls"] mutableCopy]];
-        }
-        else {
-            [self setUrlList:[[NSMutableArray alloc] init]];
+        if (![self urlList]) {
+            [self setUrlList:[NSMutableArray array]];
         }
     }
     return self;
@@ -58,17 +56,20 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     NSLog(@"%s", __FUNCTION__);
     
+    [[Urls all] each:^(Urls *object) {
+        [[self urlList] addObject:[object url]];
+    }];
+    
     [self setupSegmentedControls];
     
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
-    
 }
 
 -(void)setupSegmentedControls
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     if ([[self headerDataSource] count] == 0) {
         [[self headerSegCont] setEnabled:NO forSegment:1];
     }
@@ -86,6 +87,8 @@ static NSString *const kParameterName = @"Parameter Name";
 
 - (void)appendToOutput:(NSString *)text color:(NSColor *)color
 {
+    NSLog(@"%s", __FUNCTION__);
+
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
         
@@ -107,12 +110,14 @@ static NSString *const kParameterName = @"Parameter Name";
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self urlList] addObject:[[self urlTextField] stringValue]];
+    Urls *tempUrl = [Urls create];
     
-    [[NSUserDefaults standardUserDefaults] setValue:[self urlList] forKey:@"urls"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [tempUrl setUrl:[[self urlTextField] stringValue]];
+    [tempUrl save];
     
-    [[self urlTextField] reloadData];
+    [[Urls all] each:^(Urls *object) {
+        [[self urlList] addObject:[object url]];
+    }];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
     
@@ -149,7 +154,7 @@ static NSString *const kParameterName = @"Parameter Name";
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                             NSData *data,
                                                                                                             NSError *connectionError) {
-       
+        
         if (NSLocationInRange([(NSHTTPURLResponse *)response statusCode], NSMakeRange(200, (299 - 200)))) {
             [self appendToOutput:[NSString stringWithFormat:@"Response - %li\n", (long)[(NSHTTPURLResponse *)response statusCode]] color:[NSColor greenColor]];
         }
@@ -215,7 +220,6 @@ static NSString *const kParameterName = @"Parameter Name";
     
     NSSegmentedControl *tempSegCont = sender;
     
-
     if ([tempSegCont selectedSegment] == 0) {
         NSDictionary *tempDict = @{kParameterName: kInsertName, kValue: kInsertValue};
         
@@ -257,7 +261,7 @@ static NSString *const kParameterName = @"Parameter Name";
 -(IBAction)clearOutput:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     [[self outputTextView] setString:@""];
     
     [[self clearOutputButton] setEnabled:NO];
@@ -313,7 +317,7 @@ static NSString *const kParameterName = @"Parameter Name";
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = [tableColumn identifier];
-   
+    
     if (tableView == [self headersTableView]) {
         NSMutableDictionary *tempDict = [[self headerDataSource][row] mutableCopy];
         
