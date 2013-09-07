@@ -15,7 +15,6 @@
 @property (strong) IBOutlet NSColorWell *foregroundColorWell;
 @property (strong) IBOutlet NSColorWell *successColorWell;
 @property (strong) IBOutlet NSColorWell *failureColorWell;
-@property (strong) IBOutlet NSTextField *urlsToRememberTextField;
 
 -(IBAction)saveColorForProperty:(id)sender;
 

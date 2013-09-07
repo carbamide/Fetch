@@ -32,11 +32,7 @@
     NSArray *preferenceKeys = @[kSeparatorColor, kBackgroundColor, kForegroundColor, kSuccessColor, kFailureColor];
     
     for (int i = 0; i < [preferenceKeys count]; i++) {
-        NSColor *color = nil;
-        
-        NSData *colorData = [[NSUserDefaults standardUserDefaults] dataForKey:preferenceKeys[i]];
-        
-        color = (NSColor *)[NSUnarchiver unarchiveObjectWithData:colorData];
+        NSColor *color = [[NSUserDefaults standardUserDefaults] colorForKey:preferenceKeys[i]];
 
         switch (i) {
             case 0:
@@ -63,26 +59,26 @@
 -(IBAction)saveColorForProperty:(id)sender
 {
     NSColorWell *colorWell = sender;
-    
-    NSData *colorData = [NSArchiver archivedDataWithRootObject:[colorWell color]];
 
     switch ([sender tag]) {
         case 0:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kSeparatorColor];
+            [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kSeparatorColor];
+
             break;
         case 1:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kBackgroundColor];
+            [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kBackgroundColor];
+
             break;
         case 2:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kForegroundColor];
+            [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kForegroundColor];
 
             break;
         case 3:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kSuccessColor];
+            [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kSuccessColor];
 
             break;
         case 4:
-            [[NSUserDefaults standardUserDefaults] setObject:colorData forKey:kFailureColor];
+            [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kFailureColor];
 
             break;
         default:
@@ -91,4 +87,5 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 @end

@@ -182,8 +182,6 @@
 				29F4A7F717D64EFE00FAA098 /* FetchTests */,
 				29F4A7D217D64EFC00FAA098 /* Frameworks */,
 				29F4A7D117D64EFC00FAA098 /* Products */,
-				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
-				2B13D3DD1F5C419D953BC77D /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,12 +230,14 @@
 		29F4A7DA17D64EFD00FAA098 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
 				29C3D1E317D77875004B405E /* HeaderNames.plist */,
 				29F4A7EB17D64EFE00FAA098 /* Images.xcassets */,
 				29F4A7DB17D64EFD00FAA098 /* Fetch-Info.plist */,
 				29F4A7DC17D64EFE00FAA098 /* InfoPlist.strings */,
 				29F4A7DF17D64EFE00FAA098 /* main.m */,
 				29F4A7E117D64EFE00FAA098 /* Fetch-Prefix.pch */,
+				2B13D3DD1F5C419D953BC77D /* Pods.xcconfig */,
 				29F4A7E217D64EFE00FAA098 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
