@@ -12,6 +12,7 @@
 
 @implementation Urls
 
+@dynamic method;
 @dynamic url;
 @dynamic project;
 

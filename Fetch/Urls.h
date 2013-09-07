@@ -13,6 +13,7 @@
 
 @interface Urls : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * method;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) Projects *project;
 

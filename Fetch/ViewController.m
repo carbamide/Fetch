@@ -131,8 +131,8 @@
 {
     BOOL addURL = YES;
     
-    for (NSString *tempURL in [self urlList]) {
-        if ([tempURL isEqualToString:[[self urlTextField] stringValue]]) {
+    for (Urls *tempURL in [self urlList]) {
+        if ([[tempURL url] isEqualToString:[[self urlTextField] stringValue]]) {
             addURL = NO;
         }
     }
@@ -140,6 +140,7 @@
     if (addURL) {
         Urls *tempUrl = [Urls create];
         
+        [tempUrl setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
         [tempUrl setUrl:[[self urlTextField] stringValue]];
         
         if ([self currentProject]) {
@@ -150,7 +151,7 @@
             [[self urlList] removeAllObjects];
             
             for (Urls *url in [[self currentProject] urls]) {
-                [[self urlList] addObject:[url url]];
+                [[self urlList] addObject:url];
             }
         }
         else {
@@ -418,6 +419,8 @@
     [[self paramDataSource] removeAllObjects];
     [[self parametersTableView] reloadData];
     
+    [[self methodCombo] selectItemAtIndex:GET_METHOD];
+    
     [[self urlList] removeAllObjects];
 
     [[self urlTextField] setStringValue:@""];
@@ -455,7 +458,7 @@
     [[self parametersTableView] endUpdates];
     
     for (Urls *url in [tempProject urls]) {
-        [[self urlList] addObject:[url url]];
+        [[self urlList] addObject:url];
     }
     
     [self setupSegmentedControls];
@@ -573,7 +576,11 @@
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
-    return [self urlList][index];
+    Urls *tempUrl = [self urlList][index];
+    
+    [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
+    
+    return [tempUrl url];
 }
 
 #pragma mark
