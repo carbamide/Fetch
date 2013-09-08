@@ -679,6 +679,10 @@
 {
     Urls *tempUrl = [self urlList][index];
     
+    if ([tempUrl customPayload]) {
+        [[self customPayloadTextView] setString:[[tempUrl customPayload] payload]];
+    }
+    
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
     
     return [tempUrl url];
