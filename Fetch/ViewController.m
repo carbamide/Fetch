@@ -14,6 +14,7 @@
 #import "Headers.h"
 #import "Parameters.h"
 #import "DataHandler.h"
+#import "CustomPayload.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -154,6 +155,8 @@
             for (Urls *url in [[self currentProject] urls]) {
                 [[self urlList] addObject:url];
             }
+            
+            //{"session": {"email" : "josh@jukaela.com", "password" : "yOkzHT8d"}}
         }
         else {
             [tempUrl save];
@@ -163,6 +166,27 @@
             [[Urls all] each:^(Urls *object) {
                 [[self urlList] addObject:[object url]];
             }];
+        }
+    }
+    
+    Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+    
+    if (tempUrl) {
+        if ([[self customPostBodyCheckBox] state] == NSOnState) {
+            if ([tempUrl customPayload]) {
+                [[tempUrl customPayload] setPayload:[[self customPayloadTextView] string]];
+                
+                [[tempUrl customPayload] save];
+            }
+            else {
+                CustomPayload *tempPayload = [CustomPayload create];
+                
+                [tempPayload setPayload:[[self customPayloadTextView] string]];
+                
+                [tempUrl setCustomPayload:tempPayload];
+                
+                [tempUrl save];
+            }
         }
     }
 }

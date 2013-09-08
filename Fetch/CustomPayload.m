@@ -1,21 +1,18 @@
 //
-//  Urls.m
+//  CustomPayload.m
 //  Fetch
 //
 //  Created by Josh on 9/8/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "Urls.h"
 #import "CustomPayload.h"
-#import "Projects.h"
+#import "Urls.h"
 
 
-@implementation Urls
+@implementation CustomPayload
 
-@dynamic method;
+@dynamic payload;
 @dynamic url;
-@dynamic project;
-@dynamic customPayload;
 
 @end

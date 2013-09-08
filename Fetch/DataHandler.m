@@ -13,6 +13,7 @@
 #import "Parameters.h"
 #import "Projects.h"
 #import "Headers.h"
+#import "CustomPayload.h"
 
 @implementation DataHandler
 
@@ -47,6 +48,14 @@
         
         [tempUrl setUrl:tempDict[kUrl]];
         [tempUrl setMethod:tempDict[kMethod]];
+        
+        if (tempDict[kCustomPayload]) {
+            CustomPayload *tempPayload = [CustomPayload create];
+            
+            [tempPayload setPayload:tempDict[kCustomPayload]];
+            
+            [tempUrl setCustomPayload:tempPayload];
+        }
         
         [tempProject addUrlsObject:tempUrl];
     }
@@ -87,6 +96,7 @@
         
         [tempDict setObject:[tempUrl url] forKey:kUrl];
         [tempDict setObject:[tempUrl method] forKey:kMethod];
+        [tempDict setObject:[[tempUrl customPayload] payload] forKey:kCustomPayload];
         
         [urlArray addObject:tempDict];
     }
