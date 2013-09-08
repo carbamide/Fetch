@@ -22,31 +22,31 @@
     
     Projects *tempProject = [Projects create];
     
-    [tempProject setName:importedDictionary[@"project_name"]];
+    [tempProject setName:importedDictionary[kProjectName]];
     
-    for (NSDictionary *tempDict in importedDictionary[@"headers"]) {
+    for (NSDictionary *tempDict in importedDictionary[kHeaders]) {
         Headers *tempHeader = [Headers create];
         
-        [tempHeader setName:tempDict[@"name"]];
-        [tempHeader setValue:tempDict[@"value"]];
+        [tempHeader setName:tempDict[kName]];
+        [tempHeader setValue:tempDict[kValue]];
         
         [tempProject addHeadersObject:tempHeader];
     }
     
-    for (NSDictionary *tempDict in importedDictionary[@"parameters"]) {
+    for (NSDictionary *tempDict in importedDictionary[kParameters]) {
         Parameters *tempParam = [Parameters create];
         
-        [tempParam setName:tempDict[@"name"]];
-        [tempParam setValue:tempDict[@"value"]];
+        [tempParam setName:tempDict[kName]];
+        [tempParam setValue:tempDict[kValue]];
         
         [tempProject addParametersObject:tempParam];
     }
     
-    for (NSDictionary *tempDict in importedDictionary[@"urls"]) {
+    for (NSDictionary *tempDict in importedDictionary[kUrls]) {
         Urls *tempUrl = [Urls create];
         
-        [tempUrl setUrl:tempDict[@"url"]];
-        [tempUrl setMethod:tempDict[@"method"]];
+        [tempUrl setUrl:tempDict[kUrl]];
+        [tempUrl setMethod:tempDict[kMethod]];
         
         [tempProject addUrlsObject:tempUrl];
     }
@@ -58,7 +58,7 @@
 {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
     
-    [returnDictionary setObject:[project name] forKey:@"project_name"];
+    [returnDictionary setObject:[project name] forKey:kProjectName];
     
     NSMutableArray *headerArray = [NSMutableArray array];
     NSMutableArray *parameterArray = [NSMutableArray array];
@@ -67,8 +67,8 @@
     for (Headers *tempHeader in [project headers]) {
         NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
         
-        [tempDict setObject:[tempHeader name] forKey:@"name"];
-        [tempDict setObject:[tempHeader value] forKey:@"value"];
+        [tempDict setObject:[tempHeader name] forKey:kName];
+        [tempDict setObject:[tempHeader value] forKey:kValue];
         
         [headerArray addObject:tempDict];
     }
@@ -76,8 +76,8 @@
     for (Parameters *tempParameter in [project parameters]) {
         NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
         
-        [tempDict setObject:[tempParameter name] forKey:@"name"];
-        [tempDict setObject:[tempParameter value] forKey:@"value"];
+        [tempDict setObject:[tempParameter name] forKey:kName];
+        [tempDict setObject:[tempParameter value] forKey:kValue];
         
         [parameterArray addObject:tempDict];
     }
@@ -85,22 +85,22 @@
     for (Urls *tempUrl in [project urls]) {
         NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
         
-        [tempDict setObject:[tempUrl url] forKey:@"url"];
-        [tempDict setObject:[tempUrl method] forKey:@"method"];
+        [tempDict setObject:[tempUrl url] forKey:kUrl];
+        [tempDict setObject:[tempUrl method] forKey:kMethod];
         
         [urlArray addObject:tempDict];
     }
     
     if ([headerArray count] > 0) {
-        [returnDictionary setObject:headerArray forKey:@"headers"];
+        [returnDictionary setObject:headerArray forKey:kHeaders];
     }
     
     if ([parameterArray count] > 0) {
-        [returnDictionary setObject:parameterArray forKey:@"parameters"];
+        [returnDictionary setObject:parameterArray forKey:kParameters];
     }
     
     if ([urlArray count] > 0) {
-        [returnDictionary setObject:urlArray forKey:@"urls"];
+        [returnDictionary setObject:urlArray forKey:kUrls];
     }
     
     NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:returnDictionary];
