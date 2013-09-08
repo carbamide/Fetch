@@ -12,6 +12,7 @@
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
+		29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BEA3FC17DD1ADB005048F1 /* DataHandler.m */; };
 		29C3732B17DBD127009E4EB5 /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C3732A17DBD126009E4EB5 /* Headers.m */; };
 		29C3732E17DBD127009E4EB5 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C3732D17DBD127009E4EB5 /* Projects.m */; };
 		29C3733117DBD127009E4EB5 /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C3733017DBD127009E4EB5 /* Urls.m */; };
@@ -50,6 +51,8 @@
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fetch.xcdatamodel; sourceTree = "<group>"; };
+		29BEA3FB17DD1ADB005048F1 /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
+		29BEA3FC17DD1ADB005048F1 /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
 		29C3732917DBD126009E4EB5 /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
 		29C3732A17DBD126009E4EB5 /* Headers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Headers.m; sourceTree = "<group>"; };
 		29C3732C17DBD127009E4EB5 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */,
 				29EF763417D65D9400F89D72 /* ViewController.h */,
 				29EF763517D65D9400F89D72 /* ViewController.m */,
+				29BEA3FB17DD1ADB005048F1 /* DataHandler.h */,
+				29BEA3FC17DD1ADB005048F1 /* DataHandler.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29C3733117DBD127009E4EB5 /* Urls.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
+				29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */,
 				29C3732E17DBD127009E4EB5 /* Projects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

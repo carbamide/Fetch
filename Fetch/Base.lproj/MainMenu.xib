@@ -77,7 +77,7 @@
                             </menuItem>
                             <menuItem title="Import Project" keyEquivalent="I" id="Viq-aK-4xm">
                                 <connections>
-                                    <action selector="openProject:" target="Oji-mK-1SW" id="64h-Co-ulX"/>
+                                    <action selector="importProject:" target="gb6-4z-C70" id="vRh-7M-ge0"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ESB-LV-r8X"/>
@@ -595,6 +595,7 @@
                                         <action selector="projectTableViewAction:" target="gb6-4z-C70" id="Hna-tP-m2u"/>
                                         <outlet property="dataSource" destination="gb6-4z-C70" id="YBe-Ta-Vtt"/>
                                         <outlet property="delegate" destination="gb6-4z-C70" id="8Xj-V8-Esf"/>
+                                        <outlet property="menu" destination="wFx-wf-vAs" id="uHQ-oB-kFc"/>
                                     </connections>
                                 </outlineView>
                             </subviews>
@@ -664,6 +665,16 @@
         </customObject>
         <userDefaultsController id="hFg-4c-zT1"/>
         <userDefaultsController id="mJV-yW-0ZC"/>
+        <menu id="wFx-wf-vAs">
+            <items>
+                <menuItem title="Export..." id="BiP-At-zHU">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="exportProject:" target="gb6-4z-C70" id="OXk-4D-ZHQ"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

@@ -13,6 +13,7 @@
 #import "Projects.h"
 #import "Headers.h"
 #import "Parameters.h"
+#import "DataHandler.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -470,6 +471,44 @@
     [self setupSegmentedControls];
 }
 
+-(IBAction)importProject:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    [openPanel setTitle:@"Import"];
+    [openPanel setAllowedFileTypes:@[@"fetch"]];
+    [openPanel setAllowsMultipleSelection:NO];
+    
+    if ([openPanel runModal] == NSOKButton) {
+        if ([DataHandler importFromPath:[[openPanel URL] path]]) {
+            [[self projectList] removeAllObjects];
+            
+            [[Projects all] each:^(Projects *object) {
+                [[self projectList] addObject:object];
+            }];
+            
+            [[self projectSourceList] reloadData];
+        }
+    }
+}
+-(IBAction)exportProject:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    Projects *project = [self projectList][[[self projectSourceList] clickedRow]];
+    
+    [savePanel setTitle:@"Export"];
+    [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
+
+    if ([savePanel runModal] == NSOKButton) {
+        [DataHandler exportProject:project toUrl:[savePanel URL]];
+    }
+}
+
 #pragma mark
 #pragma mark NSControlTextDelegate
 
@@ -644,9 +683,7 @@
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
-    NSLog(@"%@", [tableColumn identifier]);
-    
+{    
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
         
