@@ -38,8 +38,10 @@ typedef NSUInteger HttpMethod;
 -(IBAction)clearOutput:(id)sender;
 -(IBAction)projectSegContAction:(id)sender;
 -(IBAction)projectTableViewAction:(id)sender;
+
 -(IBAction)exportProject:(id)sender;
 -(IBAction)importProject:(id)sender;
+-(IBAction)deleteProject:(id)sender;
 
 -(void)showProjects;
 

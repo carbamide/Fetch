@@ -380,12 +380,21 @@
     else {
         Projects *tempProject = [self projectList][[[self projectSourceList] selectedRow]];
         
+        [[self projectList] removeObjectAtIndex:[[self projectSourceList] selectedRow]];
+        
         if (tempProject == [self currentProject]) {
             [self setCurrentProject:nil];
+            
+            [[self urlList] removeAllObjects];
+            [[self headerDataSource] removeAllObjects];
+            [[self paramDataSource] removeAllObjects];
+            
+            [[self urlTextField] reloadData];
+            [[self headersTableView] reloadData];
+            [[self parametersTableView] reloadData];
         }
         
         [tempProject delete];
-        
         
         [[self projectSourceList] reloadData];
     }
@@ -493,6 +502,7 @@
         }
     }
 }
+
 -(IBAction)exportProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
@@ -507,6 +517,28 @@
     if ([savePanel runModal] == NSOKButton) {
         [DataHandler exportProject:project toUrl:[savePanel URL]];
     }
+}
+
+-(IBAction)deleteProject:(id)sender
+{
+    Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
+    
+    if (tempProject == [self currentProject]) {
+        [self setCurrentProject:nil];
+        
+        [[self urlList] removeAllObjects];
+        [[self headerDataSource] removeAllObjects];
+        [[self paramDataSource] removeAllObjects];
+        
+        [[self urlTextField] reloadData];
+        [[self headersTableView] reloadData];
+        [[self parametersTableView] reloadData];
+    }
+    
+    [tempProject delete];
+    
+    
+    [[self projectSourceList] reloadData];
 }
 
 #pragma mark

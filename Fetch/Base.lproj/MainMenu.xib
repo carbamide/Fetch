@@ -667,6 +667,12 @@
         <userDefaultsController id="mJV-yW-0ZC"/>
         <menu id="wFx-wf-vAs">
             <items>
+                <menuItem title="Delete..." id="XnY-Fz-YOZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="deleteProject:" target="gb6-4z-C70" id="fO1-4B-P5n"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Export..." id="BiP-At-zHU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
