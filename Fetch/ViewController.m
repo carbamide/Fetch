@@ -14,7 +14,6 @@
 #import "Headers.h"
 #import "Parameters.h"
 #import "DataHandler.h"
-#import "CustomPayload.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -70,9 +69,17 @@
         [[self urlList] addObject:[object url]];
     }];
     
+    __block BOOL showProject = NO;
+    
     [[Projects all] each:^(Projects *object) {
         [[self projectList] addObject:object];
+        
+        showProject = YES;
     }];
+    
+    if (showProject) {
+        [self showProjects];
+    }
     
     [self preferencesChanges:nil];
     
@@ -147,6 +154,8 @@
         [tempUrl setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
         [tempUrl setUrl:[[self urlTextField] stringValue]];
         
+        [self setCurrentUrl:tempUrl];
+        
         if ([self currentProject]) {
             [[self currentProject] addUrlsObject:tempUrl];
             
@@ -173,20 +182,9 @@
     
     if (tempUrl) {
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
-            if ([tempUrl customPayload]) {
-                [[tempUrl customPayload] setPayload:[[self customPayloadTextView] string]];
-                
-                [[tempUrl customPayload] save];
-            }
-            else {
-                CustomPayload *tempPayload = [CustomPayload create];
-                
-                [tempPayload setPayload:[[self customPayloadTextView] string]];
-                
-                [tempUrl setCustomPayload:tempPayload];
-                
-                [tempUrl save];
-            }
+            [tempUrl setCustomPayload:[[self customPayloadTextView] string]];
+            
+            [tempUrl save];
         }
     }
 }
@@ -235,6 +233,20 @@
 -(IBAction)fetchAction:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
+    
+    if ([[[self urlTextField] stringValue] isEqualToString:@""] || ![[self urlTextField] stringValue]) {
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Unable to Fetch."];
+        [alert setInformativeText:@"You must specify a URL."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        [alert runModal];
+        
+        return;
+    }
     
     [self addToUrlListIfUnique];
     
@@ -397,6 +409,9 @@
         
         [self setCurrentProject:tempProject];
         
+        [[self fetchButton] setEnabled:YES];
+        [[self urlTextField] setEnabled:YES];
+        
         [[self projectList] addObject:tempProject];
         
         [[self projectSourceList] reloadData];
@@ -408,7 +423,10 @@
         
         if (tempProject == [self currentProject]) {
             [self setCurrentProject:nil];
-            
+
+            [[self fetchButton] setEnabled:NO];
+            [[self urlTextField] setEnabled:NO];
+
             [[self urlList] removeAllObjects];
             [[self headerDataSource] removeAllObjects];
             [[self paramDataSource] removeAllObjects];
@@ -469,6 +487,9 @@
     
     [self setCurrentProject:tempProject];
     
+    [[self fetchButton] setEnabled:YES];
+    [[self urlTextField] setEnabled:YES];
+    
     for (Urls *url in [tempProject urls]) {
         [[self urlList] addObject:url];
     }
@@ -522,6 +543,9 @@
     if (tempProject == [self currentProject]) {
         [self setCurrentProject:nil];
         
+        [[self fetchButton] setEnabled:NO];
+        [[self urlTextField] setEnabled:NO];
+        
         [[self urlList] removeAllObjects];
         [[self headerDataSource] removeAllObjects];
         [[self paramDataSource] removeAllObjects];
@@ -542,9 +566,25 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
+    NSString *currentUrlString = [[self currentUrl] url];
+    
     if ([notification object] == [self urlTextField]) {
         if ([[[self urlTextField] stringValue] length] > 0) {
             [[self fetchButton] setEnabled:YES];
+            
+            if (![[(NSComboBox *)[notification object] stringValue] isEqualToString:currentUrlString]) {
+                [self setCurrentUrl:nil];
+                [[self headerDataSource] removeAllObjects];
+                [[self paramDataSource] removeAllObjects];
+                
+                [[self headersTableView] reloadData];
+                [[self parametersTableView] reloadData];
+                
+                [[self customPostBodyCheckBox] setState:NSOffState];
+                [[self customPayloadTextView] setString:@""];
+                
+                [[self methodCombo] selectItemAtIndex:GET_METHOD];
+            }
         }
         else {
             [[self fetchButton] setEnabled:NO];
@@ -612,6 +652,8 @@
                 [self addToUrlListIfUnique];
                 
                 [[self currentUrl] addHeadersObject:tempHeader];
+                
+                [[self currentUrl] save];
             }
         }
         
@@ -632,6 +674,8 @@
                 [self addToUrlListIfUnique];
                 
                 [[self currentUrl] addParametersObject:tempParam];
+                
+                [[self currentUrl] save];
             }
         }
         
@@ -651,46 +695,6 @@
 {
     Urls *tempUrl = [self urlList][index];
     
-    if ([tempUrl customPayload]) {
-        [[self customPayloadTextView] setString:[[tempUrl customPayload] payload]];
-    }
-    
-    [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
-    
-    if ([[tempUrl headers] count] > 0) {
-        [[self headersTableView] beginUpdates];
-        
-        int index = 0;
-        
-        for (Headers *tempHeader in [tempUrl headers]) {
-            [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
-            
-            [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-            
-            index++;
-        }
-        
-        [[self headersTableView] endUpdates];
-    }
-
-    if ([[tempUrl parameters] count] > 0) {
-        index = 0;
-        
-        [[self parametersTableView] beginUpdates];
-        
-        for (Parameters *tempParam in [tempUrl parameters]) {
-            [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
-            
-            [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-            
-            index++;
-        }
-        
-        [[self parametersTableView] endUpdates];
-    }
-
-    [self setCurrentUrl:tempUrl];
-    
     return [tempUrl url];
 }
 
@@ -699,7 +703,87 @@
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
-    [[self fetchButton] setEnabled:YES];
+    if ([notification object] == [self urlTextField]) {
+        [[self fetchButton] setEnabled:YES];
+        
+        Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+        
+        [self setCurrentUrl:tempUrl];
+        
+        [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
+        
+        if ([tempUrl customPayload]) {
+            [[self customPayloadTextView] setString:[tempUrl customPayload]];
+        }
+        
+        [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
+        
+        int index = 0;
+        
+        [[self headerDataSource] removeAllObjects];
+        [[self headersTableView] reloadData];
+        
+        if ([[tempUrl headers] count] > 0) {
+            [[self headersTableView] beginUpdates];
+            
+            
+            for (Headers *tempHeader in [tempUrl headers]) {
+                [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
+                
+                [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+                
+                index++;
+            }
+            
+            [[self headersTableView] endUpdates];
+        }
+        
+        [[self paramDataSource] removeAllObjects];
+        [[self parametersTableView] reloadData];
+        
+        if ([[tempUrl parameters] count] > 0) {
+            index = 0;
+            
+            [[self parametersTableView] beginUpdates];
+            
+            for (Parameters *tempParam in [tempUrl parameters]) {
+                [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
+                
+                [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+                
+                index++;
+            }
+            
+            [[self parametersTableView] endUpdates];
+        }
+        
+        if ([tempUrl customPayload]) {
+            [[self customPostBodyCheckBox] setState:NSOnState];
+            
+            [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
+            
+            [[[self paramSegCont] animator] setAlphaValue:0.0];
+            [[self paramSegCont] setEnabled:NO];
+        }
+        else {
+            [[self customPostBodyCheckBox] setState:NSOffState];
+            
+            [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
+            
+            [[self paramSegCont] setEnabled:YES];
+            [[[self paramSegCont] animator] setAlphaValue:1.0];
+        }
+
+    }
+    else if ([notification object] == [self methodCombo]) {
+        if ([self currentUrl]) {
+            Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+            
+            [tempUrl setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
+            
+            [tempUrl save];
+        }
+    }
 }
 
 #pragma mark

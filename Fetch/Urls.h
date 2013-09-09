@@ -2,21 +2,21 @@
 //  Urls.h
 //  Fetch
 //
-//  Created by Josh on 9/8/13.
+//  Created by Josh on 9/9/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CustomPayload, Headers, Parameters, Projects;
+@class Headers, Parameters, Projects;
 
 @interface Urls : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * method;
 @property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * customPayload;
 @property (nonatomic, retain) Projects *project;
-@property (nonatomic, retain) CustomPayload *customPayload;
 @property (nonatomic, retain) NSSet *parameters;
 @property (nonatomic, retain) NSSet *headers;
 @end

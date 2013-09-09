@@ -12,11 +12,10 @@
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
-		29BC58D917DD4103004168AE /* CustomPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58D817DD4103004168AE /* CustomPayload.m */; };
-		29BC58DC17DD4104004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58DB17DD4104004168AE /* Headers.m */; };
-		29BC58DF17DD4104004168AE /* Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58DE17DD4104004168AE /* Parameters.m */; };
-		29BC58E217DD4104004168AE /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E117DD4104004168AE /* Projects.m */; };
-		29BC58E517DD4104004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E417DD4104004168AE /* Urls.m */; };
+		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
+		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
+		29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58ED17DE0BFD004168AE /* Parameters.m */; };
+		29BC58F117DE0BFD004168AE /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58F017DE0BFD004168AE /* Projects.m */; };
 		29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BEA3FC17DD1ADB005048F1 /* DataHandler.m */; };
 		29C3D1E517D77875004B405E /* HeaderNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29C3D1E317D77875004B405E /* HeaderNames.plist */; };
 		29EF763617D65D9400F89D72 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EF763517D65D9400F89D72 /* ViewController.m */; };
@@ -52,16 +51,14 @@
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fetch.xcdatamodel; sourceTree = "<group>"; };
-		29BC58D717DD4103004168AE /* CustomPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPayload.h; sourceTree = "<group>"; };
-		29BC58D817DD4103004168AE /* CustomPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPayload.m; sourceTree = "<group>"; };
-		29BC58DA17DD4104004168AE /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
-		29BC58DB17DD4104004168AE /* Headers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Headers.m; sourceTree = "<group>"; };
-		29BC58DD17DD4104004168AE /* Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameters.h; sourceTree = "<group>"; };
-		29BC58DE17DD4104004168AE /* Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parameters.m; sourceTree = "<group>"; };
-		29BC58E017DD4104004168AE /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
-		29BC58E117DD4104004168AE /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
-		29BC58E317DD4104004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
-		29BC58E417DD4104004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
+		29BC58E617DE0BFD004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
+		29BC58E717DE0BFD004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
+		29BC58E917DE0BFD004168AE /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
+		29BC58EA17DE0BFD004168AE /* Headers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Headers.m; sourceTree = "<group>"; };
+		29BC58EC17DE0BFD004168AE /* Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameters.h; sourceTree = "<group>"; };
+		29BC58ED17DE0BFD004168AE /* Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parameters.m; sourceTree = "<group>"; };
+		29BC58EF17DE0BFD004168AE /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
+		29BC58F017DE0BFD004168AE /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29BEA3FB17DD1ADB005048F1 /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
 		29BEA3FC17DD1ADB005048F1 /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
 		29C3D1E317D77875004B405E /* HeaderNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HeaderNames.plist; sourceTree = "<group>"; };
@@ -144,16 +141,14 @@
 		2983B07C17DAC14C001852F2 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				29BC58D717DD4103004168AE /* CustomPayload.h */,
-				29BC58D817DD4103004168AE /* CustomPayload.m */,
-				29BC58DA17DD4104004168AE /* Headers.h */,
-				29BC58DB17DD4104004168AE /* Headers.m */,
-				29BC58DD17DD4104004168AE /* Parameters.h */,
-				29BC58DE17DD4104004168AE /* Parameters.m */,
-				29BC58E017DD4104004168AE /* Projects.h */,
-				29BC58E117DD4104004168AE /* Projects.m */,
-				29BC58E317DD4104004168AE /* Urls.h */,
-				29BC58E417DD4104004168AE /* Urls.m */,
+				29BC58E617DE0BFD004168AE /* Urls.h */,
+				29BC58E717DE0BFD004168AE /* Urls.m */,
+				29BC58E917DE0BFD004168AE /* Headers.h */,
+				29BC58EA17DE0BFD004168AE /* Headers.m */,
+				29BC58EC17DE0BFD004168AE /* Parameters.h */,
+				29BC58ED17DE0BFD004168AE /* Parameters.m */,
+				29BC58EF17DE0BFD004168AE /* Projects.h */,
+				29BC58F017DE0BFD004168AE /* Projects.m */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -434,18 +429,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29BC58DC17DD4104004168AE /* Headers.m in Sources */,
 				29EF763617D65D9400F89D72 /* ViewController.m in Sources */,
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
-				29BC58E517DD4104004168AE /* Urls.m in Sources */,
 				2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */,
+				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
 				2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */,
-				29BC58D917DD4103004168AE /* CustomPayload.m in Sources */,
+				29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */,
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
+				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
+				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */,
-				29BC58DF17DD4104004168AE /* Parameters.m in Sources */,
-				29BC58E217DD4104004168AE /* Projects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +576,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -596,6 +591,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
