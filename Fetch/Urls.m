@@ -8,6 +8,8 @@
 
 #import "Urls.h"
 #import "CustomPayload.h"
+#import "Headers.h"
+#import "Parameters.h"
 #import "Projects.h"
 
 
@@ -17,5 +19,7 @@
 @dynamic url;
 @dynamic project;
 @dynamic customPayload;
+@dynamic parameters;
+@dynamic headers;
 
 @end

@@ -2,18 +2,18 @@
 //  Parameters.m
 //  Fetch
 //
-//  Created by Josh on 9/7/13.
+//  Created by Josh on 9/8/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
 #import "Parameters.h"
-#import "Projects.h"
+#import "Urls.h"
 
 
 @implementation Parameters
 
 @dynamic name;
 @dynamic value;
-@dynamic project;
+@dynamic url;
 
 @end

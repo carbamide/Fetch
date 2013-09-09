@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) Projects *currentProject;
 
+@property (strong, nonatomic) Urls *currentUrl;
+
 @end
 
 @implementation ViewController
@@ -155,8 +157,6 @@
             for (Urls *url in [[self currentProject] urls]) {
                 [[self urlList] addObject:url];
             }
-            
-            //{"session": {"email" : "josh@jukaela.com", "password" : "yOkzHT8d"}}
         }
         else {
             [tempUrl save];
@@ -169,7 +169,7 @@
         }
     }
     
-    Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+    Urls *tempUrl = [self currentUrl];
     
     if (tempUrl) {
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
@@ -469,34 +469,6 @@
     
     [self setCurrentProject:tempProject];
     
-    [[self headersTableView] beginUpdates];
-    
-    int index = 0;
-    
-    for (Headers *tempHeader in [tempProject headers]) {
-        [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
-        
-        [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-        
-        index++;
-    }
-    
-    [[self headersTableView] endUpdates];
-    
-    index = 0;
-    
-    [[self parametersTableView] beginUpdates];
-    
-    for (Parameters *tempParam in [tempProject parameters]) {
-        [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
-        
-        [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-        
-        index++;
-    }
-    
-    [[self parametersTableView] endUpdates];
-    
     for (Urls *url in [tempProject urls]) {
         [[self urlList] addObject:url];
     }
@@ -637,9 +609,9 @@
                 [tempHeader setName:tempDict[kHeaderName]];
                 [tempHeader setValue:tempDict[kValue]];
                 
-                [[self currentProject] addHeadersObject:tempHeader];
+                [self addToUrlListIfUnique];
                 
-                [[self currentProject] save];
+                [[self currentUrl] addHeadersObject:tempHeader];
             }
         }
         
@@ -657,9 +629,9 @@
                 [tempParam setName:tempDict[kParameterName]];
                 [tempParam setValue:tempDict[kValue]];
                 
-                [[self currentProject] addParametersObject:tempParam];
+                [self addToUrlListIfUnique];
                 
-                [[self currentProject] save];
+                [[self currentUrl] addParametersObject:tempParam];
             }
         }
         
@@ -684,6 +656,40 @@
     }
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
+    
+    if ([[tempUrl headers] count] > 0) {
+        [[self headersTableView] beginUpdates];
+        
+        int index = 0;
+        
+        for (Headers *tempHeader in [tempUrl headers]) {
+            [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
+            
+            [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            
+            index++;
+        }
+        
+        [[self headersTableView] endUpdates];
+    }
+
+    if ([[tempUrl parameters] count] > 0) {
+        index = 0;
+        
+        [[self parametersTableView] beginUpdates];
+        
+        for (Parameters *tempParam in [tempUrl parameters]) {
+            [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
+            
+            [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            
+            index++;
+        }
+        
+        [[self parametersTableView] endUpdates];
+    }
+
+    [self setCurrentUrl:tempUrl];
     
     return [tempUrl url];
 }

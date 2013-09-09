@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CustomPayload, Projects;
+@class CustomPayload, Headers, Parameters, Projects;
 
 @interface Urls : NSManagedObject
 
@@ -17,5 +17,20 @@
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) Projects *project;
 @property (nonatomic, retain) CustomPayload *customPayload;
+@property (nonatomic, retain) NSSet *parameters;
+@property (nonatomic, retain) NSSet *headers;
+@end
+
+@interface Urls (CoreDataGeneratedAccessors)
+
+- (void)addParametersObject:(Parameters *)value;
+- (void)removeParametersObject:(Parameters *)value;
+- (void)addParameters:(NSSet *)values;
+- (void)removeParameters:(NSSet *)values;
+
+- (void)addHeadersObject:(Headers *)value;
+- (void)removeHeadersObject:(Headers *)value;
+- (void)addHeaders:(NSSet *)values;
+- (void)removeHeaders:(NSSet *)values;
 
 @end

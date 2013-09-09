@@ -7,16 +7,12 @@
 //
 
 #import "Projects.h"
-#import "Headers.h"
-#import "Parameters.h"
 #import "Urls.h"
 
 
 @implementation Projects
 
 @dynamic name;
-@dynamic headers;
-@dynamic parameters;
 @dynamic urls;
 
 @end
