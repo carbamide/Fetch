@@ -146,6 +146,10 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    if ([[self urlTextField] stringValue] == nil || [[[self urlTextField] stringValue] isEqualToString:@""]) {
+        return;
+    }
+    
     BOOL addURL = YES;
     
     for (Urls *tempURL in [self urlList]) {
@@ -235,6 +239,90 @@
     }
 }
 
+-(void)urlSelectionActionWithUrlTextFieldSelectionIndex:(BOOL)urlTextFieldSelection otherSelectionIndex:(NSInteger)selectionIndex
+{
+    [[self fetchButton] setEnabled:YES];
+    
+    Urls *tempUrl = nil;
+    
+    if (urlTextFieldSelection) {
+        tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+    }
+    else {
+        tempUrl = [self urlList][selectionIndex];
+    }
+    
+    [self setCurrentUrl:tempUrl];
+    
+    [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
+    
+    if ([tempUrl customPayload]) {
+        [[self customPayloadTextView] setString:[tempUrl customPayload]];
+    }
+    
+    if ([tempUrl urlDescription]) {
+        [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
+    }
+    
+    [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
+    
+    int index = 0;
+    
+    [[self headerDataSource] removeAllObjects];
+    [[self headersTableView] reloadData];
+    
+    if ([[tempUrl headers] count] > 0) {
+        [[self headersTableView] beginUpdates];
+        
+        
+        for (Headers *tempHeader in [tempUrl headers]) {
+            [[self headerDataSource] addObject:tempHeader];
+            
+            [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            
+            index++;
+        }
+        
+        [[self headersTableView] endUpdates];
+    }
+    
+    [[self paramDataSource] removeAllObjects];
+    [[self parametersTableView] reloadData];
+    
+    if ([[tempUrl parameters] count] > 0) {
+        index = 0;
+        
+        [[self parametersTableView] beginUpdates];
+        
+        for (Parameters *tempParam in [tempUrl parameters]) {
+            [[self paramDataSource] addObject:tempParam];
+            
+            [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            
+            index++;
+        }
+        
+        [[self parametersTableView] endUpdates];
+    }
+    
+    if ([tempUrl customPayload]) {
+        [[self customPostBodyCheckBox] setState:NSOnState];
+        
+        [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
+        
+        [[[self paramSegCont] animator] setAlphaValue:0.0];
+        [[self paramSegCont] setEnabled:NO];
+    }
+    else {
+        [[self customPostBodyCheckBox] setState:NSOffState];
+        
+        [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
+        
+        [[self paramSegCont] setEnabled:YES];
+        [[[self paramSegCont] animator] setAlphaValue:1.0];
+    }
+}
+
 #pragma mark
 #pragma mark IBActions
 
@@ -273,7 +361,7 @@
         NSMutableString *postBody = [[NSMutableString alloc] init];
         
         for (NSDictionary *tempDict in [self paramDataSource]) {
-            if (tempDict == [[self paramDataSource] firstObject]) {
+            if (tempDict == [[self paramDataSource] first]) {
                 [postBody appendString:[NSString stringWithFormat:@"%@=%@", tempDict[kParameterName], tempDict[kValue]]];
             }
             else {
@@ -487,38 +575,6 @@
     [[self outputTextView] setString:@""];
     
     [[self clearOutputButton] setEnabled:NO];
-}
-
--(IBAction)projectTableViewAction:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    [[self headerDataSource] removeAllObjects];
-    [[self headersTableView] reloadData];
-    
-    [[self paramDataSource] removeAllObjects];
-    [[self parametersTableView] reloadData];
-    
-    [[self methodCombo] selectItemAtIndex:GET_METHOD];
-    
-    [[self urlList] removeAllObjects];
-    
-    [[self urlTextField] setStringValue:@""];
-    [[self urlDescriptionTextField] setStringValue:@""];
-    
-    Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
-    
-    [self setCurrentProject:tempProject];
-    
-    [[self fetchButton] setEnabled:YES];
-    [[self urlTextField] setEnabled:YES];
-    [[self urlDescriptionTextField] setEnabled:YES];
-    
-    for (Urls *url in [tempProject urls]) {
-        [[self urlList] addObject:url];
-    }
-    
-    [self setupSegmentedControls];
 }
 
 -(IBAction)importProject:(id)sender
@@ -772,80 +828,7 @@
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
     if ([notification object] == [self urlTextField]) {
-        [[self fetchButton] setEnabled:YES];
-        
-        Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
-        
-        [self setCurrentUrl:tempUrl];
-        
-        [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
-        
-        if ([tempUrl customPayload]) {
-            [[self customPayloadTextView] setString:[tempUrl customPayload]];
-        }
-        
-        if ([tempUrl urlDescription]) {
-            [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
-        }
-        
-        [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
-        
-        int index = 0;
-        
-        [[self headerDataSource] removeAllObjects];
-        [[self headersTableView] reloadData];
-        
-        if ([[tempUrl headers] count] > 0) {
-            [[self headersTableView] beginUpdates];
-            
-            
-            for (Headers *tempHeader in [tempUrl headers]) {
-                [[self headerDataSource] addObject:tempHeader];
-                
-                [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-                
-                index++;
-            }
-            
-            [[self headersTableView] endUpdates];
-        }
-        
-        [[self paramDataSource] removeAllObjects];
-        [[self parametersTableView] reloadData];
-        
-        if ([[tempUrl parameters] count] > 0) {
-            index = 0;
-            
-            [[self parametersTableView] beginUpdates];
-            
-            for (Parameters *tempParam in [tempUrl parameters]) {
-                [[self paramDataSource] addObject:tempParam];
-                
-                [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
-                
-                index++;
-            }
-            
-            [[self parametersTableView] endUpdates];
-        }
-        
-        if ([tempUrl customPayload]) {
-            [[self customPostBodyCheckBox] setState:NSOnState];
-            
-            [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
-            
-            [[[self paramSegCont] animator] setAlphaValue:0.0];
-            [[self paramSegCont] setEnabled:NO];
-        }
-        else {
-            [[self customPostBodyCheckBox] setState:NSOffState];
-            
-            [[[self customPayloadTextView] enclosingScrollView] setHidden:YES];
-            
-            [[self paramSegCont] setEnabled:YES];
-            [[[self paramSegCont] animator] setAlphaValue:1.0];
-        }
-        
+        [self urlSelectionActionWithUrlTextFieldSelectionIndex:YES otherSelectionIndex:0];
     }
     else if ([notification object] == [self methodCombo]) {
         if ([self currentUrl]) {
@@ -939,6 +922,43 @@
 
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
+    NSOutlineView *outlineView = [notification object];
+    NSInteger selectedRow = [[outlineView selectedRowIndexes] firstIndex];
+    id item = [outlineView itemAtRow:selectedRow];
+    
+    if ([item isKindOfClass:[Projects class]]) {
+        [[self headerDataSource] removeAllObjects];
+        [[self headersTableView] reloadData];
+        
+        [[self paramDataSource] removeAllObjects];
+        [[self parametersTableView] reloadData];
+        
+        [[self methodCombo] selectItemAtIndex:GET_METHOD];
+        
+        [[self urlList] removeAllObjects];
+        
+        [[self urlTextField] setStringValue:@""];
+        [[self urlDescriptionTextField] setStringValue:@""];
+        
+        Projects *tempProject = [self projectList][selectedRow];
+        
+        [self setCurrentProject:tempProject];
+        
+        [[self fetchButton] setEnabled:YES];
+        [[self urlTextField] setEnabled:YES];
+        [[self urlDescriptionTextField] setEnabled:YES];
+        
+        for (Urls *url in [tempProject urls]) {
+            [[self urlList] addObject:url];
+        }
+        
+        [self setupSegmentedControls];
+    }
+    else
+    {
+        [self urlSelectionActionWithUrlTextFieldSelectionIndex:NO otherSelectionIndex:selectedRow];
+        
+    }
+    
 }
 @end

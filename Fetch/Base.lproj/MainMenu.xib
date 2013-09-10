@@ -600,7 +600,6 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <action selector="projectTableViewAction:" target="gb6-4z-C70" id="Hna-tP-m2u"/>
                                         <outlet property="dataSource" destination="gb6-4z-C70" id="YBe-Ta-Vtt"/>
                                         <outlet property="delegate" destination="gb6-4z-C70" id="8Xj-V8-Esf"/>
                                         <outlet property="menu" destination="wFx-wf-vAs" id="uHQ-oB-kFc"/>

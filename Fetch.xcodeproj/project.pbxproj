@@ -580,7 +580,7 @@
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -599,7 +599,7 @@
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -621,6 +621,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "FetchTests/FetchTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -639,6 +640,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
 				INFOPLIST_FILE = "FetchTests/FetchTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
