@@ -36,7 +36,10 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    NSLog(@"%s", __FUNCTION__);
+
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
         if (![self headerDataSource]) {
             [self setHeaderDataSource:[[NSMutableArray alloc] init]];
@@ -94,6 +97,8 @@
 
 -(void)preferencesChanges:(NSNotification *)aNotification
 {
+    NSLog(@"%s", __FUNCTION__);
+
     NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kBackgroundColor];
     NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kForegroundColor];
     
@@ -140,6 +145,8 @@
 
 -(void)addToUrlListIfUnique
 {
+    NSLog(@"%s", __FUNCTION__);
+
     BOOL addURL = YES;
     
     for (Urls *tempURL in [self urlList]) {
@@ -191,6 +198,8 @@
 
 -(void)logReqest:(NSMutableURLRequest *)request
 {
+    NSLog(@"%s", __FUNCTION__);
+
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
@@ -481,6 +490,8 @@
 
 -(IBAction)projectTableViewAction:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[self headerDataSource] removeAllObjects];
     [[self headersTableView] reloadData];
     
@@ -494,10 +505,6 @@
     [[self urlTextField] setStringValue:@""];
     
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
-    
-    NSLog(@"%@", NSStringFromClass([sender class]));
-    NSLog(@"%ld", (long)[(NSOutlineView *)sender clickedRow]);
-    NSLog(@"%ld", (long)[(NSOutlineView *)sender clickedColumn]);
     
     [self setCurrentProject:tempProject];
     
@@ -552,6 +559,8 @@
 
 -(IBAction)deleteProject:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
     
     if (tempProject == [self currentProject]) {
