@@ -254,8 +254,8 @@
     
     [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
     
-    for (NSDictionary *tempDict in [self headerDataSource]) {
-        [request setValue:tempDict[kValue] forHTTPHeaderField:tempDict[kHeaderName]];
+    for (Headers *tempHeader in [self headerDataSource]) {
+        [request setValue:[tempHeader value] forHTTPHeaderField:[tempHeader name]];
     }
     
     if ([[self customPostBodyCheckBox] state] == NSOnState) {
@@ -330,9 +330,16 @@
     NSSegmentedControl *tempSegCont = sender;
     
     if ([tempSegCont selectedSegment] == 0) {
-        NSDictionary *tempDict = @{kHeaderName: @"Choose or insert header name", kValue: kInsertValue};
+        Headers *tempHeader = [Headers create];
         
-        [[self headerDataSource] addObject:tempDict];
+        [tempHeader setName:@"Choose or insert header name"];
+        [tempHeader setValue:kInsertValue];
+        
+        [tempHeader save];
+        
+        [[self currentUrl] addHeadersObject:tempHeader];
+        
+        [[self headerDataSource] addObject:tempHeader];
         
         [[self headersTableView] beginUpdates];
         [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:([[self headerDataSource] count] - 1)] withAnimation:NSTableViewAnimationEffectFade];
@@ -344,9 +351,7 @@
         }
         
         if ([self currentProject]) {
-            id tempDict = [self headerDataSource][[[self headersTableView] selectedRow]];
-            
-            Headers *tempHeader = [[Headers whereFormat:@"name == '%@' AND value == '%@'", tempDict[kHeaderName], tempDict[kValue]] first];
+            Headers *tempHeader = [self headerDataSource][[[self headersTableView] selectedRow]];
             
             [tempHeader delete];
         }
@@ -366,12 +371,19 @@
     NSSegmentedControl *tempSegCont = sender;
     
     if ([tempSegCont selectedSegment] == 0) {
-        NSDictionary *tempDict = @{kParameterName: kInsertName, kValue: kInsertValue};
+        Parameters *tempParam = [Parameters create];
         
-        [[self paramDataSource] addObject:tempDict];
+        [tempParam setName:kInsertName];
+        [tempParam setValue:kInsertValue];
+        
+        [tempParam save];
+        
+        [[self currentUrl] addParametersObject:tempParam];
+        
+        [[self paramDataSource] addObject:tempParam];
         
         [[self parametersTableView] beginUpdates];
-        [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:[[self paramDataSource] count] - 1] withAnimation:NSTableViewAnimationEffectFade];
+        [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:([[self paramDataSource] count] - 1)] withAnimation:NSTableViewAnimationEffectFade];
         [[self parametersTableView] endUpdates];
     }
     else {
@@ -380,11 +392,9 @@
         }
         
         if ([self currentProject]) {
-            id tempDict = [self paramDataSource][[[self parametersTableView] selectedRow]];
+            Parameters *tempParam = [self paramDataSource][[[self parametersTableView] selectedRow]];
             
-            Parameters *tempParameter = [[Parameters whereFormat:@"name == '%@' AND value == '%@'", tempDict[kParameterName], tempDict[kValue]] first];
-            
-            [tempParameter delete];
+            [tempParam delete];
         }
         
         [[self paramDataSource] removeObjectAtIndex:[[self parametersTableView] selectedRow]];
@@ -423,10 +433,10 @@
         
         if (tempProject == [self currentProject]) {
             [self setCurrentProject:nil];
-
+            
             [[self fetchButton] setEnabled:NO];
             [[self urlTextField] setEnabled:NO];
-
+            
             [[self urlList] removeAllObjects];
             [[self headerDataSource] removeAllObjects];
             [[self paramDataSource] removeAllObjects];
@@ -485,6 +495,10 @@
     
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
     
+    NSLog(@"%@", NSStringFromClass([sender class]));
+    NSLog(@"%ld", (long)[(NSOutlineView *)sender clickedRow]);
+    NSLog(@"%ld", (long)[(NSOutlineView *)sender clickedColumn]);
+    
     [self setCurrentProject:tempProject];
     
     [[self fetchButton] setEnabled:YES];
@@ -530,7 +544,7 @@
     
     [savePanel setTitle:@"Export"];
     [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
-
+    
     if ([savePanel runModal] == NSOKButton) {
         [DataHandler exportProject:project toUrl:[savePanel URL]];
     }
@@ -622,9 +636,14 @@
     NSString *identifier = [tableColumn identifier];
     
     if (tableView == [self headersTableView]) {
-        NSDictionary *tempDict = [self headerDataSource][row];
+        Headers *tempHeader = [self headerDataSource][row];
         
-        return tempDict[identifier];
+        if ([identifier isEqualToString:kHeaderName]) {
+            return [tempHeader name];
+        }
+        else {
+            return [tempHeader value];
+        }
     }
     else {
         NSDictionary *tempDict = [self paramDataSource][row];
@@ -637,49 +656,73 @@
 {
     NSString *identifier = [tableColumn identifier];
     
-    if (tableView == [self headersTableView]) {
-        NSMutableDictionary *tempDict = [[self headerDataSource][row] mutableCopy];
+    if ([self currentProject]) {
+        [self addToUrlListIfUnique];
         
-        [tempDict setObject:object forKey:identifier];
-        
-        if ([self currentProject]) {
-            if (![tempDict[kValue] isEqualToString:kInsertValue]) {
-                Headers *tempHeader = [Headers create];
+        if (tableView == [self headersTableView]) {
+            Headers *tempHeader = nil;
+            
+            if ([identifier isEqualToString:kHeaderName]) {
+                if (([[self headerDataSource] count] - 1) >= row) {
+                    tempHeader = [self headerDataSource][row];
+                }
+                else {
+                    tempHeader = [Headers create];
+                    
+                    [[self currentUrl] addHeadersObject:tempHeader];
+                }
                 
-                [tempHeader setName:tempDict[kHeaderName]];
-                [tempHeader setValue:tempDict[kValue]];
-                
-                [self addToUrlListIfUnique];
-                
-                [[self currentUrl] addHeadersObject:tempHeader];
-                
-                [[self currentUrl] save];
+                [tempHeader setName:object];
+                [tempHeader save];
             }
-        }
-        
-        [[self headerDataSource] replaceObjectAtIndex:row withObject:tempDict];
-    }
-    else {
-        NSMutableDictionary *tempDict = [[self paramDataSource][row] mutableCopy];
-        
-        [tempDict setObject:object forKey:identifier];
-        
-        if ([self currentProject]) {
-            if (![tempDict[kValue] isEqualToString:kInsertValue]) {
-                Parameters *tempParam = [Parameters create];
+            else {
+                if (([[self headerDataSource] count] - 1) >= row) {
+                    tempHeader = [self headerDataSource][row];
+                }
+                else {
+                    tempHeader = [Headers create];
+                    
+                    [[self currentUrl] addHeadersObject:tempHeader];
+                }
                 
-                [tempParam setName:tempDict[kParameterName]];
-                [tempParam setValue:tempDict[kValue]];
-                
-                [self addToUrlListIfUnique];
-                
-                [[self currentUrl] addParametersObject:tempParam];
-                
-                [[self currentUrl] save];
+                [tempHeader setValue:object];
+                [tempHeader save];
             }
+            
+            [[self headerDataSource] replaceObjectAtIndex:row withObject:tempHeader];
         }
-        
-        [[self paramDataSource] replaceObjectAtIndex:row withObject:tempDict];
+        else {
+            Parameters *tempParam = nil;
+            
+            if ([identifier isEqualToString:kHeaderName]) {
+                if (([[self headerDataSource] count] - 1) >= row) {
+                    tempParam = [self paramDataSource][row];
+                }
+                else {
+                    tempParam = [Headers create];
+                    
+                    [[self currentUrl] addParametersObject:tempParam];
+                }
+                
+                [tempParam setName:object];
+                [tempParam save];
+            }
+            else {
+                if (([[self headerDataSource] count] - 1) >= row) {
+                    tempParam = [self paramDataSource][row];
+                }
+                else {
+                    tempParam = [Headers create];
+                    
+                    [[self currentUrl] addParametersObject:tempParam];
+                }
+                
+                [tempParam setValue:object];
+                [tempParam save];
+            }
+            
+            [[self paramDataSource] replaceObjectAtIndex:row withObject:tempParam];
+        }
     }
 }
 
@@ -693,9 +736,13 @@
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
-    Urls *tempUrl = [self urlList][index];
+    if ([[self urlList] count] > 0) {
+        Urls *tempUrl = [self urlList][index];
+        
+        return [tempUrl url];
+    }
     
-    return [tempUrl url];
+    return nil;
 }
 
 #pragma mark
@@ -728,7 +775,7 @@
             
             
             for (Headers *tempHeader in [tempUrl headers]) {
-                [[self headerDataSource] addObject:@{kHeaderName: [tempHeader name], kValue: [tempHeader value]}];
+                [[self headerDataSource] addObject:tempHeader];
                 
                 [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
                 
@@ -747,7 +794,7 @@
             [[self parametersTableView] beginUpdates];
             
             for (Parameters *tempParam in [tempUrl parameters]) {
-                [[self paramDataSource] addObject:@{kParameterName: [tempParam name], kValue: [tempParam value]}];
+                [[self paramDataSource] addObject:tempParam];
                 
                 [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
                 
@@ -773,15 +820,17 @@
             [[self paramSegCont] setEnabled:YES];
             [[[self paramSegCont] animator] setAlphaValue:1.0];
         }
-
+        
     }
     else if ([notification object] == [self methodCombo]) {
         if ([self currentUrl]) {
-            Urls *tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
+            if ([[self urlTextField] indexOfSelectedItem] == -1) {
+                [self addToUrlListIfUnique];
+            }
             
-            [tempUrl setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
+            [[self currentUrl] setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
             
-            [tempUrl save];
+            [[self currentUrl] save];
         }
     }
 }
@@ -833,7 +882,7 @@
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{    
+{
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
         
@@ -858,4 +907,8 @@
     [tempProject save];
 }
 
+-(void)outlineViewSelectionDidChange:(NSNotification *)notification
+{
+    NSLog(@"%s", __FUNCTION__);
+}
 @end
