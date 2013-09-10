@@ -24,7 +24,6 @@
 @property (strong, nonatomic) NSArray *headerNames;
 
 @property (strong, nonatomic) Projects *currentProject;
-
 @property (strong, nonatomic) Urls *currentUrl;
 
 @end

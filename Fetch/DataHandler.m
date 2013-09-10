@@ -33,21 +33,21 @@
         if ([tempDict hasKey:kCustomPayload]) {
             [tempUrl setCustomPayload:tempDict[kCustomPayload]];
         }
-        
-        for (NSDictionary *tempDict in tempDict[kHeaders]) {
+                
+        for (NSDictionary *headerDict in tempDict[kHeaders]) {
             Headers *tempHeader = [Headers create];
             
-            [tempHeader setName:tempDict[kName]];
-            [tempHeader setValue:tempDict[kValue]];
+            [tempHeader setName:headerDict[kName]];
+            [tempHeader setValue:headerDict[kValue]];
             
             [tempUrl addHeadersObject:tempHeader];
         }
         
-        for (NSDictionary *tempDict in tempDict[kParameters]) {
+        for (NSDictionary *paramDict in tempDict[kParameters]) {
             Parameters *tempParam = [Parameters create];
             
-            [tempParam setName:tempDict[kName]];
-            [tempParam setValue:tempDict[kValue]];
+            [tempParam setName:paramDict[kName]];
+            [tempParam setValue:paramDict[kValue]];
             
             [tempUrl addParametersObject:tempParam];
         }
@@ -80,21 +80,21 @@
         }
         
         for (Headers *tempHeader in [tempUrl headers]) {
-            NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
+            NSMutableDictionary *headerTempDict = [NSMutableDictionary dictionary];
             
-            [tempDict setObject:[tempHeader name] forKey:kName];
-            [tempDict setObject:[tempHeader value] forKey:kValue];
+            [headerTempDict setObject:[tempHeader name] forKey:kName];
+            [headerTempDict setObject:[tempHeader value] forKey:kValue];
             
-            [headerArray addObject:tempDict];
+            [headerArray addObject:headerTempDict];
         }
         
         for (Parameters *tempParameter in [tempUrl parameters]) {
-            NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
+            NSMutableDictionary *paramTempDict = [NSMutableDictionary dictionary];
             
-            [tempDict setObject:[tempParameter name] forKey:kName];
-            [tempDict setObject:[tempParameter value] forKey:kValue];
+            [paramTempDict setObject:[tempParameter name] forKey:kName];
+            [paramTempDict setObject:[tempParameter value] forKey:kValue];
             
-            [parameterArray addObject:tempDict];
+            [parameterArray addObject:paramTempDict];
         }
         
         if ([headerArray count] > 0) {
