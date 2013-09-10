@@ -20,5 +20,6 @@
 @dynamic project;
 @dynamic parameters;
 @dynamic headers;
+@dynamic urlDescription;
 
 @end

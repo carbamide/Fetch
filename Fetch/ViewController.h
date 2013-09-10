@@ -17,6 +17,7 @@ typedef NSUInteger HttpMethod;
 @interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (weak) IBOutlet NSComboBox *urlTextField;
+@property (weak) IBOutlet NSTextField *urlDescriptionTextField;
 @property (weak) IBOutlet NSComboBox *methodCombo;
 @property (weak) IBOutlet NSButton *fetchButton;
 @property (weak) IBOutlet NSButton *customPostBodyCheckBox;

@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * method;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * customPayload;
+@property (nonatomic, retain) NSString * urlDescription;
 @property (nonatomic, retain) Projects *project;
 @property (nonatomic, retain) NSSet *parameters;
 @property (nonatomic, retain) NSSet *headers;

@@ -36,7 +36,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
@@ -97,7 +97,7 @@
 -(void)preferencesChanges:(NSNotification *)aNotification
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kBackgroundColor];
     NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kForegroundColor];
     
@@ -145,7 +145,7 @@
 -(void)addToUrlListIfUnique
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     BOOL addURL = YES;
     
     for (Urls *tempURL in [self urlList]) {
@@ -198,7 +198,7 @@
 -(void)logReqest:(NSMutableURLRequest *)request
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
@@ -429,6 +429,7 @@
         
         [[self fetchButton] setEnabled:YES];
         [[self urlTextField] setEnabled:YES];
+        [[self urlDescriptionTextField] setEnabled:YES];
         
         [[self projectList] addObject:tempProject];
         
@@ -444,6 +445,7 @@
             
             [[self fetchButton] setEnabled:NO];
             [[self urlTextField] setEnabled:NO];
+            [[self urlDescriptionTextField] setEnabled:NO];
             
             [[self urlList] removeAllObjects];
             [[self headerDataSource] removeAllObjects];
@@ -490,7 +492,7 @@
 -(IBAction)projectTableViewAction:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     [[self headerDataSource] removeAllObjects];
     [[self headersTableView] reloadData];
     
@@ -502,6 +504,7 @@
     [[self urlList] removeAllObjects];
     
     [[self urlTextField] setStringValue:@""];
+    [[self urlDescriptionTextField] setStringValue:@""];
     
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
     
@@ -509,6 +512,7 @@
     
     [[self fetchButton] setEnabled:YES];
     [[self urlTextField] setEnabled:YES];
+    [[self urlDescriptionTextField] setEnabled:YES];
     
     for (Urls *url in [tempProject urls]) {
         [[self urlList] addObject:url];
@@ -559,7 +563,7 @@
 -(IBAction)deleteProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     Projects *tempProject = [self projectList][[[self projectSourceList] clickedRow]];
     
     if (tempProject == [self currentProject]) {
@@ -567,6 +571,7 @@
         
         [[self fetchButton] setEnabled:NO];
         [[self urlTextField] setEnabled:NO];
+        [[self urlDescriptionTextField] setEnabled:NO];
         
         [[self urlList] removeAllObjects];
         [[self headerDataSource] removeAllObjects];
@@ -604,6 +609,7 @@
                 
                 [[self customPostBodyCheckBox] setState:NSOffState];
                 [[self customPayloadTextView] setString:@""];
+                [[self urlDescriptionTextField] setStringValue:@""];
                 
                 [[self methodCombo] selectItemAtIndex:GET_METHOD];
             }
@@ -619,6 +625,13 @@
     if ([notification object] == [self urlTextField]) {
         if ([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
             [self fetchAction:nil];
+        }
+    }
+    else if ([notification object] == [self urlDescriptionTextField]) {
+        if ([self currentUrl]) {
+            [[self currentUrl] setUrlDescription:[[self urlDescriptionTextField] stringValue]];
+            
+            [[self currentUrl] save];
         }
     }
 }
@@ -771,6 +784,10 @@
             [[self customPayloadTextView] setString:[tempUrl customPayload]];
         }
         
+        if ([tempUrl urlDescription]) {
+            [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
+        }
+        
         [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
         
         int index = 0;
@@ -899,7 +916,12 @@
     else {
         Urls *tempUrl = item;
         
-        return [tempUrl url];
+        if ([tempUrl urlDescription]) {
+            return [tempUrl urlDescription];
+        }
+        else {
+            return [tempUrl url];
+        }
     }
 }
 

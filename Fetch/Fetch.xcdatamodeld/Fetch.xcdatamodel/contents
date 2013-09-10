@@ -18,6 +18,7 @@
         <attribute name="customPayload" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="method" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="headers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Headers" inverseName="url" inverseEntity="Headers" syncable="YES"/>
         <relationship name="parameters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Parameters" inverseName="url" inverseEntity="Parameters" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="urls" inverseEntity="Projects" syncable="YES"/>

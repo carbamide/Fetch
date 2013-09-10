@@ -238,16 +238,16 @@
         </menu>
         <window title="Fetch" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="543" y="138" width="681" height="691"/>
+            <rect key="contentRect" x="543" y="138" width="681" height="712"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
-            <value key="minSize" type="size" width="681" height="691"/>
-            <value key="maxSize" type="size" width="681" height="691"/>
+            <value key="minSize" type="size" width="681" height="712"/>
+            <value key="maxSize" type="size" width="681" height="712"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="681" height="691"/>
+                <rect key="frame" x="0.0" y="0.0" width="681" height="712"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="toA-t6-egW">
-                        <rect key="frame" x="586" y="643" width="74" height="32"/>
+                        <rect key="frame" x="586" y="664" width="74" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Fetch" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tad-Cx-e1I">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -258,7 +258,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="v2w-uo-6rD">
-                        <rect key="frame" x="41" y="651" width="33" height="17"/>
+                        <rect key="frame" x="65" y="673" width="33" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL:" id="PHz-n0-24C">
                             <font key="font" metaFont="system"/>
@@ -527,7 +527,7 @@
                         </connections>
                     </button>
                     <comboBox verticalHuggingPriority="750" id="VFy-cv-NY8">
-                        <rect key="frame" x="80" y="646" width="507" height="26"/>
+                        <rect key="frame" x="104" y="668" width="483" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="fhe-r3-wj7">
                             <font key="font" metaFont="system"/>
@@ -639,6 +639,27 @@
                             <action selector="projectSegContAction:" target="gb6-4z-C70" id="F08-Vz-CKk"/>
                         </connections>
                     </segmentedControl>
+                    <textField verticalHuggingPriority="750" id="TFL-aw-poB">
+                        <rect key="frame" x="104" y="642" width="550" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="G0f-7o-W16">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="gb6-4z-C70" id="kQY-ss-fL9"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="21P-cI-SBE">
+                        <rect key="frame" x="18" y="645" width="80" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Description:" id="Qm6-re-k8r">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
@@ -667,6 +688,7 @@
                 <outlet property="parametersTableView" destination="izJ-cx-bKU" id="Zp0-F8-KmD"/>
                 <outlet property="projectSegControl" destination="Plq-kc-wgi" id="Fcd-x7-17v"/>
                 <outlet property="projectSourceList" destination="KfX-RV-wJh" id="Af8-MS-4ZG"/>
+                <outlet property="urlDescriptionTextField" destination="TFL-aw-poB" id="Zww-HZ-8WR"/>
                 <outlet property="urlTextField" destination="VFy-cv-NY8" id="FoP-SL-mFO"/>
                 <outlet property="view" destination="372" id="27R-cS-tdB"/>
             </connections>

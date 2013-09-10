@@ -26,4 +26,4 @@ static NSString *const kUrls = @"urls";
 static NSString *const kUrl = @"url";
 static NSString *const kMethod = @"method";
 static NSString *const kCustomPayload = @"custom_payload";
-
+static NSString *const kUrlDescription = @"url_description";

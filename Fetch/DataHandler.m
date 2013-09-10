@@ -30,6 +30,12 @@
         [tempUrl setUrl:tempDict[kUrl]];
         [tempUrl setMethod:tempDict[kMethod]];
         
+        if ([tempDict hasKey:kUrlDescription]) {
+            [tempUrl setUrlDescription:tempDict[kUrlDescription]];
+        }
+        
+        [tempUrl setUrlDescription:tempDict[kUrlDescription]];
+        
         if ([tempDict hasKey:kCustomPayload]) {
             [tempUrl setCustomPayload:tempDict[kCustomPayload]];
         }
@@ -74,6 +80,10 @@
         
         [tempDict setObject:[tempUrl url] forKey:kUrl];
         [tempDict setObject:[tempUrl method] forKey:kMethod];
+        
+        if ([tempUrl urlDescription]) {
+            [tempDict setObject:[tempUrl urlDescription] forKey:kUrlDescription];
+        }
         
         if ([tempUrl customPayload]) {
             [tempDict setObject:[tempUrl customPayload] forKey:kCustomPayload];
