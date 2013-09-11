@@ -187,16 +187,6 @@
             }];
         }
     }
-    
-    Urls *tempUrl = [self currentUrl];
-    
-    if (tempUrl) {
-        if ([[self customPostBodyCheckBox] state] == NSOnState) {
-            [tempUrl setCustomPayload:[[self customPayloadTextView] string]];
-            
-            [tempUrl save];
-        }
-    }
 }
 
 -(void)logReqest:(NSMutableURLRequest *)request
@@ -256,8 +246,11 @@
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
     
-    if ([tempUrl customPayload]) {
+    if ([tempUrl customPayload] && [[tempUrl customPayload] length] > 0) {
         [[self customPayloadTextView] setString:[tempUrl customPayload]];
+    }
+    else {
+        [[self customPayloadTextView] setString:@""];
     }
     
     if ([tempUrl urlDescription]) {
@@ -305,7 +298,7 @@
         [[self parametersTableView] endUpdates];
     }
     
-    if ([tempUrl customPayload]) {
+    if ([tempUrl customPayload] && [[tempUrl customPayload] length] > 0) {
         [[self customPostBodyCheckBox] setState:NSOnState];
         
         [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
@@ -321,6 +314,37 @@
         [[self paramSegCont] setEnabled:YES];
         [[[self paramSegCont] animator] setAlphaValue:1.0];
     }
+}
+
+-(void)loadProject:(Projects *)project
+{
+    [[self headerDataSource] removeAllObjects];
+    [[self headersTableView] reloadData];
+    
+    [[self paramDataSource] removeAllObjects];
+    [[self parametersTableView] reloadData];
+    
+    [[self methodCombo] selectItemAtIndex:GET_METHOD];
+    
+    [[self urlList] removeAllObjects];
+    
+    [[self urlTextField] setStringValue:@""];
+    [[self urlDescriptionTextField] setStringValue:@""];
+    
+    [[self customPayloadTextView] setString:@""];
+    [[self customPostBodyCheckBox] setState:NSOffState];
+    
+    [self setCurrentProject:project];
+    
+    [[self fetchButton] setEnabled:YES];
+    [[self urlTextField] setEnabled:YES];
+    [[self urlDescriptionTextField] setEnabled:YES];
+    
+    for (Urls *url in [project urls]) {
+        [[self urlList] addObject:url];
+    }
+    
+    [self setupSegmentedControls];
 }
 
 #pragma mark
@@ -690,6 +714,17 @@
             [[self currentUrl] save];
         }
     }
+    else if ([notification object] == [self customPayloadTextView]) {
+        Urls *tempUrl = [self currentUrl];
+        
+        if (tempUrl) {
+            if ([[self customPostBodyCheckBox] state] == NSOnState) {
+                [tempUrl setCustomPayload:[[self customPayloadTextView] string]];
+                
+                [tempUrl save];
+            }
+        }
+    }
 }
 
 #pragma mark
@@ -813,6 +848,10 @@
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
+    if (index == -1) {
+        return nil;
+    }
+    
     if ([[self urlList] count] > 0) {
         Urls *tempUrl = [self urlList][index];
         
@@ -841,6 +880,11 @@
             [[self currentUrl] save];
         }
     }
+}
+
+- (NSUInteger)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
+{
+    return [[self urlList] indexOfObject:aString];
 }
 
 #pragma mark
@@ -923,42 +967,37 @@
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
     NSOutlineView *outlineView = [notification object];
+    
     NSInteger selectedRow = [[outlineView selectedRowIndexes] firstIndex];
+    
     id item = [outlineView itemAtRow:selectedRow];
     
     if ([item isKindOfClass:[Projects class]]) {
-        [[self headerDataSource] removeAllObjects];
-        [[self headersTableView] reloadData];
-        
-        [[self paramDataSource] removeAllObjects];
-        [[self parametersTableView] reloadData];
-        
-        [[self methodCombo] selectItemAtIndex:GET_METHOD];
-        
-        [[self urlList] removeAllObjects];
-        
-        [[self urlTextField] setStringValue:@""];
-        [[self urlDescriptionTextField] setStringValue:@""];
-        
         Projects *tempProject = [self projectList][selectedRow];
-        
-        [self setCurrentProject:tempProject];
-        
-        [[self fetchButton] setEnabled:YES];
-        [[self urlTextField] setEnabled:YES];
-        [[self urlDescriptionTextField] setEnabled:YES];
-        
-        for (Urls *url in [tempProject urls]) {
-            [[self urlList] addObject:url];
-        }
-        
-        [self setupSegmentedControls];
+
+        [self loadProject:tempProject];
     }
     else
     {
-        [self urlSelectionActionWithUrlTextFieldSelectionIndex:NO otherSelectionIndex:selectedRow];
+        NSMutableArray *urlArray = [NSArray arrayWithArray:[[[(Urls *)item project] urls] allObjects]];
         
+        for (NSInteger index = 0; index < [urlArray count]; index++) {
+            Urls *tempUrl = urlArray[index];
+            
+            if ([[tempUrl url] isEqualToString:[(Urls *)item url]]) {
+                Urls *tempUrl = (Urls *)urlArray[index];
+                
+                if ([self currentProject] != [tempUrl project]) {
+                    [self loadProject:[tempUrl project]];
+                }
+                
+                [[self urlTextField] setStringValue:[tempUrl url]];
+                
+                [self urlSelectionActionWithUrlTextFieldSelectionIndex:NO otherSelectionIndex:index];
+            }
+        }
     }
     
 }
+
 @end
