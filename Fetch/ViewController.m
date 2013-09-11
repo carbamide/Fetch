@@ -155,6 +155,8 @@
     for (Urls *tempURL in [self urlList]) {
         if ([[tempURL url] isEqualToString:[[self urlTextField] stringValue]]) {
             addURL = NO;
+            
+            break;
         }
     }
     
@@ -170,21 +172,15 @@
             [[self currentProject] addUrlsObject:tempUrl];
             
             [[self currentProject] save];
-            
-            [[self urlList] removeAllObjects];
-            
-            for (Urls *url in [[self currentProject] urls]) {
-                [[self urlList] addObject:url];
-            }
         }
         else {
             [tempUrl save];
-            
-            [[self urlList] removeAllObjects];
-            
-            [[Urls all] each:^(Urls *object) {
-                [[self urlList] addObject:[object url]];
-            }];
+        }
+        
+        [[self urlList] removeAllObjects];
+        
+        for (Urls *url in [[self currentProject] urls]) {
+            [[self urlList] addObject:url];
         }
     }
 }
@@ -997,7 +993,6 @@
             }
         }
     }
-    
 }
 
 @end
