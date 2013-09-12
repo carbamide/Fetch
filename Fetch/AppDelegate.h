@@ -14,13 +14,4 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) IBOutlet ViewController *viewController;
 
-@property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
-
--(IBAction)showPreferences:(id)sender;
--(IBAction)showProjects:(id)sender;
--(IBAction)openProject:(id)sender;
--(IBAction)closeWindow:(id)sender;
-
--(IBAction)showMainWindow:(id)sender;
-
 @end

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4504" systemVersion="13A569" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="13A569" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4504"/>
+        <deployment defaultVersion="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -27,7 +28,7 @@
                             </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="showPreferences:" target="Oji-mK-1SW" id="ehX-XU-W0w"/>
+                                    <action selector="showPreferences:" target="qWr-mY-2yN" id="nXZ-6o-mBs"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
@@ -72,18 +73,18 @@
                         <items>
                             <menuItem title="Show Projects" keyEquivalent="P" id="rl8-Pb-J1T">
                                 <connections>
-                                    <action selector="showProjects:" target="Oji-mK-1SW" id="l0Z-pr-YRO"/>
+                                    <action selector="showProjects:" target="qWr-mY-2yN" id="p90-O8-fdP"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Import Project" keyEquivalent="I" id="Viq-aK-4xm">
                                 <connections>
-                                    <action selector="importProject:" target="gb6-4z-C70" id="vRh-7M-ge0"/>
+                                    <action selector="importProject:" target="qWr-mY-2yN" id="xXW-jE-AOl"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ESB-LV-r8X"/>
                             <menuItem title="Close" keyEquivalent="w" id="4j8-l4-AtK">
                                 <connections>
-                                    <action selector="closeWindow:" target="Oji-mK-1SW" id="CXh-Xg-A6b"/>
+                                    <action selector="closeWindow:" target="qWr-mY-2yN" id="IpX-xW-6Xy"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -210,7 +211,7 @@
                             <menuItem title="Fetch" id="foc-xw-hmG">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showMainWindow:" target="Oji-mK-1SW" id="BiA-9f-4Qc"/>
+                                    <action selector="showMainWindow:" target="qWr-mY-2yN" id="Rbs-Gp-beI"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="5lJ-yb-jt6"/>
@@ -267,7 +268,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="74b-Ed-LRb">
-                        <rect key="frame" x="18" y="614" width="56" height="17"/>
+                        <rect key="frame" x="42" y="615" width="56" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Method:" id="OtV-Br-xPJ">
                             <font key="font" metaFont="system"/>
@@ -276,7 +277,7 @@
                         </textFieldCell>
                     </textField>
                     <comboBox verticalHuggingPriority="750" id="OBs-rv-rA0">
-                        <rect key="frame" x="80" y="610" width="141" height="26"/>
+                        <rect key="frame" x="104" y="610" width="141" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="1rQ-uA-2cV">
                             <font key="font" metaFont="system"/>
@@ -668,6 +669,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <customObject id="Oji-mK-1SW" customClass="AppDelegate">
             <connections>
+                <outlet property="menuController" destination="qWr-mY-2yN" id="DvX-cR-TMq"/>
                 <outlet property="viewController" destination="gb6-4z-C70" id="7E4-ss-k7n"/>
                 <outlet property="window" destination="371" id="Crb-Z9-G1X"/>
             </connections>
@@ -692,6 +694,12 @@
                 <outlet property="view" destination="372" id="27R-cS-tdB"/>
             </connections>
         </customObject>
+        <customObject id="qWr-mY-2yN" customClass="MenuController">
+            <connections>
+                <outlet property="delegate" destination="Oji-mK-1SW" id="lut-YY-HDE"/>
+                <outlet property="viewController" destination="gb6-4z-C70" id="jI6-zL-8FU"/>
+            </connections>
+        </customObject>
         <userDefaultsController id="hFg-4c-zT1"/>
         <userDefaultsController id="mJV-yW-0ZC"/>
         <menu id="wFx-wf-vAs">
@@ -699,14 +707,14 @@
                 <menuItem title="Delete..." id="XnY-Fz-YOZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="deleteProject:" target="gb6-4z-C70" id="fO1-4B-P5n"/>
+                        <action selector="deleteProject:" target="qWr-mY-2yN" id="Yzi-dd-nUa"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="q8R-uM-xO1"/>
                 <menuItem title="Export..." id="BiP-At-zHU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="exportProject:" target="gb6-4z-C70" id="OXk-4D-ZHQ"/>
+                        <action selector="exportProject:" target="qWr-mY-2yN" id="JFr-Ow-T0S"/>
                     </connections>
                 </menuItem>
             </items>

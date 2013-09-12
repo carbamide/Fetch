@@ -7,57 +7,20 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "MenuController.h"
+
+@interface AppDelegate()
+
+@property (strong, nonatomic) IBOutlet MenuController *menuController;
+
+@end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
-}
 
--(IBAction)showPreferences:(id)sender
-{
-    if (![self preferencesWindow]) {
-        _preferencesWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }
-    
-    [[_preferencesWindow window] makeKeyAndOrderFront:self];
-}
-
--(IBAction)showProjects:(id)sender
-{
-    [[self viewController] showProjects];
-}
-
--(IBAction)openProject:(id)sender
-{
-    NSOpenPanel *panel = [NSOpenPanel openPanel];
-    [panel setCanChooseFiles:YES];
-    [panel setCanChooseDirectories:NO];
-    [panel setAllowsMultipleSelection:NO];
-    
-    NSInteger clicked = [panel runModal];
-    
-    if (clicked == NSFileHandlingPanelOKButton) {
-        for (NSURL *url in [panel URLs]) {
-            // do something with the url here.
-        }
-    }
-}
-
--(IBAction)showMainWindow:(id)sender
-{
-    [[self window] makeKeyAndOrderFront:self];
-}
-
--(IBAction)closeWindow:(id)sender
-{
-    for (NSWindow *tempWindow in [[NSApp windows] reverseObjectEnumerator]) {
-        if ([tempWindow isVisible]) {
-            [tempWindow close];
-            break;
-        }
-    }
 }
 
 @end
