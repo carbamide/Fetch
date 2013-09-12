@@ -16,8 +16,6 @@
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
 @property (weak, nonatomic) IBOutlet AppDelegate *delegate;
 
--(id)initWithDelegate:(AppDelegate *)delegate;
-
 -(IBAction)showPreferences:(id)sender;
 -(IBAction)showProjects:(id)sender;
 -(IBAction)closeWindow:(id)sender;

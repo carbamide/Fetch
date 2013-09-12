@@ -17,19 +17,10 @@
 
 @implementation MenuController
 
--(id)initWithDelegate:(AppDelegate *)delegate
-{
-    self = [super init];
-    
-    if (self) {
-        _delegate = delegate;
-    }
-    
-    return self;
-}
-
 -(IBAction)showPreferences:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+    
     if (![self preferencesWindow]) {
         _preferencesWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
@@ -39,16 +30,22 @@
 
 -(IBAction)showProjects:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[self viewController] showProjects];
 }
 
 -(IBAction)showMainWindow:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[[self delegate] window] makeKeyAndOrderFront:self];
 }
 
 -(IBAction)closeWindow:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     for (NSWindow *tempWindow in [[NSApp windows] reverseObjectEnumerator]) {
         if ([tempWindow isVisible]) {
             [tempWindow close];
@@ -59,16 +56,22 @@
 
 -(IBAction)exportProject:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[self viewController] exportProject:sender];
 }
 
 -(IBAction)importProject:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[self viewController] importProject:sender];
 }
 
 -(IBAction)deleteProject:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+
     [[self viewController] deleteProject:sender];
 }
 
