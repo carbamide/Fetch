@@ -26,6 +26,12 @@
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Check for Updates..." id="O1m-tu-rJV">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="T9y-i5-nKQ" id="Gan-sK-11v"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
                                     <action selector="showPreferences:" target="qWr-mY-2yN" id="nXZ-6o-mBs"/>
@@ -71,14 +77,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="QCv-xI-ofD">
                         <items>
-                            <menuItem title="Show Projects" keyEquivalent="P" id="rl8-Pb-J1T">
-                                <connections>
-                                    <action selector="showProjects:" target="qWr-mY-2yN" id="p90-O8-fdP"/>
-                                </connections>
-                            </menuItem>
+                            <menuItem title="Show Projects" keyEquivalent="P" id="rl8-Pb-J1T"/>
                             <menuItem title="Import Project" keyEquivalent="I" id="Viq-aK-4xm">
                                 <connections>
-                                    <action selector="importProject:" target="qWr-mY-2yN" id="xXW-jE-AOl"/>
+                                    <action selector="importProject:" target="qWr-mY-2yN" id="t9l-kM-hb3"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ESB-LV-r8X"/>
@@ -527,19 +529,6 @@
                             <action selector="clearOutput:" target="gb6-4z-C70" id="P17-NU-N4f"/>
                         </connections>
                     </button>
-                    <comboBox verticalHuggingPriority="750" id="VFy-cv-NY8">
-                        <rect key="frame" x="104" y="668" width="483" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="fhe-r3-wj7">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </comboBoxCell>
-                        <connections>
-                            <outlet property="dataSource" destination="gb6-4z-C70" id="8b9-nj-3jR"/>
-                            <outlet property="delegate" destination="gb6-4z-C70" id="LKg-Rm-hL8"/>
-                        </connections>
-                    </comboBox>
                     <scrollView hidden="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="d76-hT-pCX">
                         <rect key="frame" x="-1" y="353" width="683" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -660,6 +649,18 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" id="XMt-mZ-9sm">
+                        <rect key="frame" x="104" y="670" width="480" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="U6T-M4-D0n">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="gb6-4z-C70" id="Hiq-QB-C7G"/>
+                        </connections>
+                    </textField>
                 </subviews>
             </view>
             <connections>
@@ -667,6 +668,7 @@
             </connections>
         </window>
         <customObject id="420" customClass="NSFontManager"/>
+        <customObject id="T9y-i5-nKQ" customClass="SUUpdater"/>
         <customObject id="Oji-mK-1SW" customClass="AppDelegate">
             <connections>
                 <outlet property="menuController" destination="qWr-mY-2yN" id="DvX-cR-TMq"/>
@@ -690,14 +692,14 @@
                 <outlet property="projectSegControl" destination="Plq-kc-wgi" id="Fcd-x7-17v"/>
                 <outlet property="projectSourceList" destination="KfX-RV-wJh" id="Af8-MS-4ZG"/>
                 <outlet property="urlDescriptionTextField" destination="TFL-aw-poB" id="Zww-HZ-8WR"/>
-                <outlet property="urlTextField" destination="VFy-cv-NY8" id="FoP-SL-mFO"/>
+                <outlet property="urlTextField" destination="XMt-mZ-9sm" id="S1K-aL-Hem"/>
                 <outlet property="view" destination="372" id="27R-cS-tdB"/>
             </connections>
         </customObject>
         <customObject id="qWr-mY-2yN" customClass="MenuController">
             <connections>
                 <outlet property="delegate" destination="Oji-mK-1SW" id="lut-YY-HDE"/>
-                <outlet property="viewController" destination="gb6-4z-C70" id="jI6-zL-8FU"/>
+                <outlet property="viewController" destination="gb6-4z-C70" id="JFu-xc-0fa"/>
             </connections>
         </customObject>
         <userDefaultsController id="hFg-4c-zT1"/>

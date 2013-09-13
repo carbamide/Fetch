@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
+		291D513317E2A4D0008CF171 /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 291D513217E2A4D0008CF171 /* appcast.xml */; };
 		29438AFC17E222E2002BB433 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29438AFB17E222E2002BB433 /* MenuController.m */; };
+		29438B0217E2A0A5002BB433 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 29438B0117E2A0A5002BB433 /* dsa_pub.pem */; };
+		29438B0417E2A336002BB433 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
+		29438B0517E2A35F002BB433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
 		2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */; };
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
@@ -27,29 +31,31 @@
 		29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F4A7E617D64EFE00FAA098 /* AppDelegate.m */; };
 		29F4A7EA17D64EFE00FAA098 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F4A7E817D64EFE00FAA098 /* MainMenu.xib */; };
 		29F4A7EC17D64EFE00FAA098 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F4A7EB17D64EFE00FAA098 /* Images.xcassets */; };
-		29F4A7F317D64EFE00FAA098 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7F217D64EFE00FAA098 /* XCTest.framework */; };
-		29F4A7F417D64EFE00FAA098 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D317D64EFC00FAA098 /* Cocoa.framework */; };
-		29F4A7FC17D64EFE00FAA098 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29F4A7FA17D64EFE00FAA098 /* InfoPlist.strings */; };
-		29F4A7FE17D64EFE00FAA098 /* FetchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F4A7FD17D64EFE00FAA098 /* FetchTests.m */; };
 		2B595FD098FE4B26A6F7E2E3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7117C154CBD74991A5131116 /* libPods.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		29F4A7F517D64EFE00FAA098 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29F4A7C817D64EFC00FAA098 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 29F4A7CF17D64EFC00FAA098;
-			remoteInfo = Fetch;
+/* Begin PBXCopyFilesBuildPhase section */
+		29438AFF17E29FB7002BB433 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				29438B0517E2A35F002BB433 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		291D513217E2A4D0008CF171 /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = appcast.xml; path = ../appcast.xml; sourceTree = "<group>"; };
 		29438AFA17E222E2002BB433 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		29438AFB17E222E2002BB433 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		29438B0117E2A0A5002BB433 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../dsa_pub.pem; sourceTree = "<group>"; };
+		29438B0317E2A336002BB433 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -81,7 +87,6 @@
 		29F4A7E617D64EFE00FAA098 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29F4A7E917D64EFE00FAA098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29F4A7EB17D64EFE00FAA098 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		29F4A7F117D64EFE00FAA098 /* FetchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F4A7F217D64EFE00FAA098 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		29F4A7F917D64EFE00FAA098 /* FetchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FetchTests-Info.plist"; sourceTree = "<group>"; };
 		29F4A7FB17D64EFE00FAA098 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -100,15 +105,7 @@
 				2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */,
 				29F4A7D417D64EFC00FAA098 /* Cocoa.framework in Frameworks */,
 				2B595FD098FE4B26A6F7E2E3 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		29F4A7EE17D64EFE00FAA098 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29F4A7F417D64EFE00FAA098 /* Cocoa.framework in Frameworks */,
-				29F4A7F317D64EFE00FAA098 /* XCTest.framework in Frameworks */,
+				29438B0417E2A336002BB433 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				29F4A7D017D64EFC00FAA098 /* Fetch.app */,
-				29F4A7F117D64EFE00FAA098 /* FetchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +203,7 @@
 		29F4A7D217D64EFC00FAA098 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29438B0317E2A336002BB433 /* Sparkle.framework */,
 				29F4A7D317D64EFC00FAA098 /* Cocoa.framework */,
 				29F4A7F217D64EFE00FAA098 /* XCTest.framework */,
 				29F4A7D517D64EFC00FAA098 /* Other Frameworks */,
@@ -240,6 +237,8 @@
 		29F4A7DA17D64EFD00FAA098 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				291D513217E2A4D0008CF171 /* appcast.xml */,
+				29438B0117E2A0A5002BB433 /* dsa_pub.pem */,
 				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
 				29C3D1E317D77875004B405E /* HeaderNames.plist */,
 				29F4A7EB17D64EFE00FAA098 /* Images.xcassets */,
@@ -285,6 +284,7 @@
 				29F4A7CE17D64EFC00FAA098 /* Resources */,
 				7A23DA0DD3A745EFA386B29F /* Copy Pods Resources */,
 				4571E9C995FC4729B25B6234 /* Copy Pods Resources */,
+				29438AFF17E29FB7002BB433 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -295,24 +295,6 @@
 			productReference = 29F4A7D017D64EFC00FAA098 /* Fetch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		29F4A7F017D64EFE00FAA098 /* FetchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 29F4A80417D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "FetchTests" */;
-			buildPhases = (
-				29F4A7ED17D64EFE00FAA098 /* Sources */,
-				29F4A7EE17D64EFE00FAA098 /* Frameworks */,
-				29F4A7EF17D64EFE00FAA098 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				29F4A7F617D64EFE00FAA098 /* PBXTargetDependency */,
-			);
-			name = FetchTests;
-			productName = FetchTests;
-			productReference = 29F4A7F117D64EFE00FAA098 /* FetchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -321,11 +303,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Jukaela Enterprises";
-				TargetAttributes = {
-					29F4A7F017D64EFE00FAA098 = {
-						TestTargetID = 29F4A7CF17D64EFC00FAA098;
-					};
-				};
 			};
 			buildConfigurationList = 29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -341,7 +318,6 @@
 			projectRoot = "";
 			targets = (
 				29F4A7CF17D64EFC00FAA098 /* Fetch */,
-				29F4A7F017D64EFE00FAA098 /* FetchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -351,20 +327,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29438B0217E2A0A5002BB433 /* dsa_pub.pem in Resources */,
 				29C3D1E517D77875004B405E /* HeaderNames.plist in Resources */,
 				29F4A7DE17D64EFE00FAA098 /* InfoPlist.strings in Resources */,
 				29F4A7EC17D64EFE00FAA098 /* Images.xcassets in Resources */,
 				29F4A7E417D64EFE00FAA098 /* Credits.rtf in Resources */,
 				2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */,
+				291D513317E2A4D0008CF171 /* appcast.xml in Resources */,
 				29F4A7EA17D64EFE00FAA098 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		29F4A7EF17D64EFE00FAA098 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29F4A7FC17D64EFE00FAA098 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,23 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29F4A7ED17D64EFE00FAA098 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29F4A7FE17D64EFE00FAA098 /* FetchTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		29F4A7F617D64EFE00FAA098 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 29F4A7CF17D64EFC00FAA098 /* Fetch */;
-			targetProxy = 29F4A7F517D64EFE00FAA098 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		29F4A7DC17D64EFE00FAA098 /* InfoPlist.strings */ = {
@@ -535,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -568,7 +522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -580,6 +534,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jbarrow/Projects/Mac/Fetch,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -599,6 +557,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jbarrow/Projects/Mac/Fetch,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -608,48 +570,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		29F4A80517D64EFE00FAA098 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fetch.app/Contents/MacOS/Fetch";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FetchTests/FetchTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		29F4A80617D64EFE00FAA098 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fetch.app/Contents/MacOS/Fetch";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
-				INFOPLIST_FILE = "FetchTests/FetchTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -670,15 +590,6 @@
 			buildConfigurations = (
 				29F4A80217D64EFE00FAA098 /* Debug */,
 				29F4A80317D64EFE00FAA098 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		29F4A80417D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "FetchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				29F4A80517D64EFE00FAA098 /* Debug */,
-				29F4A80617D64EFE00FAA098 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

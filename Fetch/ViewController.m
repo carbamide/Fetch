@@ -254,17 +254,10 @@
 -(void)urlSelectionActionWithUrlTextFieldSelectionIndex:(BOOL)urlTextFieldSelection otherSelectionIndex:(NSInteger)selectionIndex
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     [[self fetchButton] setEnabled:YES];
     
-    Urls *tempUrl = nil;
-    
-    if (urlTextFieldSelection) {
-        tempUrl = [self urlList][[[self urlTextField] indexOfSelectedItem]];
-    }
-    else {
-        tempUrl = [self urlList][selectionIndex];
-    }
+    Urls *tempUrl = [self urlList][selectionIndex];
     
     [self setCurrentUrl:tempUrl];
     
@@ -340,10 +333,97 @@
     }
 }
 
+
+-(void)importProject:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    [openPanel setTitle:@"Import"];
+    [openPanel setAllowedFileTypes:@[@"fetch"]];
+    [openPanel setAllowsMultipleSelection:NO];
+    
+    if ([openPanel runModal] == NSOKButton) {
+        if ([DataHandler importFromPath:[[openPanel URL] path]]) {
+            [[self projectList] removeAllObjects];
+            
+            [[Projects all] each:^(Projects *object) {
+                [[self projectList] addObject:object];
+            }];
+            
+            [[self projectSourceList] reloadData];
+        }
+    }
+}
+
+-(void)exportProject:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    Projects *project = [self projectList][[[self projectSourceList] clickedRow]];
+    
+    [savePanel setTitle:@"Export"];
+    [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
+    
+    if ([savePanel runModal] == NSOKButton) {
+        [DataHandler exportProject:project toUrl:[savePanel URL]];
+    }
+}
+
+-(void)deleteProject:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    
+    if ([item isKindOfClass:[Projects class]]) {
+        Projects *tempProject = item;
+        
+        if (tempProject == [self currentProject]) {
+            [self setCurrentProject:nil];
+            
+            [self unloadData];
+        }
+        
+        [tempProject delete];
+    }
+    else {
+        Urls *tempUrl = item;
+        
+        if (tempUrl == [self currentUrl]) {
+            [self setCurrentUrl:nil];
+            
+            [self unloadData];
+        }
+        
+        [tempUrl delete];
+    }
+    
+    
+    [[self projectSourceList] reloadData];
+}
+
+-(void)unloadData
+{
+    [[self fetchButton] setEnabled:NO];
+    [[self urlTextField] setEnabled:NO];
+    [[self urlDescriptionTextField] setEnabled:NO];
+    
+    [[self urlList] removeAllObjects];
+    [[self headerDataSource] removeAllObjects];
+    [[self paramDataSource] removeAllObjects];
+    
+    [[self headersTableView] reloadData];
+    [[self parametersTableView] reloadData];
+}
+
 -(void)loadProject:(Projects *)project
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     [[self headerDataSource] removeAllObjects];
     [[self headersTableView] reloadData];
     
@@ -591,7 +671,6 @@
                 [[self headerDataSource] removeAllObjects];
                 [[self paramDataSource] removeAllObjects];
                 
-                [[self urlTextField] reloadData];
                 [[self headersTableView] reloadData];
                 [[self parametersTableView] reloadData];
             }
@@ -602,12 +681,12 @@
             [[self urlList] removeObject:item];
             
             [item delete];
-
+            
             if (item == [self currentUrl]) {
                 [[self fetchButton] setEnabled:NO];
-
+                
                 [[self urlList] removeAllObjects];
-
+                
                 [[Urls all] each:^(Urls *object) {
                     [[self urlList] addObject:[object url]];
                 }];
@@ -620,7 +699,6 @@
                 [[self headerDataSource] removeAllObjects];
                 [[self paramDataSource] removeAllObjects];
                 
-                [[self urlTextField] reloadData];
                 [[self headersTableView] reloadData];
                 [[self parametersTableView] reloadData];
             }
@@ -657,92 +735,6 @@
     [[self clearOutputButton] setEnabled:NO];
 }
 
--(void)importProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    
-    [openPanel setTitle:@"Import"];
-    [openPanel setAllowedFileTypes:@[@"fetch"]];
-    [openPanel setAllowsMultipleSelection:NO];
-    
-    if ([openPanel runModal] == NSOKButton) {
-        if ([DataHandler importFromPath:[[openPanel URL] path]]) {
-            [[self projectList] removeAllObjects];
-            
-            [[Projects all] each:^(Projects *object) {
-                [[self projectList] addObject:object];
-            }];
-            
-            [[self projectSourceList] reloadData];
-        }
-    }
-}
-
--(void)exportProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    
-    Projects *project = [self projectList][[[self projectSourceList] clickedRow]];
-    
-    [savePanel setTitle:@"Export"];
-    [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
-    
-    if ([savePanel runModal] == NSOKButton) {
-        [DataHandler exportProject:project toUrl:[savePanel URL]];
-    }
-}
-
--(void)deleteProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
-
-    if ([item isKindOfClass:[Projects class]]) {
-        Projects *tempProject = item;
-        
-        if (tempProject == [self currentProject]) {
-            [self setCurrentProject:nil];
-            
-            [self unloadData];
-        }
-        
-        [tempProject delete];
-    }
-    else {
-        Urls *tempUrl = item;
-        
-        if (tempUrl == [self currentUrl]) {
-            [self setCurrentUrl:nil];
-            
-            [self unloadData];
-        }
-        
-        [tempUrl delete];
-    }
-    
-    
-    [[self projectSourceList] reloadData];
-}
-
--(void)unloadData
-{
-    [[self fetchButton] setEnabled:NO];
-    [[self urlTextField] setEnabled:NO];
-    [[self urlDescriptionTextField] setEnabled:NO];
-    
-    [[self urlList] removeAllObjects];
-    [[self headerDataSource] removeAllObjects];
-    [[self paramDataSource] removeAllObjects];
-    
-    [[self urlTextField] reloadData];
-    [[self headersTableView] reloadData];
-    [[self parametersTableView] reloadData];
-}
 
 #pragma mark
 #pragma mark NSControlTextDelegate
@@ -914,53 +906,20 @@
     }
 }
 
-#pragma mark
-#pragma mark NSComboBoxDataSource
-
-- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
-{
-    return [[self urlList] count];
-}
-
-- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
-{
-    if (index == -1) {
-        return nil;
-    }
-    
-    if ([[self urlList] count] > 0) {
-        Urls *tempUrl = [self urlList][index];
-        
-        return [tempUrl url];
-    }
-    
-    return nil;
-}
 
 #pragma mark
 #pragma mark NSComboBoxDelegate
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
-    if ([notification object] == [self urlTextField]) {
-        [self urlSelectionActionWithUrlTextFieldSelectionIndex:YES otherSelectionIndex:0];
-    }
-    else if ([notification object] == [self methodCombo]) {
+    if ([notification object] == [self methodCombo]) {
         if ([self currentUrl]) {
-            if ([[self urlTextField] indexOfSelectedItem] == -1) {
-                if ([self addToUrlListIfUnique]) {
-                    [[self currentUrl] setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
-                    
-                    [[self currentUrl] save];
-                }
-            }
+            [self addToUrlListIfUnique];
+            
+            [[self currentUrl] setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
+            [[self currentUrl] save];
         }
     }
-}
-
-- (NSUInteger)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
-{
-    return [[self urlList] indexOfObject:aString];
 }
 
 #pragma mark
@@ -1050,7 +1009,7 @@
     
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = [self projectList][selectedRow];
-
+        
         [self loadProject:tempProject];
     }
     else
