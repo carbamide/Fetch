@@ -665,6 +665,17 @@
                             <outlet property="delegate" destination="gb6-4z-C70" id="Hiq-QB-C7G"/>
                         </connections>
                     </textField>
+                    <button verticalHuggingPriority="750" id="zUG-Zh-ps1">
+                        <rect key="frame" x="475" y="7" width="120" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="JSON Output" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oCe-yc-X89">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showJson:" target="gb6-4z-C70" id="hM4-j2-fpT"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -688,6 +699,7 @@
                 <outlet property="fetchButton" destination="toA-t6-egW" id="EVS-LC-dhW"/>
                 <outlet property="headerSegCont" destination="YIz-tW-BXT" id="ZCX-q2-85X"/>
                 <outlet property="headersTableView" destination="bDb-BA-qyy" id="3mE-ey-M4a"/>
+                <outlet property="jsonOutputButton" destination="zUG-Zh-ps1" id="tfQ-t3-mAD"/>
                 <outlet property="logRequestCheckBox" destination="iZh-5R-nte" id="PcW-9P-u0W"/>
                 <outlet property="methodCombo" destination="OBs-rv-rA0" id="c5Y-xf-oAR"/>
                 <outlet property="outputTextView" destination="rcz-YS-4nI" id="GTX-hn-4hx"/>

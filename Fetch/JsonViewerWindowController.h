@@ -8,6 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface JsonViewerWindowController : NSWindowController
+@interface JsonViewerWindowController : NSWindowController <NSOutlineViewDataSource, NSOutlineViewDelegate>
+
+@property (strong, nonatomic) IBOutlet NSOutlineView *outlineView;
+@property (strong, nonatomic) id jsonData;
+
+- (id)initWithWindowNibName:(NSString *)nibOrNil json:(id)json;
 
 @end

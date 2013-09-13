@@ -14,6 +14,7 @@
 #import "Headers.h"
 #import "Parameters.h"
 #import "DataHandler.h"
+#import "JsonViewerWindowController.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -25,6 +26,8 @@
 
 @property (strong, nonatomic) Projects *currentProject;
 @property (strong, nonatomic) Urls *currentUrl;
+
+@property (strong, nonatomic) id jsonData;
 
 @end
 
@@ -408,6 +411,7 @@
 
 -(void)unloadData
 {
+    [[self jsonOutputButton] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
     [[self urlTextField] setEnabled:NO];
     [[self urlDescriptionTextField] setEnabled:NO];
@@ -538,6 +542,9 @@
                     if (jsonHolder) {
                         [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:nil];
                     }
+                    
+                    [[self jsonOutputButton] setEnabled:YES];
+                    [self setJsonData:jsonData];
                 }
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:nil];
@@ -671,6 +678,7 @@
             if (item == [self currentProject]) {
                 [self setCurrentProject:nil];
                 
+                [[self jsonOutputButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 [[self urlTextField] setEnabled:NO];
                 [[self urlDescriptionTextField] setEnabled:NO];
@@ -691,6 +699,7 @@
             [item delete];
             
             if (item == [self currentUrl]) {
+                [[self jsonOutputButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 
                 [[self urlList] removeAllObjects];
@@ -743,6 +752,18 @@
     [[self clearOutputButton] setEnabled:NO];
 }
 
+-(IBAction)showJson:(id)sender
+{
+    if (![self jsonWindow]) {
+        [self setJsonWindow:[[JsonViewerWindowController alloc] initWithWindowNibName:@"JsonViewerWindowController" json:[self jsonData]]];
+    }
+    else {
+        [[self jsonWindow] setJsonData:[self jsonData]];
+        [[[self jsonWindow] outlineView] reloadData];
+    }
+    
+    [[[self jsonWindow] window] makeKeyAndOrderFront:self];
+}
 
 #pragma mark
 #pragma mark NSControlTextDelegate

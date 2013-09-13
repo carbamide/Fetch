@@ -25,6 +25,7 @@ typedef NSUInteger HttpMethod;
 @property (weak) IBOutlet NSButton *customPostBodyCheckBox;
 @property (weak) IBOutlet NSButton *logRequestCheckBox;
 @property (weak) IBOutlet NSButton *clearOutputButton;
+@property (weak) IBOutlet NSButton *jsonOutputButton;
 @property (weak) IBOutlet NSTableView *headersTableView;
 @property (weak) IBOutlet NSTableView *parametersTableView;
 @property (weak) IBOutlet NSSegmentedControl *headerSegCont;
@@ -43,6 +44,7 @@ typedef NSUInteger HttpMethod;
 -(IBAction)customPostBodyAction:(id)sender;
 -(IBAction)clearOutput:(id)sender;
 -(IBAction)projectSegContAction:(id)sender;
+-(IBAction)showJson:(id)sender;
 
 -(void)showProjects;
 -(void)exportProject:(id)sender;

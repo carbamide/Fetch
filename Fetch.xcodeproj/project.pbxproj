@@ -177,6 +177,7 @@
 			children = (
 				29F4A7E817D64EFE00FAA098 /* MainMenu.xib */,
 				2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */,
+				2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */,
 			);
 			name = "User Interface";
 			path = Fetch;
@@ -198,7 +199,6 @@
 				29438AFB17E222E2002BB433 /* MenuController.m */,
 				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
 				2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */,
-				2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -597,7 +597,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fetch;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -620,7 +620,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fetch;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
