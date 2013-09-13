@@ -1,0 +1,13 @@
+PODS:
+  - ObjectiveRecord (1.3.1):
+    - ObjectiveSugar
+  - ObjectiveSugar (0.9)
+
+DEPENDENCIES:
+  - ObjectiveRecord
+
+SPEC CHECKSUMS:
+  ObjectiveRecord: 96fdbcf25d5445bfb95dab59aeec06b13795f12d
+  ObjectiveSugar: 5b33fb396f3e93c0a543bdf55d2d48f29ee46bfb
+
+COCOAPODS: 0.20.2

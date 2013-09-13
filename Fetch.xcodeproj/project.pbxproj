@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2908658117E2A85A004B805D /* Distribution */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2908658417E2A85A004B805D /* Build configuration list for PBXAggregateTarget "Distribution" */;
+			buildPhases = (
+				2908658517E2A868004B805D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Distribution;
+			productName = Release;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
 		291D513317E2A4D0008CF171 /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 291D513217E2A4D0008CF171 /* appcast.xml */; };
@@ -15,6 +29,8 @@
 		29438B0517E2A35F002BB433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
 		2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */; };
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
+		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
+		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
@@ -59,6 +75,9 @@
 		2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewerWindowController.h; sourceTree = "<group>"; };
+		2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewerWindowController.m; sourceTree = "<group>"; };
+		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fetch.xcdatamodel; sourceTree = "<group>"; };
 		29BC58E617DE0BFD004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
 		29BC58E717DE0BFD004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
@@ -177,6 +196,9 @@
 				29BEA3FC17DD1ADB005048F1 /* DataHandler.m */,
 				29438AFA17E222E2002BB433 /* MenuController.h */,
 				29438AFB17E222E2002BB433 /* MenuController.m */,
+				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
+				2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */,
+				2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -318,6 +340,7 @@
 			projectRoot = "";
 			targets = (
 				29F4A7CF17D64EFC00FAA098 /* Fetch */,
+				2908658117E2A85A004B805D /* Distribution */,
 			);
 		};
 /* End PBXProject section */
@@ -332,6 +355,7 @@
 				29F4A7DE17D64EFE00FAA098 /* InfoPlist.strings in Resources */,
 				29F4A7EC17D64EFE00FAA098 /* Images.xcassets in Resources */,
 				29F4A7E417D64EFE00FAA098 /* Credits.rtf in Resources */,
+				2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */,
 				2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */,
 				291D513317E2A4D0008CF171 /* appcast.xml in Resources */,
 				29F4A7EA17D64EFE00FAA098 /* MainMenu.xib in Resources */,
@@ -341,6 +365,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2908658517E2A868004B805D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PROJECT_NAME=\"Fetch\"\n\n\necho \"Project name is: $PROJECT_NAME\"\nset -o errexit\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://www.jukaela.com/Fetch\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME\"'_v'\"$VERSION.dmg\"\n\necho \"archive file name is: $ARCHIVE_FILENAME\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\n\ntemp_dir=`/usr/bin/mktemp -dq /tmp/TimeBoxed_XXXXXXXXXXXX`\nif [ $? -ne 0 ]; then\necho \"$0: Can't create temp file, exiting...\"\nexit 1\nfi\n\n\n# Copy the application into the futur image disk folder\n/bin/cp -f -R \"$PROJECT_NAME.app\" $temp_dir\n\n/usr/bin/hdiutil create \"$ARCHIVE_FILENAME\" -srcfolder \"$temp_dir\" -ov -volname \"Fetch for Mac\"\n\n\n# DMG has been created\n\n\necho \"\"\necho \"--------------------------\"\n\nBZR=\"/usr/local/Cellar/bazaar/2.5.1/bin/bzr\"\n\ncd \"$SRCROOT\"\n\nlast_tag=`$BZR tags --sort=time | tail -n1 | cut -d' ' -f1`\n\n$BZR log -r tag:$last_tag..\n$BZR log -r tag:$last_tag.. | mate -a\n\n\nopen \"/Users/jbarrow/builds/Release\"";
+		};
 		4571E9C995FC4729B25B6234 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -416,6 +453,7 @@
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */,
+				2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +495,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2908658217E2A85A004B805D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2908658317E2A85A004B805D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		29F4A7FF17D64EFE00FAA098 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -576,6 +628,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2908658417E2A85A004B805D /* Build configuration list for PBXAggregateTarget "Distribution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2908658217E2A85A004B805D /* Debug */,
+				2908658317E2A85A004B805D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -461,6 +461,10 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    [[self fetchButton] setHidden:YES];
+    [[self progressIndicator] setHidden:NO];
+    [[self progressIndicator] startAnimation:self];
+    
     if ([[[self urlTextField] stringValue] isEqualToString:@""] || ![[self urlTextField] stringValue]) {
         
         NSAlert *alert = [[NSAlert alloc] init];
@@ -544,6 +548,10 @@
                 
                 [errorAlert runModal];
             }
+            
+            [[self fetchButton] setHidden:NO];
+            [[self progressIndicator] stopAnimation:self];
+            [[self progressIndicator] setHidden:YES];
         }];
         
         [[self projectSourceList] reloadData];

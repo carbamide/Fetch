@@ -14,6 +14,8 @@ enum {
 };
 typedef NSUInteger HttpMethod;
 
+@class JsonViewerWindowController;
+
 @interface ViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (weak) IBOutlet NSTextField *urlTextField;
@@ -31,6 +33,9 @@ typedef NSUInteger HttpMethod;
 @property (weak) IBOutlet NSOutlineView *projectSourceList;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+
+@property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
 
 -(IBAction)fetchAction:(id)sender;
 -(IBAction)headerSegContAction:(id)sender;

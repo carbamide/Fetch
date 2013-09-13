@@ -249,6 +249,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="681" height="712"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="49F-jC-4wo">
+                        <rect key="frame" x="615" y="673" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                     <button verticalHuggingPriority="750" id="toA-t6-egW">
                         <rect key="frame" x="586" y="664" width="74" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -689,6 +693,7 @@
                 <outlet property="outputTextView" destination="rcz-YS-4nI" id="GTX-hn-4hx"/>
                 <outlet property="paramSegCont" destination="Ijc-X7-qiX" id="f1R-Uw-GpU"/>
                 <outlet property="parametersTableView" destination="izJ-cx-bKU" id="Zp0-F8-KmD"/>
+                <outlet property="progressIndicator" destination="49F-jC-4wo" id="tCv-La-vaP"/>
                 <outlet property="projectSegControl" destination="Plq-kc-wgi" id="Fcd-x7-17v"/>
                 <outlet property="projectSourceList" destination="KfX-RV-wJh" id="Af8-MS-4ZG"/>
                 <outlet property="urlDescriptionTextField" destination="TFL-aw-poB" id="Zww-HZ-8WR"/>
