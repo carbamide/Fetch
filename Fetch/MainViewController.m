@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "Urls.h"
 #import "NSUserDefaults+NSColor.h"
 #import "Constants.h"
@@ -16,7 +16,7 @@
 #import "DataHandler.h"
 #import "JsonViewerWindowController.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
 @property (strong, nonatomic) NSMutableArray *urlList;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 #pragma mark
 #pragma mark Lifecycle

@@ -702,7 +702,7 @@
                 <outlet property="window" destination="371" id="Crb-Z9-G1X"/>
             </connections>
         </customObject>
-        <customObject id="gb6-4z-C70" customClass="ViewController">
+        <customObject id="gb6-4z-C70" customClass="MainViewController">
             <connections>
                 <outlet property="clearOutputButton" destination="N3z-8U-SaL" id="yzD-kQ-r9P"/>
                 <outlet property="customPayloadTextView" destination="Muw-eg-u35" id="cHU-yu-hax"/>

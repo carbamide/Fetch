@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class ViewController, PreferencesWindowController, AppDelegate;
+@class MainViewController, PreferencesWindowController, AppDelegate;
 
 @interface MenuController : NSObject
 
-@property (strong, nonatomic) IBOutlet ViewController *viewController;
+@property (strong, nonatomic) IBOutlet MainViewController *viewController;
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
 @property (weak, nonatomic) IBOutlet AppDelegate *delegate;
 
