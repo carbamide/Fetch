@@ -385,6 +385,8 @@
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
         
+        [[self projectList] removeObject:tempProject];
+        
         if (tempProject == [self currentProject]) {
             [self setCurrentProject:nil];
             
@@ -395,6 +397,8 @@
     }
     else {
         Urls *tempUrl = item;
+        
+        [[self urlList] removeObject:tempUrl];
         
         if (tempUrl == [self currentUrl]) {
             [self setCurrentUrl:nil];
