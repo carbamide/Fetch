@@ -1084,4 +1084,5 @@
         [[menu itemAtIndex:4] setHidden:YES];
     }
 }
+
 @end

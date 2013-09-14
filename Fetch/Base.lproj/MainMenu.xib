@@ -730,8 +730,6 @@
                 <outlet property="viewController" destination="gb6-4z-C70" id="JFu-xc-0fa"/>
             </connections>
         </customObject>
-        <userDefaultsController id="hFg-4c-zT1"/>
-        <userDefaultsController id="mJV-yW-0ZC"/>
         <menu id="wFx-wf-vAs">
             <items>
                 <menuItem title="Add URL" id="XBz-oO-y89">
@@ -759,7 +757,6 @@
                 <outlet property="delegate" destination="gb6-4z-C70" id="Ur8-mh-zdK"/>
             </connections>
         </menu>
-        <userDefaultsController representsSharedInstance="YES" id="wMq-7p-BoZ"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
