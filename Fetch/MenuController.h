@@ -22,6 +22,7 @@
 
 -(IBAction)showMainWindow:(id)sender;
 
+-(IBAction)addUrl:(id)sender;
 -(IBAction)exportProject:(id)sender;
 -(IBAction)importProject:(id)sender;
 -(IBAction)deleteProject:(id)sender;

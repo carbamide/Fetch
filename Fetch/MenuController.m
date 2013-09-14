@@ -54,6 +54,13 @@
     }
 }
 
+-(IBAction)addUrl:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    [[self viewController] addUrl:sender];
+}
+
 -(IBAction)exportProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);

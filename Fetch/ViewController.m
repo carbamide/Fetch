@@ -71,7 +71,9 @@
     NSLog(@"%s", __FUNCTION__);
     
     [[Urls all] each:^(Urls *object) {
-        [[self urlList] addObject:[object url]];
+        if ([object url]) {
+            [[self urlList] addObject:[object url]];
+        }
     }];
     
     __block BOOL showProject = NO;
@@ -254,13 +256,13 @@
     }
 }
 
--(void)urlSelectionActionWithUrlTextFieldSelectionIndex:(BOOL)urlTextFieldSelection otherSelectionIndex:(NSInteger)selectionIndex
+-(void)urlSelection:(Urls *)url
 {
     NSLog(@"%s", __FUNCTION__);
     
     [[self fetchButton] setEnabled:YES];
     
-    Urls *tempUrl = [self urlList][selectionIndex];
+    Urls *tempUrl = url;
     
     [self setCurrentUrl:tempUrl];
     
@@ -462,6 +464,21 @@
     [self setupSegmentedControls];
 }
 
+-(void)addUrl:(id)sender
+{
+    if ([self currentProject]) {
+        Urls *tempUrl = [Urls create];
+        
+        [tempUrl setUrlDescription:@"New URL"];
+        
+        [[self currentProject] addUrlsObject:tempUrl];
+        
+        [[self currentProject] save];
+        
+        [[self urlList] addObject:tempUrl];
+        [[self projectSourceList] reloadData];
+    }
+}
 #pragma mark
 #pragma mark IBActions
 
@@ -774,25 +791,11 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    NSString *currentUrlString = [[self currentUrl] url];
-    
     if ([notification object] == [self urlTextField]) {
         if ([[[self urlTextField] stringValue] length] > 0) {
-            [[self fetchButton] setEnabled:YES];
-            
-            if (![[(NSComboBox *)[notification object] stringValue] isEqualToString:currentUrlString]) {
-                [self setCurrentUrl:nil];
-                [[self headerDataSource] removeAllObjects];
-                [[self paramDataSource] removeAllObjects];
-                
-                [[self headersTableView] reloadData];
-                [[self parametersTableView] reloadData];
-                
-                [[self customPostBodyCheckBox] setState:NSOffState];
-                [[self customPayloadTextView] setString:@""];
-                [[self urlDescriptionTextField] setStringValue:@""];
-                
-                [[self methodCombo] selectItemAtIndex:GET_METHOD];
+            if ([self currentUrl]) {
+                [[self currentUrl] setUrl:[[self urlTextField] stringValue]];
+                [[self currentUrl] save];
             }
         }
         else {
@@ -1047,24 +1050,38 @@
     }
     else
     {
-        NSMutableArray *urlArray = [NSArray arrayWithArray:[[[(Urls *)item project] urls] allObjects]];
+        Urls *tempItem = item;
         
-        for (NSInteger index = 0; index < [urlArray count]; index++) {
-            Urls *tempUrl = urlArray[index];
-            
-            if ([[tempUrl url] isEqualToString:[(Urls *)item url]]) {
-                Urls *tempUrl = (Urls *)urlArray[index];
-                
-                if ([self currentProject] != [tempUrl project]) {
-                    [self loadProject:[tempUrl project]];
-                }
-                
-                [[self urlTextField] setStringValue:[tempUrl url]];
-                
-                [self urlSelectionActionWithUrlTextFieldSelectionIndex:NO otherSelectionIndex:index];
-            }
+        if ([self currentProject] != [tempItem project]) {
+            [self loadProject:[item project]];
         }
+        
+        [[self urlTextField] setStringValue:[tempItem url]];
+
+        [self urlSelection:tempItem];
     }
 }
 
+#pragma mark
+#pragma mark NSMenuDelegate
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    
+    if ([item isKindOfClass:[Projects class]]) {
+        [[menu itemAtIndex:0] setHidden:NO];
+        [[menu itemAtIndex:1] setHidden:NO];
+        [[menu itemAtIndex:2] setTitle:@"Delete Project"];
+        [[menu itemAtIndex:3] setHidden:NO];
+        [[menu itemAtIndex:4] setHidden:NO];
+    }
+    else {
+        [[menu itemAtIndex:0] setHidden:YES];
+        [[menu itemAtIndex:1] setHidden:YES];
+        [[menu itemAtIndex:2] setTitle:@"Delete URL"];
+        [[menu itemAtIndex:3] setHidden:YES];
+        [[menu itemAtIndex:4] setHidden:YES];
+    }
+}
 @end

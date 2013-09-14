@@ -83,6 +83,17 @@
                                     <action selector="importProject:" target="qWr-mY-2yN" id="t9l-kM-hb3"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="L9D-Z8-glx"/>
+                            <menuItem title="Add URL" keyEquivalent="A" id="0HE-Ec-qLH">
+                                <connections>
+                                    <action selector="addUrl:" target="qWr-mY-2yN" id="TdP-xd-eAv"/>
+                                    <binding destination="gb6-4z-C70" name="enabled" keyPath="currentProject" id="wIH-jp-z6E">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="ESB-LV-r8X"/>
                             <menuItem title="Close" keyEquivalent="w" id="4j8-l4-AtK">
                                 <connections>
@@ -723,21 +734,32 @@
         <userDefaultsController id="mJV-yW-0ZC"/>
         <menu id="wFx-wf-vAs">
             <items>
-                <menuItem title="Delete..." id="XnY-Fz-YOZ">
+                <menuItem title="Add URL" id="XBz-oO-y89">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="addUrl:" target="qWr-mY-2yN" id="rg4-0N-xTV"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="AF0-PP-YPm"/>
+                <menuItem title="Delete Project" id="XnY-Fz-YOZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="deleteProject:" target="qWr-mY-2yN" id="Yzi-dd-nUa"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="q8R-uM-xO1"/>
-                <menuItem title="Export..." id="BiP-At-zHU">
+                <menuItem title="Export Project..." id="BiP-At-zHU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="exportProject:" target="qWr-mY-2yN" id="JFr-Ow-T0S"/>
                     </connections>
                 </menuItem>
             </items>
+            <connections>
+                <outlet property="delegate" destination="gb6-4z-C70" id="Ur8-mh-zdK"/>
+            </connections>
         </menu>
+        <userDefaultsController representsSharedInstance="YES" id="wMq-7p-BoZ"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
