@@ -22,10 +22,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMW-Et-e7G">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMW-Et-e7G">
                         <rect key="frame" x="-1" y="-1" width="482" height="272"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="Zgx-GM-2Ig">
+                        <clipView key="contentView" id="Zgx-GM-2Ig">
                             <rect key="frame" x="1" y="17" width="480" height="254"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -85,6 +85,12 @@
                         </tableHeaderView>
                     </scrollView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="dMW-Et-e7G" secondAttribute="trailing" constant="-1" id="PGX-FQ-OyD"/>
+                    <constraint firstItem="dMW-Et-e7G" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="-1" id="WCk-Bx-AE2"/>
+                    <constraint firstItem="dMW-Et-e7G" firstAttribute="top" secondItem="2" secondAttribute="top" constant="-1" id="hQT-Hy-EUe"/>
+                    <constraint firstAttribute="bottom" secondItem="dMW-Et-e7G" secondAttribute="bottom" constant="-1" id="xOw-X0-OiS"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
