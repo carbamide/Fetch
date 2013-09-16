@@ -13,7 +13,7 @@
 #import "Projects.h"
 #import "Headers.h"
 #import "Parameters.h"
-#import "DataHandler.h"
+#import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
 
 @interface MainViewController ()
@@ -350,7 +350,7 @@
     [openPanel setAllowsMultipleSelection:NO];
     
     if ([openPanel runModal] == NSOKButton) {
-        if ([DataHandler importFromPath:[[openPanel URL] path]]) {
+        if ([ProjectHandler importFromPath:[[openPanel URL] path]]) {
             [[self projectList] removeAllObjects];
             
             [[Projects all] each:^(Projects *object) {
@@ -374,7 +374,7 @@
     [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
     
     if ([savePanel runModal] == NSOKButton) {
-        [DataHandler exportProject:project toUrl:[savePanel URL]];
+        [ProjectHandler exportProject:project toUrl:[savePanel URL]];
     }
 }
 

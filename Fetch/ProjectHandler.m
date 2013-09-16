@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "DataHandler.h"
+#import "ProjectHandler.h"
 #import "Constants.h"
 #import "Projects.h"
 #import "Urls.h"
@@ -14,7 +14,7 @@
 #import "Projects.h"
 #import "Headers.h"
 
-@implementation DataHandler
+@implementation ProjectHandler
 
 +(BOOL)importFromPath:(NSString *)path
 {

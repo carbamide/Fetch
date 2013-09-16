@@ -7,6 +7,8 @@
 //
 
 #import "JsonViewerWindowController.h"
+#import "JsonHandler.h"
+#import "NodeObject.h"
 
 @interface JsonViewerWindowController ()
 
@@ -21,6 +23,12 @@
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
         [self setJsonData:json];
+        
+        JsonHandler *tempData = [[JsonHandler alloc] init];
+        
+        [tempData addEntries:json];
+        
+        [self setDataArray:[tempData dataSource]];
     }
     return self;
 }
@@ -29,12 +37,11 @@
 {
     _jsonData = jsonData;
     
-    if ([jsonData isKindOfClass:[NSDictionary class]]) {
-        [self setDataArray:@[jsonData]];
-    }
-    else {
-        [self setDataArray:jsonData];
-    }
+    JsonHandler *tempData = [[JsonHandler alloc] init];
+    
+    [tempData addEntries:_jsonData];
+    
+    [self setDataArray:[tempData dataSource]];
 }
 
 - (void)windowDidLoad
@@ -47,29 +54,11 @@
 
 - (BOOL)outlineView:(NSOutlineView *)oV isItemExpandable:(id)item
 {
-    if ([oV parentForItem:item]) {
-        if ([item isEqualToString:@"Dictionary"] || [item isEqualToString:@"Array"]) {
-            return YES;
-        }
-        else {
-            return NO;
-        }
-    }
+    NodeObject *tempObject = item;
     
-    if ([[self jsonData] isKindOfClass:[NSDictionary class]]) {
-        if ([[self jsonData] hasKey:item]) {
-            if ([[self jsonData][item] isKindOfClass:[NSDictionary class]]) {
-                return YES;
-            }
-            else if ([[self jsonData][item] isKindOfClass:[NSArray class]]) {
-                return YES;
-            }
-            else {
-                return NO;
-            }
-        }
-    }
-    else {
+    NSLog(@"%lu", (unsigned long)[[tempObject children] count]);
+    
+    if ([[tempObject children] count] > 0) {
         return YES;
     }
     
@@ -78,70 +67,28 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)oV numberOfChildrenOfItem:(id)item
 {
-    if ([[self jsonData] isKindOfClass:[NSDictionary class]]) {
-        if (!item) {
-            return [[self jsonData] count];
-        }
-        
-        if ([oV parentForItem:item]) {
-            return [[[self jsonData][[oV parentForItem:item]][0] allKeys] count];
-        }
-        
-        if ([item isKindOfClass:[NSDictionary class]]) {
-            return [[item allKeys] count];
-        }
-        else if ([[self jsonData][item] isKindOfClass:[NSArray class]]) {
-            return [[self jsonData][item] count];
-        }
-        else {
-            return [[self jsonData][item] count];
-        }
+    NodeObject *tempObject = item;
+    
+    if (!tempObject) {
+        return [[self dataArray] count];
     }
     else {
-        if (!item) {
-            return [[self jsonData] count];
-        }
-        else {
-            NSDictionary *tempDict = [self jsonData][[oV rowForItem:item]];
-            
-            return [[tempDict allKeys] count];
+        if ([tempObject children]) {
+            return [[tempObject children] count];
         }
     }
+    return 0;
 }
 
 - (id)outlineView:(NSOutlineView *)oV child:(NSInteger)index ofItem:(id)item
 {
-    if (item == nil) {
-        if ([[self jsonData] isKindOfClass:[NSDictionary class]]) {
-            return [[[self jsonData] allKeys] objectAtIndex:index];
-        }
-        else {
-            return @"Array";
-        }
-    }
-    
-    if ([oV parentForItem:item]) {
-        return [[self jsonData][[oV parentForItem:item]][0] allKeys][index];
-    }
-    
-    if ([[self jsonData] isKindOfClass:[NSDictionary class]]) {
-        if ([item isKindOfClass:[NSDictionary class]]) {
-            return [self jsonData][item];
-        }
-        else if ([[self jsonData][item] isKindOfClass:[NSArray class]]) {
-            return @"Dictionary";
-        }
-        else {
-            return [[self jsonData][item] allKeys][index];
-        }
+    NodeObject *tempObject = item;
+
+    if (!tempObject) {
+        return [self dataArray][index];
     }
     else {
-        if ([[[self jsonData] objectAtIndex:index] isKindOfClass:[NSDictionary class]]) {            
-            return @"Dictionary";
-        }
-        else if ([[[self jsonData] objectAtIndex:index] isKindOfClass:[NSArray class]]) {
-            return @"Array";
-        }
+        return [tempObject children][index];
     }
     
     return nil;
@@ -149,38 +96,13 @@
 
 - (id)outlineView:(NSOutlineView *)oV objectValueForTableColumn:(NSTableColumn *)theColumn byItem:(id)item
 {
+    NodeObject *tempObject = item;
+    
     if ([[theColumn identifier] isEqualToString:@"Key"]) {
-        return item;
+        return [tempObject nodeTitle];
     }
     else {
-        if ([[self jsonData] isKindOfClass:[NSDictionary class]]) {
-            if ([oV parentForItem:item]) {
-                NSString *parentForItem = [oV parentForItem:item];
-                NSString *grandParentForItem = [oV parentForItem:parentForItem];
-                
-                NSArray *tempArray = [self jsonData][grandParentForItem];
-                
-                NSString *tempString = tempArray[0][item];
-                
-                return tempString;
-            }
-            
-            if ([[self jsonData] hasKey:item]) {
-                if ([[self jsonData][item] isKindOfClass:[NSDictionary class]]) {
-                    return @"Dictionary";
-                }
-                else if ([[self jsonData][item] isKindOfClass:[NSArray class]]) {
-                    return @"Array";
-                }
-                else {
-                    return [self jsonData][item];
-                }
-            }
-        }
-        else {
-            return nil;
-        }
-
+        return [tempObject nodeValue];
     }
     
     return nil;

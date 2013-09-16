@@ -10,7 +10,7 @@
 
 @class Projects;
 
-@interface DataHandler : NSObject
+@interface ProjectHandler : NSObject
 
 +(BOOL)importFromPath:(NSString *)path;
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url;

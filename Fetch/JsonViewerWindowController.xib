@@ -64,8 +64,8 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <outlet property="dataSource" destination="-2" id="SJt-C0-tQ5"/>
-                                        <outlet property="delegate" destination="-2" id="NKc-Co-XAT"/>
+                                        <outlet property="dataSource" destination="-2" id="9aQ-DQ-Pzf"/>
+                                        <outlet property="delegate" destination="-2" id="6GF-CY-Vgd"/>
                                     </connections>
                                 </outlineView>
                             </subviews>

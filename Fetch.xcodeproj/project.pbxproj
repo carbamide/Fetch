@@ -37,8 +37,10 @@
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
 		29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58ED17DE0BFD004168AE /* Parameters.m */; };
 		29BC58F117DE0BFD004168AE /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58F017DE0BFD004168AE /* Projects.m */; };
-		29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BEA3FC17DD1ADB005048F1 /* DataHandler.m */; };
+		29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BEA3FC17DD1ADB005048F1 /* ProjectHandler.m */; };
 		29C3D1E517D77875004B405E /* HeaderNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29C3D1E317D77875004B405E /* HeaderNames.plist */; };
+		29E137E717E657B10088E1D4 /* NodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E137E617E657B10088E1D4 /* NodeObject.m */; };
+		29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E137E917E658C40088E1D4 /* JsonHandler.m */; };
 		29EF763617D65D9400F89D72 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EF763517D65D9400F89D72 /* MainViewController.m */; };
 		29F4A7D417D64EFC00FAA098 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D317D64EFC00FAA098 /* Cocoa.framework */; };
 		29F4A7DE17D64EFE00FAA098 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29F4A7DC17D64EFE00FAA098 /* InfoPlist.strings */; };
@@ -87,9 +89,13 @@
 		29BC58ED17DE0BFD004168AE /* Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parameters.m; sourceTree = "<group>"; };
 		29BC58EF17DE0BFD004168AE /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
 		29BC58F017DE0BFD004168AE /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
-		29BEA3FB17DD1ADB005048F1 /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
-		29BEA3FC17DD1ADB005048F1 /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
+		29BEA3FB17DD1ADB005048F1 /* ProjectHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectHandler.h; sourceTree = "<group>"; };
+		29BEA3FC17DD1ADB005048F1 /* ProjectHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectHandler.m; sourceTree = "<group>"; };
 		29C3D1E317D77875004B405E /* HeaderNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HeaderNames.plist; sourceTree = "<group>"; };
+		29E137E517E657B10088E1D4 /* NodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeObject.h; sourceTree = "<group>"; };
+		29E137E617E657B10088E1D4 /* NodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeObject.m; sourceTree = "<group>"; };
+		29E137E817E658C40088E1D4 /* JsonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonHandler.h; sourceTree = "<group>"; };
+		29E137E917E658C40088E1D4 /* JsonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonHandler.m; sourceTree = "<group>"; };
 		29EF763417D65D9400F89D72 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		29EF763517D65D9400F89D72 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29F4A7D017D64EFC00FAA098 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +144,28 @@
 				291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */,
 			);
 			name = Catagories;
+			sourceTree = "<group>";
+		};
+		2957D5C117E69C6600639F02 /* Data Handling */ = {
+			isa = PBXGroup;
+			children = (
+				29BEA3FB17DD1ADB005048F1 /* ProjectHandler.h */,
+				29BEA3FC17DD1ADB005048F1 /* ProjectHandler.m */,
+				29E137E517E657B10088E1D4 /* NodeObject.h */,
+				29E137E617E657B10088E1D4 /* NodeObject.m */,
+				29E137E817E658C40088E1D4 /* JsonHandler.h */,
+				29E137E917E658C40088E1D4 /* JsonHandler.m */,
+			);
+			name = "Data Handling";
+			sourceTree = "<group>";
+		};
+		2957D5C217E69C7300639F02 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				29F4A7E517D64EFE00FAA098 /* AppDelegate.h */,
+				29F4A7E617D64EFE00FAA098 /* AppDelegate.m */,
+			);
+			name = Singletons;
 			sourceTree = "<group>";
 		};
 		2983B07A17DAC141001852F2 /* CoreData */ = {
@@ -197,13 +225,11 @@
 		29EF763817D65E7D00F89D72 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				29F4A7E517D64EFE00FAA098 /* AppDelegate.h */,
-				29F4A7E617D64EFE00FAA098 /* AppDelegate.m */,
-				291BBA9D17DAF18200C771F5 /* Constants.h */,
+				2983B07A17DAC141001852F2 /* CoreData */,
+				2957D5C117E69C6600639F02 /* Data Handling */,
+				2957D5C217E69C7300639F02 /* Singletons */,
 				29EF763417D65D9400F89D72 /* MainViewController.h */,
 				29EF763517D65D9400F89D72 /* MainViewController.m */,
-				29BEA3FB17DD1ADB005048F1 /* DataHandler.h */,
-				29BEA3FC17DD1ADB005048F1 /* DataHandler.m */,
 				29438AFA17E222E2002BB433 /* MenuController.h */,
 				29438AFB17E222E2002BB433 /* MenuController.m */,
 			);
@@ -258,7 +284,6 @@
 				291BBA9C17DAED2500C771F5 /* Catagories */,
 				29EF763817D65E7D00F89D72 /* Classes */,
 				29E4625F17E51C55006F7148 /* Window Controllers */,
-				2983B07A17DAC141001852F2 /* CoreData */,
 				29F4A7DA17D64EFD00FAA098 /* Supporting Files */,
 			);
 			path = Fetch;
@@ -267,6 +292,7 @@
 		29F4A7DA17D64EFD00FAA098 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				291BBA9D17DAF18200C771F5 /* Constants.h */,
 				291D513217E2A4D0008CF171 /* appcast.xml */,
 				29438B0117E2A0A5002BB433 /* dsa_pub.pem */,
 				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
@@ -458,9 +484,11 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
+				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
+				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
-				29BEA3FD17DD1ADB005048F1 /* DataHandler.m in Sources */,
+				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,
 				2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
