@@ -22,7 +22,10 @@
 {
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
-        [self setJsonData:json];
+
+        if ([json isKindOfClass:[NSArray class]]) {
+            json = @{@"Root": json};
+        }
         
         JsonHandler *tempData = [[JsonHandler alloc] init];
         
@@ -35,11 +38,13 @@
 
 -(void)setJsonData:(id)jsonData
 {
-    _jsonData = jsonData;
+    if ([jsonData isKindOfClass:[NSArray class]]) {
+        jsonData = @{@"Root": jsonData};
+    }
     
     JsonHandler *tempData = [[JsonHandler alloc] init];
     
-    [tempData addEntries:_jsonData];
+    [tempData addEntries:jsonData];
     
     [self setDataArray:[tempData dataSource]];
 }
@@ -55,8 +60,6 @@
 - (BOOL)outlineView:(NSOutlineView *)oV isItemExpandable:(id)item
 {
     NodeObject *tempObject = item;
-    
-    NSLog(@"%lu", (unsigned long)[[tempObject children] count]);
     
     if ([[tempObject children] count] > 0) {
         return YES;

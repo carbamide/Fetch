@@ -49,8 +49,6 @@
             else {
                 [[self dataSource] addObject:tempArrayObject];
             }
-            
-            [[tempArrayObject children] count] > 0 ? NSLog(@"Array - Yep") : NSLog(@"Array - Nope");
         }
         else {
             NodeObject *tempDictObject = [[NodeObject alloc] init];
@@ -73,8 +71,6 @@
             else {
                 [[self dataSource] addObject:tempDictObject];
             }
-            
-            [[tempDictObject children] count] > 0 ? NSLog(@"Dict - Yep") : NSLog(@"Dict - Nope");
         }
     }];
 }
