@@ -567,6 +567,9 @@
                         [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
                         
                         [[self clearOutputButton] setEnabled:YES];
+                        
+                        [[self jsonOutputButton] setEnabled:YES];
+                        [self setJsonData:jsonData];
                     });
                 }
                 else if (jsonData) {
