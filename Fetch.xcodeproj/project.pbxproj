@@ -29,6 +29,7 @@
 		29438B0517E2A35F002BB433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
 		2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */; };
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
+		2957D5C517E69FC500639F02 /* JsonSyntaxHighlighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */; };
 		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
@@ -77,6 +78,8 @@
 		2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		2957D5C317E69FC500639F02 /* JsonSyntaxHighlighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSyntaxHighlighting.h; sourceTree = "<group>"; };
+		2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonSyntaxHighlighting.m; sourceTree = "<group>"; };
 		2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewerWindowController.h; sourceTree = "<group>"; };
 		2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewerWindowController.m; sourceTree = "<group>"; };
 		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		291BBA9C17DAED2500C771F5 /* Catagories */ = {
 			isa = PBXGroup;
 			children = (
+				2957D5C317E69FC500639F02 /* JsonSyntaxHighlighting.h */,
+				2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */,
 				291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */,
 				291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */,
 			);
@@ -484,6 +489,7 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
+				2957D5C517E69FC500639F02 /* JsonSyntaxHighlighting.m in Sources */,
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,

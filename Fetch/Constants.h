@@ -27,3 +27,4 @@ static NSString *const kUrl = @"url";
 static NSString *const kMethod = @"method";
 static NSString *const kCustomPayload = @"custom_payload";
 static NSString *const kUrlDescription = @"url_description";
+static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";

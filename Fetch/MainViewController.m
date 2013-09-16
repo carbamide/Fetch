@@ -15,6 +15,7 @@
 #import "Parameters.h"
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
+#import "JsonSyntaxHighlighting.h"
 
 @interface MainViewController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -557,7 +558,18 @@
             if (!connectionError) {
                 id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 
-                if (jsonData) {
+                if ([userDefaults boolForKey:kJsonSyntaxHighlighting]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        JsonSyntaxHighlighting *jsonHighlighting = [[JsonSyntaxHighlighting alloc] initWithJSON:jsonData];
+                        
+                        [[[self outputTextView] textStorage] appendAttributedString:[jsonHighlighting highlightJSONWithPrettyPrint:YES]];
+                        
+                        [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
+                        
+                        [[self clearOutputButton] setEnabled:YES];
+                    });
+                }
+                else if (jsonData) {
                     NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
                     
                     if (jsonHolder) {
@@ -1057,7 +1069,7 @@
         }
         
         [[self urlTextField] setStringValue:[tempItem url]];
-
+        
         [self urlSelection:tempItem];
     }
 }

@@ -54,6 +54,10 @@
                 break;
         }
     }
+    
+    BOOL syntaxHighting = [[NSUserDefaults standardUserDefaults] boolForKey:kJsonSyntaxHighlighting];
+    
+    [[self jsonSyntaxHighlighting] setState:syntaxHighting];
 }
 
 -(IBAction)saveColorForProperty:(id)sender
@@ -83,6 +87,20 @@
             break;
         default:
             break;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(IBAction)jsonSyntaxHighlightingAction:(id)sender
+{
+    NSButton *checkbox = sender;
+    
+    if ([checkbox state] == NSOnState) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kJsonSyntaxHighlighting];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:kJsonSyntaxHighlighting];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

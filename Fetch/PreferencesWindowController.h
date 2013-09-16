@@ -16,6 +16,9 @@
 @property (strong) IBOutlet NSColorWell *successColorWell;
 @property (strong) IBOutlet NSColorWell *failureColorWell;
 
+@property (weak) IBOutlet NSButton *jsonSyntaxHighlighting;
+
 -(IBAction)saveColorForProperty:(id)sender;
+-(IBAction)jsonSyntaxHighlightingAction:(id)sender;
 
 @end
