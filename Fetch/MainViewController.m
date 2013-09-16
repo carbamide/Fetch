@@ -585,6 +585,10 @@
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:nil];
                 }
+                
+                if ([[[self jsonWindow] window] isVisible]) {
+                    [self showJson:nil];
+                }
             }
             else {
                 NSAlert *errorAlert = [NSAlert alertWithError:connectionError];

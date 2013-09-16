@@ -37,7 +37,7 @@
         if ([obj isKindOfClass:[NSArray class]]) {
             NodeObject *tempArrayObject = [[NodeObject alloc] init];
             
-            [tempArrayObject setNodeTitle:@"Array"];
+            [tempArrayObject setNodeTitle:key];
             [tempArrayObject setIsArray:YES];
             [tempArrayObject setIsLeaf:NO];
             

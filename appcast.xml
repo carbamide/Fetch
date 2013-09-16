@@ -8,13 +8,13 @@
         <item>
             <title>Version 1.0.1</title>
             <description><![CDATA[
-                <h2>Initial Release</h2>
+                <h2>Awesome Stuff</h2>
             ]]></description>
             <pubDate>Wed, 26 Sep 2006 00:01:00 +0000</pubDate>
             <enclosure url="http://www.jukaela.com/Fetch/Fetch-1.0.1.zip"
             sparkle:version="1.0.1"
-            sparkle:dsaSignature="MCwCFCWDTG8F0A4RFWMw38hecG3lxFRTAhRtoaR36+azS90w01oB2ldKnyDX1w=="
-            length="864524"
+            sparkle:dsaSignature="MC0CFAtFEkWi7bA2T3P9sNQF8AZqFrXCAhUAn6kQkOdLOnaKDrNVLLefEBsNYx0="
+            length="1081644"
             type="application/octet-stream" />
         </item>
     </channel>
