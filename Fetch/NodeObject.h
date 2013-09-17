@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSArray *children;
 @property (nonatomic) BOOL isLeaf;
 @property (nonatomic) BOOL isArray;
+@property (nonatomic) NSInteger objectCount;
 
 @end

@@ -26,5 +26,6 @@
 -(IBAction)exportProject:(id)sender;
 -(IBAction)importProject:(id)sender;
 -(IBAction)deleteProject:(id)sender;
+-(IBAction)saveLog:(id)sender;
 
 @end

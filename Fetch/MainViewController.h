@@ -35,8 +35,14 @@ typedef NSUInteger HttpMethod;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSTabView *tabView;
+@property (weak) IBOutlet NSTableView *requestTableView;
+@property (weak) IBOutlet NSTableView *responseTableView;
 
 @property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
+
+@property (strong, nonatomic) IBOutlet NSDictionary *requestDict;
+@property (strong, nonatomic) IBOutlet NSDictionary *responseDict;
 
 -(IBAction)fetchAction:(id)sender;
 -(IBAction)headerSegContAction:(id)sender;
@@ -51,5 +57,6 @@ typedef NSUInteger HttpMethod;
 -(void)importProject:(id)sender;
 -(void)deleteProject:(id)sender;
 -(void)addUrl:(id)sender;
+-(void)saveLog;
 
 @end

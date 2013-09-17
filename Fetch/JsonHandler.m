@@ -8,6 +8,7 @@
 
 #import "JsonHandler.h"
 #import "NodeObject.h"
+#import "SeparatorNodeObject.h"
 
 @implementation JsonHandler
 
@@ -27,11 +28,11 @@
     NSAssert([entries isKindOfClass:[NSDictionary class]], @"Entries must be a dictionary");
     
     if ([entries isKindOfClass:[NSDictionary class]]) {
-        [self addDictionary:entries array:nil];
+        [self addDictionary:entries array:nil separator:NO];
     }
 }
 
--(void)addDictionary:(NSDictionary *)dict array:(NSMutableArray **)array
+-(void)addDictionary:(NSDictionary *)dict array:(NSMutableArray **)array separator:(BOOL)needsSeparator
 {
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:[NSArray class]]) {
@@ -73,21 +74,37 @@
             }
         }
     }];
+    
+    if (needsSeparator) {
+        SeparatorNodeObject *tempSep = [[SeparatorNodeObject alloc] init];
+        
+        [*array addObject:tempSep];
+    }
 }
 
 -(void)addArray:(NSArray *)array node:(NodeObject *)nodeObject
 {
     NSMutableArray *tempArray = [NSMutableArray array];
     
+    NSInteger objectCount = 0;
+    
     for (id tempValue in array) {
+        objectCount++;
         if ([tempValue isKindOfClass:[NSDictionary class]]) {
-            [self addDictionary:tempValue array:&tempArray];
+            if (tempValue == [array lastObject]) {
+                
+                [self addDictionary:tempValue array:&tempArray separator:NO];
+            }
+            else {
+                [self addDictionary:tempValue array:&tempArray separator:YES];
+            }
         }
         else if ([tempValue isKindOfClass:[NSArray class]]) {
             [self addArray:tempValue node:nodeObject];
         }
     }
     
+    [nodeObject setObjectCount:objectCount];
     [nodeObject setChildren:tempArray];
 }
 
@@ -106,7 +123,6 @@
             [self addArray:dict[key] node:tempArrayObject];
             
             [tempArray addObject:tempArrayObject];
-            
         }
         else {
             NodeObject *tempDictObject = [[NodeObject alloc] init];

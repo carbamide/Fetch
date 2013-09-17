@@ -480,6 +480,27 @@
         [[self projectSourceList] reloadData];
     }
 }
+
+-(void)saveLog
+{
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    [savePanel setTitle:@"Save Log"];
+    [savePanel setNameFieldStringValue:[@"LogFile" stringByAppendingPathExtension:@"txt"]];
+    
+    if ([savePanel runModal] == NSOKButton) {
+        NSError *error = nil;
+        
+        [[[self outputTextView] string] writeToFile:[[savePanel URL] path] atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        
+        if (error) {
+            NSAlert *errorAlert = [NSAlert alertWithError:error];
+            
+            [errorAlert runModal];
+        }
+    }
+}
+
 #pragma mark
 #pragma mark IBActions
 
@@ -536,6 +557,8 @@
             [self logReqest:request];
         }
         
+        [self setRequestDict:[request allHTTPHeaderFields]];
+
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
                                                                                                                 NSError *connectionError) {
@@ -554,6 +577,8 @@
             }
             
             [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
+            
+            [self setResponseDict:[urlResponse allHeaderFields]];
             
             if (!connectionError) {
                 id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];

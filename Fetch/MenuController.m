@@ -82,4 +82,10 @@
     [[self viewController] deleteProject:sender];
 }
 
+-(IBAction)saveLog:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    [[self viewController] saveLog];
+}
 @end
