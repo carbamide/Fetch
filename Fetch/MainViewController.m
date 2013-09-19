@@ -906,9 +906,14 @@
         }
     }
     else {
-        NSDictionary *tempDict = [self paramDataSource][row];
+        Parameters *tempParam = [self paramDataSource][row];
         
-        return tempDict[identifier];
+        if ([identifier isEqualToString:kParameterName]) {
+            return [tempParam name];
+        }
+        else {
+            return [tempParam value];
+        }
     }
 }
 
