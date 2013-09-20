@@ -279,6 +279,9 @@
     if ([tempUrl urlDescription]) {
         [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
     }
+    else {
+        [[self urlDescriptionTextField] setStringValue:@""];
+    }
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
     
@@ -507,7 +510,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    NSMutableString *postBody = [[NSMutableString alloc] init];
+    NSMutableString *parameters = [[NSMutableString alloc] init];
 
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
@@ -542,15 +545,20 @@
         else {
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
-                    [postBody appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
+                    [parameters appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
                 }
                 else {
-                    [postBody appendString:[NSString stringWithFormat:@"&%@=%@", [tempParam name], [tempParam value]]];
+                    [parameters appendString:[NSString stringWithFormat:@"&%@=%@", [tempParam name], [tempParam value]]];
                 }
             }
         }
         
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [[self urlTextField] stringValue], postBody]]];
+        if ([parameters length] > 0) {
+            [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [[self urlTextField] stringValue], parameters]]];
+        }
+        else {
+            [request setURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
+        }
         
         if ([[self logRequestCheckBox] state] == NSOnState) {
             [self logReqest:request];
