@@ -290,7 +290,6 @@
     if ([[tempUrl headers] count] > 0) {
         [[self headersTableView] beginUpdates];
         
-        
         for (Headers *tempHeader in [tempUrl headers]) {
             [[self headerDataSource] addObject:tempHeader];
             
@@ -508,6 +507,8 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    NSMutableString *postBody = [[NSMutableString alloc] init];
+
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
@@ -527,7 +528,7 @@
     }
     
     if ([self addToUrlListIfUnique]) {
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[[self urlTextField] stringValue]]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         
         [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
         
@@ -539,19 +540,17 @@
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
         }
         else {
-            NSMutableString *postBody = [[NSMutableString alloc] init];
-            
-            for (NSDictionary *tempDict in [self paramDataSource]) {
-                if (tempDict == [[self paramDataSource] first]) {
-                    [postBody appendString:[NSString stringWithFormat:@"%@=%@", tempDict[kParameterName], tempDict[kValue]]];
+            for (Parameters *tempParam in [self paramDataSource]) {
+                if (tempParam == [[self paramDataSource] first]) {
+                    [postBody appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
                 }
                 else {
-                    [postBody appendString:[NSString stringWithFormat:@"&%@=%@", tempDict[kParameterName], tempDict[kValue]]];
+                    [postBody appendString:[NSString stringWithFormat:@"&%@=%@", [tempParam name], [tempParam value]]];
                 }
             }
-            
-            [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
         }
+        
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [[self urlTextField] stringValue], postBody]]];
         
         if ([[self logRequestCheckBox] state] == NSOnState) {
             [self logReqest:request];
@@ -959,12 +958,12 @@
         else {
             Parameters *tempParam = nil;
             
-            if ([identifier isEqualToString:kHeaderName]) {
-                if (([[self headerDataSource] count] - 1) >= row) {
+            if ([identifier isEqualToString:kParameterName]) {
+                if (([[self paramDataSource] count] - 1) >= row) {
                     tempParam = [self paramDataSource][row];
                 }
                 else {
-                    tempParam = [Headers create];
+                    tempParam = [Parameters create];
                     
                     [[self currentUrl] addParametersObject:tempParam];
                 }
@@ -973,11 +972,11 @@
                 [tempParam save];
             }
             else {
-                if (([[self headerDataSource] count] - 1) >= row) {
+                if (([[self paramDataSource] count] - 1) >= row) {
                     tempParam = [self paramDataSource][row];
                 }
                 else {
-                    tempParam = [Headers create];
+                    tempParam = [Parameters create];
                     
                     [[self currentUrl] addParametersObject:tempParam];
                 }
@@ -1105,8 +1104,13 @@
             [self loadProject:[item project]];
         }
         
-        [[self urlTextField] setStringValue:[tempItem url]];
-        
+        if ([tempItem url]) {
+            [[self urlTextField] setStringValue:[tempItem url]];
+        }
+        else {
+            [[self urlTextField] setStringValue:@""];
+        }
+            
         [self urlSelection:tempItem];
     }
 }
