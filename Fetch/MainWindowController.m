@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "MainWindowController.h"
 #import "Urls.h"
 #import "NSUserDefaults+NSColor.h"
 #import "Constants.h"
@@ -17,7 +17,7 @@
 #import "JsonViewerWindowController.h"
 #import "JsonSyntaxHighlighting.h"
 
-@interface MainViewController ()
+@interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
 @property (strong, nonatomic) NSMutableArray *urlList;
@@ -32,16 +32,16 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainWindowController
 
 #pragma mark
 #pragma mark Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithWindowNibName:(NSString *)windowNibName
 {
     NSLog(@"%s", __FUNCTION__);
     
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
         if (![self headerDataSource]) {

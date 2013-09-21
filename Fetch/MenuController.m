@@ -8,7 +8,7 @@
 
 #import "MenuController.h"
 #import "PreferencesWindowController.h"
-#import "MainViewController.h"
+#import "MainWindowController.h"
 #import "AppDelegate.h"
 
 @interface MenuController()

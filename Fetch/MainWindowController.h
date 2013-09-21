@@ -16,7 +16,7 @@ typedef NSUInteger HttpMethod;
 
 @class JsonViewerWindowController;
 
-@interface MainViewController : NSViewController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate>
+@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate>
 
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSTextField *urlDescriptionTextField;

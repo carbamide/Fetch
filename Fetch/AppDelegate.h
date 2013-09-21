@@ -7,11 +7,11 @@
 //
 
 #import "PreferencesWindowController.h"
-#import "MainViewController.h"
+#import "MainWindowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (strong, nonatomic) IBOutlet MainViewController *viewController;
+@property (strong, nonatomic) IBOutlet MainWindowController *viewController;
 
 @end

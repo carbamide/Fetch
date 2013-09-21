@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "MainWindowController.h"
 #import "MenuController.h"
 
 @interface AppDelegate()
 
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
+@property (strong, nonatomic) MainWindowController *mainWindowController;
 
 @end
 
@@ -20,7 +21,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+    [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
+    
+    [[self mainWindowController] showWindow:self];
 }
 
 @end
