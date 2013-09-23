@@ -28,13 +28,6 @@
     [[_preferencesWindow window] makeKeyAndOrderFront:self];
 }
 
--(IBAction)showProjects:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-
-    [[self viewController] showProjects];
-}
-
 -(IBAction)showMainWindow:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
@@ -58,34 +51,34 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self viewController] addUrl:sender];
+    [[self mainWindowController] addUrl:sender];
 }
 
 -(IBAction)exportProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [[self viewController] exportProject:sender];
+    [[self mainWindowController] exportProject:sender];
 }
 
 -(IBAction)importProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [[self viewController] importProject:sender];
+    [[self mainWindowController] importProject:sender];
 }
 
 -(IBAction)deleteProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [[self viewController] deleteProject:sender];
+    [[self mainWindowController] deleteProject:sender];
 }
 
 -(IBAction)saveLog:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self viewController] saveLog];
+    [[self mainWindowController] saveLog];
 }
 @end

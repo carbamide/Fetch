@@ -12,12 +12,11 @@
 
 @interface MenuController : NSObject
 
-@property (strong, nonatomic) IBOutlet MainWindowController *viewController;
+@property (strong, nonatomic) IBOutlet MainWindowController *mainWindowController;
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
 @property (weak, nonatomic) IBOutlet AppDelegate *delegate;
 
 -(IBAction)showPreferences:(id)sender;
--(IBAction)showProjects:(id)sender;
 -(IBAction)closeWindow:(id)sender;
 
 -(IBAction)showMainWindow:(id)sender;

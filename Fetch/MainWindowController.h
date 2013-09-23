@@ -52,7 +52,6 @@ typedef NSUInteger HttpMethod;
 -(IBAction)projectSegContAction:(id)sender;
 -(IBAction)showJson:(id)sender;
 
--(void)showProjects;
 -(void)exportProject:(id)sender;
 -(void)importProject:(id)sender;
 -(void)deleteProject:(id)sender;

@@ -13,7 +13,6 @@
 @interface AppDelegate()
 
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
-@property (strong, nonatomic) MainWindowController *mainWindowController;
 
 @end
 
@@ -22,6 +21,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
+ 
+    [[self menuController] setMainWindowController:[self mainWindowController]];
     
     [[self mainWindowController] showWindow:self];
 }

@@ -67,27 +67,17 @@
     return self;
 }
 
--(void)awakeFromNib
+-(void)windowDidLoad
 {
     NSLog(@"%s", __FUNCTION__);
-    
-    [[Urls all] each:^(Urls *object) {
-        if ([object url]) {
-            [[self urlList] addObject:[object url]];
-        }
-    }];
-    
-    __block BOOL showProject = NO;
-    
+
+    [super windowDidLoad];
+        
     [[Projects all] each:^(Projects *object) {
         [[self projectList] addObject:object];
-        
-        showProject = YES;
     }];
     
-    if (showProject) {
-        [self showProjects];
-    }
+    [[self projectSourceList] reloadData];
     
     [self preferencesChanges:nil];
     
@@ -98,6 +88,12 @@
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
     
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
+
+}
+-(void)awakeFromNib
+{
+    NSLog(@"%s", __FUNCTION__);
+    
 }
 
 -(void)preferencesChanges:(NSNotification *)aNotification
@@ -226,35 +222,6 @@
     [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:kSuccessColor]];
     [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
     [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kSuccessColor]];
-}
-
--(void)showProjects
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    if (![[self projectSegControl] isHidden]) {
-        [[[self projectSourceList] enclosingScrollView] setHidden:YES];
-        [[self projectSegControl] setHidden:YES];
-        
-        [[[self headersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.headersTableView.enclosingScrollView.frame.origin.x - 160, self.headersTableView.enclosingScrollView.frame.origin.y, self.headersTableView.enclosingScrollView.frame.size.width + 160, self.headersTableView.enclosingScrollView.frame.size.height))];
-        
-        [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x - 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width + 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
-        
-        [[[self customPayloadTextView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.customPayloadTextView.enclosingScrollView.frame.origin.x - 160, self.customPayloadTextView.enclosingScrollView.frame.origin.y, self.customPayloadTextView.enclosingScrollView.frame.size.width + 160, self.customPayloadTextView.enclosingScrollView.frame.size.height))];
-        
-    }
-    else {
-        [[[self projectSourceList] enclosingScrollView] setHidden:NO];
-        [[self projectSegControl] setHidden:NO];
-        
-        [[[self headersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.headersTableView.enclosingScrollView.frame.origin.x + 160, self.headersTableView.enclosingScrollView.frame.origin.y, self.headersTableView.enclosingScrollView.frame.size.width - 160, self.headersTableView.enclosingScrollView.frame.size.height))];
-        
-        [[[self parametersTableView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.parametersTableView.enclosingScrollView.frame.origin.x + 160, self.parametersTableView.enclosingScrollView.frame.origin.y, self.parametersTableView.enclosingScrollView.frame.size.width - 160, self.parametersTableView.enclosingScrollView.frame.size.height))];
-        
-        [[[self customPayloadTextView] enclosingScrollView] setFrame:NSRectFromCGRect(CGRectMake(self.customPayloadTextView.enclosingScrollView.frame.origin.x + 160, self.customPayloadTextView.enclosingScrollView.frame.origin.y, self.customPayloadTextView.enclosingScrollView.frame.size.width - 160, self.customPayloadTextView.enclosingScrollView.frame.size.height))];
-        
-        [[self projectSourceList] reloadData];
-    }
 }
 
 -(void)urlSelection:(Urls *)url
