@@ -22,14 +22,11 @@
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
 @property (strong, nonatomic) NSMutableArray *urlList;
 @property (strong, nonatomic) NSMutableArray *projectList;
-
 @property (strong, nonatomic) NSArray *headerNames;
-
 @property (strong, nonatomic) Projects *currentProject;
 @property (strong, nonatomic) Urls *currentUrl;
-
 @property (strong, nonatomic) id jsonData;
-
+@property (strong, nonatomic) CNSplitViewToolbar *toolbar;
 @end
 
 @implementation MainWindowController
@@ -70,9 +67,11 @@
 -(void)windowDidLoad
 {
     NSLog(@"%s", __FUNCTION__);
-
+    
     [super windowDidLoad];
-        
+    
+    [[self menuController] setMainWindowController:self];
+    
     [[Projects all] each:^(Projects *object) {
         [[self projectList] addObject:object];
     }];
@@ -88,7 +87,33 @@
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
     
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
-
+    
+    [self setToolbar:[[CNSplitViewToolbar alloc] init]];
+    
+    CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] init];
+    [addButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateAdd];
+    [addButton setTarget:self];
+    [addButton setAction:@selector(addProject)];
+    
+    CNSplitViewToolbarButton *removeButton = [[CNSplitViewToolbarButton alloc] init];
+    [removeButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateRemove];
+    [removeButton setTarget:self];
+    [removeButton setAction:@selector(removeProjectOrUrl)];
+    
+    CNSplitViewToolbarButton *refreshButton = [[CNSplitViewToolbarButton alloc] init];
+    [refreshButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateShare];
+    [refreshButton setTarget:self];
+    [refreshButton setAction:@selector(exportProject:)];
+    
+    [[self toolbar] addItem:addButton align:CNSplitViewToolbarItemAlignLeft];
+    [[self toolbar] addItem:removeButton align:CNSplitViewToolbarItemAlignLeft];
+    [[self toolbar] addItem:refreshButton align:CNSplitViewToolbarItemAlignRight];
+    
+    [[self splitView] setDelegate:self];
+    [[self splitView] setToolbarDelegate:self];
+    [[self splitView] attachToolbar:[self toolbar] toSubViewAtIndex:0 onEdge:CNSplitViewToolbarEdgeBottom];
+    
+    [[self splitView] showToolbarAnimated:NO];
 }
 -(void)awakeFromNib
 {
@@ -338,7 +363,18 @@
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
-    Projects *project = [self projectList][[[self projectSourceList] clickedRow]];
+    NSLog(@"%@", NSStringFromClass([sender class]));
+    
+    Projects *project = nil;
+    
+    if ([sender isKindOfClass:[CNSplitViewToolbarButton class]]) {
+        project = [self projectList][[[self projectSourceList] selectedRow]];
+    }
+    else {
+        project = [self projectList][[[self projectSourceList] clickedRow]];
+    }
+    
+    NSAssert(project, @"project cannot be nil in %s", __FUNCTION__);
     
     [savePanel setTitle:@"Export"];
     [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
@@ -470,6 +506,80 @@
     }
 }
 
+-(void)addProject
+{
+    Projects *tempProject = [Projects create];
+    
+    [tempProject setName:@"Project Name"];
+    [tempProject save];
+    
+    [self setCurrentProject:tempProject];
+    
+    [[self fetchButton] setEnabled:YES];
+    [[self urlTextField] setEnabled:YES];
+    [[self urlDescriptionTextField] setEnabled:YES];
+    
+    [[self projectList] addObject:tempProject];
+    
+    [[self projectSourceList] reloadData];
+}
+
+-(void)removeProjectOrUrl
+{
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+    
+    if ([item isKindOfClass:[Projects class]]) {
+        [[self projectList] removeObject:item];
+        
+        if (item == [self currentProject]) {
+            [self setCurrentProject:nil];
+            
+            [[self jsonOutputButton] setEnabled:NO];
+            [[self fetchButton] setEnabled:NO];
+            [[self urlTextField] setEnabled:NO];
+            [[self urlDescriptionTextField] setEnabled:NO];
+            
+            [[self urlList] removeAllObjects];
+            [[self headerDataSource] removeAllObjects];
+            [[self paramDataSource] removeAllObjects];
+            
+            [[self headersTableView] reloadData];
+            [[self parametersTableView] reloadData];
+        }
+        
+        [item delete];
+    }
+    else if ([item isKindOfClass:[Urls class]]) {
+        [[self urlList] removeObject:item];
+        
+        [item delete];
+        
+        if (item == [self currentUrl]) {
+            [[self jsonOutputButton] setEnabled:NO];
+            [[self fetchButton] setEnabled:NO];
+            
+            [[self urlList] removeAllObjects];
+            
+            [[Urls all] each:^(Urls *object) {
+                [[self urlList] addObject:[object url]];
+            }];
+            
+            [[self urlTextField] setStringValue:@""];
+            [[self urlDescriptionTextField] setStringValue:@""];
+            
+            [[self methodCombo] setEnabled:NO];
+            
+            [[self headerDataSource] removeAllObjects];
+            [[self paramDataSource] removeAllObjects];
+            
+            [[self headersTableView] reloadData];
+            [[self parametersTableView] reloadData];
+        }
+    }
+    
+    [[self projectSourceList] reloadData];
+}
+
 #pragma mark
 #pragma mark IBActions
 
@@ -478,7 +588,7 @@
     NSLog(@"%s", __FUNCTION__);
     
     NSMutableString *parameters = [[NSMutableString alloc] init];
-
+    
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
@@ -532,7 +642,7 @@
         }
         
         [self setRequestDict:[request allHTTPHeaderFields]];
-
+        
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
                                                                                                                 NSError *connectionError) {
@@ -684,84 +794,6 @@
     }
     
     [self setupSegmentedControls];
-}
-
--(IBAction)projectSegContAction:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    NSSegmentedControl *tempSegCont = sender;
-    
-    if ([tempSegCont selectedSegment] == 0) {
-        Projects *tempProject = [Projects create];
-        
-        [tempProject setName:@"Project Name"];
-        [tempProject save];
-        
-        [self setCurrentProject:tempProject];
-        
-        [[self fetchButton] setEnabled:YES];
-        [[self urlTextField] setEnabled:YES];
-        [[self urlDescriptionTextField] setEnabled:YES];
-        
-        [[self projectList] addObject:tempProject];
-        
-        [[self projectSourceList] reloadData];
-    }
-    else {
-        id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-        
-        if ([item isKindOfClass:[Projects class]]) {
-            [[self projectList] removeObject:item];
-            
-            if (item == [self currentProject]) {
-                [self setCurrentProject:nil];
-                
-                [[self jsonOutputButton] setEnabled:NO];
-                [[self fetchButton] setEnabled:NO];
-                [[self urlTextField] setEnabled:NO];
-                [[self urlDescriptionTextField] setEnabled:NO];
-                
-                [[self urlList] removeAllObjects];
-                [[self headerDataSource] removeAllObjects];
-                [[self paramDataSource] removeAllObjects];
-                
-                [[self headersTableView] reloadData];
-                [[self parametersTableView] reloadData];
-            }
-            
-            [item delete];
-        }
-        else if ([item isKindOfClass:[Urls class]]) {
-            [[self urlList] removeObject:item];
-            
-            [item delete];
-            
-            if (item == [self currentUrl]) {
-                [[self jsonOutputButton] setEnabled:NO];
-                [[self fetchButton] setEnabled:NO];
-                
-                [[self urlList] removeAllObjects];
-                
-                [[Urls all] each:^(Urls *object) {
-                    [[self urlList] addObject:[object url]];
-                }];
-                
-                [[self urlTextField] setStringValue:@""];
-                [[self urlDescriptionTextField] setStringValue:@""];
-                
-                [[self methodCombo] setEnabled:NO];
-                
-                [[self headerDataSource] removeAllObjects];
-                [[self paramDataSource] removeAllObjects];
-                
-                [[self headersTableView] reloadData];
-                [[self parametersTableView] reloadData];
-            }
-        }
-        
-        [[self projectSourceList] reloadData];
-    }
 }
 
 -(IBAction)customPostBodyAction:(id)sender
@@ -1085,7 +1117,7 @@
         else {
             [[self urlTextField] setStringValue:@""];
         }
-            
+        
         [self urlSelection:tempItem];
     }
 }
@@ -1113,4 +1145,39 @@
     }
 }
 
+#pragma mark
+#pragma mark CNSplitViewToolbarDelegate
+
+- (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar
+{
+    return 0;
+}
+
+- (void)splitView:(CNSplitView *)theSplitView willShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
+{
+    NSLog(@"splitView:willShowToolbar:onEdge:");
+}
+
+- (void)splitView:(CNSplitView *)theSplitView didShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
+{
+    NSLog(@"splitView:didShowToolbar:onEdge:");
+}
+
+- (void)splitView:(CNSplitView *)theSplitView willHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
+{
+    NSLog(@"splitView:willHideToolbar:onEdge:");
+}
+
+- (void)splitView:(CNSplitView *)theSplitView didHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
+{
+    NSLog(@"splitView:didHideToolbar:onEdge:");
+}
+
+#pragma mark
+#pragma mark NSSplitViewDelegate
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
+{
+    return 300;
+}
 @end

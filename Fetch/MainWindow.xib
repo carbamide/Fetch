@@ -15,6 +15,7 @@
                 <outlet property="headersTableView" destination="FTj-ZQ-cys" id="7xp-uH-0YA"/>
                 <outlet property="jsonOutputButton" destination="Ps7-po-G6F" id="ElV-SN-olg"/>
                 <outlet property="logRequestCheckBox" destination="GKQ-it-PV5" id="YXQ-Tw-vxW"/>
+                <outlet property="menuController" destination="CiT-Km-NTb" id="sR5-N3-UGw"/>
                 <outlet property="methodCombo" destination="RRD-8M-bUZ" id="zJi-lC-YCu"/>
                 <outlet property="outputTextView" destination="IgS-DI-zC1" id="f3a-zU-SgM"/>
                 <outlet property="paramSegCont" destination="8CH-NR-1wW" id="tho-U1-3EZ"/>
@@ -23,6 +24,7 @@
                 <outlet property="projectSourceList" destination="qOn-bH-wdL" id="NXz-i4-UVM"/>
                 <outlet property="requestTableView" destination="fbd-bo-9PL" id="R8p-5s-WmW"/>
                 <outlet property="responseTableView" destination="Eok-5b-6zR" id="xwA-Nr-VFp"/>
+                <outlet property="splitView" destination="zbl-nt-5bb" id="PBm-QE-UhW"/>
                 <outlet property="urlDescriptionTextField" destination="5nQ-RV-vW0" id="dai-ec-cPY"/>
                 <outlet property="urlTextField" destination="YCn-i6-brP" id="LWS-ah-Rir"/>
                 <outlet property="window" destination="Nhr-sk-aYE" id="y8V-eU-i52"/>
@@ -44,28 +46,28 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="506" y="240" width="966" height="712"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="qqI-jX-isR">
                 <rect key="frame" x="0.0" y="0.0" width="966" height="712"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView fixedFrame="YES" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbl-nt-5bb">
+                    <splitView fixedFrame="YES" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbl-nt-5bb" customClass="CNSplitView">
                         <rect key="frame" x="0.0" y="0.0" width="966" height="712"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView id="OeG-Aa-5MN">
+                            <customView misplaced="YES" id="OeG-Aa-5MN">
                                 <rect key="frame" x="0.0" y="0.0" width="239" height="712"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guf-KI-SVy">
-                                        <rect key="frame" x="0.0" y="20" width="240" height="692"/>
+                                    <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guf-KI-SVy">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="712"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <clipView key="contentView" id="tKc-ND-Wct">
-                                            <rect key="frame" x="1" y="1" width="238" height="690"/>
+                                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="tKc-ND-Wct">
+                                            <rect key="frame" x="1" y="1" width="238" height="710"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" indentationPerLevel="14" outlineTableColumn="YBQ-YK-PS3" id="qOn-bH-wdL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="690"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="710"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="0.0"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -94,47 +96,23 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="xDL-S6-03o">
-                                            <rect key="frame" x="1" y="1" width="0.0" height="16"/>
+                                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="6uV-BU-WoL">
-                                            <rect key="frame" x="223" y="1" width="16" height="0.0"/>
+                                            <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                    </scrollView>
-                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LQq-IG-GB3">
-                                        <rect key="frame" x="0.0" y="-1" width="239" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="momentary" id="73B-Rj-IRF">
-                                            <font key="font" metaFont="system"/>
-                                            <segments>
-                                                <segment image="NSAddTemplate" width="70">
-                                                    <nil key="label"/>
-                                                </segment>
-                                                <segment image="NSRemoveTemplate" width="70" tag="1">
-                                                    <nil key="label"/>
-                                                </segment>
-                                                <segment width="95">
-                                                    <nil key="label"/>
-                                                </segment>
-                                            </segments>
-                                        </segmentedCell>
                                         <connections>
-                                            <action selector="projectSegContAction:" target="-2" id="52k-91-4U3"/>
+                                            <outlet property="menu" destination="Tb1-yj-Gex" id="zp5-lr-w32"/>
                                         </connections>
-                                    </segmentedControl>
+                                    </scrollView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Guf-KI-SVy" secondAttribute="bottom" constant="20" symbolic="YES" id="8e9-59-bdp"/>
-                                    <constraint firstAttribute="bottom" secondItem="LQq-IG-GB3" secondAttribute="bottom" id="NeV-HB-Fod"/>
                                     <constraint firstItem="Guf-KI-SVy" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="U8e-Ar-cZ7"/>
                                     <constraint firstAttribute="trailing" secondItem="Guf-KI-SVy" secondAttribute="trailing" constant="-1" id="ZG8-rQ-DZF"/>
                                     <constraint firstItem="Guf-KI-SVy" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="fFP-46-X5y"/>
                                     <constraint firstItem="Guf-KI-SVy" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="fLD-rb-2Df"/>
-                                    <constraint firstAttribute="trailing" secondItem="LQq-IG-GB3" secondAttribute="trailing" id="jMO-me-3pb"/>
-                                    <constraint firstAttribute="trailing" secondItem="LQq-IG-GB3" secondAttribute="trailing" id="lsn-cZ-kK8"/>
-                                    <constraint firstItem="LQq-IG-GB3" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="v1u-xN-0Jq"/>
-                                    <constraint firstItem="LQq-IG-GB3" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="w0w-Zt-o5Y"/>
                                 </constraints>
                             </customView>
                             <customView misplaced="YES" id="klm-kG-KRD">
@@ -268,6 +246,9 @@
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <connections>
+                                                                    <binding destination="-2" name="content" keyPath="headerNames" id="Fg6-54-4MP"/>
+                                                                </connections>
                                                             </comboBoxCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         </tableColumn>
@@ -459,16 +440,16 @@
                                         </connections>
                                     </button>
                                     <tabView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ez3-CK-wFH">
-                                        <rect key="frame" x="6" y="41" width="696" height="279"/>
+                                        <rect key="frame" x="6" y="41" width="696" height="278"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <tabViewItems>
                                             <tabViewItem label="Raw" identifier="1" id="eLb-8A-b8R">
                                                 <view key="view" id="9hg-e3-ewk">
-                                                    <rect key="frame" x="10" y="33" width="676" height="233"/>
+                                                    <rect key="frame" x="10" y="33" width="676" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
+                                                        <scrollView ambiguous="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
                                                             <rect key="frame" x="17" y="17" width="642" height="213"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <clipView key="contentView" ambiguous="YES" misplaced="YES" id="wpb-Sw-o6A">
@@ -501,15 +482,19 @@
                                                             </scroller>
                                                         </scrollView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="om5-xj-Ac6" secondAttribute="trailing" constant="17" id="RWc-y8-aWH"/>
+                                                        <constraint firstItem="om5-xj-Ac6" firstAttribute="leading" secondItem="9hg-e3-ewk" secondAttribute="leading" constant="17" id="nOr-um-rRI"/>
+                                                    </constraints>
                                                 </view>
                                             </tabViewItem>
                                             <tabViewItem label="Request" identifier="" id="axN-2b-Bkx">
                                                 <view key="view" id="aCT-v7-Ddz">
-                                                    <rect key="frame" x="10" y="33" width="676" height="233"/>
+                                                    <rect key="frame" x="10" y="33" width="676" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaW-v9-EPP">
-                                                            <rect key="frame" x="17" y="17" width="642" height="213"/>
+                                                        <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaW-v9-EPP">
+                                                            <rect key="frame" x="17" y="16" width="642" height="213"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <clipView key="contentView" ambiguous="YES" misplaced="YES" id="4oB-Rq-IzI">
                                                                 <rect key="frame" x="1" y="17" width="640" height="195"/>
@@ -573,15 +558,19 @@
                                                             </tableHeaderView>
                                                         </scrollView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="XaW-v9-EPP" secondAttribute="trailing" constant="17" id="git-3k-r3d"/>
+                                                        <constraint firstItem="XaW-v9-EPP" firstAttribute="leading" secondItem="aCT-v7-Ddz" secondAttribute="leading" constant="17" id="jJ7-I3-Yb3"/>
+                                                    </constraints>
                                                 </view>
                                             </tabViewItem>
                                             <tabViewItem label="Response" identifier="" id="CO5-WJ-wb3">
                                                 <view key="view" id="TOn-wU-NsA">
-                                                    <rect key="frame" x="10" y="33" width="676" height="233"/>
+                                                    <rect key="frame" x="10" y="33" width="676" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWf-JZ-6eU">
-                                                            <rect key="frame" x="17" y="17" width="642" height="213"/>
+                                                        <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWf-JZ-6eU">
+                                                            <rect key="frame" x="17" y="16" width="642" height="213"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <clipView key="contentView" ambiguous="YES" misplaced="YES" id="sfA-U4-spB">
                                                                 <rect key="frame" x="1" y="17" width="640" height="195"/>
@@ -645,6 +634,10 @@
                                                             </tableHeaderView>
                                                         </scrollView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="RWf-JZ-6eU" secondAttribute="trailing" constant="17" id="98s-NE-Mdu"/>
+                                                        <constraint firstItem="RWf-JZ-6eU" firstAttribute="leading" secondItem="TOn-wU-NsA" secondAttribute="leading" constant="17" id="KIj-AA-1li"/>
+                                                    </constraints>
                                                 </view>
                                             </tabViewItem>
                                         </tabViewItems>
@@ -711,10 +704,44 @@
                             <real value="250"/>
                             <real value="250"/>
                         </holdingPriorities>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="tbh-1v-PmY"/>
+                        </connections>
                     </splitView>
                 </subviews>
             </view>
+            <connections>
+                <binding destination="-2" name="title" keyPath="self.currentProject.name" id="UUV-qE-upw"/>
+            </connections>
         </window>
+        <menu id="Tb1-yj-Gex">
+            <items>
+                <menuItem title="Add URL" id="hhJ-vg-b56">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="addUrl:" target="CiT-Km-NTb" id="5Ko-rI-wnx"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="6Ru-li-0sH"/>
+                <menuItem title="Delete Project" id="anu-c4-mrg">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="deleteProject:" target="CiT-Km-NTb" id="kUD-26-AIN"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="qKG-ly-a2U"/>
+                <menuItem title="Export Project..." id="5Tp-6V-uWG">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="exportProject:" target="CiT-Km-NTb" id="ulp-bM-vbo"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="JX8-Ek-AiL"/>
+            </connections>
+        </menu>
+        <customObject id="CiT-Km-NTb" customClass="MenuController"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

@@ -87,11 +87,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="saveLog:" target="qWr-mY-2yN" id="Wp8-gh-5zU"/>
-                                    <binding destination="qWr-mY-2yN" name="value" keyPath="mainWindowController.outputTextView.string" id="93s-7s-UU5">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="L9D-Z8-glx"/>
@@ -268,30 +263,6 @@
                 <outlet property="delegate" destination="Oji-mK-1SW" id="lut-YY-HDE"/>
             </connections>
         </customObject>
-        <menu id="wFx-wf-vAs">
-            <items>
-                <menuItem title="Add URL" id="XBz-oO-y89">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="addUrl:" target="qWr-mY-2yN" id="rg4-0N-xTV"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="AF0-PP-YPm"/>
-                <menuItem title="Delete Project" id="XnY-Fz-YOZ">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="deleteProject:" target="qWr-mY-2yN" id="Yzi-dd-nUa"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="q8R-uM-xO1"/>
-                <menuItem title="Export Project..." id="BiP-At-zHU">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="exportProject:" target="qWr-mY-2yN" id="JFr-Ow-T0S"/>
-                    </connections>
-                </menuItem>
-            </items>
-        </menu>
         <userDefaultsController representsSharedInstance="YES" id="dxD-ea-GsD"/>
     </objects>
 </document>

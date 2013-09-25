@@ -32,6 +32,13 @@
 		294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294C8F8117ED6D0C0060EF7E /* MainWindow.xib */; };
 		2957D5C517E69FC500639F02 /* JsonSyntaxHighlighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */; };
 		2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C717E7594100639F02 /* SeparatorNodeObject.m */; };
+		295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */; };
+		295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4E117F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m */; };
+		295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4E417F32D8C00F58FE2 /* CNSplitViewToolbar.m */; };
+		295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4E617F32D8C00F58FE2 /* CNSplitViewToolbarButton.m */; };
+		295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4E817F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m */; };
+		295EB4F017F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4EA17F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m */; };
+		295EB4F217F32F5C00F58FE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */; };
 		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
@@ -85,6 +92,21 @@
 		2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonSyntaxHighlighting.m; sourceTree = "<group>"; };
 		2957D5C617E7594100639F02 /* SeparatorNodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeparatorNodeObject.h; sourceTree = "<group>"; };
 		2957D5C717E7594100639F02 /* SeparatorNodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorNodeObject.m; sourceTree = "<group>"; };
+		295EB4DD17F32D8C00F58FE2 /* CNSplitViewDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewDefinitions.h; sourceTree = "<group>"; };
+		295EB4DE17F32D8C00F58FE2 /* CNSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitView.h; sourceTree = "<group>"; };
+		295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSplitView.m; sourceTree = "<group>"; };
+		295EB4E017F32D8C00F58FE2 /* CNSplitViewDraggingHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewDraggingHandle.h; sourceTree = "<group>"; };
+		295EB4E117F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSplitViewDraggingHandle.m; sourceTree = "<group>"; };
+		295EB4E217F32D8C00F58FE2 /* CNSplitViewToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewToolbarDelegate.h; sourceTree = "<group>"; };
+		295EB4E317F32D8C00F58FE2 /* CNSplitViewToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewToolbar.h; sourceTree = "<group>"; };
+		295EB4E417F32D8C00F58FE2 /* CNSplitViewToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSplitViewToolbar.m; sourceTree = "<group>"; };
+		295EB4E517F32D8C00F58FE2 /* CNSplitViewToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewToolbarButton.h; sourceTree = "<group>"; };
+		295EB4E617F32D8C00F58FE2 /* CNSplitViewToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSplitViewToolbarButton.m; sourceTree = "<group>"; };
+		295EB4E717F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewToolbarButtonCell.h; sourceTree = "<group>"; };
+		295EB4E817F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSplitViewToolbarButtonCell.m; sourceTree = "<group>"; };
+		295EB4E917F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+CNSplitViewToolbar.h"; sourceTree = "<group>"; };
+		295EB4EA17F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+CNSplitViewToolbar.m"; sourceTree = "<group>"; };
+		295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewerWindowController.h; sourceTree = "<group>"; };
 		2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewerWindowController.m; sourceTree = "<group>"; };
 		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
@@ -135,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295EB4F217F32F5C00F58FE2 /* QuartzCore.framework in Frameworks */,
 				2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */,
 				29F4A7D417D64EFC00FAA098 /* Cocoa.framework in Frameworks */,
 				2B595FD098FE4B26A6F7E2E3 /* libPods.a in Frameworks */,
@@ -178,6 +201,35 @@
 				29F4A7E617D64EFE00FAA098 /* AppDelegate.m */,
 			);
 			name = Singletons;
+			sourceTree = "<group>";
+		};
+		295EB4DB17F32D7400F58FE2 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		295EB4DC17F32D7E00F58FE2 /* CNSplitView */ = {
+			isa = PBXGroup;
+			children = (
+				295EB4DD17F32D8C00F58FE2 /* CNSplitViewDefinitions.h */,
+				295EB4DE17F32D8C00F58FE2 /* CNSplitView.h */,
+				295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */,
+				295EB4E017F32D8C00F58FE2 /* CNSplitViewDraggingHandle.h */,
+				295EB4E117F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m */,
+				295EB4E217F32D8C00F58FE2 /* CNSplitViewToolbarDelegate.h */,
+				295EB4E317F32D8C00F58FE2 /* CNSplitViewToolbar.h */,
+				295EB4E417F32D8C00F58FE2 /* CNSplitViewToolbar.m */,
+				295EB4E517F32D8C00F58FE2 /* CNSplitViewToolbarButton.h */,
+				295EB4E617F32D8C00F58FE2 /* CNSplitViewToolbarButton.m */,
+				295EB4E717F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.h */,
+				295EB4E817F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m */,
+				295EB4E917F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.h */,
+				295EB4EA17F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m */,
+			);
+			name = CNSplitView;
 			sourceTree = "<group>";
 		};
 		2983B07A17DAC141001852F2 /* CoreData */ = {
@@ -271,6 +323,7 @@
 		29F4A7D217D64EFC00FAA098 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */,
 				29438B0317E2A336002BB433 /* Sparkle.framework */,
 				29F4A7D317D64EFC00FAA098 /* Cocoa.framework */,
 				29F4A7F217D64EFE00FAA098 /* XCTest.framework */,
@@ -294,6 +347,7 @@
 		29F4A7D917D64EFC00FAA098 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
+				295EB4DB17F32D7400F58FE2 /* Vendor */,
 				291BBA9C17DAED2500C771F5 /* Catagories */,
 				29EF763817D65E7D00F89D72 /* Classes */,
 				29E4625F17E51C55006F7148 /* Window Controllers */,
@@ -493,8 +547,12 @@
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
 				2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */,
 				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
+				295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */,
+				295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */,
+				295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */,
 				2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */,
 				29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */,
+				295EB4F017F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m in Sources */,
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
@@ -502,9 +560,11 @@
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */,
+				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,
+				295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */,
 				2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

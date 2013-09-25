@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
+#import "CNSplitView.h"
+#import "MenuController.h"
+
 enum {
     GET_METHOD = 0,
     POST_METHOD = 1,
@@ -16,7 +19,7 @@ typedef NSUInteger HttpMethod;
 
 @class JsonViewerWindowController;
 
-@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate>
+@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate>
 
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSTextField *urlDescriptionTextField;
@@ -30,26 +33,25 @@ typedef NSUInteger HttpMethod;
 @property (weak) IBOutlet NSTableView *parametersTableView;
 @property (weak) IBOutlet NSSegmentedControl *headerSegCont;
 @property (weak) IBOutlet NSSegmentedControl *paramSegCont;
-@property (weak) IBOutlet NSSegmentedControl *projectSegControl;
 @property (weak) IBOutlet NSOutlineView *projectSourceList;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
-@property (weak) IBOutlet NSTabView *tabView;
 @property (weak) IBOutlet NSTableView *requestTableView;
 @property (weak) IBOutlet NSTableView *responseTableView;
+@property (strong) IBOutlet CNSplitView *splitView;
+@property (strong, nonatomic) IBOutlet MenuController *menuController;
 
 @property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
 
-@property (strong, nonatomic) IBOutlet NSDictionary *requestDict;
-@property (strong, nonatomic) IBOutlet NSDictionary *responseDict;
+@property (strong, nonatomic) NSDictionary *requestDict;
+@property (strong, nonatomic) NSDictionary *responseDict;
 
 -(IBAction)fetchAction:(id)sender;
 -(IBAction)headerSegContAction:(id)sender;
 -(IBAction)parameterSegContAction:(id)sender;
 -(IBAction)customPostBodyAction:(id)sender;
 -(IBAction)clearOutput:(id)sender;
--(IBAction)projectSegContAction:(id)sender;
 -(IBAction)showJson:(id)sender;
 
 -(void)exportProject:(id)sender;
