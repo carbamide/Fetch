@@ -55,11 +55,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="966" height="712"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView misplaced="YES" id="OeG-Aa-5MN">
+                            <customView fixedFrame="YES" id="OeG-Aa-5MN">
                                 <rect key="frame" x="0.0" y="0.0" width="239" height="712"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guf-KI-SVy">
+                                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guf-KI-SVy">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="712"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <clipView key="contentView" ambiguous="YES" misplaced="YES" id="tKc-ND-Wct">
@@ -108,12 +108,6 @@
                                         </connections>
                                     </scrollView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Guf-KI-SVy" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="U8e-Ar-cZ7"/>
-                                    <constraint firstAttribute="trailing" secondItem="Guf-KI-SVy" secondAttribute="trailing" constant="-1" id="ZG8-rQ-DZF"/>
-                                    <constraint firstItem="Guf-KI-SVy" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="fFP-46-X5y"/>
-                                    <constraint firstItem="Guf-KI-SVy" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="fLD-rb-2Df"/>
-                                </constraints>
                             </customView>
                             <customView misplaced="YES" id="klm-kG-KRD">
                                 <rect key="frame" x="249" y="0.0" width="717" height="712"/>
@@ -396,10 +390,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="681" height="106"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="681" height="106"/>
+                                                    <size key="minSize" width="665" height="106"/>
                                                     <size key="maxSize" width="683" height="10000000"/>
                                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="681" height="106"/>
+                                                    <size key="minSize" width="665" height="106"/>
                                                     <size key="maxSize" width="683" height="10000000"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="-2" id="0Uo-9s-l0N"/>
@@ -446,7 +440,7 @@
                                         <tabViewItems>
                                             <tabViewItem label="Raw" identifier="1" id="eLb-8A-b8R">
                                                 <view key="view" id="9hg-e3-ewk">
-                                                    <rect key="frame" x="10" y="33" width="676" height="232"/>
+                                                    <rect key="frame" x="10" y="33" width="493" height="233"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <scrollView ambiguous="YES" misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
@@ -460,10 +454,10 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="640" height="211"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <size key="minSize" width="640" height="211"/>
+                                                                        <size key="minSize" width="624" height="211"/>
                                                                         <size key="maxSize" width="683" height="10000000"/>
                                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <size key="minSize" width="640" height="211"/>
+                                                                        <size key="minSize" width="624" height="211"/>
                                                                         <size key="maxSize" width="683" height="10000000"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="-2" id="TSA-Fa-39l"/>
@@ -549,7 +543,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="fr3-q5-3UE">
-                                                                <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
+                                                                <rect key="frame" x="625" y="17" width="16" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <tableHeaderView key="headerView" id="DY1-Yo-sCh">
@@ -625,7 +619,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="YqO-ug-ERl">
-                                                                <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
+                                                                <rect key="frame" x="625" y="17" width="16" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <tableHeaderView key="headerView" id="ija-N7-yF2">
@@ -689,7 +683,6 @@
                                     <constraint firstItem="13i-dz-BJK" firstAttribute="top" secondItem="5nQ-RV-vW0" secondAttribute="bottom" constant="13" id="pD1-AI-oB0"/>
                                     <constraint firstAttribute="trailing" secondItem="13i-dz-BJK" secondAttribute="trailing" constant="20" id="qCh-vV-9VV"/>
                                     <constraint firstItem="5nQ-RV-vW0" firstAttribute="leading" secondItem="1yS-Ga-79m" secondAttribute="trailing" constant="8" id="s5v-wx-8zx"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="sVS-KZ-viN"/>
                                     <constraint firstAttribute="bottom" secondItem="Ps7-po-G6F" secondAttribute="bottom" constant="20" id="u4m-TN-4Zi"/>
                                     <constraint firstItem="n6N-4Y-mMX" firstAttribute="top" secondItem="1yS-Ga-79m" secondAttribute="bottom" constant="13" id="w3e-ua-uu6"/>
                                     <constraint firstItem="RRD-8M-bUZ" firstAttribute="leading" secondItem="5nQ-RV-vW0" secondAttribute="leading" id="wIt-Gl-Ppk"/>

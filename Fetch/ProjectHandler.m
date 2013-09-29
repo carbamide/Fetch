@@ -16,6 +16,54 @@
 
 @implementation ProjectHandler
 
++(BOOL)importFromData:(NSData *)data
+{
+    NSDictionary *importedDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    Projects *tempProject = [Projects create];
+    
+    [tempProject setName:importedDictionary[kProjectName]];
+    
+    for (NSDictionary *tempDict in importedDictionary[kUrls]) {
+        Urls *tempUrl = [Urls create];
+        
+        [tempUrl setUrl:tempDict[kUrl]];
+        [tempUrl setMethod:tempDict[kMethod]];
+        
+        if ([tempDict hasKey:kUrlDescription]) {
+            [tempUrl setUrlDescription:tempDict[kUrlDescription]];
+        }
+        
+        [tempUrl setUrlDescription:tempDict[kUrlDescription]];
+        
+        if ([tempDict hasKey:kCustomPayload]) {
+            [tempUrl setCustomPayload:tempDict[kCustomPayload]];
+        }
+        
+        for (NSDictionary *headerDict in tempDict[kHeaders]) {
+            Headers *tempHeader = [Headers create];
+            
+            [tempHeader setName:headerDict[kName]];
+            [tempHeader setValue:headerDict[kValue]];
+            
+            [tempUrl addHeadersObject:tempHeader];
+        }
+        
+        for (NSDictionary *paramDict in tempDict[kParameters]) {
+            Parameters *tempParam = [Parameters create];
+            
+            [tempParam setName:paramDict[kName]];
+            [tempParam setValue:paramDict[kValue]];
+            
+            [tempUrl addParametersObject:tempParam];
+        }
+        
+        [tempProject addUrlsObject:tempUrl];
+    }
+    
+    return [tempProject save];
+}
+
 +(BOOL)importFromPath:(NSString *)path
 {
     NSDictionary *importedDictionary = [NSKeyedUnarchiver unarchiveObjectWithFile:path];

@@ -13,6 +13,7 @@
 @interface ProjectHandler : NSObject
 
 +(BOOL)importFromPath:(NSString *)path;
++(BOOL)importFromData:(NSData *)data;
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url;
 
 @end

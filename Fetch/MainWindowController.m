@@ -15,7 +15,6 @@
 #import "Parameters.h"
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
-#import "JsonSyntaxHighlighting.h"
 
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -29,6 +28,9 @@
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
 @end
 
+static int const kProjectListSplitViewSide = 0;
+static int const kMinimumSplitViewSize = 300;
+static NSString *const kUTITypePublicFile = @"public.file-url";
 @implementation MainWindowController
 
 #pragma mark
@@ -69,6 +71,8 @@
     NSLog(@"%s", __FUNCTION__);
     
     [super windowDidLoad];
+    
+    [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType]];
     
     [[self menuController] setMainWindowController:self];
     
@@ -363,24 +367,26 @@
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
-    NSLog(@"%@", NSStringFromClass([sender class]));
-    
-    Projects *project = nil;
+    id selectedProject = nil;
     
     if ([sender isKindOfClass:[CNSplitViewToolbarButton class]]) {
-        project = [self projectList][[[self projectSourceList] selectedRow]];
+        selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     }
     else {
-        project = [self projectList][[[self projectSourceList] clickedRow]];
+        selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
     }
     
-    NSAssert(project, @"project cannot be nil in %s", __FUNCTION__);
+    if ([selectedProject isKindOfClass:[Urls class]]) {
+        selectedProject = [selectedProject project];
+    }
+    
+    NSAssert(selectedProject, @"project cannot be nil in %s", __FUNCTION__);
     
     [savePanel setTitle:@"Export"];
-    [savePanel setNameFieldStringValue:[[project name] stringByAppendingPathExtension:@"fetch"]];
+    [savePanel setNameFieldStringValue:[[selectedProject name] stringByAppendingPathExtension:@"fetch"]];
     
     if ([savePanel runModal] == NSOKButton) {
-        [ProjectHandler exportProject:project toUrl:[savePanel URL]];
+        [ProjectHandler exportProject:selectedProject toUrl:[savePanel URL]];
     }
 }
 
@@ -561,7 +567,9 @@
             [[self urlList] removeAllObjects];
             
             [[Urls all] each:^(Urls *object) {
-                [[self urlList] addObject:[object url]];
+                if ([object url]) {
+                    [[self urlList] addObject:[object url]];
+                }
             }];
             
             [[self urlTextField] setStringValue:@""];
@@ -603,6 +611,10 @@
         [alert setAlertStyle:NSWarningAlertStyle];
         
         [alert runModal];
+        
+        [[self fetchButton] setHidden:NO];
+        [[self progressIndicator] stopAnimation:self];
+        [[self progressIndicator] setHidden:YES];
         
         return;
     }
@@ -667,32 +679,18 @@
             if (!connectionError) {
                 id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 
-                if ([userDefaults boolForKey:kJsonSyntaxHighlighting]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        JsonSyntaxHighlighting *jsonHighlighting = [[JsonSyntaxHighlighting alloc] initWithJSON:jsonData];
-                        
-                        [[[self outputTextView] textStorage] appendAttributedString:[jsonHighlighting highlightJSONWithPrettyPrint:YES]];
-                        
-                        [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
-                        
-                        [[self clearOutputButton] setEnabled:YES];
-                        
-                        [[self jsonOutputButton] setEnabled:YES];
-                        [self setJsonData:jsonData];
-                    });
-                }
-                else if (jsonData) {
+                if (jsonData) {
                     NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
                     
                     if (jsonHolder) {
-                        [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:nil];
+                        [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
                     }
                     
                     [[self jsonOutputButton] setEnabled:YES];
                     [self setJsonData:jsonData];
                 }
                 else {
-                    [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:nil];
+                    [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
                 }
                 
                 if ([[[self jsonWindow] window] isVisible]) {
@@ -1122,12 +1120,43 @@
     }
 }
 
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
+{
+    return NSDragOperationCopy;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
+{
+    NSURL *draggedUrl = [NSURL URLWithString:[[info draggingPasteboard] stringForType:kUTITypePublicFile]];
+    
+    if ([ProjectHandler importFromPath:[draggedUrl path]]) {
+        [[self projectList] removeAllObjects];
+        
+        [[Projects all] each:^(Projects *object) {
+            [[self projectList] addObject:object];
+        }];
+        
+        [[self projectSourceList] reloadData];
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 #pragma mark
 #pragma mark NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+    
+    [[menu itemAtIndex:0] setHidden:NO];
+    [[menu itemAtIndex:1] setHidden:NO];
+    [[menu itemAtIndex:2] setHidden:NO];
+    [[menu itemAtIndex:3] setHidden:NO];
+    [[menu itemAtIndex:4] setHidden:NO];
     
     if ([item isKindOfClass:[Projects class]]) {
         [[menu itemAtIndex:0] setHidden:NO];
@@ -1136,10 +1165,17 @@
         [[menu itemAtIndex:3] setHidden:NO];
         [[menu itemAtIndex:4] setHidden:NO];
     }
-    else {
+    else if ([item isKindOfClass:[Urls class]]) {
         [[menu itemAtIndex:0] setHidden:YES];
         [[menu itemAtIndex:1] setHidden:YES];
         [[menu itemAtIndex:2] setTitle:@"Delete URL"];
+        [[menu itemAtIndex:3] setHidden:YES];
+        [[menu itemAtIndex:4] setHidden:YES];
+    }
+    else {
+        [[menu itemAtIndex:0] setHidden:YES];
+        [[menu itemAtIndex:1] setHidden:YES];
+        [[menu itemAtIndex:2] setHidden:YES];
         [[menu itemAtIndex:3] setHidden:YES];
         [[menu itemAtIndex:4] setHidden:YES];
     }
@@ -1150,27 +1186,7 @@
 
 - (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar
 {
-    return 0;
-}
-
-- (void)splitView:(CNSplitView *)theSplitView willShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
-{
-    NSLog(@"splitView:willShowToolbar:onEdge:");
-}
-
-- (void)splitView:(CNSplitView *)theSplitView didShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
-{
-    NSLog(@"splitView:didShowToolbar:onEdge:");
-}
-
-- (void)splitView:(CNSplitView *)theSplitView willHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
-{
-    NSLog(@"splitView:willHideToolbar:onEdge:");
-}
-
-- (void)splitView:(CNSplitView *)theSplitView didHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge
-{
-    NSLog(@"splitView:didHideToolbar:onEdge:");
+    return kProjectListSplitViewSide;
 }
 
 #pragma mark
@@ -1178,6 +1194,7 @@
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
 {
-    return 300;
+    return kMinimumSplitViewSize;
 }
+
 @end

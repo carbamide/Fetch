@@ -30,7 +30,6 @@
 		2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */; };
 		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
 		294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294C8F8117ED6D0C0060EF7E /* MainWindow.xib */; };
-		2957D5C517E69FC500639F02 /* JsonSyntaxHighlighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */; };
 		2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C717E7594100639F02 /* SeparatorNodeObject.m */; };
 		295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */; };
 		295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4E117F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m */; };
@@ -88,8 +87,6 @@
 		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		294C8F8117ED6D0C0060EF7E /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		2957D5C317E69FC500639F02 /* JsonSyntaxHighlighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSyntaxHighlighting.h; sourceTree = "<group>"; };
-		2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonSyntaxHighlighting.m; sourceTree = "<group>"; };
 		2957D5C617E7594100639F02 /* SeparatorNodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeparatorNodeObject.h; sourceTree = "<group>"; };
 		2957D5C717E7594100639F02 /* SeparatorNodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorNodeObject.m; sourceTree = "<group>"; };
 		295EB4DD17F32D8C00F58FE2 /* CNSplitViewDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSplitViewDefinitions.h; sourceTree = "<group>"; };
@@ -171,8 +168,6 @@
 		291BBA9C17DAED2500C771F5 /* Catagories */ = {
 			isa = PBXGroup;
 			children = (
-				2957D5C317E69FC500639F02 /* JsonSyntaxHighlighting.h */,
-				2957D5C417E69FC500639F02 /* JsonSyntaxHighlighting.m */,
 				291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */,
 				291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */,
 			);
@@ -556,7 +551,6 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
-				2957D5C517E69FC500639F02 /* JsonSyntaxHighlighting.m in Sources */,
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */,
