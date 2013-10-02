@@ -105,33 +105,8 @@ static CoreDataManager *singleton;
 
 #pragma mark - Application's Documents directory
 - (NSURL *)applicationDocumentsDirectory {
-    NSError *error = nil;
-    
-    NSURL *appSupportPath = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error] URLByAppendingPathComponent:[self appName]];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[appSupportPath path]]) {
-        NSError *createError = nil;
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:[appSupportPath path] withIntermediateDirectories:YES attributes:nil error:&createError];
-        
-        if (createError) {
-            NSAlert *creationAlert = [NSAlert alertWithError:createError];
-            
-            [creationAlert runModal];
-        }
-    }
-    
-    NSURL *appSupportDir = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error] URLByAppendingPathComponent:[self appName]];
-
-    if (error) {
-        NSAlert *errorAlert = [NSAlert alertWithError:error];
-        
-        [errorAlert runModal];
-        
-        return nil;
-    }
-    
-    return appSupportDir;
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory 
+                                                   inDomains:NSUserDomainMask] lastObject];
 }
 
 

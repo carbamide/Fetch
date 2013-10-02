@@ -7,7 +7,7 @@ DEPENDENCIES:
   - ObjectiveRecord
 
 SPEC CHECKSUMS:
-  ObjectiveRecord: 96fdbcf25d5445bfb95dab59aeec06b13795f12d
-  ObjectiveSugar: 5b33fb396f3e93c0a543bdf55d2d48f29ee46bfb
+  ObjectiveRecord: 3a196d1c853a315919951905babdb073df915cd6
+  ObjectiveSugar: 81337e36790b5a157ee6ccdcf65c91393ca5d900
 
 COCOAPODS: 0.20.2

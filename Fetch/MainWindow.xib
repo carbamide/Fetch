@@ -468,7 +468,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="5be-17-VWR">
-                                            <rect key="frame" x="666" y="1" width="16" height="106"/>
+                                            <rect key="frame" x="483" y="1" width="16" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -532,7 +532,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="6uJ-QQ-VwZ">
-                                                                <rect key="frame" x="625" y="1" width="16" height="211"/>
+                                                                <rect key="frame" x="442" y="1" width="16" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                         </scrollView>

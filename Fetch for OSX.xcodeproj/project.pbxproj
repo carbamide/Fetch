@@ -41,7 +41,7 @@
 		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2981D80117FBAC570039512A /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2981D80017FBAC570039512A /* ProjectCell.m */; };
-		2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */; };
+		2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
@@ -110,7 +110,7 @@
 		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
 		2981D7FF17FBAC570039512A /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		2981D80017FBAC570039512A /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
-		2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fetch.xcdatamodel; sourceTree = "<group>"; };
+		2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX.xcdatamodel"; sourceTree = "<group>"; };
 		29BC58E617DE0BFD004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
 		29BC58E717DE0BFD004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
 		29BC58E917DE0BFD004168AE /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
@@ -128,15 +128,15 @@
 		29E137E917E658C40088E1D4 /* JsonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonHandler.m; sourceTree = "<group>"; };
 		29EF763417D65D9400F89D72 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		29EF763517D65D9400F89D72 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
-		29F4A7D017D64EFC00FAA098 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29F4A7D017D64EFC00FAA098 /* Fetch for OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fetch for OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F4A7D317D64EFC00FAA098 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		29F4A7D617D64EFC00FAA098 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29F4A7D717D64EFC00FAA098 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29F4A7D817D64EFC00FAA098 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		29F4A7DB17D64EFD00FAA098 /* Fetch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fetch-Info.plist"; sourceTree = "<group>"; };
+		29F4A7DB17D64EFD00FAA098 /* Fetch for OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fetch for OSX-Info.plist"; sourceTree = "<group>"; };
 		29F4A7DD17D64EFE00FAA098 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29F4A7DF17D64EFE00FAA098 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29F4A7E117D64EFE00FAA098 /* Fetch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fetch-Prefix.pch"; sourceTree = "<group>"; };
+		29F4A7E117D64EFE00FAA098 /* Fetch for OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fetch for OSX-Prefix.pch"; sourceTree = "<group>"; };
 		29F4A7E317D64EFE00FAA098 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		29F4A7E517D64EFE00FAA098 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		29F4A7E617D64EFE00FAA098 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				2983B07B17DAC148001852F2 /* Models */,
-				2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */,
+				2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 		29F4A7D117D64EFC00FAA098 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				29F4A7D017D64EFC00FAA098 /* Fetch.app */,
+				29F4A7D017D64EFC00FAA098 /* Fetch for OSX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,10 +365,10 @@
 				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
 				29C3D1E317D77875004B405E /* HeaderNames.plist */,
 				29F4A7EB17D64EFE00FAA098 /* Images.xcassets */,
-				29F4A7DB17D64EFD00FAA098 /* Fetch-Info.plist */,
+				29F4A7DB17D64EFD00FAA098 /* Fetch for OSX-Info.plist */,
 				29F4A7DC17D64EFE00FAA098 /* InfoPlist.strings */,
 				29F4A7DF17D64EFE00FAA098 /* main.m */,
-				29F4A7E117D64EFE00FAA098 /* Fetch-Prefix.pch */,
+				29F4A7E117D64EFE00FAA098 /* Fetch for OSX-Prefix.pch */,
 				2B13D3DD1F5C419D953BC77D /* Pods.xcconfig */,
 				29F4A7E217D64EFE00FAA098 /* Credits.rtf */,
 			);
@@ -396,9 +396,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		29F4A7CF17D64EFC00FAA098 /* Fetch */ = {
+		29F4A7CF17D64EFC00FAA098 /* Fetch for OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 29F4A80117D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "Fetch" */;
+			buildConfigurationList = 29F4A80117D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "Fetch for OSX" */;
 			buildPhases = (
 				52208392AC90484E9ABA2F1C /* Check Pods Manifest.lock */,
 				5D1B6F9F20E84FFEBAC30ADB /* Check Pods Manifest.lock */,
@@ -413,9 +413,9 @@
 			);
 			dependencies = (
 			);
-			name = Fetch;
+			name = "Fetch for OSX";
 			productName = Fetch;
-			productReference = 29F4A7D017D64EFC00FAA098 /* Fetch.app */;
+			productReference = 29F4A7D017D64EFC00FAA098 /* Fetch for OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -427,7 +427,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Jukaela Enterprises";
 			};
-			buildConfigurationList = 29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch" */;
+			buildConfigurationList = 29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch for OSX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -440,7 +440,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				29F4A7CF17D64EFC00FAA098 /* Fetch */,
+				29F4A7CF17D64EFC00FAA098 /* Fetch for OSX */,
 				2908658117E2A85A004B805D /* Distribution */,
 			);
 		};
@@ -545,7 +545,7 @@
 			files = (
 				29EF763617D65D9400F89D72 /* MainWindowController.m in Sources */,
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
-				2983B07817DABE6F001852F2 /* Fetch.xcdatamodeld in Sources */,
+				2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */,
 				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
 				295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */,
 				295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */,
@@ -703,13 +703,13 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
+				GCC_PREFIX_HEADER = "Fetch/Fetch for OSX-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_PEDANTIC = YES;
-				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
+				INFOPLIST_FILE = "Fetch/Fetch for OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = Fetch;
+				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -726,13 +726,13 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fetch/Fetch-Prefix.pch";
+				GCC_PREFIX_HEADER = "Fetch/Fetch for OSX-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_PEDANTIC = YES;
-				INFOPLIST_FILE = "Fetch/Fetch-Info.plist";
+				INFOPLIST_FILE = "Fetch/Fetch for OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = Fetch;
+				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -749,7 +749,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch" */ = {
+		29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch for OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				29F4A7FF17D64EFE00FAA098 /* Debug */,
@@ -758,7 +758,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		29F4A80117D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "Fetch" */ = {
+		29F4A80117D64EFE00FAA098 /* Build configuration list for PBXNativeTarget "Fetch for OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				29F4A80217D64EFE00FAA098 /* Debug */,
@@ -770,13 +770,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2983B07617DABE6F001852F2 /* Fetch.xcdatamodeld */ = {
+		2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */,
+				2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */,
 			);
-			currentVersion = 2983B07717DABE6F001852F2 /* Fetch.xcdatamodel */;
-			path = Fetch.xcdatamodeld;
+			currentVersion = 2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */;
+			path = "Fetch for OSX.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
