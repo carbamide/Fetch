@@ -15,6 +15,7 @@
 #import "Parameters.h"
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
+#import "ProjectCell.h"
 
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -26,6 +27,9 @@
 @property (strong, nonatomic) Urls *currentUrl;
 @property (strong, nonatomic) id jsonData;
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
+@property (strong, nonatomic) CNSplitViewToolbarButton *removeButton;
+@property (strong, nonatomic) CNSplitViewToolbarButton *exportButton;
+
 @end
 
 static int const kProjectListSplitViewSide = 0;
@@ -85,6 +89,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [self preferencesChanges:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrlFromNotification:) name:@"ADD_URL" object:nil];
     
     [self setupSegmentedControls];
     
@@ -94,24 +99,29 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [self setToolbar:[[CNSplitViewToolbar alloc] init]];
     
-    CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] init];
+    NSMenu *contextMenu = [[NSMenu alloc] init];
+    [contextMenu addItemWithTitle:@"Add New Project" action:@selector(addProject) keyEquivalent:@""];
+    [contextMenu addItemWithTitle:@"Add New URL" action:@selector(addUrl:) keyEquivalent:@""];
+    [contextMenu setDelegate:self];
+    
+    CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] initWithContextMenu:contextMenu];
     [addButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateAdd];
-    [addButton setTarget:self];
-    [addButton setAction:@selector(addProject)];
     
-    CNSplitViewToolbarButton *removeButton = [[CNSplitViewToolbarButton alloc] init];
-    [removeButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateRemove];
-    [removeButton setTarget:self];
-    [removeButton setAction:@selector(removeProjectOrUrl)];
+    _removeButton = [[CNSplitViewToolbarButton alloc] init];
+    [[self removeButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateRemove];
+    [[self removeButton] setTarget:self];
+    [[self removeButton] setAction:@selector(removeProjectOrUrl)];
+    [[self removeButton] setEnabled:NO];
     
-    CNSplitViewToolbarButton *refreshButton = [[CNSplitViewToolbarButton alloc] init];
-    [refreshButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateShare];
-    [refreshButton setTarget:self];
-    [refreshButton setAction:@selector(exportProject:)];
+    _exportButton = [[CNSplitViewToolbarButton alloc] init];
+    [[self exportButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateShare];
+    [[self exportButton] setTarget:self];
+    [[self exportButton] setAction:@selector(exportProject:)];
+    [[self exportButton] setEnabled:NO];
     
     [[self toolbar] addItem:addButton align:CNSplitViewToolbarItemAlignLeft];
-    [[self toolbar] addItem:removeButton align:CNSplitViewToolbarItemAlignLeft];
-    [[self toolbar] addItem:refreshButton align:CNSplitViewToolbarItemAlignRight];
+    [[self toolbar] addItem:[self removeButton] align:CNSplitViewToolbarItemAlignLeft];
+    [[self toolbar] addItem:[self exportButton] align:CNSplitViewToolbarItemAlignRight];
     
     [[self splitView] setDelegate:self];
     [[self splitView] setToolbarDelegate:self];
@@ -220,7 +230,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [tempUrl setUrl:[[self urlTextField] stringValue]];
         
         [self setCurrentUrl:tempUrl];
-        
+        [[self exportButton] setEnabled:YES];
+        [[self removeButton] setEnabled:YES];
+
         if ([self currentProject]) {
             [[self currentProject] addUrlsObject:tempUrl];
             
@@ -403,7 +415,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         
         if (tempProject == [self currentProject]) {
             [self setCurrentProject:nil];
-            
+            [[self exportButton] setEnabled:NO];
+            [[self removeButton] setEnabled:NO];
+
             [self unloadData];
         }
         
@@ -463,7 +477,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self customPostBodyCheckBox] setState:NSOffState];
     
     [self setCurrentProject:project];
-    
+    [[self exportButton] setEnabled:YES];
+    [[self removeButton] setEnabled:YES];
+
     [[self fetchButton] setEnabled:YES];
     [[self urlTextField] setEnabled:YES];
     [[self urlDescriptionTextField] setEnabled:YES];
@@ -490,6 +506,22 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [[self urlList] addObject:tempUrl];
         [[self projectSourceList] reloadData];
     }
+}
+
+-(void)addUrlFromNotification:(NSNotification *)aNotification
+{
+    Projects *tempProject = [aNotification userInfo][@"project"];
+    
+    Urls *tempUrl = [Urls create];
+    
+    [tempUrl setUrlDescription:@"New URL"];
+    
+    [tempProject addUrlsObject:tempUrl];
+    
+    [tempProject save];
+    
+    [[self urlList] addObject:tempUrl];
+    [[self projectSourceList] reloadData];
 }
 
 -(void)saveLog
@@ -520,7 +552,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [tempProject save];
     
     [self setCurrentProject:tempProject];
-    
+    [[self exportButton] setEnabled:YES];
+    [[self removeButton] setEnabled:YES];
+
     [[self fetchButton] setEnabled:YES];
     [[self urlTextField] setEnabled:YES];
     [[self urlDescriptionTextField] setEnabled:YES];
@@ -535,53 +569,67 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
     if ([item isKindOfClass:[Projects class]]) {
-        [[self projectList] removeObject:item];
+        NSString *messageText = [NSString stringWithFormat:@"Delete project \"%@\"?  You cannot undo this action.", [item name]];
         
-        if (item == [self currentProject]) {
-            [self setCurrentProject:nil];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Delete Project?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
+        
+        if ([alert runModal] == NSOKButton) {
+            [[self projectList] removeObject:item];
             
-            [[self jsonOutputButton] setEnabled:NO];
-            [[self fetchButton] setEnabled:NO];
-            [[self urlTextField] setEnabled:NO];
-            [[self urlDescriptionTextField] setEnabled:NO];
+            if (item == [self currentProject]) {
+                [self setCurrentProject:nil];
+                [[self exportButton] setEnabled:NO];
+                [[self removeButton] setEnabled:NO];
+
+                [[self jsonOutputButton] setEnabled:NO];
+                [[self fetchButton] setEnabled:NO];
+                [[self urlTextField] setEnabled:NO];
+                [[self urlDescriptionTextField] setEnabled:NO];
+                
+                [[self urlList] removeAllObjects];
+                [[self headerDataSource] removeAllObjects];
+                [[self paramDataSource] removeAllObjects];
+                
+                [[self headersTableView] reloadData];
+                [[self parametersTableView] reloadData];
+            }
             
-            [[self urlList] removeAllObjects];
-            [[self headerDataSource] removeAllObjects];
-            [[self paramDataSource] removeAllObjects];
-            
-            [[self headersTableView] reloadData];
-            [[self parametersTableView] reloadData];
+            [item delete];
         }
-        
-        [item delete];
     }
     else if ([item isKindOfClass:[Urls class]]) {
-        [[self urlList] removeObject:item];
+        NSString *messageText = @"Delete url? You cannot undo this action.";
         
-        [item delete];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
         
-        if (item == [self currentUrl]) {
-            [[self jsonOutputButton] setEnabled:NO];
-            [[self fetchButton] setEnabled:NO];
+        if ([alert runModal] == NSOKButton) {
+            [[self urlList] removeObject:item];
             
-            [[self urlList] removeAllObjects];
+            [item delete];
             
-            [[Urls all] each:^(Urls *object) {
-                if ([object url]) {
-                    [[self urlList] addObject:[object url]];
-                }
-            }];
-            
-            [[self urlTextField] setStringValue:@""];
-            [[self urlDescriptionTextField] setStringValue:@""];
-            
-            [[self methodCombo] setEnabled:NO];
-            
-            [[self headerDataSource] removeAllObjects];
-            [[self paramDataSource] removeAllObjects];
-            
-            [[self headersTableView] reloadData];
-            [[self parametersTableView] reloadData];
+            if (item == [self currentUrl]) {
+                [[self jsonOutputButton] setEnabled:NO];
+                [[self fetchButton] setEnabled:NO];
+                
+                [[self urlList] removeAllObjects];
+                
+                [[Urls all] each:^(Urls *object) {
+                    if ([object url]) {
+                        [[self urlList] addObject:[object url]];
+                    }
+                }];
+                
+                [[self urlTextField] setStringValue:@""];
+                [[self urlDescriptionTextField] setStringValue:@""];
+                
+                [[self methodCombo] setEnabled:NO];
+                
+                [[self headerDataSource] removeAllObjects];
+                [[self paramDataSource] removeAllObjects];
+                
+                [[self headersTableView] reloadData];
+                [[self parametersTableView] reloadData];
+            }
         }
     }
     
@@ -1057,6 +1105,39 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return 0;
 }
 
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+    static NSString *const CellIdentifier = @"DataCell";
+    
+    ProjectCell *cell = [outlineView makeViewWithIdentifier:CellIdentifier owner:self];
+    
+    if ([item isKindOfClass:[Projects class]]) {
+        Projects *tempProject = item;
+        
+        [[cell textField] setStringValue:[tempProject name]];
+        [[cell imageView] setImage:[NSImage imageNamed:@"Project"]];
+        [cell setProject:tempProject];
+        
+        [[cell addUrlButton] setHidden:NO];
+    }
+    else {
+        Urls *tempUrl = item;
+        
+        if ([tempUrl urlDescription]) {
+            [[cell textField] setStringValue:[tempUrl urlDescription]];
+        }
+        else {
+            [[cell textField] setStringValue:[tempUrl url]];
+        }
+        
+        [[cell imageView] setImage:[NSImage imageNamed:@"URL"]];
+        [[cell addUrlButton] setHidden:YES];
+    }
+    
+    return cell;
+}
+
+
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
     if ([item isKindOfClass:[Projects class]]) {
@@ -1150,34 +1231,11 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-    
-    [[menu itemAtIndex:0] setHidden:NO];
-    [[menu itemAtIndex:1] setHidden:NO];
-    [[menu itemAtIndex:2] setHidden:NO];
-    [[menu itemAtIndex:3] setHidden:NO];
-    [[menu itemAtIndex:4] setHidden:NO];
-    
-    if ([item isKindOfClass:[Projects class]]) {
-        [[menu itemAtIndex:0] setHidden:NO];
+    if ([self currentProject]) {
         [[menu itemAtIndex:1] setHidden:NO];
-        [[menu itemAtIndex:2] setTitle:@"Delete Project"];
-        [[menu itemAtIndex:3] setHidden:NO];
-        [[menu itemAtIndex:4] setHidden:NO];
-    }
-    else if ([item isKindOfClass:[Urls class]]) {
-        [[menu itemAtIndex:0] setHidden:YES];
-        [[menu itemAtIndex:1] setHidden:YES];
-        [[menu itemAtIndex:2] setTitle:@"Delete URL"];
-        [[menu itemAtIndex:3] setHidden:YES];
-        [[menu itemAtIndex:4] setHidden:YES];
     }
     else {
-        [[menu itemAtIndex:0] setHidden:YES];
         [[menu itemAtIndex:1] setHidden:YES];
-        [[menu itemAtIndex:2] setHidden:YES];
-        [[menu itemAtIndex:3] setHidden:YES];
-        [[menu itemAtIndex:4] setHidden:YES];
     }
 }
 
