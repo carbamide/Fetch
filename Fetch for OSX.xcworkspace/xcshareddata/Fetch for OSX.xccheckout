@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7EECA7E7-2470-48D5-96A0-73FCCF49D58E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Fetch for OSX</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>897D0984-B6D7-4BF5-A476-6C35C12A222A</key>
+		<string>https://github.com/carbamide/Fetch.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Fetch for OSX.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>897D0984-B6D7-4BF5-A476-6C35C12A222A</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/carbamide/Fetch.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>897D0984-B6D7-4BF5-A476-6C35C12A222A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>897D0984-B6D7-4BF5-A476-6C35C12A222A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Fetch</string>
+		</dict>
+	</array>
+</dict>
+</plist>

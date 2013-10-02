@@ -23,7 +23,7 @@
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
  
     [[self menuController] setMainWindowController:[self mainWindowController]];
-    
+
     [[self mainWindowController] showWindow:self];
 }
 
