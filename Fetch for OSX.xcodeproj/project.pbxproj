@@ -271,8 +271,6 @@
 				2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */,
 				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
 				2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */,
-				2981D7FF17FBAC570039512A /* ProjectCell.h */,
-				2981D80017FBAC570039512A /* ProjectCell.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -292,6 +290,8 @@
 		29EF763817D65E7D00F89D72 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2981D7FF17FBAC570039512A /* ProjectCell.h */,
+				2981D80017FBAC570039512A /* ProjectCell.m */,
 				2983B07A17DAC141001852F2 /* CoreData */,
 				2957D5C117E69C6600639F02 /* Data Handling */,
 				2957D5C217E69C7300639F02 /* Singletons */,

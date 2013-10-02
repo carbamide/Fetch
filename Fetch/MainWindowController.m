@@ -925,6 +925,14 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             }
         }
     }
+    else if ([[[notification object] superview] isKindOfClass:[ProjectCell class]]) {
+        ProjectCell *tempCell = (ProjectCell *)[[notification object] superview];
+        NSTextField *tempTextField = [notification object];
+        Projects *project = [tempCell project];
+        
+        [project setName:[tempTextField stringValue]];
+        [project save];
+    }
 }
 
 #pragma mark
@@ -1137,26 +1145,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return cell;
 }
 
-
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
-    if ([item isKindOfClass:[Projects class]]) {
-        Projects *tempProject = item;
-        
-        return [tempProject name];
-    }
-    else {
-        Urls *tempUrl = item;
-        
-        if ([tempUrl urlDescription]) {
-            return [tempUrl urlDescription];
-        }
-        else {
-            return [tempUrl url];
-        }
-    }
-}
-
 #pragma mark
 #pragma mark NSOutlineViewDelegate
 
@@ -1225,6 +1213,10 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return NO;
 }
 
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+    return YES;
+}
 
 #pragma mark
 #pragma mark NSMenuDelegate

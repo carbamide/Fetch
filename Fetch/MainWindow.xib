@@ -116,11 +116,14 @@
                                                                         <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-fG-kk7">
                                                                             <rect key="frame" x="25" y="-2" width="209" height="24"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="p0S-Zp-ed7">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="p0S-Zp-ed7">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <connections>
+                                                                                <outlet property="delegate" destination="-2" id="5nK-6g-RIk"/>
+                                                                            </connections>
                                                                         </textField>
                                                                         <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mmC-ak-ozw">
                                                                             <rect key="frame" x="211" y="3" width="34" height="15"/>
@@ -468,7 +471,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="5be-17-VWR">
-                                            <rect key="frame" x="483" y="1" width="16" height="106"/>
+                                            <rect key="frame" x="666" y="1" width="16" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -532,7 +535,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="6uJ-QQ-VwZ">
-                                                                <rect key="frame" x="442" y="1" width="16" height="0.0"/>
+                                                                <rect key="frame" x="625" y="1" width="16" height="211"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                         </scrollView>
