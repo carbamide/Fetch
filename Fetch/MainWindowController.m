@@ -505,6 +505,10 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         
         [[self urlList] addObject:tempUrl];
         [[self projectSourceList] reloadData];
+        
+        [[self fetchButton] setEnabled:YES];
+        [[self urlTextField] setEnabled:YES];
+        [[self urlDescriptionTextField] setEnabled:YES];
     }
 }
 
@@ -522,6 +526,10 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [[self urlList] addObject:tempUrl];
     [[self projectSourceList] reloadData];
+    
+    [[self fetchButton] setEnabled:YES];
+    [[self urlTextField] setEnabled:YES];
+    [[self urlDescriptionTextField] setEnabled:YES];
 }
 
 -(void)saveLog
@@ -546,6 +554,19 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 
 -(void)addProject
 {
+    [self unloadData];
+    
+    [self setCurrentUrl:nil];
+    
+    [[self urlDescriptionTextField] setStringValue:@""];
+    [[self urlTextField] setStringValue:@""];
+    [[self urlDescriptionTextField] setEnabled:NO];
+    [[self urlTextField] setEnabled:NO];
+    [[self fetchButton] setEnabled:NO];
+    
+    [self setResponseDict:nil];
+    [self setRequestDict:nil];
+    
     Projects *tempProject = [Projects create];
     
     [tempProject setName:@"Project Name"];
@@ -554,14 +575,12 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [self setCurrentProject:tempProject];
     [[self exportButton] setEnabled:YES];
     [[self removeButton] setEnabled:YES];
-
-    [[self fetchButton] setEnabled:YES];
-    [[self urlTextField] setEnabled:YES];
-    [[self urlDescriptionTextField] setEnabled:YES];
     
     [[self projectList] addObject:tempProject];
     
     [[self projectSourceList] reloadData];
+    
+    [[self projectSourceList] selectRowIndexes:[NSIndexSet indexSetWithIndex:[[self projectSourceList] numberOfRows] - 1] byExtendingSelection:NO];
 }
 
 -(void)removeProjectOrUrl
@@ -578,6 +597,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             
             if (item == [self currentProject]) {
                 [self setCurrentProject:nil];
+                
                 [[self exportButton] setEnabled:NO];
                 [[self removeButton] setEnabled:NO];
 
