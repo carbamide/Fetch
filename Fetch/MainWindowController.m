@@ -1193,22 +1193,20 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
     NSOutlineView *outlineView = [notification object];
+        
+    id selectedItem = [outlineView itemAtRow:[outlineView selectedRow]];
     
-    NSInteger selectedRow = [[outlineView selectedRowIndexes] firstIndex];
-    
-    id item = [outlineView itemAtRow:selectedRow];
-    
-    if ([item isKindOfClass:[Projects class]]) {
-        Projects *tempProject = [self projectList][selectedRow];
+    if ([selectedItem isKindOfClass:[Projects class]]) {
+        Projects *tempProject = selectedItem;
         
         [self loadProject:tempProject];
     }
     else
     {
-        Urls *tempItem = item;
+        Urls *tempItem = selectedItem;
         
         if ([self currentProject] != [tempItem project]) {
-            [self loadProject:[item project]];
+            [self loadProject:[selectedItem project]];
         }
         
         if ([tempItem url]) {

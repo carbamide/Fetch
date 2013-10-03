@@ -62,16 +62,12 @@
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                 BOOL verifyUrl = [self urlVerification];
                 
-                if (verifyUrl) {
-                    NSLog(@"%@ is up!", [[self currentUrl] url]);
-                    
+                if (verifyUrl) {                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
                     });
                 }
                 else {
-                    NSLog(@"%@ is down!", [[self currentUrl] url]);
-                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
                     });
@@ -92,9 +88,15 @@
 {
     NSURL *url = [NSURL URLWithString:[[self currentUrl] url]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    NSHTTPURLResponse *response = nil;
     
-    if ([NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]) {
-        return YES;
+    if ([NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]) {
+        if ([response statusCode] > 199 && [response statusCode] < 300) {
+            return YES;
+        }
+        else {
+            return NO;
+        }
     }
     return NO;
 }
@@ -120,6 +122,5 @@
         [[self statusImage] setHidden:YES];
     }
 }
-
 
 @end
