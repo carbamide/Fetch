@@ -16,6 +16,7 @@
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
 #import "ProjectCell.h"
+#import "UrlCell.h"
 
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -1136,10 +1137,11 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
     static NSString *const CellIdentifier = @"DataCell";
-    
-    ProjectCell *cell = [outlineView makeViewWithIdentifier:CellIdentifier owner:self];
+    static NSString *const UrlCellIdentifier = @"UrlCell";
     
     if ([item isKindOfClass:[Projects class]]) {
+        ProjectCell *cell = [outlineView makeViewWithIdentifier:CellIdentifier owner:self];
+        
         Projects *tempProject = item;
         
         [[cell textField] setStringValue:[tempProject name]];
@@ -1147,9 +1149,15 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [cell setProject:tempProject];
         
         [[cell addUrlButton] setHidden:NO];
+        
+        return cell;
     }
     else {
+        UrlCell *cell = [outlineView makeViewWithIdentifier:UrlCellIdentifier owner:self];
+        
         Urls *tempUrl = item;
+        
+        [cell setCurrentUrl:tempUrl];
         
         if ([tempUrl urlDescription]) {
             [[cell textField] setStringValue:[tempUrl urlDescription]];
@@ -1159,10 +1167,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         }
         
         [[cell imageView] setImage:[NSImage imageNamed:@"URL"]];
-        [[cell addUrlButton] setHidden:YES];
+        
+        return cell;
     }
-    
-    return cell;
 }
 
 #pragma mark

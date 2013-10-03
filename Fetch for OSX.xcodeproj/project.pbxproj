@@ -43,6 +43,10 @@
 		2981D80117FBAC570039512A /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2981D80017FBAC570039512A /* ProjectCell.m */; };
 		2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
+		29914D9417FD009300DC6052 /* UrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9317FD009300DC6052 /* UrlCell.m */; };
+		29914D9817FD027400DC6052 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9717FD027400DC6052 /* Reachability.m */; };
+		29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29914D9917FD02B800DC6052 /* SystemConfiguration.framework */; };
+		29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
 		29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58ED17DE0BFD004168AE /* Parameters.m */; };
@@ -111,6 +115,13 @@
 		2981D7FF17FBAC570039512A /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		2981D80017FBAC570039512A /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX.xcdatamodel"; sourceTree = "<group>"; };
+		29914D9217FD009300DC6052 /* UrlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCell.h; sourceTree = "<group>"; };
+		29914D9317FD009300DC6052 /* UrlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCell.m; sourceTree = "<group>"; };
+		29914D9617FD027400DC6052 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		29914D9717FD027400DC6052 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		29914D9917FD02B800DC6052 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		29BC58E617DE0BFD004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
 		29BC58E717DE0BFD004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
 		29BC58E917DE0BFD004168AE /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
@@ -157,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */,
 				295EB4F217F32F5C00F58FE2 /* QuartzCore.framework in Frameworks */,
 				2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */,
 				29F4A7D417D64EFC00FAA098 /* Cocoa.framework in Frameworks */,
@@ -204,6 +216,10 @@
 		295EB4DB17F32D7400F58FE2 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */,
+				29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */,
+				29914D9617FD027400DC6052 /* Reachability.h */,
+				29914D9717FD027400DC6052 /* Reachability.m */,
 				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
 			);
 			name = Vendor;
@@ -262,6 +278,17 @@
 			name = Generated;
 			sourceTree = "<group>";
 		};
+		29914D9517FD009B00DC6052 /* TableView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				29914D9217FD009300DC6052 /* UrlCell.h */,
+				29914D9317FD009300DC6052 /* UrlCell.m */,
+				2981D7FF17FBAC570039512A /* ProjectCell.h */,
+				2981D80017FBAC570039512A /* ProjectCell.m */,
+			);
+			name = "TableView Cells";
+			sourceTree = "<group>";
+		};
 		29E4625F17E51C55006F7148 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +317,7 @@
 		29EF763817D65E7D00F89D72 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2981D7FF17FBAC570039512A /* ProjectCell.h */,
-				2981D80017FBAC570039512A /* ProjectCell.m */,
+				29914D9517FD009B00DC6052 /* TableView Cells */,
 				2983B07A17DAC141001852F2 /* CoreData */,
 				2957D5C117E69C6600639F02 /* Data Handling */,
 				2957D5C217E69C7300639F02 /* Singletons */,
@@ -323,6 +349,7 @@
 		29F4A7D217D64EFC00FAA098 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29914D9917FD02B800DC6052 /* SystemConfiguration.framework */,
 				295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */,
 				29438B0317E2A336002BB433 /* Sparkle.framework */,
 				29F4A7D317D64EFC00FAA098 /* Cocoa.framework */,
@@ -547,9 +574,11 @@
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
 				2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */,
 				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
+				29914D9817FD027400DC6052 /* Reachability.m in Sources */,
 				295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */,
 				295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */,
 				295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */,
+				29914D9417FD009300DC6052 /* UrlCell.m in Sources */,
 				2981D80117FBAC570039512A /* ProjectCell.m in Sources */,
 				2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */,
 				29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */,
@@ -561,6 +590,7 @@
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */,
 				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
+				29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,

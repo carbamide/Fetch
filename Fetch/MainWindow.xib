@@ -113,7 +113,7 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSListViewTemplate" id="S46-cq-ubP"/>
                                                                         </imageView>
-                                                                        <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-fG-kk7">
+                                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-fG-kk7">
                                                                             <rect key="frame" x="25" y="-2" width="209" height="24"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="p0S-Zp-ed7">
@@ -126,7 +126,7 @@
                                                                             </connections>
                                                                         </textField>
                                                                         <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mmC-ak-ozw">
-                                                                            <rect key="frame" x="211" y="3" width="34" height="15"/>
+                                                                            <rect key="frame" x="208" y="2" width="17" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" inset="2" id="6a7-zX-rq1">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -138,13 +138,48 @@
                                                                         </button>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="mmC-ak-ozw" firstAttribute="leading" secondItem="rmC-fG-kk7" secondAttribute="trailing" constant="-21" id="HsX-fq-hce"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="rmC-fG-kk7" secondAttribute="trailing" constant="2" id="LgO-li-3hO"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="mmC-ak-ozw" secondAttribute="trailing" constant="9" id="Cbw-BY-gX2"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="addUrlButton" destination="mmC-ak-ozw" id="QmQ-jy-a2L"/>
                                                                         <outlet property="imageView" destination="TU9-Wb-s5E" id="0HR-Zq-Wy6"/>
                                                                         <outlet property="textField" destination="rmC-fG-kk7" id="ky5-qa-9aI"/>
+                                                                    </connections>
+                                                                </tableCellView>
+                                                                <tableCellView identifier="UrlCell" id="JUI-ng-Z6a" customClass="UrlCell">
+                                                                    <rect key="frame" x="1" y="39" width="234" height="22"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pj4-NG-srj">
+                                                                            <rect key="frame" x="3" y="5" width="17" height="17"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSListViewTemplate" id="zHc-d8-JY7"/>
+                                                                        </imageView>
+                                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-0J-rAj">
+                                                                            <rect key="frame" x="25" y="-2" width="209" height="24"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Ueh-tS-Txd">
+                                                                                <font key="font" metaFont="system"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                            <connections>
+                                                                                <outlet property="delegate" destination="-2" id="ctK-lQ-Mjr"/>
+                                                                            </connections>
+                                                                        </textField>
+                                                                        <imageView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhH-cf-FVh">
+                                                                            <rect key="frame" x="214" y="3" width="17" height="17"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="TZX-LK-X37"/>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="DhH-cf-FVh" secondAttribute="trailing" constant="3" id="Tgl-jV-Kzq"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <outlet property="imageView" destination="Pj4-NG-srj" id="uyQ-AE-Mho"/>
+                                                                        <outlet property="statusImage" destination="DhH-cf-FVh" id="MKv-K4-ZkN"/>
+                                                                        <outlet property="textField" destination="cxj-0J-rAj" id="nju-DX-WXb"/>
                                                                     </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
@@ -777,5 +812,6 @@
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSStatusAvailable" width="16" height="16"/>
     </resources>
 </document>
