@@ -531,6 +531,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self fetchButton] setEnabled:YES];
     [[self urlTextField] setEnabled:YES];
     [[self urlDescriptionTextField] setEnabled:YES];
+    
+    [[self projectSourceList] expandItem:[[self projectSourceList] itemAtRow:[[self projectSourceList] rowForItem:[tempUrl project]]]];
 }
 
 -(void)saveLog
@@ -1118,6 +1120,11 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return NO;
 }
 
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
+{
+    return YES;
+}
+
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if (!item) {
@@ -1158,6 +1165,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         Urls *tempUrl = item;
         
         [cell setCurrentUrl:tempUrl];
+        
+        [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
         
         if ([tempUrl urlDescription]) {
             [[cell textField] setStringValue:[tempUrl urlDescription]];
