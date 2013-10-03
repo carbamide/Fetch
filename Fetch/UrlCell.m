@@ -10,12 +10,13 @@
 
 #import "UrlCell.h"
 #import "Urls.h"
-#import "Reachability.h"
 #import "NSTimer+Blocks.h"
+#import "Constants.h"
 
 @interface UrlCell()
 @property (strong, nonatomic) NSTimer *pingTimer;
 @property (nonatomic) dispatch_queue_t lowQueue;
+
 @end
 @implementation UrlCell
 
@@ -32,7 +33,32 @@
 {
     [super awakeFromNib];
     
-    _pingTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 block:^{
+    [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
+    
+    BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
+    
+    NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
+    
+    if (checkSiteReachability) {
+        [self createTimerWithTimeInterval:[frequencyToPing intValue]];
+    }
+    else {
+        [[self statusImage] setHidden:YES];
+    }
+}
+
+-(void)dealloc
+{
+    [[self pingTimer] invalidate];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+-(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
+{
+    _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         if (![[[self currentUrl] url] isEqualToString:@""]) {
             
             if (!_lowQueue) {
@@ -68,15 +94,9 @@
     // Drawing code here.
 }
 
--(void)dealloc
-{
-    [[self pingTimer] invalidate];
-}
-
 -(BOOL)urlVerification
 {
     NSURL *url = [NSURL URLWithString:[[self currentUrl] url]];
-    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
     if ([NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]) {
@@ -85,26 +105,27 @@
     return NO;
 }
 
--(BOOL)isUrlUp
+-(void)preferencesChanges:(NSNotification *)aNotification
 {
-    if ([[[self currentUrl] url] isEqualToString:@""]) {
-        return NO;
+    BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
+    
+    NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
+    
+    if (checkSiteReachability) {
+        if ([_pingTimer isValid]) {
+            [_pingTimer invalidate];
+        }
+        
+        [self createTimerWithTimeInterval:[frequencyToPing intValue]];
+        
+        [[self statusImage] setHidden:NO];
     }
-    
-    SCNetworkReachabilityRef target;
-    SCNetworkConnectionFlags flags = 0;
-    
-    BOOL ok;
-    
-    target = SCNetworkReachabilityCreateWithName(NULL, [[[self currentUrl] url] cStringUsingEncoding:NSUTF8StringEncoding]);
-    
-    ok = SCNetworkReachabilityGetFlags(target, &flags);
-    
-    //CFRelease(target);
-    
-    return ok;
+    else {
+        [[self pingTimer] invalidate];
+        
+        [[self statusImage] setHidden:YES];
+    }
 }
-
 
 
 @end

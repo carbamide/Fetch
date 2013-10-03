@@ -1,39 +1,41 @@
 //
-//  PreferencesWindowController.m
+//  ColorsPreferencesViewController.m
 //  Fetch
 //
-//  Created by Josh on 9/4/13.
+//  Created by Joshua Barrow on 10/2/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "PreferencesWindowController.h"
-#import "NSUserDefaults+NSColor.h"
+#import "ColorsPreferencesViewController.h"
 #import "Constants.h"
+#import "NSUserDefaults+NSColor.h"
 
-@interface PreferencesWindowController ()
+@implementation ColorsPreferencesViewController
 
-@end
-
-@implementation PreferencesWindowController
-
-- (id)initWithWindow:(NSWindow *)window
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithWindow:window];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
-        // Initialization code here.
+
     }
+    
     return self;
 }
 
-- (void)windowDidLoad
+- (void)awakeFromNib
 {
-    [super windowDidLoad];
+    [super awakeFromNib];
     
     NSArray *preferenceKeys = @[kSeparatorColor, kBackgroundColor, kForegroundColor, kSuccessColor, kFailureColor];
     
     for (int i = 0; i < [preferenceKeys count]; i++) {
         NSColor *color = [[NSUserDefaults standardUserDefaults] colorForKey:preferenceKeys[i]];
-
+        
+        if (!color) {
+            break;
+        }
+        
         switch (i) {
             case 0:
                 [[self separatorColorWell] setColor:color];
@@ -63,27 +65,27 @@
 -(IBAction)saveColorForProperty:(id)sender
 {
     NSColorWell *colorWell = sender;
-
+    
     switch ([sender tag]) {
         case 0:
             [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kSeparatorColor];
-
+            
             break;
         case 1:
             [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kBackgroundColor];
-
+            
             break;
         case 2:
             [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kForegroundColor];
-
+            
             break;
         case 3:
             [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kSuccessColor];
-
+            
             break;
         case 4:
             [[NSUserDefaults standardUserDefaults] setColor:[colorWell color] forKey:kFailureColor];
-
+            
             break;
         default:
             break;
@@ -107,3 +109,4 @@
 }
 
 @end
+

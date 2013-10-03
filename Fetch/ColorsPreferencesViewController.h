@@ -1,14 +1,14 @@
 //
-//  PreferencesWindowController.h
+//  ColorsPreferencesViewController.h
 //  Fetch
 //
-//  Created by Josh on 9/4/13.
+//  Created by Joshua Barrow on 10/2/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesWindowController : NSWindowController <NSControlTextEditingDelegate>
+@interface ColorsPreferencesViewController : NSViewController
 
 @property (strong) IBOutlet NSColorWell *separatorColorWell;
 @property (strong) IBOutlet NSColorWell *backgroundColorWell;

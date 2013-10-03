@@ -1166,9 +1166,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         Urls *tempUrl = item;
         
         [cell setCurrentUrl:tempUrl];
-        
-        [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
-        
+                
         if ([tempUrl urlDescription]) {
             [[cell textField] setStringValue:[tempUrl urlDescription]];
         }

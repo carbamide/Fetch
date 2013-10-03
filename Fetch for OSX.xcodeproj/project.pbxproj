@@ -21,14 +21,17 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		29061AB017FD16DB00F390CA /* ColorsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AAB17FD16DB00F390CA /* ColorsPreferencesViewController.m */; };
+		29061AB117FD16DB00F390CA /* ColorsPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29061AAC17FD16DB00F390CA /* ColorsPreferencesViewController.xib */; };
+		29061AB217FD16DB00F390CA /* MiscPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AAE17FD16DB00F390CA /* MiscPreferencesViewController.m */; };
+		29061AB317FD16DB00F390CA /* MiscPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */; };
+		29061AB617FD16E600F390CA /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB517FD16E600F390CA /* PreferencesController.m */; };
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
 		291D513317E2A4D0008CF171 /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 291D513217E2A4D0008CF171 /* appcast.xml */; };
 		29438AFC17E222E2002BB433 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29438AFB17E222E2002BB433 /* MenuController.m */; };
 		29438B0217E2A0A5002BB433 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 29438B0117E2A0A5002BB433 /* dsa_pub.pem */; };
 		29438B0417E2A336002BB433 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
 		29438B0517E2A35F002BB433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29438B0317E2A336002BB433 /* Sparkle.framework */; };
-		2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */; };
-		2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */; };
 		294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294C8F8117ED6D0C0060EF7E /* MainWindow.xib */; };
 		2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C717E7594100639F02 /* SeparatorNodeObject.m */; };
 		295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */; };
@@ -44,7 +47,6 @@
 		2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
 		29914D9417FD009300DC6052 /* UrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9317FD009300DC6052 /* UrlCell.m */; };
-		29914D9817FD027400DC6052 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9717FD027400DC6052 /* Reachability.m */; };
 		29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29914D9917FD02B800DC6052 /* SystemConfiguration.framework */; };
 		29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
@@ -80,6 +82,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		29061AAA17FD16DB00F390CA /* ColorsPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsPreferencesViewController.h; sourceTree = "<group>"; };
+		29061AAB17FD16DB00F390CA /* ColorsPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsPreferencesViewController.m; sourceTree = "<group>"; };
+		29061AAC17FD16DB00F390CA /* ColorsPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorsPreferencesViewController.xib; sourceTree = "<group>"; };
+		29061AAD17FD16DB00F390CA /* MiscPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiscPreferencesViewController.h; sourceTree = "<group>"; };
+		29061AAE17FD16DB00F390CA /* MiscPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiscPreferencesViewController.m; sourceTree = "<group>"; };
+		29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiscPreferencesViewController.xib; sourceTree = "<group>"; };
+		29061AB417FD16E600F390CA /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		29061AB517FD16E600F390CA /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -88,9 +98,6 @@
 		29438AFB17E222E2002BB433 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		29438B0117E2A0A5002BB433 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../dsa_pub.pem; sourceTree = "<group>"; };
 		29438B0317E2A336002BB433 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
-		2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
-		2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		294C8F8117ED6D0C0060EF7E /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		2957D5C617E7594100639F02 /* SeparatorNodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeparatorNodeObject.h; sourceTree = "<group>"; };
 		2957D5C717E7594100639F02 /* SeparatorNodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorNodeObject.m; sourceTree = "<group>"; };
@@ -117,8 +124,6 @@
 		2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX.xcdatamodel"; sourceTree = "<group>"; };
 		29914D9217FD009300DC6052 /* UrlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCell.h; sourceTree = "<group>"; };
 		29914D9317FD009300DC6052 /* UrlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCell.m; sourceTree = "<group>"; };
-		29914D9617FD027400DC6052 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		29914D9717FD027400DC6052 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		29914D9917FD02B800DC6052 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
@@ -180,6 +185,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29061AA917FD16CA00F390CA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				29061AAA17FD16DB00F390CA /* ColorsPreferencesViewController.h */,
+				29061AAB17FD16DB00F390CA /* ColorsPreferencesViewController.m */,
+				29061AAD17FD16DB00F390CA /* MiscPreferencesViewController.h */,
+				29061AAE17FD16DB00F390CA /* MiscPreferencesViewController.m */,
+				29061AB417FD16E600F390CA /* PreferencesController.h */,
+				29061AB517FD16E600F390CA /* PreferencesController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		291BBA9C17DAED2500C771F5 /* Catagories */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,8 +236,6 @@
 			children = (
 				29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */,
 				29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */,
-				29914D9617FD027400DC6052 /* Reachability.h */,
-				29914D9717FD027400DC6052 /* Reachability.m */,
 				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
 			);
 			name = Vendor;
@@ -292,10 +308,9 @@
 		29E4625F17E51C55006F7148 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				29061AA917FD16CA00F390CA /* Preferences */,
 				29EF763417D65D9400F89D72 /* MainWindowController.h */,
 				29EF763517D65D9400F89D72 /* MainWindowController.m */,
-				2949FC8117D80AA300E1E43A /* PreferencesWindowController.h */,
-				2949FC8217D80AA300E1E43A /* PreferencesWindowController.m */,
 				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
 				2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */,
 			);
@@ -307,8 +322,9 @@
 			children = (
 				29F4A7E817D64EFE00FAA098 /* MainMenu.xib */,
 				294C8F8117ED6D0C0060EF7E /* MainWindow.xib */,
-				2949FC8617D80BC800E1E43A /* PreferencesWindow.xib */,
 				2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */,
+				29061AAC17FD16DB00F390CA /* ColorsPreferencesViewController.xib */,
+				29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */,
 			);
 			name = "User Interface";
 			path = Fetch;
@@ -485,9 +501,10 @@
 				29F4A7E417D64EFE00FAA098 /* Credits.rtf in Resources */,
 				2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */,
 				294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */,
-				2949FC8717D80BC800E1E43A /* PreferencesWindow.xib in Resources */,
 				291D513317E2A4D0008CF171 /* appcast.xml in Resources */,
 				29F4A7EA17D64EFE00FAA098 /* MainMenu.xib in Resources */,
+				29061AB317FD16DB00F390CA /* MiscPreferencesViewController.xib in Resources */,
+				29061AB117FD16DB00F390CA /* ColorsPreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,13 +591,11 @@
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
 				2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */,
 				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
-				29914D9817FD027400DC6052 /* Reachability.m in Sources */,
 				295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */,
 				295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */,
 				295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */,
 				29914D9417FD009300DC6052 /* UrlCell.m in Sources */,
 				2981D80117FBAC570039512A /* ProjectCell.m in Sources */,
-				2949FC8317D80AA300E1E43A /* PreferencesWindowController.m in Sources */,
 				29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */,
 				295EB4F017F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m in Sources */,
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
@@ -588,14 +603,17 @@
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
+				29061AB217FD16DB00F390CA /* MiscPreferencesViewController.m in Sources */,
 				2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */,
 				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
 				29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,
+				29061AB017FD16DB00F390CA /* ColorsPreferencesViewController.m in Sources */,
 				295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */,
 				2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */,
+				29061AB617FD16E600F390CA /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

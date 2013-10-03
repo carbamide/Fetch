@@ -261,8 +261,46 @@
         <customObject id="qWr-mY-2yN" customClass="MenuController">
             <connections>
                 <outlet property="delegate" destination="Oji-mK-1SW" id="lut-YY-HDE"/>
+                <outlet property="preferencesController" destination="7Ag-Q8-AwV" id="D0E-xI-FI5"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="dxD-ea-GsD"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="JyO-8F-AdX">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="131" y="159" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <view key="contentView" id="Ulk-qc-kE1">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="A8B88CD1-67F8-4E11-B32E-E452C0AEF38A" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="S5F-zK-tvu">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="34F7DAF7-76FF-4566-B578-0CF696AE395C" explicitItemIdentifier="ColorsPreferencesViewController" label="Colors" paletteLabel="Colors" image="NSColorPanel" selectable="YES" id="ect-os-2fG">
+                        <connections>
+                            <action selector="showPreferencesFor:" target="7Ag-Q8-AwV" id="OAe-RT-KP3"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B105AAB9-435C-406E-BFCF-A5492CEA4135" explicitItemIdentifier="MiscPreferencesViewController" label="Misc" paletteLabel="Misc" image="NSPreferencesGeneral" selectable="YES" id="loG-Me-6Vq">
+                        <connections>
+                            <action selector="showPreferencesFor:" target="7Ag-Q8-AwV" id="J1h-Kw-ODP"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="ect-os-2fG"/>
+                    <toolbarItem reference="loG-Me-6Vq"/>
+                </defaultToolbarItems>
+            </toolbar>
+        </window>
+        <customObject id="7Ag-Q8-AwV" customClass="PreferencesController">
+            <connections>
+                <outlet property="window" destination="JyO-8F-AdX" id="pRe-hZ-Hcq"/>
+            </connections>
+        </customObject>
     </objects>
+    <resources>
+        <image name="NSColorPanel" width="32" height="32"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
 </document>

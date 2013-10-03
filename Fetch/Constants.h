@@ -28,3 +28,5 @@ static NSString *const kMethod = @"method";
 static NSString *const kCustomPayload = @"custom_payload";
 static NSString *const kUrlDescription = @"url_description";
 static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
+static NSString *const kPingForReachability = @"ping_for_reachability";
+static NSString *const kFrequencyToPing = @"frequency_to_ping";

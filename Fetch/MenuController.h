@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class MainWindowController, PreferencesWindowController, AppDelegate;
+@class MainWindowController, PreferencesController, AppDelegate;
 
 @interface MenuController : NSObject
 
 @property (strong, nonatomic) IBOutlet MainWindowController *mainWindowController;
-@property (strong, nonatomic) PreferencesWindowController *preferencesWindow;
+@property (strong, nonatomic) IBOutlet PreferencesController *preferencesController;
 @property (weak, nonatomic) IBOutlet AppDelegate *delegate;
 
 -(IBAction)showPreferences:(id)sender;

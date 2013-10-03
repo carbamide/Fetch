@@ -7,7 +7,7 @@
 //
 
 #import "MenuController.h"
-#import "PreferencesWindowController.h"
+#import "PreferencesController.h"
 #import "MainWindowController.h"
 #import "AppDelegate.h"
 
@@ -20,12 +20,14 @@
 -(IBAction)showPreferences:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
+//    
+//    if (![self preferencesWindow]) {
+//        _preferencesWindow = [[OSBPreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+//    }
+//    
+//    [[_preferencesWindow window] makeKeyAndOrderFront:self];
     
-    if (![self preferencesWindow]) {
-        _preferencesWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }
-    
-    [[_preferencesWindow window] makeKeyAndOrderFront:self];
+    [[self preferencesController] showPreferencesWindow:nil];
 }
 
 -(IBAction)showMainWindow:(id)sender

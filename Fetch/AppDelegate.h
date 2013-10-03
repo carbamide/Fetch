@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "PreferencesWindowController.h"
 #import "MainWindowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
