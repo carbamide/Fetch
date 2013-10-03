@@ -510,6 +510,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [[self fetchButton] setEnabled:YES];
         [[self urlTextField] setEnabled:YES];
         [[self urlDescriptionTextField] setEnabled:YES];
+        
+        [[self projectSourceList] expandItem:[[self projectSourceList] itemAtRow:[[self projectSourceList] rowForItem:[tempUrl project]]]];
     }
 }
 

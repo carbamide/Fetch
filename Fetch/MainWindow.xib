@@ -138,7 +138,7 @@
                                                                         </button>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="mmC-ak-ozw" secondAttribute="trailing" constant="9" id="Cbw-BY-gX2"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="mmC-ak-ozw" secondAttribute="trailing" constant="4" id="Cbw-BY-gX2"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="addUrlButton" destination="mmC-ak-ozw" id="QmQ-jy-a2L"/>
@@ -167,14 +167,15 @@
                                                                                 <outlet property="delegate" destination="-2" id="ctK-lQ-Mjr"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <imageView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhH-cf-FVh">
-                                                                            <rect key="frame" x="214" y="3" width="17" height="17"/>
+                                                                        <imageView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhH-cf-FVh">
+                                                                            <rect key="frame" x="212" y="3" width="17" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="TZX-LK-X37"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="DhH-cf-FVh" secondAttribute="trailing" constant="3" id="Tgl-jV-Kzq"/>
+                                                                        <constraint firstAttribute="centerY" secondItem="DhH-cf-FVh" secondAttribute="centerY" constant="0.5" id="6dQ-7t-R1L"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="DhH-cf-FVh" secondAttribute="trailing" id="P2u-ha-Vd1"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="imageView" destination="Pj4-NG-srj" id="uyQ-AE-Mho"/>
