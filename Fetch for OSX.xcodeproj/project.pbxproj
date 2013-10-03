@@ -26,6 +26,7 @@
 		29061AB217FD16DB00F390CA /* MiscPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AAE17FD16DB00F390CA /* MiscPreferencesViewController.m */; };
 		29061AB317FD16DB00F390CA /* MiscPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */; };
 		29061AB617FD16E600F390CA /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB517FD16E600F390CA /* PreferencesController.m */; };
+		29061ABA17FDB26B00F390CA /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB917FDB26B00F390CA /* NSColor+Extensions.m */; };
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
 		291D513317E2A4D0008CF171 /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 291D513217E2A4D0008CF171 /* appcast.xml */; };
 		29438AFC17E222E2002BB433 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29438AFB17E222E2002BB433 /* MenuController.m */; };
@@ -90,6 +91,8 @@
 		29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiscPreferencesViewController.xib; sourceTree = "<group>"; };
 		29061AB417FD16E600F390CA /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		29061AB517FD16E600F390CA /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		29061AB817FDB26B00F390CA /* NSColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extensions.h"; sourceTree = "<group>"; };
+		29061AB917FDB26B00F390CA /* NSColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extensions.m"; sourceTree = "<group>"; };
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -198,11 +201,21 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		29061AB717FDAFFE00F390CA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				29061AA917FD16CA00F390CA /* Preferences */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		291BBA9C17DAED2500C771F5 /* Catagories */ = {
 			isa = PBXGroup;
 			children = (
 				291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */,
 				291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */,
+				29061AB817FDB26B00F390CA /* NSColor+Extensions.h */,
+				29061AB917FDB26B00F390CA /* NSColor+Extensions.m */,
 			);
 			name = Catagories;
 			sourceTree = "<group>";
@@ -308,7 +321,6 @@
 		29E4625F17E51C55006F7148 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				29061AA917FD16CA00F390CA /* Preferences */,
 				29EF763417D65D9400F89D72 /* MainWindowController.h */,
 				29EF763517D65D9400F89D72 /* MainWindowController.m */,
 				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
@@ -327,18 +339,19 @@
 				29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */,
 			);
 			name = "User Interface";
-			path = Fetch;
 			sourceTree = "<group>";
 		};
 		29EF763817D65E7D00F89D72 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				29914D9517FD009B00DC6052 /* TableView Cells */,
 				2983B07A17DAC141001852F2 /* CoreData */,
 				2957D5C117E69C6600639F02 /* Data Handling */,
 				2957D5C217E69C7300639F02 /* Singletons */,
 				29438AFA17E222E2002BB433 /* MenuController.h */,
 				29438AFB17E222E2002BB433 /* MenuController.m */,
+				29914D9517FD009B00DC6052 /* TableView Cells */,
+				29061AB717FDAFFE00F390CA /* View Controllers */,
+				29E4625F17E51C55006F7148 /* Window Controllers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -347,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				29F4A7D917D64EFC00FAA098 /* Fetch */,
-				29EF763717D65E6F00F89D72 /* User Interface */,
 				29F4A7F717D64EFE00FAA098 /* FetchTests */,
 				29F4A7D217D64EFC00FAA098 /* Frameworks */,
 				29F4A7D117D64EFC00FAA098 /* Products */,
@@ -393,7 +405,7 @@
 				295EB4DB17F32D7400F58FE2 /* Vendor */,
 				291BBA9C17DAED2500C771F5 /* Catagories */,
 				29EF763817D65E7D00F89D72 /* Classes */,
-				29E4625F17E51C55006F7148 /* Window Controllers */,
+				29EF763717D65E6F00F89D72 /* User Interface */,
 				29F4A7DA17D64EFD00FAA098 /* Supporting Files */,
 			);
 			path = Fetch;
@@ -601,6 +613,7 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
+				29061ABA17FDB26B00F390CA /* NSColor+Extensions.m in Sources */,
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				29061AB217FD16DB00F390CA /* MiscPreferencesViewController.m in Sources */,

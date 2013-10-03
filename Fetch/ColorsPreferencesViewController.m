@@ -9,6 +9,7 @@
 #import "ColorsPreferencesViewController.h"
 #import "Constants.h"
 #import "NSUserDefaults+NSColor.h"
+#import "NSColor+Extensions.h"
 
 @implementation ColorsPreferencesViewController
 

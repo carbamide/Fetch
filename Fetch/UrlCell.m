@@ -15,7 +15,6 @@
 
 @interface UrlCell()
 @property (strong, nonatomic) NSTimer *pingTimer;
-@property (nonatomic) dispatch_queue_t lowQueue;
 
 @end
 @implementation UrlCell
@@ -60,12 +59,7 @@
 {
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         if (![[[self currentUrl] url] isEqualToString:@""]) {
-            
-            if (!_lowQueue) {
-                _lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-            }
-            
-            dispatch_async(_lowQueue, ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                 BOOL verifyUrl = [self urlVerification];
                 
                 if (verifyUrl) {
