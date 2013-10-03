@@ -1154,7 +1154,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         Projects *tempProject = item;
         
         [[cell textField] setStringValue:[tempProject name]];
-        [[cell imageView] setImage:[NSImage imageNamed:@"Project"]];
         [cell setProject:tempProject];
         
         [[cell addUrlButton] setHidden:NO];
@@ -1176,8 +1175,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         else {
             [[cell textField] setStringValue:[tempUrl url]];
         }
-        
-        [[cell imageView] setImage:[NSImage imageNamed:@"URL"]];
         
         return cell;
     }
