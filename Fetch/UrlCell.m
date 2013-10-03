@@ -33,7 +33,7 @@
     [super awakeFromNib];
     
     [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
@@ -48,28 +48,41 @@
     }
 }
 
+-(void)viewWillMoveToSuperview:(NSView *)newSuperview
+{
+    [super viewWillMoveToSuperview:newSuperview];
+    
+    [[self pingTimer] invalidate];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void)dealloc
 {
     [[self pingTimer] invalidate];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
 {
+    __weak UrlCell *blockSelf = self;
+    
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
-        if (![[[self currentUrl] url] isEqualToString:@""]) {
+        UrlCell *strongSelf = blockSelf;
+        
+        if (![[[self currentUrl] url] isEqualToString:@""] && [[self currentUrl] url]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                BOOL verifyUrl = [self urlVerification];
+                BOOL verifyUrl = [strongSelf urlVerification];
                 
-                if (verifyUrl) {                    
+                if (verifyUrl) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
+                        [[strongSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
                     });
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[self statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
+                        [[strongSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
                     });
                 }
             });

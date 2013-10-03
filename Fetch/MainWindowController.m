@@ -81,9 +81,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [[self menuController] setMainWindowController:self];
     
-    [[Projects all] each:^(Projects *object) {
-        [[self projectList] addObject:object];
-    }];
+    [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
     
     [[self projectSourceList] reloadData];
     
@@ -365,10 +363,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         if ([ProjectHandler importFromPath:[[openPanel URL] path]]) {
             [[self projectList] removeAllObjects];
             
-            [[Projects all] each:^(Projects *object) {
-                [[self projectList] addObject:object];
-            }];
-            
+            [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+
             [[self projectSourceList] reloadData];
         }
     }
@@ -1193,7 +1189,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
     NSOutlineView *outlineView = [notification object];
-        
+    
     id selectedItem = [outlineView itemAtRow:[outlineView selectedRow]];
     
     if ([selectedItem isKindOfClass:[Projects class]]) {
@@ -1201,8 +1197,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         
         [self loadProject:tempProject];
     }
-    else
-    {
+    else {
         Urls *tempItem = selectedItem;
         
         if ([self currentProject] != [tempItem project]) {
@@ -1232,10 +1227,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     if ([ProjectHandler importFromPath:[draggedUrl path]]) {
         [[self projectList] removeAllObjects];
         
-        [[Projects all] each:^(Projects *object) {
-            [[self projectList] addObject:object];
-        }];
-        
+        [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+
         [[self projectSourceList] reloadData];
         
         return YES;
