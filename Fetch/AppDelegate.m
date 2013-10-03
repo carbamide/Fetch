@@ -21,13 +21,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    /*
-     static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
-     static NSString *const kPingForReachability = @"ping_for_reachability";
-     static NSString *const kFrequencyToPing = @"frequency_to_ping";
-     */
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kJsonSyntaxHighlighting: @YES, kPingForReachability: @YES, kFrequencyToPing, @"10"}];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kJsonSyntaxHighlighting: @YES, kPingForReachability: @YES, kFrequencyToPing: @"10"}];
     
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
  
