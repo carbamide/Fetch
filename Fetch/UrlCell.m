@@ -15,16 +15,19 @@
 
 @interface UrlCell()
 @property (strong, nonatomic) NSTimer *pingTimer;
-
+@property (weak, nonatomic) UrlCell *weakSelf;
 @end
+
 @implementation UrlCell
 
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
+    
     if (self) {
-        
+        _weakSelf = self;
     }
+    
     return self;
 }
 
@@ -69,20 +72,18 @@
     __weak UrlCell *blockSelf = self;
     
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
-        UrlCell *strongSelf = blockSelf;
-        
-        if (![[[self currentUrl] url] isEqualToString:@""] && [[self currentUrl] url]) {
+        if (![[[self currentUrl] url] isEqualToString:@""]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                BOOL verifyUrl = [strongSelf urlVerification];
+                BOOL verifyUrl = [blockSelf urlVerification];
                 
                 if (verifyUrl) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[strongSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
+                        [[blockSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
                     });
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[strongSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
+                        [[blockSelf statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
                     });
                 }
             });
@@ -125,14 +126,14 @@
             [_pingTimer invalidate];
         }
         
-        [self createTimerWithTimeInterval:[frequencyToPing intValue]];
+        [_weakSelf createTimerWithTimeInterval:[frequencyToPing intValue]];
         
-        [[self statusImage] setHidden:NO];
+        [[_weakSelf statusImage] setHidden:NO];
     }
     else {
-        [[self pingTimer] invalidate];
+        [[_weakSelf pingTimer] invalidate];
         
-        [[self statusImage] setHidden:YES];
+        [[_weakSelf statusImage] setHidden:YES];
     }
 }
 
