@@ -50,10 +50,10 @@
 		29914D9417FD009300DC6052 /* UrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9317FD009300DC6052 /* UrlCell.m */; };
 		29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29914D9917FD02B800DC6052 /* SystemConfiguration.framework */; };
 		29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */; };
+		29A5A3FC17FF74E700837046 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5A3FB17FF74E700837046 /* Projects.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
 		29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58ED17DE0BFD004168AE /* Parameters.m */; };
-		29BC58F117DE0BFD004168AE /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58F017DE0BFD004168AE /* Projects.m */; };
 		29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BEA3FC17DD1ADB005048F1 /* ProjectHandler.m */; };
 		29C3D1E517D77875004B405E /* HeaderNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29C3D1E317D77875004B405E /* HeaderNames.plist */; };
 		29E137E717E657B10088E1D4 /* NodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E137E617E657B10088E1D4 /* NodeObject.m */; };
@@ -130,14 +130,14 @@
 		29914D9917FD02B800DC6052 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		29A5A3FA17FF74E700837046 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
+		29A5A3FB17FF74E700837046 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29BC58E617DE0BFD004168AE /* Urls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Urls.h; sourceTree = "<group>"; };
 		29BC58E717DE0BFD004168AE /* Urls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Urls.m; sourceTree = "<group>"; };
 		29BC58E917DE0BFD004168AE /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
 		29BC58EA17DE0BFD004168AE /* Headers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Headers.m; sourceTree = "<group>"; };
 		29BC58EC17DE0BFD004168AE /* Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameters.h; sourceTree = "<group>"; };
 		29BC58ED17DE0BFD004168AE /* Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parameters.m; sourceTree = "<group>"; };
-		29BC58EF17DE0BFD004168AE /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
-		29BC58F017DE0BFD004168AE /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29BEA3FB17DD1ADB005048F1 /* ProjectHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectHandler.h; sourceTree = "<group>"; };
 		29BEA3FC17DD1ADB005048F1 /* ProjectHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectHandler.m; sourceTree = "<group>"; };
 		29C3D1E317D77875004B405E /* HeaderNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HeaderNames.plist; sourceTree = "<group>"; };
@@ -301,8 +301,8 @@
 				29BC58EA17DE0BFD004168AE /* Headers.m */,
 				29BC58EC17DE0BFD004168AE /* Parameters.h */,
 				29BC58ED17DE0BFD004168AE /* Parameters.m */,
-				29BC58EF17DE0BFD004168AE /* Projects.h */,
-				29BC58F017DE0BFD004168AE /* Projects.m */,
+				29A5A3FA17FF74E700837046 /* Projects.h */,
+				29A5A3FB17FF74E700837046 /* Projects.m */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -602,7 +602,6 @@
 				29EF763617D65D9400F89D72 /* MainWindowController.m in Sources */,
 				29F4A7E717D64EFE00FAA098 /* AppDelegate.m in Sources */,
 				2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */,
-				29BC58F117DE0BFD004168AE /* Projects.m in Sources */,
 				295EB4EE17F32D8C00F58FE2 /* CNSplitViewToolbarButton.m in Sources */,
 				295EB4EC17F32D8C00F58FE2 /* CNSplitViewDraggingHandle.m in Sources */,
 				295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */,
@@ -627,6 +626,7 @@
 				295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */,
 				2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */,
 				29061AB617FD16E600F390CA /* PreferencesController.m in Sources */,
+				29A5A3FC17FF74E700837046 /* Projects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

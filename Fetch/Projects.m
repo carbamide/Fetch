@@ -1,8 +1,8 @@
 //
 //  Projects.m
-//  Fetch
+//  Fetch for OSX
 //
-//  Created by Josh on 9/9/13.
+//  Created by Josh on 10/4/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @implementation Projects
 
 @dynamic name;
+@dynamic expanded;
 @dynamic urls;
 
 @end

@@ -1,8 +1,8 @@
 //
 //  Projects.h
-//  Fetch
+//  Fetch for OSX
 //
-//  Created by Josh on 9/9/13.
+//  Created by Josh on 10/4/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Projects : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * expanded;
 @property (nonatomic, retain) NSSet *urls;
 @end
 

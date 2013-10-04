@@ -20,6 +20,9 @@
 @property (nonatomic, retain) Projects *project;
 @property (nonatomic, retain) NSSet *parameters;
 @property (nonatomic, retain) NSSet *headers;
+@property (nonatomic, retain) NSString *siteStatus;
+@property (nonatomic, retain) NSDate *createdAt;
+
 @end
 
 @interface Urls (CoreDataGeneratedAccessors)

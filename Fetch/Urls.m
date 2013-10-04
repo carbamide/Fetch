@@ -21,5 +21,7 @@
 @dynamic parameters;
 @dynamic headers;
 @dynamic urlDescription;
+@dynamic siteStatus;
+@dynamic createdAt;
 
 @end

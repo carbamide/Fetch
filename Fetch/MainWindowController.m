@@ -17,6 +17,15 @@
 #import "JsonViewerWindowController.h"
 #import "ProjectCell.h"
 #import "UrlCell.h"
+#import "NSTimer+Blocks.h"
+
+enum {
+    SiteUp = 0,
+    SiteDown,
+    SiteInconclusive
+};
+
+typedef NSUInteger UrlStatus;
 
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
@@ -30,6 +39,8 @@
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
 @property (strong, nonatomic) CNSplitViewToolbarButton *removeButton;
 @property (strong, nonatomic) CNSplitViewToolbarButton *exportButton;
+@property (strong, nonatomic) NSMutableArray *urlCellArray;
+@property (strong, nonatomic) NSTimer *pingTimer;
 
 @end
 
@@ -77,11 +88,26 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [super windowDidLoad];
     
+    BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
+    
+    NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
+    
+    if (checkSiteReachability) {
+        [self createTimerWithTimeInterval:[frequencyToPing intValue]];
+    }
+    else {
+        for (UrlCell *cell in [self urlCellArray]) {
+            [[cell statusImage] setHidden:YES];
+        }
+    }
+    
     [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType]];
     
     [[self menuController] setMainWindowController:self];
     
     [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+    
+    [[self urlCellArray] removeAllObjects];
     
     [[self projectSourceList] reloadData];
     
@@ -127,11 +153,24 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self splitView] attachToolbar:[self toolbar] toSubViewAtIndex:0 onEdge:CNSplitViewToolbarEdgeBottom];
     
     [[self splitView] showToolbarAnimated:NO];
+    
+    for (int index = 0; index < [[self projectList] count]; index++) {
+        id item = [[self projectSourceList] itemAtRow:index];
+        
+        if ([item isKindOfClass:[Projects class]]) {
+            
+            BOOL shouldExpand = [[(Projects *)item expanded] boolValue];
+            
+            if (shouldExpand) {
+                [[[self projectSourceList] animator] expandItem:item];
+            }
+        }
+    }
 }
+
 -(void)awakeFromNib
 {
     NSLog(@"%s", __FUNCTION__);
-    
 }
 
 -(void)preferencesChanges:(NSNotification *)aNotification
@@ -143,6 +182,29 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [[self outputTextView] setTextColor:foregroundColor];
     [[self outputTextView] setBackgroundColor:backgroundColor];
+    
+    BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
+    
+    NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
+    
+    if (checkSiteReachability) {
+        if ([_pingTimer isValid]) {
+            [_pingTimer invalidate];
+        }
+        
+        [self createTimerWithTimeInterval:[frequencyToPing intValue]];
+        
+        for (UrlCell *cell in [self urlCellArray]) {
+            [[cell statusImage] setHidden:NO];
+        }
+    }
+    else {
+        [[self pingTimer] invalidate];
+        
+        for (UrlCell *cell in [self urlCellArray]) {
+            [[cell statusImage] setHidden:YES];
+        }
+    }
 }
 
 -(void)setupSegmentedControls
@@ -225,13 +287,14 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     if (addURL) {
         Urls *tempUrl = [Urls create];
         
+        [tempUrl setCreatedAt:[NSDate date]];
         [tempUrl setMethod:[NSNumber numberWithInteger:[[self methodCombo] indexOfSelectedItem]]];
         [tempUrl setUrl:[[self urlTextField] stringValue]];
         
         [self setCurrentUrl:tempUrl];
         [[self exportButton] setEnabled:YES];
         [[self removeButton] setEnabled:YES];
-
+        
         if ([self currentProject]) {
             [[self currentProject] addUrlsObject:tempUrl];
             
@@ -364,7 +427,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             [[self projectList] removeAllObjects];
             
             [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-
+            
+            [[self urlCellArray] removeAllObjects];
+            
             [[self projectSourceList] reloadData];
         }
     }
@@ -414,7 +479,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             [self setCurrentProject:nil];
             [[self exportButton] setEnabled:NO];
             [[self removeButton] setEnabled:NO];
-
+            
             [self unloadData];
         }
         
@@ -434,6 +499,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [tempUrl delete];
     }
     
+    [[self urlCellArray] removeAllObjects];
     
     [[self projectSourceList] reloadData];
 }
@@ -476,7 +542,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [self setCurrentProject:project];
     [[self exportButton] setEnabled:YES];
     [[self removeButton] setEnabled:YES];
-
+    
     [[self fetchButton] setEnabled:YES];
     [[self urlTextField] setEnabled:YES];
     [[self urlDescriptionTextField] setEnabled:YES];
@@ -494,6 +560,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     if ([self currentProject]) {
         Urls *tempUrl = [Urls create];
         
+        [tempUrl setCreatedAt:[NSDate date]];
         [tempUrl setUrlDescription:@"New URL"];
         
         [[self currentProject] addUrlsObject:tempUrl];
@@ -501,6 +568,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [[self currentProject] save];
         
         [[self urlList] addObject:tempUrl];
+        
+        [[self urlCellArray] removeAllObjects];
+        
         [[self projectSourceList] reloadData];
         
         [[self fetchButton] setEnabled:YES];
@@ -517,13 +587,16 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     Urls *tempUrl = [Urls create];
     
+    [tempUrl setCreatedAt:[NSDate date]];
     [tempUrl setUrlDescription:@"New URL"];
     
     [tempProject addUrlsObject:tempUrl];
-    
     [tempProject save];
     
     [[self urlList] addObject:tempUrl];
+    
+    [[self urlCellArray] removeAllObjects];
+    
     [[self projectSourceList] reloadData];
     
     [[self fetchButton] setEnabled:YES];
@@ -579,6 +652,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [[self projectList] addObject:tempProject];
     
+    [[self urlCellArray] removeAllObjects];
+    
     [[self projectSourceList] reloadData];
     
     [[self projectSourceList] selectRowIndexes:[NSIndexSet indexSetWithIndex:[[self projectSourceList] numberOfRows] - 1] byExtendingSelection:NO];
@@ -601,7 +676,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
                 
                 [[self exportButton] setEnabled:NO];
                 [[self removeButton] setEnabled:NO];
-
+                
                 [[self jsonOutputButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 [[self urlTextField] setEnabled:NO];
@@ -653,6 +728,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             }
         }
     }
+
+    [[self urlCellArray] removeAllObjects];
     
     [[self projectSourceList] reloadData];
 }
@@ -671,7 +748,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self progressIndicator] startAnimation:self];
     
     if ([[[self urlTextField] stringValue] isEqualToString:@""] || ![[self urlTextField] stringValue]) {
-        
         NSAlert *alert = [[NSAlert alloc] init];
         
         [alert addButtonWithTitle:@"OK"];
@@ -776,6 +852,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
+        
+        [[self urlCellArray] removeAllObjects];
         
         [[self projectSourceList] reloadData];
     }
@@ -1099,7 +1177,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     else {
         Projects *tempProject = item;
         
-        NSArray *tempArray = [NSArray arrayWithArray:[[tempProject urls] allObjects]];
+        NSArray *tempArray = [NSArray arrayWithArray:[[[tempProject urls] allObjects] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]]]];
         
         return tempArray[index];
     }
@@ -1121,6 +1199,22 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
 {
     return YES;
+}
+
+- (void)outlineViewItemDidExpand:(NSNotification *)notification;
+{
+    Projects *project = [[notification userInfo] valueForKey:@"NSObject"];
+    
+    [project setExpanded:@YES];
+    [project save];
+}
+
+- (void)outlineViewItemDidCollapse:(NSNotification *)notification
+{
+    Projects *project = [[notification userInfo] valueForKey:@"NSObject"];
+    
+    [project setExpanded:@NO];
+    [project save];
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
@@ -1157,18 +1251,28 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         return cell;
     }
     else {
+        if (![self urlCellArray]) {
+            [self setUrlCellArray:[NSMutableArray array]];
+        }
+        
         UrlCell *cell = [outlineView makeViewWithIdentifier:UrlCellIdentifier owner:self];
         
         Urls *tempUrl = item;
         
         [cell setCurrentUrl:tempUrl];
-                
+        
+        if ([[cell currentUrl] siteStatus]) {
+            [[cell statusImage] setImage:[NSImage imageNamed:[tempUrl siteStatus]]];
+        }
+        
         if ([tempUrl urlDescription]) {
             [[cell textField] setStringValue:[tempUrl urlDescription]];
         }
         else {
             [[cell textField] setStringValue:[tempUrl url]];
         }
+        
+        [[self urlCellArray] addObject:cell];
         
         return cell;
     }
@@ -1228,7 +1332,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [[self projectList] removeAllObjects];
         
         [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-
+        
+        [[self urlCellArray] removeAllObjects];
+        
         [[self projectSourceList] reloadData];
         
         return YES;
@@ -1269,6 +1375,69 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
 {
     return kMinimumSplitViewSize;
+}
+
+#pragma mark
+#pragma mark UrlCell Delegate
+
+-(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
+{
+    _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
+        
+        for (UrlCell *cell in [self urlCellArray]) {
+            if (![[[cell currentUrl] url] isEqualToString:@""]) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    UrlStatus status = [self urlVerification:[[cell currentUrl] url]];
+                    
+                    if (status == SiteUp) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
+                            
+                            [[cell currentUrl] setSiteStatus:NSImageNameStatusAvailable];
+                            [[cell currentUrl] save];
+                        });
+                    }
+                    else if (status == SiteInconclusive) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
+                            
+                            [[cell currentUrl] setSiteStatus:NSImageNameStatusPartiallyAvailable];
+                            [[cell currentUrl] save];
+                        });
+                    }
+                    else if (status == SiteDown) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
+                            
+                            [[cell currentUrl] setSiteStatus:NSImageNameStatusUnavailable];
+                            [[cell currentUrl] save];
+                        });
+                    }
+                });
+            }
+        }
+    } repeats:YES];
+}
+
+-(UrlStatus)urlVerification:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    NSHTTPURLResponse *response = nil;
+    
+    if ([NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]) {
+        if ([response statusCode] > 199 && [response statusCode] < 300) {
+            return SiteUp;
+        }
+        else if ([response statusCode] > 499 && [response statusCode] < 600){
+            return SiteInconclusive;
+        }
+        else {
+            return SiteDown;
+        }
+    }
+    
+    return SiteDown;
 }
 
 @end
