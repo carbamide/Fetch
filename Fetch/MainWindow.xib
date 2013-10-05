@@ -239,10 +239,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="239" id="0lD-XB-WmG"/>
-                                    <constraint firstAttribute="bottom" secondItem="9fv-vy-OC0" secondAttribute="bottom" id="7Nv-0G-85e"/>
-                                    <constraint firstItem="9fv-vy-OC0" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="971-D2-37Q"/>
-                                    <constraint firstItem="9fv-vy-OC0" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="Khf-r3-0q0"/>
-                                    <constraint firstAttribute="trailing" secondItem="9fv-vy-OC0" secondAttribute="trailing" id="wyN-XP-lyG"/>
+                                    <constraint firstAttribute="trailing" secondItem="9fv-vy-OC0" secondAttribute="trailing" id="2v3-et-r9u"/>
+                                    <constraint firstItem="9fv-vy-OC0" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="8gz-U8-Bjz"/>
+                                    <constraint firstAttribute="bottom" secondItem="9fv-vy-OC0" secondAttribute="bottom" id="Lqm-XO-O3o"/>
+                                    <constraint firstItem="9fv-vy-OC0" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" id="bbd-UW-u8Y"/>
                                 </constraints>
                             </customView>
                             <customView id="klm-kG-KRD">
@@ -576,7 +576,7 @@
                                         <tabViewItems>
                                             <tabViewItem label="Raw" identifier="1" id="eLb-8A-b8R">
                                                 <view key="view" id="9hg-e3-ewk">
-                                                    <rect key="frame" x="10" y="33" width="493" height="232"/>
+                                                    <rect key="frame" x="10" y="33" width="676" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
@@ -602,9 +602,6 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </clipView>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="213" id="EaM-Hg-D02"/>
-                                                            </constraints>
                                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="2iF-IU-S5H">
                                                                 <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
@@ -616,10 +613,10 @@
                                                         </scrollView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="om5-xj-Ac6" secondAttribute="bottom" constant="17" id="DIv-0H-fKd"/>
-                                                        <constraint firstAttribute="trailing" secondItem="om5-xj-Ac6" secondAttribute="trailing" constant="-166" id="RWc-y8-aWH"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="om5-xj-Ac6" secondAttribute="bottom" constant="17" id="hAt-KM-K26"/>
-                                                        <constraint firstItem="om5-xj-Ac6" firstAttribute="leading" secondItem="9hg-e3-ewk" secondAttribute="leading" constant="17" id="nOr-um-rRI"/>
+                                                        <constraint firstItem="om5-xj-Ac6" firstAttribute="top" secondItem="9hg-e3-ewk" secondAttribute="top" constant="2" id="MBN-Ul-YBB"/>
+                                                        <constraint firstAttribute="bottom" secondItem="om5-xj-Ac6" secondAttribute="bottom" constant="17" id="bGc-mh-fjS"/>
+                                                        <constraint firstItem="om5-xj-Ac6" firstAttribute="leading" secondItem="9hg-e3-ewk" secondAttribute="leading" constant="17" id="qaI-qg-gpZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="om5-xj-Ac6" secondAttribute="trailing" constant="17" id="tO4-G0-nOw"/>
                                                     </constraints>
                                                 </view>
                                             </tabViewItem>
@@ -757,9 +754,6 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </clipView>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="642" id="64j-A1-MNV"/>
-                                                            </constraints>
                                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="WLG-g6-UeU">
                                                                 <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
@@ -775,10 +769,10 @@
                                                         </scrollView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="RWf-JZ-6eU" firstAttribute="leading" secondItem="TOn-wU-NsA" secondAttribute="leading" constant="17" id="eI2-Gy-dS2"/>
-                                                        <constraint firstAttribute="trailing" secondItem="RWf-JZ-6eU" secondAttribute="trailing" constant="17" id="fjS-V9-7Jx"/>
-                                                        <constraint firstAttribute="bottom" secondItem="RWf-JZ-6eU" secondAttribute="bottom" constant="16" id="gjz-As-yWr"/>
-                                                        <constraint firstItem="RWf-JZ-6eU" firstAttribute="top" secondItem="TOn-wU-NsA" secondAttribute="top" constant="3" id="tKr-7m-haj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RWf-JZ-6eU" secondAttribute="trailing" constant="17" id="Ndc-yC-Dzj"/>
+                                                        <constraint firstItem="RWf-JZ-6eU" firstAttribute="top" secondItem="TOn-wU-NsA" secondAttribute="top" constant="3" id="WJv-03-LKF"/>
+                                                        <constraint firstItem="RWf-JZ-6eU" firstAttribute="leading" secondItem="TOn-wU-NsA" secondAttribute="leading" constant="17" id="aUe-zF-8Iw"/>
+                                                        <constraint firstAttribute="bottom" secondItem="RWf-JZ-6eU" secondAttribute="bottom" constant="16" id="kSZ-mh-Qen"/>
                                                     </constraints>
                                                 </view>
                                             </tabViewItem>

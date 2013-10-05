@@ -36,7 +36,8 @@
                                                               kBackgroundColor: [defaultBackgroundColor colorForRegisterDefaults],
                                                               kForegroundColor: [defaultForegroundColor colorForRegisterDefaults],
                                                               kSuccessColor: [defaultSuccessColor colorForRegisterDefaults],
-                                                              kFailureColor: [defaultFailureColor colorForRegisterDefaults]
+                                                              kFailureColor: [defaultFailureColor colorForRegisterDefaults],
+                                                              @"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints": @NO
                                                               }];
     
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
