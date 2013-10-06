@@ -9,14 +9,6 @@
 #import "CNSplitView.h"
 #import "MenuController.h"
 
-enum {
-    GET_METHOD = 0,
-    POST_METHOD = 1,
-    PUT_METHOD = 2,
-    DELETE_METHOD = 3
-};
-typedef NSUInteger HttpMethod;
-
 @class JsonViewerWindowController;
 
 @interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination>

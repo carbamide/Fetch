@@ -72,7 +72,7 @@
     [self setImagePosition:NSImageLeft];
     [self setButtonType:NSMomentaryPushInButton];
     [self setBezelStyle:NSSmallSquareBezelStyle];
-    [self setTitle:@""];
+    [self setTitle:[NSString blankString]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableMe) name:CNSplitViewToolbarItemsEnableNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableMe) name:CNSplitViewToolbarItemsDisableNotification object:nil];

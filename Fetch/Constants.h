@@ -6,6 +6,21 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
+enum {
+    SiteUp = 0,
+    SiteDown,
+    SiteInconclusive
+};
+typedef NSUInteger UrlStatus;
+
+enum {
+    GET_METHOD = 0,
+    POST_METHOD = 1,
+    PUT_METHOD = 2,
+    DELETE_METHOD = 3
+};
+typedef NSUInteger HttpMethod;
+
 static NSString *const kInsertValue = @"Insert Value";
 static NSString *const kInsertName = @"Insert Name";
 static NSString *const kValue = @"Value";
@@ -30,3 +45,7 @@ static NSString *const kUrlDescription = @"url_description";
 static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
 static NSString *const kPingForReachability = @"ping_for_reachability";
 static NSString *const kFrequencyToPing = @"frequency_to_ping";
+static NSString *const kUTITypePublicFile = @"public.file-url";
+
+static int const kProjectListSplitViewSide = 0;
+static int const kMinimumSplitViewSize = 300;

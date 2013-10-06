@@ -20,13 +20,7 @@
 -(IBAction)showPreferences:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
-//    
-//    if (![self preferencesWindow]) {
-//        _preferencesWindow = [[OSBPreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
-//    }
-//    
-//    [[_preferencesWindow window] makeKeyAndOrderFront:self];
-    
+
     [[self preferencesController] showPreferencesWindow:nil];
 }
 

@@ -50,6 +50,7 @@
 		29914D9417FD009300DC6052 /* UrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9317FD009300DC6052 /* UrlCell.m */; };
 		29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29914D9917FD02B800DC6052 /* SystemConfiguration.framework */; };
 		29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */; };
+		29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29992B4D17FFADE7003EE651 /* NSString+Extensions.m */; };
 		29A5A3FC17FF74E700837046 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5A3FB17FF74E700837046 /* Projects.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
@@ -130,6 +131,9 @@
 		29914D9917FD02B800DC6052 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		29992B4C17FFADE7003EE651 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		29992B4D17FFADE7003EE651 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		29992B4F17FFAE4C003EE651 /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
 		29A5A3FA17FF74E700837046 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
 		29A5A3FB17FF74E700837046 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29A5A3FD17FF867900837046 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -216,6 +220,9 @@
 				291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */,
 				29061AB817FDB26B00F390CA /* NSColor+Extensions.h */,
 				29061AB917FDB26B00F390CA /* NSColor+Extensions.m */,
+				29992B4C17FFADE7003EE651 /* NSString+Extensions.h */,
+				29992B4D17FFADE7003EE651 /* NSString+Extensions.m */,
+				29992B4F17FFAE4C003EE651 /* Extensions.h */,
 			);
 			name = Catagories;
 			sourceTree = "<group>";
@@ -620,6 +627,7 @@
 				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
 				29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
+				29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,
 				29061AB017FD16DB00F390CA /* ColorsPreferencesViewController.m in Sources */,

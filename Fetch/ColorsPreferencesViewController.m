@@ -32,11 +32,7 @@
     
     for (int i = 0; i < [preferenceKeys count]; i++) {
         NSColor *color = [[NSUserDefaults standardUserDefaults] colorForKey:preferenceKeys[i]];
-        
-        if (!color) {
-            break;
-        }
-        
+
         switch (i) {
             case 0:
                 [[self separatorColorWell] setColor:color];

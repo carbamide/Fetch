@@ -100,7 +100,7 @@ static CGFloat kDefaultImageFraction, kDefaultImageEnabledFraction, kDefaultImag
     NSSize imageSize = image.size;
     NSRect imageRect = NSZeroRect;
 
-    if (![self.attributedTitle.string isEqualToString:@""]) {
+    if (![self.attributedTitle.string isEqualToString:[NSString blankString]]) {
         switch (self.imagePosition) {
             case NSImageRight: {
                 imageRect = NSMakeRect(NSWidth(controlView.frame) - imageSize.width - kCNSplitViewToolbarButtonImageInset,

@@ -15,8 +15,8 @@
     self = [super init];
     
     if (self) {
-        [self setNodeTitle:@""];
-        [self setNodeValue:@""];
+        [self setNodeTitle:[NSString blankString]];
+        [self setNodeValue:[NSString blankString]];
         [self setIsArray:NO];
         [self setIsLeaf:YES];
     }

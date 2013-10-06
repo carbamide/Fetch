@@ -19,14 +19,6 @@
 #import "UrlCell.h"
 #import "NSTimer+Blocks.h"
 
-enum {
-    SiteUp = 0,
-    SiteDown,
-    SiteInconclusive
-};
-
-typedef NSUInteger UrlStatus;
-
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
@@ -44,9 +36,6 @@ typedef NSUInteger UrlStatus;
 
 @end
 
-static int const kProjectListSplitViewSide = 0;
-static int const kMinimumSplitViewSize = 300;
-static NSString *const kUTITypePublicFile = @"public.file-url";
 @implementation MainWindowController
 
 #pragma mark
@@ -88,6 +77,9 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [super windowDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:@"ADD_URL" object:nil];
+    
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
     NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
@@ -106,27 +98,48 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self menuController] setMainWindowController:self];
     
     [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-    
-    [[self urlCellArray] removeAllObjects];
-    
     [[self projectSourceList] reloadData];
     
     [self preferencesChanges:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrlFromNotification:) name:@"ADD_URL" object:nil];
-    
     [self setupSegmentedControls];
     
     [[self customPayloadTextView] setValue:@"Place custom payload text here..." forKey:@"placeholderString"];
     
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
     
+    [self setupSplitviewControls];
+    
+    for (int index = 0; index < [[self projectList] count]; index++) {
+        id item = [[self projectSourceList] itemAtRow:index];
+        
+        if ([item isKindOfClass:[Projects class]]) {
+            
+            BOOL shouldExpand = [[(Projects *)item expanded] boolValue];
+            
+            if (shouldExpand) {
+                [[[self projectSourceList] animator] expandItem:item];
+            }
+        }
+    }
+}
+
+-(void)awakeFromNib
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+
+#pragma mark
+#pragma mark Methods
+
+- (void)setupSplitviewControls
+{
+    NSLog(@"%s", __FUNCTION__);
+    
     [self setToolbar:[[CNSplitViewToolbar alloc] init]];
     
     NSMenu *contextMenu = [[NSMenu alloc] init];
-    [contextMenu addItemWithTitle:@"Add New Project" action:@selector(addProject) keyEquivalent:@""];
-    [contextMenu addItemWithTitle:@"Add New URL" action:@selector(addUrl:) keyEquivalent:@""];
+    [contextMenu addItemWithTitle:@"Add New Project" action:@selector(addProject) keyEquivalent:[NSString blankString]];
+    [contextMenu addItemWithTitle:@"Add New URL" action:@selector(addUrl:) keyEquivalent:[NSString blankString]];
     [contextMenu setDelegate:self];
     
     CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] initWithContextMenu:contextMenu];
@@ -153,24 +166,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self splitView] attachToolbar:[self toolbar] toSubViewAtIndex:0 onEdge:CNSplitViewToolbarEdgeBottom];
     
     [[self splitView] showToolbarAnimated:NO];
-    
-    for (int index = 0; index < [[self projectList] count]; index++) {
-        id item = [[self projectSourceList] itemAtRow:index];
-        
-        if ([item isKindOfClass:[Projects class]]) {
-            
-            BOOL shouldExpand = [[(Projects *)item expanded] boolValue];
-            
-            if (shouldExpand) {
-                [[[self projectSourceList] animator] expandItem:item];
-            }
-        }
-    }
-}
-
--(void)awakeFromNib
-{
-    NSLog(@"%s", __FUNCTION__);
 }
 
 -(void)preferencesChanges:(NSNotification *)aNotification
@@ -226,6 +221,24 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     }
 }
 
+-(void)unloadData
+{
+    [[self jsonOutputButton] setEnabled:NO];
+    [[self fetchButton] setEnabled:NO];
+    [[self urlTextField] setEnabled:NO];
+    [[self urlDescriptionTextField] setEnabled:NO];
+    
+    [[self urlList] removeAllObjects];
+    [[self headerDataSource] removeAllObjects];
+    [[self paramDataSource] removeAllObjects];
+    
+    [[self headersTableView] reloadData];
+    [[self parametersTableView] reloadData];
+}
+
+#pragma mark 
+#pragma mark Request Logging
+
 - (void)appendToOutput:(NSString *)text color:(NSColor *)color
 {
     NSLog(@"%s", __FUNCTION__);
@@ -244,11 +257,26 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     });
 }
 
+-(void)logReqest:(NSMutableURLRequest *)request
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
+    [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:kSuccessColor]];
+    [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
+    [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kSuccessColor]];
+}
+
+#pragma mark
+#pragma mark Url Handling
+
 -(BOOL)addToUrlListIfUnique
 {
     NSLog(@"%s", __FUNCTION__);
     
-    if ([[self urlTextField] stringValue] == nil || [[[self urlTextField] stringValue] isEqualToString:@""]) {
+    if ([[self urlTextField] stringValue] == nil || [[[self urlTextField] stringValue] isEqualToString:[NSString blankString]]) {
         return NO;
     }
     
@@ -314,19 +342,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return YES;
 }
 
--(void)logReqest:(NSMutableURLRequest *)request
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
-    
-    [self appendToOutput:[request HTTPMethod] color:[userDefaults colorForKey:kSuccessColor]];
-    [self appendToOutput:[NSString stringWithFormat:@"%@", [request allHTTPHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
-    [self appendToOutput:[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kSuccessColor]];
-}
-
 -(void)urlSelection:(Urls *)url
 {
     NSLog(@"%s", __FUNCTION__);
@@ -343,14 +358,14 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         [[self customPayloadTextView] setString:[tempUrl customPayload]];
     }
     else {
-        [[self customPayloadTextView] setString:@""];
+        [[self customPayloadTextView] setString:[NSString blankString]];
     }
     
     if ([tempUrl urlDescription]) {
         [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
     }
     else {
-        [[self urlDescriptionTextField] setStringValue:@""];
+        [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
     }
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
@@ -411,6 +426,43 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     }
 }
 
+-(void)addUrl:(id)sender
+{
+    Projects *tempProject = nil;
+    
+    if ([sender isKindOfClass:[NSNotification class]]) {
+        tempProject = [(NSNotification *)sender userInfo][@"project"];
+    }
+    else {
+        tempProject = [self currentProject];
+    }
+    
+    if (tempProject) {
+        Urls *tempUrl = [Urls create];
+        
+        [tempUrl setCreatedAt:[NSDate date]];
+        [tempUrl setUrlDescription:@"New URL"];
+        
+        [[self currentProject] addUrlsObject:tempUrl];
+        
+        [[self currentProject] save];
+        
+        [[self urlList] addObject:tempUrl];
+        
+        [[self urlCellArray] removeAllObjects];
+        
+        [[self projectSourceList] reloadData];
+        
+        [[self fetchButton] setEnabled:YES];
+        [[self urlTextField] setEnabled:YES];
+        [[self urlDescriptionTextField] setEnabled:YES];
+        
+        [[self projectSourceList] expandItem:[[self projectSourceList] itemAtRow:[[self projectSourceList] rowForItem:[tempUrl project]]]];
+    }
+}
+
+#pragma mark
+#pragma mark Project Handling
 
 -(void)importProject:(id)sender
 {
@@ -504,21 +556,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self projectSourceList] reloadData];
 }
 
--(void)unloadData
-{
-    [[self jsonOutputButton] setEnabled:NO];
-    [[self fetchButton] setEnabled:NO];
-    [[self urlTextField] setEnabled:NO];
-    [[self urlDescriptionTextField] setEnabled:NO];
-    
-    [[self urlList] removeAllObjects];
-    [[self headerDataSource] removeAllObjects];
-    [[self paramDataSource] removeAllObjects];
-    
-    [[self headersTableView] reloadData];
-    [[self parametersTableView] reloadData];
-}
-
 -(void)loadProject:(Projects *)project
 {
     NSLog(@"%s", __FUNCTION__);
@@ -533,10 +570,10 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [[self urlList] removeAllObjects];
     
-    [[self urlTextField] setStringValue:@""];
-    [[self urlDescriptionTextField] setStringValue:@""];
+    [[self urlTextField] setStringValue:[NSString blankString]];
+    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
     
-    [[self customPayloadTextView] setString:@""];
+    [[self customPayloadTextView] setString:[NSString blankString]];
     [[self customPostBodyCheckBox] setState:NSOffState];
     
     [self setCurrentProject:project];
@@ -553,57 +590,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     }
     
     [self setupSegmentedControls];
-}
-
--(void)addUrl:(id)sender
-{
-    if ([self currentProject]) {
-        Urls *tempUrl = [Urls create];
-        
-        [tempUrl setCreatedAt:[NSDate date]];
-        [tempUrl setUrlDescription:@"New URL"];
-        
-        [[self currentProject] addUrlsObject:tempUrl];
-        
-        [[self currentProject] save];
-        
-        [[self urlList] addObject:tempUrl];
-        
-        [[self urlCellArray] removeAllObjects];
-        
-        [[self projectSourceList] reloadData];
-        
-        [[self fetchButton] setEnabled:YES];
-        [[self urlTextField] setEnabled:YES];
-        [[self urlDescriptionTextField] setEnabled:YES];
-        
-        [[self projectSourceList] expandItem:[[self projectSourceList] itemAtRow:[[self projectSourceList] rowForItem:[tempUrl project]]]];
-    }
-}
-
--(void)addUrlFromNotification:(NSNotification *)aNotification
-{
-    Projects *tempProject = [aNotification userInfo][@"project"];
-    
-    Urls *tempUrl = [Urls create];
-    
-    [tempUrl setCreatedAt:[NSDate date]];
-    [tempUrl setUrlDescription:@"New URL"];
-    
-    [tempProject addUrlsObject:tempUrl];
-    [tempProject save];
-    
-    [[self urlList] addObject:tempUrl];
-    
-    [[self urlCellArray] removeAllObjects];
-    
-    [[self projectSourceList] reloadData];
-    
-    [[self fetchButton] setEnabled:YES];
-    [[self urlTextField] setEnabled:YES];
-    [[self urlDescriptionTextField] setEnabled:YES];
-    
-    [[self projectSourceList] expandItem:[[self projectSourceList] itemAtRow:[[self projectSourceList] rowForItem:[tempUrl project]]]];
 }
 
 -(void)saveLog
@@ -632,8 +618,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     
     [self setCurrentUrl:nil];
     
-    [[self urlDescriptionTextField] setStringValue:@""];
-    [[self urlTextField] setStringValue:@""];
+    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
+    [[self urlTextField] setStringValue:[NSString blankString]];
     [[self urlDescriptionTextField] setEnabled:NO];
     [[self urlTextField] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
@@ -715,8 +701,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
                     }
                 }];
                 
-                [[self urlTextField] setStringValue:@""];
-                [[self urlDescriptionTextField] setStringValue:@""];
+                [[self urlTextField] setStringValue:[NSString blankString]];
+                [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
                 
                 [[self methodCombo] setEnabled:NO];
                 
@@ -747,7 +733,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
     
-    if ([[[self urlTextField] stringValue] isEqualToString:@""] || ![[self urlTextField] stringValue]) {
+    if ([[[self urlTextField] stringValue] isEqualToString:[NSString blankString]] || ![[self urlTextField] stringValue]) {
         NSAlert *alert = [[NSAlert alloc] init];
         
         [alert addButtonWithTitle:@"OK"];
@@ -911,7 +897,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
         
         [tempParam setName:kInsertName];
         [tempParam setValue:kInsertValue];
-        
         [tempParam save];
         
         [[self currentUrl] addParametersObject:tempParam];
@@ -963,7 +948,7 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self outputTextView] setString:@""];
+    [[self outputTextView] setString:[NSString blankString]];
     
     [[self clearOutputButton] setEnabled:NO];
 }
@@ -1201,22 +1186,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return YES;
 }
 
-- (void)outlineViewItemDidExpand:(NSNotification *)notification;
-{
-    Projects *project = [[notification userInfo] valueForKey:@"NSObject"];
-    
-    [project setExpanded:@YES];
-    [project save];
-}
-
-- (void)outlineViewItemDidCollapse:(NSNotification *)notification
-{
-    Projects *project = [[notification userInfo] valueForKey:@"NSObject"];
-    
-    [project setExpanded:@NO];
-    [project save];
-}
-
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if (!item) {
@@ -1272,6 +1241,8 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             [[cell textField] setStringValue:[tempUrl url]];
         }
         
+        [[cell textField] setToolTip:[tempUrl url]];
+        
         [[self urlCellArray] addObject:cell];
         
         return cell;
@@ -1288,6 +1259,22 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     [tempProject setName:object];
     
     [tempProject save];
+}
+
+- (void)outlineViewItemDidExpand:(NSNotification *)notification;
+{
+    Projects *project = [notification userInfo][@"NSObject"];
+    
+    [project setExpanded:@YES];
+    [project save];
+}
+
+- (void)outlineViewItemDidCollapse:(NSNotification *)notification
+{
+    Projects *project = [notification userInfo][@"NSObject"];
+    
+    [project setExpanded:@NO];
+    [project save];
 }
 
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
@@ -1312,12 +1299,20 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
             [[self urlTextField] setStringValue:[tempItem url]];
         }
         else {
-            [[self urlTextField] setStringValue:@""];
+            [[self urlTextField] setStringValue:[NSString blankString]];
         }
         
         [self urlSelection:tempItem];
     }
 }
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+    return YES;
+}
+
+#pragma mark
+#pragma mark NSOutlineViewDelegate Drag Support
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
@@ -1343,24 +1338,6 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
     return NO;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
-    return YES;
-}
-
-#pragma mark
-#pragma mark NSMenuDelegate
-
-- (void)menuWillOpen:(NSMenu *)menu
-{
-    if ([self currentProject]) {
-        [[menu itemAtIndex:1] setHidden:NO];
-    }
-    else {
-        [[menu itemAtIndex:1] setHidden:YES];
-    }
-}
-
 #pragma mark
 #pragma mark CNSplitViewToolbarDelegate
 
@@ -1378,14 +1355,14 @@ static NSString *const kUTITypePublicFile = @"public.file-url";
 }
 
 #pragma mark
-#pragma mark UrlCell Delegate
+#pragma mark UrlCell Handlers
 
 -(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
 {
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         
         for (UrlCell *cell in [self urlCellArray]) {
-            if (![[[cell currentUrl] url] isEqualToString:@""]) {
+            if (![[[cell currentUrl] url] isEqualToString:[NSString blankString]]) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     UrlStatus status = [self urlVerification:[[cell currentUrl] url]];
                     
