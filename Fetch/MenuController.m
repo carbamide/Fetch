@@ -50,25 +50,11 @@
     [[self mainWindowController] addUrl:sender];
 }
 
--(IBAction)exportProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-
-    [[self mainWindowController] exportProject:sender];
-}
-
 -(IBAction)importProject:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
 
     [[self mainWindowController] importProject:sender];
-}
-
--(IBAction)deleteProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-
-    [[self mainWindowController] deleteProject:sender];
 }
 
 -(IBAction)saveLog:(id)sender

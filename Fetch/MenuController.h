@@ -12,7 +12,7 @@
 
 @interface MenuController : NSObject
 
-@property (strong, nonatomic) IBOutlet MainWindowController *mainWindowController;
+@property (strong, nonatomic) MainWindowController *mainWindowController;
 @property (strong, nonatomic) IBOutlet PreferencesController *preferencesController;
 @property (weak, nonatomic) IBOutlet AppDelegate *delegate;
 
@@ -22,9 +22,7 @@
 -(IBAction)showMainWindow:(id)sender;
 
 -(IBAction)addUrl:(id)sender;
--(IBAction)exportProject:(id)sender;
 -(IBAction)importProject:(id)sender;
--(IBAction)deleteProject:(id)sender;
 -(IBAction)saveLog:(id)sender;
 
 @end
