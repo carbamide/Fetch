@@ -462,7 +462,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
