@@ -22,7 +22,6 @@
 @interface MainWindowController ()
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
-@property (strong, nonatomic) NSMutableArray *urlList;
 @property (strong, nonatomic) NSMutableArray *projectList;
 @property (strong, nonatomic) NSArray *headerNames;
 @property (strong, nonatomic) Projects *currentProject;
@@ -48,25 +47,10 @@
     self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
-        if (![self headerDataSource]) {
-            [self setHeaderDataSource:[[NSMutableArray alloc] init]];
-        }
-        
-        if (![self paramDataSource]) {
-            [self setParamDataSource:[[NSMutableArray alloc] init]];
-        }
-        
-        if (![self headerNames]) {
-            [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
-        }
-        
-        if (![self urlList]) {
-            [self setUrlList:[NSMutableArray array]];
-        }
-        
-        if (![self projectList]) {
-            [self setProjectList:[NSMutableArray array]];
-        }
+        [self setHeaderDataSource:[[NSMutableArray alloc] init]];
+        [self setParamDataSource:[[NSMutableArray alloc] init]];
+        [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
+        [self setProjectList:[NSMutableArray array]];
     }
     return self;
 }
@@ -121,11 +105,6 @@
             }
         }
     }
-}
-
--(void)awakeFromNib
-{
-    NSLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark
@@ -228,7 +207,6 @@
     [[self urlTextField] setEnabled:NO];
     [[self urlDescriptionTextField] setEnabled:NO];
     
-    [[self urlList] removeAllObjects];
     [[self headerDataSource] removeAllObjects];
     [[self paramDataSource] removeAllObjects];
     
@@ -236,7 +214,7 @@
     [[self parametersTableView] reloadData];
 }
 
-#pragma mark 
+#pragma mark
 #pragma mark Request Logging
 
 - (void)appendToOutput:(NSString *)text color:(NSColor *)color
@@ -276,19 +254,11 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    if ([[self urlTextField] stringValue] == nil || [[[self urlTextField] stringValue] isEqualToString:[NSString blankString]]) {
+    if (![[self urlTextField] stringValue] || [[[self urlTextField] stringValue] isEqualToString:[NSString blankString]]) {
         return NO;
     }
     
-    BOOL validPrefix = NO;
-    
-    NSArray *validUrlPrefixes = @[@"http", @"https"];
-    
-    for (NSString *prefix in validUrlPrefixes) {
-        if ([[[self urlTextField] stringValue] hasPrefix:prefix]) {
-            validPrefix = YES;
-        }
-    }
+    BOOL validPrefix = [[[self urlTextField] stringValue] hasValidURLPrefix];
     
     if (!validPrefix) {
         NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Invalid URL"
@@ -304,7 +274,7 @@
     
     BOOL addURL = YES;
     
-    for (Urls *tempURL in [self urlList]) {
+    for (Urls *tempURL in [[self currentProject] urls]) {
         if ([[tempURL url] isEqualToString:[[self urlTextField] stringValue]]) {
             addURL = NO;
             
@@ -331,12 +301,6 @@
         else {
             [tempUrl save];
         }
-        
-        [[self urlList] removeAllObjects];
-        
-        for (Urls *url in [[self currentProject] urls]) {
-            [[self urlList] addObject:url];
-        }
     }
     
     return YES;
@@ -354,20 +318,8 @@
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
     
-    if ([tempUrl customPayload] && [[tempUrl customPayload] length] > 0) {
-        [[self customPayloadTextView] setString:[tempUrl customPayload]];
-    }
-    else {
-        [[self customPayloadTextView] setString:[NSString blankString]];
-    }
-    
-    if ([tempUrl urlDescription]) {
-        [[self urlDescriptionTextField] setStringValue:[tempUrl urlDescription]];
-    }
-    else {
-        [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
-    }
-    
+    [[self customPayloadTextView] setString:[[tempUrl customPayload] hasValue] ? [tempUrl customPayload] : [NSString blankString]];
+    [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString blankString]];
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
     
     int index = 0;
@@ -381,7 +333,7 @@
         for (Headers *tempHeader in [tempUrl headers]) {
             [[self headerDataSource] addObject:tempHeader];
             
-            [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            [[self headersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectNone];
             
             index++;
         }
@@ -400,7 +352,7 @@
         for (Parameters *tempParam in [tempUrl parameters]) {
             [[self paramDataSource] addObject:tempParam];
             
-            [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectFade];
+            [[self parametersTableView] insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:index] withAnimation:NSTableViewAnimationEffectNone];
             
             index++;
         }
@@ -444,10 +396,7 @@
         [tempUrl setUrlDescription:@"New URL"];
         
         [[self currentProject] addUrlsObject:tempUrl];
-        
         [[self currentProject] save];
-        
-        [[self urlList] addObject:tempUrl];
         
         [[self urlCellArray] removeAllObjects];
         
@@ -493,20 +442,13 @@
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
-    id selectedProject = nil;
-    
-    if ([sender isKindOfClass:[CNSplitViewToolbarButton class]]) {
-        selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-    }
-    else {
-        selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
-    }
+    id selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
     if ([selectedProject isKindOfClass:[Urls class]]) {
         selectedProject = [selectedProject project];
     }
     
-    NSAssert(selectedProject, @"project cannot be nil in %s", __FUNCTION__);
+    NSAssert(selectedProject, @"selectedProject cannot be nil in %s", __FUNCTION__);
     
     [savePanel setTitle:@"Export"];
     [savePanel setNameFieldStringValue:[[selectedProject name] stringByAppendingPathExtension:@"fetch"]];
@@ -540,8 +482,6 @@
     else {
         Urls *tempUrl = item;
         
-        [[self urlList] removeObject:tempUrl];
-        
         if (tempUrl == [self currentUrl]) {
             [self setCurrentUrl:nil];
             
@@ -568,8 +508,6 @@
     
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
     
-    [[self urlList] removeAllObjects];
-    
     [[self urlTextField] setStringValue:[NSString blankString]];
     [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
     
@@ -584,10 +522,6 @@
     [[self urlTextField] setEnabled:YES];
     [[self urlDescriptionTextField] setEnabled:YES];
     [[self methodCombo] setEnabled:YES];
-    
-    for (Urls *url in [project urls]) {
-        [[self urlList] addObject:url];
-    }
     
     [self setupSegmentedControls];
 }
@@ -641,7 +575,6 @@
     [[self urlCellArray] removeAllObjects];
     
     [[self projectSourceList] reloadData];
-    
     [[self projectSourceList] selectRowIndexes:[NSIndexSet indexSetWithIndex:[[self projectSourceList] numberOfRows] - 1] byExtendingSelection:NO];
 }
 
@@ -668,7 +601,6 @@
                 [[self urlTextField] setEnabled:NO];
                 [[self urlDescriptionTextField] setEnabled:NO];
                 
-                [[self urlList] removeAllObjects];
                 [[self headerDataSource] removeAllObjects];
                 [[self paramDataSource] removeAllObjects];
                 
@@ -685,21 +617,11 @@
         NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
         
         if ([alert runModal] == NSOKButton) {
-            [[self urlList] removeObject:item];
-            
             [item delete];
             
             if (item == [self currentUrl]) {
                 [[self jsonOutputButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
-                
-                [[self urlList] removeAllObjects];
-                
-                [[Urls all] each:^(Urls *object) {
-                    if ([object url]) {
-                        [[self urlList] addObject:[object url]];
-                    }
-                }];
                 
                 [[self urlTextField] setStringValue:[NSString blankString]];
                 [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
@@ -714,7 +636,7 @@
             }
         }
     }
-
+    
     [[self urlCellArray] removeAllObjects];
     
     [[self projectSourceList] reloadData];
@@ -987,15 +909,18 @@
 -(void)controlTextDidEndEditing:(NSNotification *)notification
 {
     if ([notification object] == [self urlTextField]) {
-        if ([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
+        if ([[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement) {
             [self fetchAction:nil];
         }
     }
     else if ([notification object] == [self urlDescriptionTextField]) {
         if ([self currentUrl]) {
             [[self currentUrl] setUrlDescription:[[self urlDescriptionTextField] stringValue]];
-            
             [[self currentUrl] save];
+            
+            [[self projectSourceList] beginUpdates];
+            [[self projectSourceList] reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:[[self projectSourceList] selectedRow]] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+            [[self projectSourceList] endUpdates];
         }
     }
     else if ([notification object] == [self customPayloadTextView]) {
@@ -1134,7 +1059,6 @@
         }
     }
 }
-
 
 #pragma mark
 #pragma mark NSComboBoxDelegate
@@ -1403,10 +1327,10 @@
     NSHTTPURLResponse *response = nil;
     
     if ([NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]) {
-        if ([response statusCode] > 199 && [response statusCode] < 300) {
+        if (NSLocationInRange([response statusCode], NSMakeRange(200, (299 - 200)))) {
             return SiteUp;
         }
-        else if ([response statusCode] > 499 && [response statusCode] < 600){
+        else if (NSLocationInRange([response statusCode], NSMakeRange(500, (599 - 500)))) {
             return SiteInconclusive;
         }
         else {

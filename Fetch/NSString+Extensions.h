@@ -11,5 +11,7 @@
 @interface NSString (Extensions)
 
 +(NSString *)blankString;
+-(BOOL)hasValidURLPrefix;
+-(BOOL)hasValue;
 
 @end
