@@ -35,7 +35,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
 
-    for (NSWindow *tempWindow in [[NSApp windows] reverseObjectEnumerator]) {
+    for (NSWindow *tempWindow in [[NSApp windows] objectEnumerator]) {
         if ([tempWindow isVisible]) {
             [tempWindow close];
             break;

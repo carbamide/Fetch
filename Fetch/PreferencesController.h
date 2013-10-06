@@ -10,11 +10,10 @@
 
 @interface PreferencesController : NSObject
 
-#pragma mark Properties
 @property (readwrite, strong, nonatomic) IBOutlet NSWindow *window;
 
-#pragma mark Actions
 - (IBAction)showPreferencesFor:(id)sender;
-- (IBAction)showPreferencesWindow:(id)sender;
+
+- (void)showPreferencesWindow:(id)sender;
 
 @end

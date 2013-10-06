@@ -72,7 +72,7 @@
     [self setCurrentViewController:newViewController];
 }
 
-- (IBAction)showPreferencesWindow:(id)sender
+- (void)showPreferencesWindow:(id)sender
 {
     [[self window] center];
     [[self window] makeKeyAndOrderFront:sender];

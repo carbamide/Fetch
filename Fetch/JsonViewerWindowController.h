@@ -11,7 +11,6 @@
 @interface JsonViewerWindowController : NSWindowController <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (strong, nonatomic) IBOutlet NSOutlineView *outlineView;
-@property (strong, nonatomic) IBOutlet NSArrayController *arrayController;
 
 @property (strong, nonatomic) NSArray *jsonData;
 
