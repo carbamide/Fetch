@@ -306,7 +306,7 @@
     return YES;
 }
 
--(void)urlSelection:(Urls *)url
+-(void)loadUrl:(Urls *)url
 {
     NSLog(@"%s", __FUNCTION__);
     
@@ -446,6 +446,10 @@
     
     if ([selectedProject isKindOfClass:[Urls class]]) {
         selectedProject = [selectedProject project];
+    }
+    
+    if (!selectedProject) {
+        selectedProject = [self currentProject];
     }
     
     NSAssert(selectedProject, @"selectedProject cannot be nil in %s", __FUNCTION__);
@@ -1226,7 +1230,7 @@
             [[self urlTextField] setStringValue:[NSString blankString]];
         }
         
-        [self urlSelection:tempItem];
+        [self loadUrl:tempItem];
     }
 }
 
