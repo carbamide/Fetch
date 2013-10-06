@@ -10,7 +10,6 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) NSWindow *window;
 @property (strong, nonatomic) MainWindowController *mainWindowController;
 
 @end

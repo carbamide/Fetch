@@ -28,7 +28,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [[[self delegate] window] makeKeyAndOrderFront:self];
+    [[[[self delegate] mainWindowController] window] makeKeyAndOrderFront:self];
 }
 
 -(IBAction)closeWindow:(id)sender
