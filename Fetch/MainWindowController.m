@@ -20,6 +20,7 @@
 #import "NSTimer+Blocks.h"
 
 @interface MainWindowController ()
+
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
 @property (strong, nonatomic) NSMutableArray *projectList;
