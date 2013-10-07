@@ -40,7 +40,7 @@
                                                               @"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints": @NO
                                                               }];
     
-    [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:@"MainWindow"]];
+    [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:kMainWindowXib]];
  
     [[self menuController] setMainWindowController:[self mainWindowController]];
 

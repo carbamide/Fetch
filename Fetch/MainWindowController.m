@@ -62,7 +62,7 @@
     [super windowDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:@"ADD_URL" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
     
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
@@ -882,7 +882,7 @@
 -(IBAction)showJson:(id)sender
 {
     if (![self jsonWindow]) {
-        [self setJsonWindow:[[JsonViewerWindowController alloc] initWithWindowNibName:@"JsonViewerWindowController" json:[self jsonData]]];
+        [self setJsonWindow:[[JsonViewerWindowController alloc] initWithWindowNibName:kJsonViewerWindowXib json:[self jsonData]]];
     }
     else {
         [[self jsonWindow] setJsonData:[self jsonData]];

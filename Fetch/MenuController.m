@@ -11,10 +11,6 @@
 #import "MainWindowController.h"
 #import "AppDelegate.h"
 
-@interface MenuController()
-
-@end
-
 @implementation MenuController
 
 -(IBAction)showPreferences:(id)sender

@@ -8,6 +8,7 @@
 
 #import "ProjectCell.h"
 #import "Projects.h"
+#import "Constants.h"
 
 @implementation ProjectCell
 
@@ -29,7 +30,7 @@
 
 -(IBAction)addUrl:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ADD_URL" object:nil userInfo:@{@"project": [self project]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddUrlNotification object:nil userInfo:@{@"project": [self project]}];
 }
 
 @end
