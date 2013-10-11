@@ -134,7 +134,7 @@ NSString *CNUserInfoEdgeKey = @"edge";
 
 - (void)showToolbarAnimated:(BOOL)animated
 {
-    NSAssert(_toolbar != nil, @"** Note: Before you show a toolbar you should make use of 'addToolbar:besidesSubview:onEdge:'.");
+    NSAssert(_toolbar != nil, @"** Note: Before you show a toolbar you should make use of 'addToolbar:besidesSubview:onEdge:'.", nil);
     
     if (_animationIsRunning)
         return;

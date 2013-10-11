@@ -25,7 +25,7 @@
 
 -(void)addEntries:(id)entries
 {
-    NSAssert([entries isKindOfClass:[NSDictionary class]], @"Entries must be a dictionary");
+    NSAssert([entries isKindOfClass:[NSDictionary class]], @"Entries must be a dictionary", nil);
     
     if ([entries isKindOfClass:[NSDictionary class]]) {
         [self addDictionary:entries array:nil separator:NO];
