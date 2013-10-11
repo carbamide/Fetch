@@ -21,18 +21,116 @@
 
 @interface MainWindowController ()
 
+/// Backing store for headersTableView
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
+
+/// Backing store for parametersTableView
 @property (strong, nonatomic) NSMutableArray *paramDataSource;
+
+/// Backing store for projectSourceList
 @property (strong, nonatomic) NSMutableArray *projectList;
+
+/// Backing store that holds all known header names
 @property (strong, nonatomic) NSArray *headerNames;
+
+/// The current Project
 @property (strong, nonatomic) Projects *currentProject;
+
+/// The current URl
 @property (strong, nonatomic) Urls *currentUrl;
+
+/// JSON Data returns from fetch action.  This is either an NSDictionary or NSArray
 @property (strong, nonatomic) id jsonData;
+
+/// Reference to toolbar
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
+
+/// Reference to remove button in toolbar
 @property (strong, nonatomic) CNSplitViewToolbarButton *removeButton;
+
+/// Reference to export button in toolbar
 @property (strong, nonatomic) CNSplitViewToolbarButton *exportButton;
+
+/// Mutable array that holds a reference to all url cells (Used for updating reachability status)
 @property (strong, nonatomic) NSMutableArray *urlCellArray;
+
+/// Used if the user has chosen to check reachability of URLs
 @property (strong, nonatomic) NSTimer *pingTimer;
+
+/**
+ * Setup the split view controller and it's controls
+ */
+-(void)setupSplitviewControls;
+
+/** 
+ * Monitor NSUserDefaults for changes
+ @param aNotification The notification that is produced when NSUserDefaults changes
+ */
+-(void)preferencesChanges:(NSNotification *)aNotification;
+
+/**
+ * Setup the segmented controls
+ */
+-(void)setupSegmentedControls;
+
+/**
+ * Unload all project and url data
+ */
+-(void)unloadData;
+
+/** 
+ * Append specified output the outputTextView
+ * @param text The text to append to the outputTextView
+ * @param color The color to show the text in
+ */
+-(void)appendToOutput:(NSString *)text color:(NSColor *)color;
+
+/**
+ * Log specified NSMutableURLRequest to outputTextView
+ * @param request The NSMutableURLRequest to log
+ */
+-(void)logReqest:(NSMutableURLRequest *)request;
+
+/** 
+ * Add URL to Projects URL list if unique
+ * @return Returns YES if the url was unique and added, NO if not
+ */
+-(BOOL)addToUrlListIfUnique;
+
+/**
+ * Load the URL into the user interface
+ * @param url URL to load
+ */
+-(void)loadUrl:(Urls *)url;
+
+/**
+ * Load Specified Project into the user interface
+ * @param project The Project to load
+ */
+-(void)loadProject:(Projects *)project;
+
+/** 
+ * Add Project to Project Source List
+ */
+-(void)addProject;
+
+/**
+ * Remvoe the clicked or selected Project or URL from the source list
+ */
+-(void)removeProjectOrUrl;
+
+/**
+ * Create a timer with the specified time interval
+ * @param timeInterval The time interval to create the timer
+ */
+-(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval;
+
+/** 
+ * Check URL status for specified urlString
+ * @param urlString The url to check the status of
+ * @return URLStatus of the specified URL
+ */
+-(UrlStatus)urlVerification:(NSString *)urlString;
 
 @end
 

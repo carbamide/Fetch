@@ -10,6 +10,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+/// Reference to the MainWindowController
 @property (strong, nonatomic) MainWindowController *mainWindowController;
 
 @end

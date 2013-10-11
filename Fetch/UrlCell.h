@@ -12,8 +12,10 @@
 
 @interface UrlCell : NSTableCellView
 
+/// Shows the current up, down, or indeterminate status of the url specified in currentURL
 @property (strong, nonatomic) IBOutlet NSImageView *statusImage;
 
+/// The URLs object that the cell is showing
 @property (strong, nonatomic) Urls *currentUrl;
 
 @end

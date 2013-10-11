@@ -12,8 +12,29 @@
 
 @interface ProjectHandler : NSObject
 
+/**
+ * Import Project from Path
+ *
+ * @param path The path to load the project from
+ * @return Success or failure boolean
+ */
 +(BOOL)importFromPath:(NSString *)path;
+
+/**
+ * Import Project from data
+ *
+ * @param data The data to load the project from
+ * @return Success or failure boolean
+ */
 +(BOOL)importFromData:(NSData *)data;
+
+/**
+ * Export project
+ *
+ * @param project The Project to export
+ * @param url The url to save the Project to
+ * @return NSDictionary representation of the exported Project
+ */
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url;
 
 @end

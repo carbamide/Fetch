@@ -8,6 +8,9 @@
 
 #import "NodeObject.h"
 
+/** 
+ * A simple separator element when using JsonHandler
+ */
 @interface SeparatorNodeObject : NodeObject
 
 @end

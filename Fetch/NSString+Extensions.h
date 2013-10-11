@@ -10,8 +10,23 @@
 
 @interface NSString (Extensions)
 
+/** 
+ * Blank NSString
+ * 
+ * @return Blank NSString
+ */
 +(NSString *)blankString;
+
+/** 
+ * Check if NSString has valid http or https URL prefix
+ * @return Boolean of whether or not NSString has valid URL prefix
+ */
 -(BOOL)hasValidURLPrefix;
+
+/**
+ * Check whether NSString has value
+ * @return Whether or not NSString has value
+ */
 -(BOOL)hasValue;
 
 @end

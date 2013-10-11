@@ -112,8 +112,8 @@
                                                                             <rect key="frame" x="3" y="5" width="17" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="HNr-t1-iU5"/>
-                                                                                <constraint firstAttribute="width" constant="17" id="Xf2-xR-ww1"/>
+                                                                                <constraint firstAttribute="width" constant="17" id="pEs-PX-zuk"/>
+                                                                                <constraint firstAttribute="height" constant="17" id="pLR-2n-pSB"/>
                                                                             </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSFolder" id="S46-cq-ubP"/>
                                                                         </imageView>
@@ -149,14 +149,14 @@
                                                                         </button>
                                                                     </subviews>
                                                                     <constraints>
+                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="top" secondItem="rmC-fG-kk7" secondAttribute="top" id="0JA-CC-wX5"/>
                                                                         <constraint firstItem="mmC-ak-ozw" firstAttribute="leading" secondItem="rmC-fG-kk7" secondAttribute="trailing" constant="22" id="8xe-OD-5cF"/>
                                                                         <constraint firstAttribute="trailing" secondItem="mmC-ak-ozw" secondAttribute="trailing" constant="5" id="Rx1-64-JYE"/>
                                                                         <constraint firstAttribute="bottom" secondItem="mmC-ak-ozw" secondAttribute="bottom" constant="2" id="SAS-R6-3Wp"/>
                                                                         <constraint firstAttribute="centerY" secondItem="mmC-ak-ozw" secondAttribute="centerY" id="XVk-Pe-W5P"/>
-                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="leading" secondItem="hrn-Em-Uxp" secondAttribute="leading" constant="3" id="a8m-4k-s6T"/>
-                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="top" secondItem="hrn-Em-Uxp" secondAttribute="top" id="td2-JR-pCz"/>
-                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="top" secondItem="rmC-fG-kk7" secondAttribute="top" id="vlI-qq-h9F"/>
+                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="top" secondItem="hrn-Em-Uxp" secondAttribute="top" id="ozE-DC-HKF"/>
                                                                         <constraint firstItem="mmC-ak-ozw" firstAttribute="top" secondItem="hrn-Em-Uxp" secondAttribute="top" constant="3" id="wVX-e4-UzW"/>
+                                                                        <constraint firstItem="TU9-Wb-s5E" firstAttribute="leading" secondItem="hrn-Em-Uxp" secondAttribute="leading" constant="3" id="y23-iM-b6T"/>
                                                                         <constraint firstItem="mmC-ak-ozw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hrn-Em-Uxp" secondAttribute="top" constant="3" id="ybs-Ic-6n5"/>
                                                                     </constraints>
                                                                     <connections>
@@ -579,21 +579,21 @@
                                                     <rect key="frame" x="10" y="33" width="676" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
+                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-xj-Ac6">
                                                             <rect key="frame" x="17" y="17" width="642" height="213"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <clipView key="contentView" id="wpb-Sw-o6A">
-                                                                <rect key="frame" x="1" y="1" width="640" height="211"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="642" height="213"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textView editable="NO" importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="IgS-DI-zC1">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="640" height="211"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="642" height="213"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <size key="minSize" width="640" height="211"/>
+                                                                        <size key="minSize" width="642" height="213"/>
                                                                         <size key="maxSize" width="683" height="10000000"/>
                                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <size key="minSize" width="640" height="211"/>
+                                                                        <size key="minSize" width="642" height="213"/>
                                                                         <size key="maxSize" width="683" height="10000000"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="-2" id="TSA-Fa-39l"/>
@@ -607,7 +607,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="6uJ-QQ-VwZ">
-                                                                <rect key="frame" x="625" y="1" width="16" height="211"/>
+                                                                <rect key="frame" x="626" y="0.0" width="16" height="213"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                         </scrollView>
