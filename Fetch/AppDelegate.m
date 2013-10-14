@@ -15,6 +15,7 @@
 
 @interface AppDelegate()
 
+/// Reference to MenuController
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
 
 @end
