@@ -41,6 +41,7 @@
 		295EB4F217F32F5C00F58FE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */; };
 		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
+		2977962F18121ACF00BC834C /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2977962E18121ACF00BC834C /* CHCSVParser.m */; };
 		2981D80117FBAC570039512A /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2981D80017FBAC570039512A /* ProjectCell.m */; };
 		2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
@@ -48,6 +49,8 @@
 		29914D9A17FD02B800DC6052 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29914D9917FD02B800DC6052 /* SystemConfiguration.framework */; };
 		29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */; };
 		29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29992B4D17FFADE7003EE651 /* NSString+Extensions.m */; };
+		299AE6E91815B75B0039C17B /* CsvViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299AE6E71815B75B0039C17B /* CsvViewerWindowController.m */; };
+		299AE6EA1815B75B0039C17B /* CsvViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AE6E81815B75B0039C17B /* CsvViewerWindowController.xib */; };
 		29A5A3FC17FF74E700837046 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5A3FB17FF74E700837046 /* Projects.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
@@ -117,6 +120,8 @@
 		2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewerWindowController.h; sourceTree = "<group>"; };
 		2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewerWindowController.m; sourceTree = "<group>"; };
 		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
+		2977962D18121ACF00BC834C /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		2977962E18121ACF00BC834C /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		2981D7FF17FBAC570039512A /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		2981D80017FBAC570039512A /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX.xcdatamodel"; sourceTree = "<group>"; };
@@ -128,6 +133,9 @@
 		29992B4C17FFADE7003EE651 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		29992B4D17FFADE7003EE651 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		29992B4F17FFAE4C003EE651 /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
+		299AE6E61815B75B0039C17B /* CsvViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvViewerWindowController.h; sourceTree = "<group>"; };
+		299AE6E71815B75B0039C17B /* CsvViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CsvViewerWindowController.m; sourceTree = "<group>"; };
+		299AE6E81815B75B0039C17B /* CsvViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CsvViewerWindowController.xib; sourceTree = "<group>"; };
 		29A5A3FA17FF74E700837046 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
 		29A5A3FB17FF74E700837046 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29A5A3FD17FF867900837046 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -250,6 +258,8 @@
 				29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */,
 				29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */,
 				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
+				2977962D18121ACF00BC834C /* CHCSVParser.h */,
+				2977962E18121ACF00BC834C /* CHCSVParser.m */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -325,6 +335,8 @@
 				29EF763517D65D9400F89D72 /* MainWindowController.m */,
 				2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */,
 				2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */,
+				299AE6E61815B75B0039C17B /* CsvViewerWindowController.h */,
+				299AE6E71815B75B0039C17B /* CsvViewerWindowController.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -335,6 +347,7 @@
 				29F4A7E817D64EFE00FAA098 /* MainMenu.xib */,
 				294C8F8117ED6D0C0060EF7E /* MainWindow.xib */,
 				2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */,
+				299AE6E81815B75B0039C17B /* CsvViewerWindowController.xib */,
 				29061AAC17FD16DB00F390CA /* ColorsPreferencesViewController.xib */,
 				29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */,
 			);
@@ -513,6 +526,7 @@
 				2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */,
 				294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */,
 				29F4A7EA17D64EFE00FAA098 /* MainMenu.xib in Resources */,
+				299AE6EA1815B75B0039C17B /* CsvViewerWindowController.xib in Resources */,
 				29061AB317FD16DB00F390CA /* MiscPreferencesViewController.xib in Resources */,
 				29061AB117FD16DB00F390CA /* ColorsPreferencesViewController.xib in Resources */,
 			);
@@ -605,6 +619,7 @@
 				295EB4EF17F32D8C00F58FE2 /* CNSplitViewToolbarButtonCell.m in Sources */,
 				29914D9417FD009300DC6052 /* UrlCell.m in Sources */,
 				2981D80117FBAC570039512A /* ProjectCell.m in Sources */,
+				2977962F18121ACF00BC834C /* CHCSVParser.m in Sources */,
 				29BC58EE17DE0BFD004168AE /* Parameters.m in Sources */,
 				295EB4F017F32D8C00F58FE2 /* NSView+CNSplitViewToolbar.m in Sources */,
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
@@ -615,6 +630,7 @@
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,
 				29061AB217FD16DB00F390CA /* MiscPreferencesViewController.m in Sources */,
 				2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */,
+				299AE6E91815B75B0039C17B /* CsvViewerWindowController.m in Sources */,
 				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
 				29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,

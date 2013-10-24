@@ -9,7 +9,7 @@
 #import "CNSplitView.h"
 #import "MenuController.h"
 
-@class JsonViewerWindowController;
+@class JsonViewerWindowController, CsvViewerWindowController;
 
 @interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination>
 
@@ -70,11 +70,17 @@
 /// Main split view that is the home to both the project list and the main view
 @property (strong) IBOutlet CNSplitView *splitView;
 
+/// Checkbox to indicate whether the expected response is in CSV format
+@property (strong) IBOutlet NSButton *csvCheckBox;
+
 /// Reference to MenuController
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
 
 /// Reference to JsonViewerWindowController
 @property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
+
+/// Reference to CsvViewerWindowController
+@property (strong, nonatomic) CsvViewerWindowController *csvWindow;
 
 /// Dictionary that holds a reference to the request headers.  This dictionary is used to populate the requestTableView.
 @property (strong, nonatomic) NSDictionary *requestDict;
@@ -117,6 +123,18 @@
  * @param sender The caller of this method
  */
 -(IBAction)showJson:(id)sender;
+
+/**
+ * Test CSV using a file
+ * @param sender The caller of this method
+ */
+-(IBAction)testCSV:(id)sender;
+
+/**
+ * Action to indicate whether the response of the fetch will be in CSV format
+ * @param sender The caller of this method
+ */
+-(IBAction)responseIsCSVAction:(id)sender;
 
 /**
  * Begins the process of exporting a project

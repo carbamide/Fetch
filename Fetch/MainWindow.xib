@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
                 <outlet property="clearOutputButton" destination="ZNe-e6-9nf" id="8Hl-Ce-u6V"/>
+                <outlet property="csvCheckBox" destination="eNK-nW-WEb" id="fOj-UP-Cth"/>
                 <outlet property="customPayloadTextView" destination="GFg-9h-AgS" id="1WP-9P-NYU"/>
                 <outlet property="customPostBodyCheckBox" destination="13i-dz-BJK" id="sZv-kS-3H5"/>
                 <outlet property="fetchButton" destination="YAZ-HT-7sT" id="7nX-YW-AaG"/>
@@ -559,9 +560,9 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ps7-po-G6F">
-                                        <rect key="frame" x="491" y="13" width="120" height="32"/>
+                                        <rect key="frame" x="526" y="13" width="85" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="JSON Output" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mP0-oW-zUi">
+                                        <buttonCell key="cell" type="push" title="Output" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mP0-oW-zUi">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -778,6 +779,28 @@
                                             </tabViewItem>
                                         </tabViewItems>
                                     </tabView>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="eNK-nW-WEb">
+                                        <rect key="frame" x="338" y="613" width="130" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Response is CSV?" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dAU-mM-yGu">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="responseIsCSVAction:" target="-2" id="l8R-9n-zQn"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyz-w4-oZQ">
+                                        <rect key="frame" x="432" y="13" width="94" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Test CSV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PEh-wW-GgH">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <connections>
+                                                <action selector="testCSV:" target="-2" id="3l4-V9-wOa"/>
+                                            </connections>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1yS-Ga-79m" firstAttribute="leading" secondItem="klm-kG-KRD" secondAttribute="leading" constant="23" id="0Gd-DR-BR6"/>
@@ -804,11 +827,13 @@
                                     <constraint firstAttribute="trailing" secondItem="zBc-ng-OLV" secondAttribute="trailing" constant="17" id="Jse-eZ-tSq"/>
                                     <constraint firstAttribute="trailing" secondItem="SfL-kQ-2v8" secondAttribute="trailing" constant="38" id="N1g-Xa-lKf"/>
                                     <constraint firstItem="RRD-8M-bUZ" firstAttribute="leading" secondItem="n6N-4Y-mMX" secondAttribute="trailing" constant="8" id="O0t-KK-i7g"/>
+                                    <constraint firstItem="eNK-nW-WEb" firstAttribute="top" secondItem="5nQ-RV-vW0" secondAttribute="bottom" constant="13" id="P3r-yd-QBg"/>
                                     <constraint firstAttribute="bottom" secondItem="zBc-ng-OLV" secondAttribute="bottom" constant="354" id="PH6-VF-fjN"/>
                                     <constraint firstItem="GKQ-it-PV5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RRD-8M-bUZ" secondAttribute="trailing" constant="50" id="RG7-MH-dTN"/>
                                     <constraint firstItem="Ez3-CK-wFH" firstAttribute="top" secondItem="8CH-NR-1wW" secondAttribute="bottom" constant="12" id="Sik-gI-L3b"/>
                                     <constraint firstItem="RRD-8M-bUZ" firstAttribute="top" secondItem="5nQ-RV-vW0" secondAttribute="bottom" constant="8" id="Txs-z7-tak"/>
                                     <constraint firstItem="13i-dz-BJK" firstAttribute="trailing" secondItem="5nQ-RV-vW0" secondAttribute="trailing" id="VIy-84-VNZ"/>
+                                    <constraint firstItem="GKQ-it-PV5" firstAttribute="leading" secondItem="eNK-nW-WEb" secondAttribute="trailing" constant="12" id="YUh-7c-o7U"/>
                                     <constraint firstAttribute="trailing" secondItem="5nQ-RV-vW0" secondAttribute="trailing" constant="17" id="Zhw-xq-bJ7"/>
                                     <constraint firstItem="8CH-NR-1wW" firstAttribute="top" secondItem="zBc-ng-OLV" secondAttribute="bottom" constant="8" symbolic="YES" id="a5g-JG-IWQ"/>
                                     <constraint firstItem="zBc-ng-OLV" firstAttribute="centerX" secondItem="WbC-bY-XM9" secondAttribute="centerX" id="bdd-9J-MLG"/>

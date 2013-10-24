@@ -15,9 +15,12 @@
 #import "Parameters.h"
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
+#import "CsvViewerWindowController.h"
+
 #import "ProjectCell.h"
 #import "UrlCell.h"
 #import "NSTimer+Blocks.h"
+#import "CHCSVParser.h"
 
 @interface MainWindowController ()
 
@@ -56,6 +59,9 @@
 
 /// Used if the user has chosen to check reachability of URLs
 @property (strong, nonatomic) NSTimer *pingTimer;
+
+/// Do you expect the output to be in CSV format?
+@property (nonatomic) BOOL isCSV;
 
 /**
  * Setup the split view controller and it's controls
@@ -131,6 +137,13 @@
  * @return URLStatus of the specified URL
  */
 -(UrlStatus)urlVerification:(NSString *)urlString;
+
+/**
+ * Begin parsing of CSV
+ * @param csvString CSV to parse
+ * @return Sucess or failure bool
+ */
+-(BOOL)parseCSV:(NSString *)csvString;
 
 @end
 
@@ -991,6 +1004,40 @@
     [[[self jsonWindow] window] makeKeyAndOrderFront:self];
 }
 
+-(IBAction)responseIsCSVAction:(id)sender
+{
+    if ([(NSButton *) sender state] == NSOnState) {
+        [self setIsCSV:YES];
+    }
+    else {
+        [self setIsCSV:NO];
+    }
+}
+
+-(IBAction)testCSV:(id)sender
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    NSInteger result = [openPanel runModal];
+    
+    NSArray *tempArray = nil;
+    if (result == NSOKButton) {
+        NSArray *rows = [NSArray arrayWithContentsOfCSVFile:[[openPanel URL] path] options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
+        if (rows == nil) {
+            NSLog(@"Unable to parse");
+        }
+        tempArray = rows;
+
+    }
+    
+
+    [self setCsvWindow:[[CsvViewerWindowController alloc] initWithWindowNibName:@"CsvViewerWindowController" dataSource:tempArray]];
+
+    [[self csvWindow] setNumberOfColumns:[tempArray[0] count]];
+    
+    [[[self csvWindow] window] makeKeyAndOrderFront:self];
+}
+
 #pragma mark
 #pragma mark NSControlTextDelegate
 
@@ -1444,4 +1491,18 @@
     return SiteDown;
 }
 
+#pragma mark -
+#pragma mark CSV Parsing
+
+-(BOOL)parseCSV:(NSString *)csvString
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"csv"];
+    
+    NSArray *rows = [NSArray arrayWithContentsOfCSVFile:path options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
+    if (rows == nil) {
+        return NO;
+    }
+    
+    return YES;
+}
 @end
