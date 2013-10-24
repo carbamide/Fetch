@@ -26,6 +26,8 @@
 {
     [super windowDidLoad];
     
+    [[self rowCountLabel] setStringValue:[NSString stringWithFormat:@"%ld Rows in Table", (long)[[self csvTableView] numberOfRows]]];
+    
     NSTableColumn *column[[[self dataSource][0] count]];
     
     for (int i = 0; i < [[self dataSource][0] count]; i++){

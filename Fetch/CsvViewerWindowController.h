@@ -10,11 +10,14 @@
 
 @interface CsvViewerWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
-///NSArray holding CSV data source
+/// NSArray holding CSV data source
 @property (strong, nonatomic) NSArray *dataSource;
 
-///NSTableView to display parsed CSV
+/// NSTableView to display parsed CSV
 @property (strong, nonatomic) IBOutlet NSTableView *csvTableView;
+
+/// Label to hold number of rows in table
+@property (strong) IBOutlet NSTextField *rowCountLabel;
 
 ///Number of CSV columns
 @property (nonatomic) NSInteger numberOfColumns;
