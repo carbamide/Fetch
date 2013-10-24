@@ -63,6 +63,9 @@
 /// Do you expect the output to be in CSV format?
 @property (nonatomic) BOOL isCSV;
 
+/// Temp property for storying the clicked URL
+@property (strong, nonatomic) Urls *clickedUrl;
+
 /**
  * Setup the split view controller and it's controls
  */
@@ -1027,6 +1030,54 @@
     }
 }
 
+-(IBAction)duplicateURL:(id)sender
+{
+    Projects *tempProject = [[self clickedUrl] project];
+    
+    Urls *oldUrl = [self clickedUrl];
+    Urls *duplicateUrl = [Urls create];
+    
+    NSMutableSet *oldHeaders = [[NSMutableSet alloc] init];
+    NSMutableSet *oldParams = [[NSMutableSet alloc] init];
+
+    for (Headers *tempHeader in [oldUrl headers]) {
+        Headers *newTempHeader = [Headers create];
+        
+        [newTempHeader setValue:[tempHeader value]];
+        [newTempHeader setName:[tempHeader name]];
+        
+        [oldHeaders addObject:newTempHeader];
+    }
+    
+    for (Parameters *tempParam in [oldUrl parameters]) {
+        Parameters *newTempParam = [Headers create];
+        
+        [newTempParam setValue:[tempParam value]];
+        [newTempParam setName:[tempParam name]];
+        
+        [oldParams addObject:newTempParam];
+    }
+    
+    [duplicateUrl setUrl:[oldUrl url]];
+    [duplicateUrl setHeaders:oldHeaders];
+    [duplicateUrl setParameters:oldParams];
+    [duplicateUrl setMethod:[oldUrl method]];
+    [duplicateUrl setCustomPayload:[oldUrl customPayload]];
+    [duplicateUrl setCreatedAt:[NSDate date]];
+    
+    if ([[oldUrl urlDescription] length] > 0) {
+        [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl urlDescription]]];
+    }
+    else {
+        [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl url]]];
+    }
+    
+    [tempProject addUrlsObject:duplicateUrl];
+    [tempProject save];
+    
+    [[self projectSourceList] reloadData];
+}
+
 -(IBAction)parseAction:(id)sender
 {
     [NSMenu popUpContextMenu:[self parseMenu] withEvent:[[NSApplication sharedApplication] currentEvent] forView:sender];
@@ -1485,4 +1536,28 @@
     return SiteDown;
 }
 
+#pragma mark -
+#pragma mark NSMenuDelegate
+
+-(void)menuNeedsUpdate:(NSMenu *)menu
+{
+    NSInteger clickedRow = [[self projectSourceList] clickedRow];
+    
+    if (clickedRow != -1) {
+        id item = [[self projectSourceList] itemAtRow:clickedRow];
+        
+        if ([item isKindOfClass:[Urls class]]) {
+            [self setClickedUrl:item];
+            
+            for (NSMenuItem *menuItem in [menu itemArray]) {
+                [menuItem setHidden:NO];
+            }
+        }
+        else {
+            for (NSMenuItem *menuItem in [menu itemArray]) {
+                [menuItem setHidden:YES];
+            }
+        }
+    }
+}
 @end

@@ -223,6 +223,7 @@
                                                     <connections>
                                                         <outlet property="dataSource" destination="-2" id="eDD-b7-8oD"/>
                                                         <outlet property="delegate" destination="-2" id="zBg-ir-QQQ"/>
+                                                        <outlet property="menu" destination="kqb-AG-Zfo" id="MCJ-qo-84q"/>
                                                     </connections>
                                                 </outlineView>
                                             </subviews>
@@ -549,9 +550,9 @@
                                         </scroller>
                                     </scrollView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZNe-e6-9nf">
-                                        <rect key="frame" x="611" y="13" width="73" height="32"/>
+                                        <rect key="frame" x="585" y="13" width="121" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FkX-c6-hOb">
+                                        <buttonCell key="cell" type="push" title="Clear Output" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FkX-c6-hOb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -560,7 +561,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ps7-po-G6F">
-                                        <rect key="frame" x="506" y="13" width="105" height="32"/>
+                                        <rect key="frame" x="480" y="13" width="105" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Parse As..." bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mP0-oW-zUi">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -782,7 +783,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1yS-Ga-79m" firstAttribute="leading" secondItem="klm-kG-KRD" secondAttribute="leading" constant="23" id="0Gd-DR-BR6"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZNe-e6-9nf" secondAttribute="trailing" constant="39" id="0UW-fr-LmS"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZNe-e6-9nf" secondAttribute="trailing" constant="17" id="0UW-fr-LmS"/>
                                     <constraint firstItem="zBc-ng-OLV" firstAttribute="top" secondItem="klm-kG-KRD" secondAttribute="top" constant="250" id="0dZ-Hh-WRU"/>
                                     <constraint firstItem="zBc-ng-OLV" firstAttribute="trailing" secondItem="5nQ-RV-vW0" secondAttribute="trailing" id="1Fg-F0-MQH"/>
                                     <constraint firstItem="13i-dz-BJK" firstAttribute="leading" secondItem="GKQ-it-PV5" secondAttribute="trailing" constant="8" symbolic="YES" id="2Qy-Ao-6k4"/>
@@ -869,6 +870,19 @@
                     </connections>
                 </menuItem>
             </items>
+        </menu>
+        <menu id="kqb-AG-Zfo">
+            <items>
+                <menuItem title="Duplicate URL" id="ZGP-Wb-8yZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="duplicateURL:" target="-2" id="OcW-Ji-BeE"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="Rv4-wr-AzH"/>
+            </connections>
         </menu>
     </objects>
     <resources>

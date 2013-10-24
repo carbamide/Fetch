@@ -11,7 +11,7 @@
 
 @class JsonViewerWindowController, CsvViewerWindowController;
 
-@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination>
+@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination, NSMenuDelegate>
 
 /// The url text field
 @property (weak) IBOutlet NSTextField *urlTextField;
@@ -131,6 +131,12 @@
  * @param sender The caller of this method
  */
 -(IBAction)showCsv:(id)sender;
+
+/**
+ * Duplicate URL for purposes of adding several similar urls
+ * @param sender The caller of this method
+ */
+-(IBAction)duplicateURL:(id)sender;
 
 ///**
 // * Test CSV using a file
