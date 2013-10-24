@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
                 <outlet property="clearOutputButton" destination="ZNe-e6-9nf" id="8Hl-Ce-u6V"/>
-                <outlet property="csvCheckBox" destination="eNK-nW-WEb" id="fOj-UP-Cth"/>
                 <outlet property="customPayloadTextView" destination="GFg-9h-AgS" id="1WP-9P-NYU"/>
                 <outlet property="customPostBodyCheckBox" destination="13i-dz-BJK" id="sZv-kS-3H5"/>
                 <outlet property="fetchButton" destination="YAZ-HT-7sT" id="7nX-YW-AaG"/>
                 <outlet property="headerSegCont" destination="SfL-kQ-2v8" id="00O-iV-u4Z"/>
                 <outlet property="headersTableView" destination="FTj-ZQ-cys" id="7xp-uH-0YA"/>
-                <outlet property="jsonOutputButton" destination="Ps7-po-G6F" id="ElV-SN-olg"/>
                 <outlet property="logRequestCheckBox" destination="GKQ-it-PV5" id="YXQ-Tw-vxW"/>
                 <outlet property="menuController" destination="CiT-Km-NTb" id="sR5-N3-UGw"/>
                 <outlet property="methodCombo" destination="RRD-8M-bUZ" id="zJi-lC-YCu"/>
                 <outlet property="outputTextView" destination="IgS-DI-zC1" id="f3a-zU-SgM"/>
                 <outlet property="paramSegCont" destination="8CH-NR-1wW" id="tho-U1-3EZ"/>
                 <outlet property="parametersTableView" destination="qIN-xD-GfG" id="iTI-MR-wun"/>
+                <outlet property="parseButton" destination="Ps7-po-G6F" id="82z-vs-FWX"/>
+                <outlet property="parseMenu" destination="66i-bS-qLt" id="GAh-Q7-c0a"/>
                 <outlet property="progressIndicator" destination="9ef-XO-fqJ" id="2vw-jl-x0J"/>
                 <outlet property="projectSourceList" destination="sTl-gi-t4a" id="NbB-pZ-SUa"/>
                 <outlet property="requestTableView" destination="fbd-bo-9PL" id="R8p-5s-WmW"/>
@@ -47,7 +47,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="506" y="240" width="966" height="712"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
             <view key="contentView" id="qqI-jX-isR">
                 <rect key="frame" x="0.0" y="0.0" width="966" height="712"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -228,11 +228,11 @@
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="t0r-uC-uy7">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="t0r-uC-uy7">
                                             <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="PqT-pl-X3X">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="PqT-pl-X3X">
                                             <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -405,11 +405,11 @@
                                             </subviews>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="OFv-T5-nfl">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="OFv-T5-nfl">
                                             <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="ugE-9A-RKj">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ugE-9A-RKj">
                                             <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -503,11 +503,11 @@
                                             </subviews>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="ydN-E9-0xx">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ydN-E9-0xx">
                                             <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="v8E-BE-6p4">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="v8E-BE-6p4">
                                             <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -539,11 +539,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="PnP-b8-ovw">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="PnP-b8-ovw">
                                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="5be-17-VWR">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5be-17-VWR">
                                             <rect key="frame" x="666" y="1" width="16" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -560,14 +560,14 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ps7-po-G6F">
-                                        <rect key="frame" x="526" y="13" width="85" height="32"/>
+                                        <rect key="frame" x="506" y="13" width="105" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Output" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mP0-oW-zUi">
+                                        <buttonCell key="cell" type="push" title="Parse As..." bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mP0-oW-zUi">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="showJson:" target="-2" id="vUw-0b-0gc"/>
+                                            <action selector="parseAction:" target="-2" id="Dae-Cf-AvU"/>
                                         </connections>
                                     </button>
                                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="Ez3-CK-wFH">
@@ -603,11 +603,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </clipView>
-                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="2iF-IU-S5H">
+                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="2iF-IU-S5H">
                                                                 <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
-                                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="6uJ-QQ-VwZ">
+                                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="6uJ-QQ-VwZ">
                                                                 <rect key="frame" x="626" y="0.0" width="16" height="213"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
@@ -677,11 +677,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </clipView>
-                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="Zs5-hs-Avd">
+                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Zs5-hs-Avd">
                                                                 <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
-                                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="fr3-q5-3UE">
+                                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="fr3-q5-3UE">
                                                                 <rect key="frame" x="625" y="17" width="16" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
@@ -755,11 +755,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </clipView>
-                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="WLG-g6-UeU">
+                                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="WLG-g6-UeU">
                                                                 <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
-                                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="YqO-ug-ERl">
+                                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YqO-ug-ERl">
                                                                 <rect key="frame" x="625" y="17" width="16" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
@@ -779,28 +779,6 @@
                                             </tabViewItem>
                                         </tabViewItems>
                                     </tabView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="eNK-nW-WEb">
-                                        <rect key="frame" x="338" y="613" width="130" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="Response is CSV?" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dAU-mM-yGu">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="responseIsCSVAction:" target="-2" id="l8R-9n-zQn"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyz-w4-oZQ">
-                                        <rect key="frame" x="432" y="13" width="94" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Test CSV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PEh-wW-GgH">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                            <connections>
-                                                <action selector="testCSV:" target="-2" id="3l4-V9-wOa"/>
-                                            </connections>
-                                        </buttonCell>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1yS-Ga-79m" firstAttribute="leading" secondItem="klm-kG-KRD" secondAttribute="leading" constant="23" id="0Gd-DR-BR6"/>
@@ -827,13 +805,11 @@
                                     <constraint firstAttribute="trailing" secondItem="zBc-ng-OLV" secondAttribute="trailing" constant="17" id="Jse-eZ-tSq"/>
                                     <constraint firstAttribute="trailing" secondItem="SfL-kQ-2v8" secondAttribute="trailing" constant="38" id="N1g-Xa-lKf"/>
                                     <constraint firstItem="RRD-8M-bUZ" firstAttribute="leading" secondItem="n6N-4Y-mMX" secondAttribute="trailing" constant="8" id="O0t-KK-i7g"/>
-                                    <constraint firstItem="eNK-nW-WEb" firstAttribute="top" secondItem="5nQ-RV-vW0" secondAttribute="bottom" constant="13" id="P3r-yd-QBg"/>
                                     <constraint firstAttribute="bottom" secondItem="zBc-ng-OLV" secondAttribute="bottom" constant="354" id="PH6-VF-fjN"/>
                                     <constraint firstItem="GKQ-it-PV5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RRD-8M-bUZ" secondAttribute="trailing" constant="50" id="RG7-MH-dTN"/>
                                     <constraint firstItem="Ez3-CK-wFH" firstAttribute="top" secondItem="8CH-NR-1wW" secondAttribute="bottom" constant="12" id="Sik-gI-L3b"/>
                                     <constraint firstItem="RRD-8M-bUZ" firstAttribute="top" secondItem="5nQ-RV-vW0" secondAttribute="bottom" constant="8" id="Txs-z7-tak"/>
                                     <constraint firstItem="13i-dz-BJK" firstAttribute="trailing" secondItem="5nQ-RV-vW0" secondAttribute="trailing" id="VIy-84-VNZ"/>
-                                    <constraint firstItem="GKQ-it-PV5" firstAttribute="leading" secondItem="eNK-nW-WEb" secondAttribute="trailing" constant="12" id="YUh-7c-o7U"/>
                                     <constraint firstAttribute="trailing" secondItem="5nQ-RV-vW0" secondAttribute="trailing" constant="17" id="Zhw-xq-bJ7"/>
                                     <constraint firstItem="8CH-NR-1wW" firstAttribute="top" secondItem="zBc-ng-OLV" secondAttribute="bottom" constant="8" symbolic="YES" id="a5g-JG-IWQ"/>
                                     <constraint firstItem="zBc-ng-OLV" firstAttribute="centerX" secondItem="WbC-bY-XM9" secondAttribute="centerX" id="bdd-9J-MLG"/>
@@ -878,6 +854,22 @@
             </connections>
         </window>
         <customObject id="CiT-Km-NTb" customClass="MenuController"/>
+        <menu id="66i-bS-qLt">
+            <items>
+                <menuItem title="CSV..." id="7hm-hX-4bF">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showCsv:" target="-2" id="IHL-w1-fDE"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="JSON..." id="DTH-KA-eIW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showJson:" target="-2" id="MIW-l6-vOd"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

@@ -34,9 +34,6 @@
 /// NSButton that clears the output in the main window
 @property (weak) IBOutlet NSButton *clearOutputButton;
 
-/// NSButton that is used to show the JSON output window
-@property (weak) IBOutlet NSButton *jsonOutputButton;
-
 /// Table that shows the headers and allows you to add additional headers
 @property (weak) IBOutlet NSTableView *headersTableView;
 
@@ -70,11 +67,14 @@
 /// Main split view that is the home to both the project list and the main view
 @property (strong) IBOutlet CNSplitView *splitView;
 
-/// Checkbox to indicate whether the expected response is in CSV format
-@property (strong) IBOutlet NSButton *csvCheckBox;
-
 /// Reference to MenuController
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
+
+/// NSMenu that lets the user choose what to parse as
+@property (strong, nonatomic) IBOutlet NSMenu *parseMenu;
+
+/// Button that activates parseMenu to let the user choose how to parse the response from the fetchAction
+@property (strong, nonatomic) IBOutlet NSButton *parseButton;
 
 /// Reference to JsonViewerWindowController
 @property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
@@ -87,6 +87,8 @@
 
 /// Dictionary that holds a reference to the response headers.  This dictionary is used to populate the responseTableView.
 @property (strong, nonatomic) NSDictionary *responseDict;
+
+
 
 /**
  * Fetch Action
@@ -125,16 +127,22 @@
 -(IBAction)showJson:(id)sender;
 
 /**
- * Test CSV using a file
+ * Action that shows the CsvViewerWindowController window
  * @param sender The caller of this method
  */
--(IBAction)testCSV:(id)sender;
+-(IBAction)showCsv:(id)sender;
+
+///**
+// * Test CSV using a file
+// * @param sender The caller of this method
+// */
+//-(IBAction)testCSV:(id)sender;
 
 /**
- * Action to indicate whether the response of the fetch will be in CSV format
+ * Activate the parseMenu
  * @param sender The caller of this method
  */
--(IBAction)responseIsCSVAction:(id)sender;
+-(IBAction)parseAction:(id)sender;
 
 /**
  * Begins the process of exporting a project

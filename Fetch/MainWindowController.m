@@ -43,7 +43,7 @@
 @property (strong, nonatomic) Urls *currentUrl;
 
 /// JSON Data returns from fetch action.  This is either an NSDictionary or NSArray
-@property (strong, nonatomic) id jsonData;
+@property (strong, nonatomic) id responseData;
 
 /// Reference to toolbar
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
@@ -68,7 +68,7 @@
  */
 -(void)setupSplitviewControls;
 
-/** 
+/**
  * Monitor NSUserDefaults for changes
  @param aNotification The notification that is produced when NSUserDefaults changes
  */
@@ -84,7 +84,7 @@
  */
 -(void)unloadData;
 
-/** 
+/**
  * Append specified output the outputTextView
  * @param text The text to append to the outputTextView
  * @param color The color to show the text in
@@ -97,7 +97,7 @@
  */
 -(void)logReqest:(NSMutableURLRequest *)request;
 
-/** 
+/**
  * Add URL to Projects URL list if unique
  * @return Returns YES if the url was unique and added, NO if not
  */
@@ -115,7 +115,7 @@
  */
 -(void)loadProject:(Projects *)project;
 
-/** 
+/**
  * Add Project to Project Source List
  */
 -(void)addProject;
@@ -131,19 +131,12 @@
  */
 -(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval;
 
-/** 
+/**
  * Check URL status for specified urlString
  * @param urlString The url to check the status of
  * @return URLStatus of the specified URL
  */
 -(UrlStatus)urlVerification:(NSString *)urlString;
-
-/**
- * Begin parsing of CSV
- * @param csvString CSV to parse
- * @return Sucess or failure bool
- */
--(BOOL)parseCSV:(NSString *)csvString;
 
 @end
 
@@ -314,7 +307,7 @@
 
 -(void)unloadData
 {
-    [[self jsonOutputButton] setEnabled:NO];
+    [[self parseButton] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
     [[self urlTextField] setEnabled:NO];
     [[self urlDescriptionTextField] setEnabled:NO];
@@ -712,7 +705,7 @@
                 [[self exportButton] setEnabled:NO];
                 [[self removeButton] setEnabled:NO];
                 
-                [[self jsonOutputButton] setEnabled:NO];
+                [[self parseButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 [[self urlTextField] setEnabled:NO];
                 [[self urlDescriptionTextField] setEnabled:NO];
@@ -736,7 +729,7 @@
             [item delete];
             
             if (item == [self currentUrl]) {
-                [[self jsonOutputButton] setEnabled:NO];
+                [[self parseButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 
                 [[self urlTextField] setStringValue:[NSString blankString]];
@@ -846,6 +839,10 @@
             [self setResponseDict:[urlResponse allHeaderFields]];
             
             if (!connectionError) {
+                [self setResponseData:data];
+                
+                [[self parseButton] setEnabled:YES];
+                
                 id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 
                 if (jsonData) {
@@ -854,9 +851,6 @@
                     if (jsonHolder) {
                         [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
                     }
-                    
-                    [[self jsonOutputButton] setEnabled:YES];
-                    [self setJsonData:jsonData];
                 }
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
@@ -993,49 +987,49 @@
 
 -(IBAction)showJson:(id)sender
 {
-    if (![self jsonWindow]) {
-        [self setJsonWindow:[[JsonViewerWindowController alloc] initWithWindowNibName:kJsonViewerWindowXib json:[self jsonData]]];
-    }
-    else {
-        [[self jsonWindow] setJsonData:[self jsonData]];
-        [[[self jsonWindow] outlineView] reloadData];
-    }
+    NSError *error = nil;
     
-    [[[self jsonWindow] window] makeKeyAndOrderFront:self];
-}
-
--(IBAction)responseIsCSVAction:(id)sender
-{
-    if ([(NSButton *) sender state] == NSOnState) {
-        [self setIsCSV:YES];
-    }
-    else {
-        [self setIsCSV:NO];
-    }
-}
-
--(IBAction)testCSV:(id)sender
-{
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    id jsonData = [NSJSONSerialization JSONObjectWithData:[self responseData] options:0 error:&error];
     
-    NSInteger result = [openPanel runModal];
-    
-    NSArray *tempArray = nil;
-    if (result == NSOKButton) {
-        NSArray *rows = [NSArray arrayWithContentsOfCSVFile:[[openPanel URL] path] options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
-        if (rows == nil) {
-            NSLog(@"Unable to parse");
+    if (jsonData) {
+        if (![self jsonWindow]) {
+            [self setJsonWindow:[[JsonViewerWindowController alloc] initWithWindowNibName:kJsonViewerWindowXib json:jsonData]];
         }
-        tempArray = rows;
-
+        else {
+            [[self jsonWindow] setJsonData:jsonData];
+            [[[self jsonWindow] outlineView] reloadData];
+        }
+        
+        [[[self jsonWindow] window] makeKeyAndOrderFront:self];
     }
-    
+    else {
+        NSAlert *errorAlert = [NSAlert alertWithError:error];
+        
+        [errorAlert runModal];
+    }
+}
 
-    [self setCsvWindow:[[CsvViewerWindowController alloc] initWithWindowNibName:@"CsvViewerWindowController" dataSource:tempArray]];
-
-    [[self csvWindow] setNumberOfColumns:[tempArray[0] count]];
+-(IBAction)showCsv:(id)sender
+{
+    NSArray *rows = [NSArray arrayWithContentsOfString:[[NSString alloc] initWithData:[self responseData] encoding:NSUTF8StringEncoding] options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
     
-    [[[self csvWindow] window] makeKeyAndOrderFront:self];
+    if (rows) {
+        [self setCsvWindow:[[CsvViewerWindowController alloc] initWithWindowNibName:@"CsvViewerWindowController" dataSource:rows]];
+        
+        [[self csvWindow] setNumberOfColumns:[rows[0] count]];
+        
+        [[[self csvWindow] window] makeKeyAndOrderFront:self];
+    }
+    else {
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The data is not in the correct format."];
+        
+        [errorAlert runModal];
+    }
+}
+
+-(IBAction)parseAction:(id)sender
+{
+    [NSMenu popUpContextMenu:[self parseMenu] withEvent:[[NSApplication sharedApplication] currentEvent] forView:sender];
 }
 
 #pragma mark
@@ -1491,18 +1485,4 @@
     return SiteDown;
 }
 
-#pragma mark -
-#pragma mark CSV Parsing
-
--(BOOL)parseCSV:(NSString *)csvString
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"csv"];
-    
-    NSArray *rows = [NSArray arrayWithContentsOfCSVFile:path options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
-    if (rows == nil) {
-        return NO;
-    }
-    
-    return YES;
-}
 @end
