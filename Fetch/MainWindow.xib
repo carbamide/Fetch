@@ -301,6 +301,9 @@
                                                 <string>DELETE</string>
                                             </objectValues>
                                         </comboBoxCell>
+                                        <connections>
+                                            <outlet property="delegate" destination="-2" id="m92-17-hV6"/>
+                                        </connections>
                                     </comboBox>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="13i-dz-BJK">
                                         <rect key="frame" x="579" y="613" width="123" height="18"/>

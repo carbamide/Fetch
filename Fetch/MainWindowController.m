@@ -1118,7 +1118,19 @@
             [[self projectSourceList] endUpdates];
         }
     }
-    else if ([notification object] == [self customPayloadTextView]) {
+    else if ([[[notification object] superview] isKindOfClass:[ProjectCell class]]) {
+        ProjectCell *tempCell = (ProjectCell *)[[notification object] superview];
+        NSTextField *tempTextField = [notification object];
+        Projects *project = [tempCell project];
+        
+        [project setName:[tempTextField stringValue]];
+        [project save];
+    }
+}
+
+-(void)textDidEndEditing:(NSNotification *)notification
+{
+    if ([notification object] == [self customPayloadTextView]) {
         Urls *tempUrl = [self currentUrl];
         
         if (tempUrl) {
@@ -1128,14 +1140,6 @@
                 [tempUrl save];
             }
         }
-    }
-    else if ([[[notification object] superview] isKindOfClass:[ProjectCell class]]) {
-        ProjectCell *tempCell = (ProjectCell *)[[notification object] superview];
-        NSTextField *tempTextField = [notification object];
-        Projects *project = [tempCell project];
-        
-        [project setName:[tempTextField stringValue]];
-        [project save];
     }
 }
 
