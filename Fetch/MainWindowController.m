@@ -431,6 +431,7 @@
     [self setCurrentUrl:tempUrl];
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
+    [[self methodCombo] setEnabled:YES];
     
     [[self customPayloadTextView] setString:[[tempUrl customPayload] hasValue] ? [tempUrl customPayload] : [NSString blankString]];
     [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString blankString]];
@@ -813,6 +814,9 @@
             [[self currentUrl] save];
         }
         else {
+            [[self currentUrl] setCustomPayload:nil];
+            [[self currentUrl] save];
+            
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
                     [parameters appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
