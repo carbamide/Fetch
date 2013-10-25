@@ -1467,21 +1467,23 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    NSURL *draggedUrl = [NSURL URLWithString:[[info draggingPasteboard] stringForType:kUTITypePublicFile]];
+    NSPasteboard *pasteboard = [info draggingPasteboard];
+        
+    NSArray *urls = [pasteboard readObjectsForClasses:@[[NSURL class]] options:0];
     
-    if ([ProjectHandler importFromPath:[draggedUrl path]]) {
-        [[self projectList] removeAllObjects];
-        
-        [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-        
-        [[self urlCellArray] removeAllObjects];
-        
-        [[self projectSourceList] reloadData];
-        
-        return YES;
+    for (NSURL *url in urls) {
+        if ([ProjectHandler importFromPath:[url path]]) {
+            [[self projectList] removeAllObjects];
+            
+            [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+            
+            [[self urlCellArray] removeAllObjects];
+            
+            [[self projectSourceList] reloadData];
+        }
     }
     
-    return NO;
+    return YES;
 }
 
 #pragma mark
