@@ -15,21 +15,27 @@
 
 -(IBAction)showPreferences:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
 
     [[self preferencesController] showPreferencesWindow:nil];
 }
 
 -(IBAction)showMainWindow:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
 
     [[[[self delegate] mainWindowController] window] makeKeyAndOrderFront:self];
 }
 
 -(IBAction)closeWindow:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
 
     for (NSWindow *tempWindow in [[NSApp windows] objectEnumerator]) {
         if ([tempWindow isVisible]) {
@@ -41,21 +47,27 @@
 
 -(IBAction)addUrl:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
     
     [[self mainWindowController] addUrl:sender];
 }
 
 -(IBAction)importProject:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
 
     [[self mainWindowController] importProject:sender];
 }
 
 -(IBAction)saveLog:(id)sender
 {
+    #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
+#endif
     
     [[self mainWindowController] saveLog];
 }
