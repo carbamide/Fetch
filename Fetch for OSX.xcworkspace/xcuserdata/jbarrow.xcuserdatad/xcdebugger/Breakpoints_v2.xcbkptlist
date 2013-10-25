@@ -14,9 +14,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1106"
-            endingLineNumber = "1106"
-            landmarkName = "-controlTextDidEndEditing:"
-            landmarkType = "5">
+            endingLineNumber = "1106">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +28,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1133"
-            endingLineNumber = "1133"
-            landmarkName = "-textDidEndEditing:"
-            landmarkType = "5">
+            endingLineNumber = "1133">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,9 +42,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1267"
-            endingLineNumber = "1267"
-            landmarkName = "-comboBoxSelectionDidChange:"
-            landmarkType = "5">
+            endingLineNumber = "1267">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
