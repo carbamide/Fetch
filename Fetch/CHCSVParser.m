@@ -293,7 +293,9 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
 }
 
 - (BOOL)_parseNewline {
-    if (_cancelled) { return NO; }
+    if (_cancelled) {
+        return NO;
+    }
     
     NSUInteger charCount = 0;
     while ([[NSCharacterSet newlineCharacterSet] characterIsMember:[self _peekCharacter]]) {
