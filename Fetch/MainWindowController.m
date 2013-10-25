@@ -208,10 +208,9 @@
     [self setupSplitviewControls];
     
     for (int index = 0; index < [[self projectList] count]; index++) {
-        id item = [[self projectSourceList] itemAtRow:index];
+        id item = [self projectList][index];
         
         if ([item isKindOfClass:[Projects class]]) {
-            
             BOOL shouldExpand = [[(Projects *)item expanded] boolValue];
             
             if (shouldExpand) {
