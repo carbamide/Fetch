@@ -18,6 +18,10 @@
 
 +(BOOL)importFromData:(NSData *)data
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NSDictionary *importedDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     Projects *tempProject = [Projects create];
@@ -67,6 +71,10 @@
 
 +(BOOL)importFromPath:(NSString *)path
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NSDictionary *importedDictionary = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     
     Projects *tempProject = [Projects create];
@@ -116,6 +124,10 @@
 
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
     
     [returnDictionary setObject:[project name] forKey:kProjectName];

@@ -21,6 +21,10 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -32,11 +36,19 @@
 
 -(void)awakeFromNib
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     [super awakeFromNib];
 }
 
 -(void)viewWillMoveToSuperview:(NSView *)newSuperview
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     [super viewWillMoveToSuperview:newSuperview];
     
     [[self pingTimer] invalidate];
@@ -46,14 +58,21 @@
 
 -(void)dealloc
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     [[self pingTimer] invalidate];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 - (void)drawRect:(NSRect)dirtyRect
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
 	[super drawRect:dirtyRect];
 }
 

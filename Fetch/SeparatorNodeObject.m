@@ -12,6 +12,10 @@
 
 -(id)init
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     self = [super init];
     
     if (self) {

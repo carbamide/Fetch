@@ -20,6 +20,10 @@
 
 - (id)initWithWindowNibName:(NSString *)nibOrNil json:(id)json
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
 
@@ -38,6 +42,10 @@
 
 -(void)setJsonData:(id)jsonData
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     if ([jsonData isKindOfClass:[NSArray class]]) {
         jsonData = @{@"Root": jsonData};
     }
@@ -59,6 +67,10 @@
 
 - (BOOL)outlineView:(NSOutlineView *)oV isItemExpandable:(id)item
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NodeObject *tempObject = item;
     
     if ([[tempObject children] count] > 0) {
@@ -70,6 +82,10 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)oV numberOfChildrenOfItem:(id)item
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NodeObject *tempObject = item;
     
     if (!tempObject) {
@@ -85,6 +101,10 @@
 
 - (id)outlineView:(NSOutlineView *)oV child:(NSInteger)index ofItem:(id)item
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NodeObject *tempObject = item;
 
     if (!tempObject) {
@@ -99,6 +119,10 @@
 
 - (id)outlineView:(NSOutlineView *)oV objectValueForTableColumn:(NSTableColumn *)theColumn byItem:(id)item
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     NodeObject *tempObject = item;
     
     if ([[theColumn identifier] isEqualToString:@"Key"]) {

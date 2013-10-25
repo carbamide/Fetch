@@ -13,6 +13,10 @@
 
 -(void)awakeFromNib
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
     NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
@@ -37,6 +41,10 @@
 
 -(IBAction)pingReachabilityAction:(id)sender
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     if ([[self checkSiteReachabilityCheckBox] state] == NSOnState) {
         [[self frequencyToPingLabel] setEnabled:YES];
         [[self frequencyToPingStepper] setEnabled:YES];
@@ -57,6 +65,10 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+
     [[NSUserDefaults standardUserDefaults] setValue:[[self frequencyToPingTextField] stringValue] forKey:kFrequencyToPing];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
