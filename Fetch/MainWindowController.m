@@ -518,8 +518,8 @@
         [tempUrl setCreatedAt:[NSDate date]];
         [tempUrl setUrlDescription:@"New URL"];
         
-        [[self currentProject] addUrlsObject:tempUrl];
-        [[self currentProject] save];
+        [tempProject addUrlsObject:tempUrl];
+        [tempProject save];
         
         [[self urlCellArray] removeAllObjects];
         

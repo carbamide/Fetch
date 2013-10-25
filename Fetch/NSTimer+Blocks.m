@@ -27,8 +27,7 @@
 
 +(void)jdExecuteSimpleBlock:(NSTimer *)inTimer;
 {
-    if([inTimer userInfo])
-    {
+    if([inTimer userInfo]) {
         void (^block)() = (void (^)())[inTimer userInfo];
         block();
     }
