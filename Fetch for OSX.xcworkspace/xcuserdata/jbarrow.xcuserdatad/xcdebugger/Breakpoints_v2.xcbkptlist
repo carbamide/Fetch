@@ -10,11 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fetch/MainWindowController.m"
-            timestampString = "404346546.442216"
+            timestampString = "404419784.35456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1106"
-            endingLineNumber = "1106">
+            startingLineNumber = "1128"
+            endingLineNumber = "1128"
+            landmarkName = "-controlTextDidEndEditing:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fetch/MainWindowController.m"
-            timestampString = "404346731.796319"
+            timestampString = "404419784.35456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1133"
-            endingLineNumber = "1133">
+            startingLineNumber = "1155"
+            endingLineNumber = "1155"
+            landmarkName = "-textDidEndEditing:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fetch/MainWindowController.m"
-            timestampString = "404346810.802049"
+            timestampString = "404419784.35456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1267"
@@ -106,6 +110,11 @@
             startingLineNumber = "302"
             endingLineNumber = "302"
             landmarkName = "-_parseNewline"
+=======
+            startingLineNumber = "1289"
+            endingLineNumber = "1289"
+            landmarkName = "-comboBoxSelectionDidChange:"
+>>>>>>> f4b56d2692393e7f64f657e176f35526b0fdc564
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

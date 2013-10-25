@@ -22,6 +22,10 @@
 #import "NSTimer+Blocks.h"
 #import "CHCSVParser.h"
 
+@interface NSURLRequest(Private)
++(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
+@end
+
 @interface MainWindowController ()
 
 /// Backing store for headersTableView
@@ -168,6 +172,8 @@
     NSLog(@"%s", __FUNCTION__);
     
     [super windowDidLoad];
+    
+    [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
@@ -425,6 +431,7 @@
     [self setCurrentUrl:tempUrl];
     
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
+    [[self methodCombo] setEnabled:YES];
     
     [[self customPayloadTextView] setString:[[tempUrl customPayload] hasValue] ? [tempUrl customPayload] : [NSString blankString]];
     [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString blankString]];
@@ -447,6 +454,10 @@
         }
         
         [[self headersTableView] endUpdates];
+        
+        if ([[self headersTableView] numberOfRows] > 0) {
+            [[self headerSegCont] setEnabled:YES forSegment:1];
+        }
     }
     
     [[self paramDataSource] removeAllObjects];
@@ -466,6 +477,10 @@
         }
         
         [[self parametersTableView] endUpdates];
+        
+        if ([[self parametersTableView] numberOfRows] > 0) {
+            [[self paramSegCont] setEnabled:YES forSegment:1];
+        }
     }
     
     if ([tempUrl customPayload] && [[tempUrl customPayload] length] > 0) {
@@ -795,8 +810,13 @@
         
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
+            [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];
+            [[self currentUrl] save];
         }
         else {
+            [[self currentUrl] setCustomPayload:nil];
+            [[self currentUrl] save];
+            
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
                     [parameters appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
@@ -819,6 +839,8 @@
         }
         
         [self setRequestDict:[request allHTTPHeaderFields]];
+        
+        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
