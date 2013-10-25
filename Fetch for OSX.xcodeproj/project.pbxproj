@@ -774,6 +774,7 @@
 					"$(inherited)",
 					"${SRCROOT}",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch for OSX-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -797,6 +798,7 @@
 					"$(inherited)",
 					"${SRCROOT}",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fetch/Fetch for OSX-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
