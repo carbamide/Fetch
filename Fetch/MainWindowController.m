@@ -173,6 +173,8 @@
     
     [super windowDidLoad];
     
+    [[self splitView] setPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofDividerAtIndex:0];
+    
     [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -1496,6 +1498,14 @@
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
 {
     return kMinimumSplitViewSize;
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@(proposedPosition) forKey:kSplitViewPosition];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return proposedPosition;
 }
 
 #pragma mark

@@ -38,7 +38,8 @@
                                                               kForegroundColor: [defaultForegroundColor colorForRegisterDefaults],
                                                               kSuccessColor: [defaultSuccessColor colorForRegisterDefaults],
                                                               kFailureColor: [defaultFailureColor colorForRegisterDefaults],
-                                                              @"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints": @NO
+                                                              @"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints": @NO,
+                                                              kSplitViewPosition: @(300)
                                                               }];
     
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:kMainWindowXib]];

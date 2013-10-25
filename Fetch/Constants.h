@@ -55,6 +55,7 @@ static NSString *const kFailureColor = @"failure_color";
 static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
 static NSString *const kPingForReachability = @"ping_for_reachability";
 static NSString *const kFrequencyToPing = @"frequency_to_ping";
+static NSString *const kSplitViewPosition = @"split_view_position";
 
 #pragma mark File Type Constants
 
