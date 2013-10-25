@@ -173,6 +173,8 @@
     
     [super windowDidLoad];
     
+    [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
     
@@ -451,6 +453,10 @@
         }
         
         [[self headersTableView] endUpdates];
+        
+        if ([[self headersTableView] numberOfRows] > 0) {
+            [[self headerSegCont] setEnabled:YES forSegment:1];
+        }
     }
     
     [[self paramDataSource] removeAllObjects];
@@ -470,6 +476,10 @@
         }
         
         [[self parametersTableView] endUpdates];
+        
+        if ([[self parametersTableView] numberOfRows] > 0) {
+            [[self paramSegCont] setEnabled:YES forSegment:1];
+        }
     }
     
     if ([tempUrl customPayload] && [[tempUrl customPayload] length] > 0) {
@@ -799,6 +809,8 @@
         
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
+            [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];
+            [[self currentUrl] save];
         }
         else {
             for (Parameters *tempParam in [self paramDataSource]) {
