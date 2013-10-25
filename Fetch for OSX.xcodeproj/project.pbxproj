@@ -29,7 +29,6 @@
 		29061ABA17FDB26B00F390CA /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB917FDB26B00F390CA /* NSColor+Extensions.m */; };
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
 		29438AFC17E222E2002BB433 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29438AFB17E222E2002BB433 /* MenuController.m */; };
-		29438B0217E2A0A5002BB433 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 29438B0117E2A0A5002BB433 /* dsa_pub.pem */; };
 		294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294C8F8117ED6D0C0060EF7E /* MainWindow.xib */; };
 		2957D5C817E7594100639F02 /* SeparatorNodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957D5C717E7594100639F02 /* SeparatorNodeObject.m */; };
 		295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295EB4DF17F32D8C00F58FE2 /* CNSplitView.m */; };
@@ -98,7 +97,6 @@
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		29438AFA17E222E2002BB433 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		29438AFB17E222E2002BB433 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
-		29438B0117E2A0A5002BB433 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../dsa_pub.pem; sourceTree = "<group>"; };
 		294C8F8117ED6D0C0060EF7E /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		2957D5C617E7594100639F02 /* SeparatorNodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeparatorNodeObject.h; sourceTree = "<group>"; };
 		2957D5C717E7594100639F02 /* SeparatorNodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorNodeObject.m; sourceTree = "<group>"; };
@@ -427,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				291BBA9D17DAF18200C771F5 /* Constants.h */,
-				29438B0117E2A0A5002BB433 /* dsa_pub.pem */,
 				42FDB467B1144450B1698C20 /* Pods.xcconfig */,
 				29C3D1E317D77875004B405E /* HeaderNames.plist */,
 				29F4A7EB17D64EFE00FAA098 /* Images.xcassets */,
@@ -518,7 +515,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29438B0217E2A0A5002BB433 /* dsa_pub.pem in Resources */,
 				29C3D1E517D77875004B405E /* HeaderNames.plist in Resources */,
 				29F4A7DE17D64EFE00FAA098 /* InfoPlist.strings in Resources */,
 				29F4A7EC17D64EFE00FAA098 /* Images.xcassets in Resources */,
