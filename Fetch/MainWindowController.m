@@ -22,6 +22,10 @@
 #import "NSTimer+Blocks.h"
 #import "CHCSVParser.h"
 
+@interface NSURLRequest(Private)
++(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
+@end
+
 @interface MainWindowController ()
 
 /// Backing store for headersTableView
@@ -819,6 +823,8 @@
         }
         
         [self setRequestDict:[request allHTTPHeaderFields]];
+        
+        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
