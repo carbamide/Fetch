@@ -9,13 +9,6 @@
 #pragma mark Enums
 
 enum {
-    SiteUp = 0,
-    SiteDown,
-    SiteInconclusive
-};
-typedef NSUInteger UrlStatus;
-
-enum {
     GET_METHOD = 0,
     POST_METHOD = 1,
     PUT_METHOD = 2,
