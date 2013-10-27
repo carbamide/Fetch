@@ -50,6 +50,7 @@
 		29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29992B4D17FFADE7003EE651 /* NSString+Extensions.m */; };
 		299AE6E91815B75B0039C17B /* CsvViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 299AE6E71815B75B0039C17B /* CsvViewerWindowController.m */; };
 		299AE6EA1815B75B0039C17B /* CsvViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AE6E81815B75B0039C17B /* CsvViewerWindowController.xib */; };
+		29A19A4C181CAE58006C203A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A19A4B181CAE58006C203A /* Reachability.m */; };
 		29A5A3FC17FF74E700837046 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5A3FB17FF74E700837046 /* Projects.m */; };
 		29BC58E817DE0BFD004168AE /* Urls.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58E717DE0BFD004168AE /* Urls.m */; };
 		29BC58EB17DE0BFD004168AE /* Headers.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BC58EA17DE0BFD004168AE /* Headers.m */; };
@@ -134,6 +135,8 @@
 		299AE6E61815B75B0039C17B /* CsvViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvViewerWindowController.h; sourceTree = "<group>"; };
 		299AE6E71815B75B0039C17B /* CsvViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CsvViewerWindowController.m; sourceTree = "<group>"; };
 		299AE6E81815B75B0039C17B /* CsvViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CsvViewerWindowController.xib; sourceTree = "<group>"; };
+		29A19A4A181CAE58006C203A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		29A19A4B181CAE58006C203A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		29A5A3FA17FF74E700837046 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
 		29A5A3FB17FF74E700837046 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		29A5A3FD17FF867900837046 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 		295EB4DB17F32D7400F58FE2 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				29A19A4A181CAE58006C203A /* Reachability.h */,
+				29A19A4B181CAE58006C203A /* Reachability.m */,
 				29914D9B17FD047200DC6052 /* NSTimer+Blocks.h */,
 				29914D9C17FD047200DC6052 /* NSTimer+Blocks.m */,
 				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
@@ -632,6 +637,7 @@
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
+				29A19A4C181CAE58006C203A /* Reachability.m in Sources */,
 				29BEA3FD17DD1ADB005048F1 /* ProjectHandler.m in Sources */,
 				29061AB017FD16DB00F390CA /* ColorsPreferencesViewController.m in Sources */,
 				295EB4EB17F32D8C00F58FE2 /* CNSplitView.m in Sources */,

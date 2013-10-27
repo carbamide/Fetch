@@ -16,11 +16,11 @@
 #import "ProjectHandler.h"
 #import "JsonViewerWindowController.h"
 #import "CsvViewerWindowController.h"
-
 #import "ProjectCell.h"
 #import "UrlCell.h"
 #import "NSTimer+Blocks.h"
 #import "CHCSVParser.h"
+#import "Reachability.h"
 
 @interface NSURLRequest(Private)
 +(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
@@ -1719,22 +1719,17 @@
 #endif
     
     NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    NSHTTPURLResponse *response = nil;
     
-    if ([NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil]) {
-        if (NSLocationInRange([response statusCode], NSMakeRange(200, (299 - 200)))) {
-            return SiteUp;
-        }
-        else if (NSLocationInRange([response statusCode], NSMakeRange(500, (599 - 500)))) {
-            return SiteInconclusive;
-        }
-        else {
-            return SiteDown;
-        }
+    Reachability *reachability = [Reachability reachabilityWithHostname:[url host]];
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    
+    if (status != NotReachable) {
+        return SiteUp;
     }
-    
-    return SiteDown;
+    else {
+        return SiteDown;
+    }
 }
 
 #pragma mark -
