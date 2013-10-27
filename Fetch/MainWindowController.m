@@ -141,9 +141,9 @@
 /**
  * Check URL status for specified urlString
  * @param urlString The url to check the status of
- * @return URLStatus of the specified URL
+ * @return NetworkStatus of the specified URL
  */
--(UrlStatus)urlVerification:(NSString *)urlString;
+-(NetworkStatus)urlVerification:(NSString *)urlString;
 
 @end
 
@@ -1677,12 +1677,12 @@
     
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         
-        for (UrlCell *cell in [self urlCellArray]) {
+        for (__block UrlCell *cell in [self urlCellArray]) {
             if (![[[cell currentUrl] url] isEqualToString:[NSString blankString]]) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    UrlStatus status = [self urlVerification:[[cell currentUrl] url]];
+                    NetworkStatus status = [self urlVerification:[[cell currentUrl] url]];
                     
-                    if (status == SiteUp) {
+                    if (status != NotReachable) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
                             
@@ -1690,17 +1690,9 @@
                             [[cell currentUrl] save];
                         });
                     }
-                    else if (status == SiteInconclusive) {
+                    else {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
-                            
-                            [[cell currentUrl] setSiteStatus:NSImageNameStatusPartiallyAvailable];
-                            [[cell currentUrl] save];
-                        });
-                    }
-                    else if (status == SiteDown) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusPartiallyAvailable]];
                             
                             [[cell currentUrl] setSiteStatus:NSImageNameStatusUnavailable];
                             [[cell currentUrl] save];
@@ -1712,7 +1704,7 @@
     } repeats:YES];
 }
 
--(UrlStatus)urlVerification:(NSString *)urlString
+-(NetworkStatus)urlVerification:(NSString *)urlString
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
@@ -1724,12 +1716,7 @@
     
     NetworkStatus status = [reachability currentReachabilityStatus];
     
-    if (status != NotReachable) {
-        return SiteUp;
-    }
-    else {
-        return SiteDown;
-    }
+    return status;
 }
 
 #pragma mark -
