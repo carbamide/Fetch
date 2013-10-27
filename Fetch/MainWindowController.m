@@ -1677,25 +1677,27 @@
     
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         
-        for (__block UrlCell *cell in [self urlCellArray]) {
-            if (![[[cell currentUrl] url] isEqualToString:[NSString blankString]]) {
+        for (UrlCell *cell in [self urlCellArray]) {
+            __block __weak UrlCell *tempCell = cell;
+            
+            if (![[[tempCell currentUrl] url] isEqualToString:[NSString blankString]]) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    NetworkStatus status = [self urlVerification:[[cell currentUrl] url]];
+                    NetworkStatus status = [self urlVerification:[[tempCell currentUrl] url]];
                     
                     if (status != NotReachable) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
+                            [[tempCell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusAvailable]];
                             
-                            [[cell currentUrl] setSiteStatus:NSImageNameStatusAvailable];
-                            [[cell currentUrl] save];
+                            [[tempCell currentUrl] setSiteStatus:NSImageNameStatusAvailable];
+                            [[tempCell currentUrl] save];
                         });
                     }
                     else {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [[cell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
+                            [[tempCell statusImage] setImage:[NSImage imageNamed:NSImageNameStatusUnavailable]];
                             
-                            [[cell currentUrl] setSiteStatus:NSImageNameStatusUnavailable];
-                            [[cell currentUrl] save];
+                            [[tempCell currentUrl] setSiteStatus:NSImageNameStatusUnavailable];
+                            [[tempCell currentUrl] save];
                         });
                     }
                 });
