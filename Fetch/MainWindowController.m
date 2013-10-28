@@ -456,7 +456,11 @@
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] intValue]];
     [[self methodCombo] setEnabled:YES];
     
-    [[self customPayloadTextView] setString:[[tempUrl customPayload] hasValue] ? [tempUrl customPayload] : [NSString blankString]];
+    if ([[tempUrl customPayload] hasValue]) {
+        [[self customPayloadTextView] setString:[tempUrl customPayload]];
+        [[self customPostBodyCheckBox] setState:NSOnState];
+    }
+    
     [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString blankString]];
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
     

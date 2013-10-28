@@ -61,14 +61,14 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fv-vy-OC0">
-                                        <rect key="frame" x="0.0" y="1" width="239" height="713"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="239" height="714"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <clipView key="contentView" id="hHk-L1-Fva">
-                                            <rect key="frame" x="1" y="1" width="237" height="711"/>
+                                            <rect key="frame" x="1" y="1" width="237" height="712"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" viewBased="YES" indentationPerLevel="16" outlineTableColumn="Ed0-28-STB" id="sTl-gi-t4a">
-                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="711"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="712"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="0.0"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -209,7 +209,6 @@
                                                                         <constraint firstItem="DhH-cf-FVh" firstAttribute="leading" secondItem="cxj-0J-rAj" secondAttribute="trailing" constant="24" id="nkU-Lg-kn3"/>
                                                                         <constraint firstItem="Pj4-NG-srj" firstAttribute="leading" secondItem="JUI-ng-Z6a" secondAttribute="leading" constant="3" id="ojb-ZA-ImO"/>
                                                                         <constraint firstAttribute="trailing" secondItem="DhH-cf-FVh" secondAttribute="trailing" constant="5" id="t4K-Kn-cU6"/>
-                                                                        <constraint firstAttribute="centerY" secondItem="DhH-cf-FVh" secondAttribute="centerY" id="vpj-8J-a44"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="imageView" destination="Pj4-NG-srj" id="uyQ-AE-Mho"/>
@@ -241,7 +240,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="9fv-vy-OC0" firstAttribute="top" secondItem="OeG-Aa-5MN" secondAttribute="top" constant="-2" id="8Cd-S9-TUa"/>
-                                    <constraint firstAttribute="bottom" secondItem="9fv-vy-OC0" secondAttribute="bottom" constant="1" id="XbO-qz-ocp"/>
+                                    <constraint firstAttribute="bottom" secondItem="9fv-vy-OC0" secondAttribute="bottom" id="XbO-qz-ocp"/>
                                     <constraint firstAttribute="trailing" secondItem="9fv-vy-OC0" secondAttribute="trailing" id="anS-OW-nhT"/>
                                     <constraint firstItem="9fv-vy-OC0" firstAttribute="leading" secondItem="OeG-Aa-5MN" secondAttribute="leading" id="eSC-Hq-AcA"/>
                                     <constraint firstAttribute="width" constant="239" placeholder="YES" id="vrw-5Q-xTc"/>
