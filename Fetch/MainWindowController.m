@@ -829,8 +829,6 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NSMutableString *parameters = [[NSMutableString alloc] init];
-    
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
@@ -853,8 +851,11 @@
     }
     
     if ([self addToUrlListIfUnique]) {
+        NSMutableString *parameters = [[NSMutableString alloc] init];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         
+        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
+
         [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
         
         for (Headers *tempHeader in [self headerDataSource]) {
@@ -893,35 +894,24 @@
         
         [self setRequestDict:[request allHTTPHeaderFields]];
         
-        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
-        
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
                                                                                                                 NSError *connectionError) {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
-            NSInteger responseCode = [urlResponse statusCode];
-            NSString *responseCodeString = [NSString stringWithFormat:@"Response - %li\n", responseCode];
-            
-            [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
-            
-            if (NSLocationInRange(responseCode, NSMakeRange(200, (299 - 200)))) {
-                [self appendToOutput:responseCodeString color:[userDefaults colorForKey:kSuccessColor]];
-            }
-            else {
-                [self appendToOutput:responseCodeString color:[userDefaults colorForKey:kFailureColor]];
-            }
-            
-            [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
             
             [self setResponseDict:[urlResponse allHeaderFields]];
+            
+            [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
+            [self appendToOutput:[urlResponse responseString] color:[userDefaults colorForKey:[urlResponse isGoodResponse] ? kSuccessColor : kFailureColor]];
+            [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
             
             if (!connectionError) {
                 [self setResponseData:data];
                 
                 [[self parseButton] setEnabled:YES];
                 
-                id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
                 
                 if (jsonData) {
                     NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];

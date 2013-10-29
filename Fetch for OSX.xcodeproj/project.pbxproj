@@ -42,6 +42,7 @@
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2977962F18121ACF00BC834C /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2977962E18121ACF00BC834C /* CHCSVParser.m */; };
 		2981D80117FBAC570039512A /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2981D80017FBAC570039512A /* ProjectCell.m */; };
+		298347DB181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 298347DA181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.m */; };
 		2983B07817DABE6F001852F2 /* Fetch for OSX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */; };
 		2983B07917DABFE7001852F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F4A7D717D64EFC00FAA098 /* CoreData.framework */; };
 		29914D9417FD009300DC6052 /* UrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29914D9317FD009300DC6052 /* UrlCell.m */; };
@@ -123,6 +124,8 @@
 		2977962E18121ACF00BC834C /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		2981D7FF17FBAC570039512A /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		2981D80017FBAC570039512A /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
+		298347D9181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+Extensions.h"; sourceTree = "<group>"; };
+		298347DA181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+Extensions.m"; sourceTree = "<group>"; };
 		2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX.xcdatamodel"; sourceTree = "<group>"; };
 		29914D9217FD009300DC6052 /* UrlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCell.h; sourceTree = "<group>"; };
 		29914D9317FD009300DC6052 /* UrlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCell.m; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				29992B4C17FFADE7003EE651 /* NSString+Extensions.h */,
 				29992B4D17FFADE7003EE651 /* NSString+Extensions.m */,
 				29992B4F17FFAE4C003EE651 /* Extensions.h */,
+				298347D9181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.h */,
+				298347DA181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.m */,
 			);
 			name = Catagories;
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 				299AE6E91815B75B0039C17B /* CsvViewerWindowController.m in Sources */,
 				295EB4ED17F32D8C00F58FE2 /* CNSplitViewToolbar.m in Sources */,
 				29914D9D17FD047200DC6052 /* NSTimer+Blocks.m in Sources */,
+				298347DB181F0D3F008D6244 /* NSHTTPURLResponse+Extensions.m in Sources */,
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,

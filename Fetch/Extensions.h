@@ -9,3 +9,4 @@
 #import "NSUserDefaults+NSColor.h"
 #import "NSColor+Extensions.h"
 #import "NSString+Extensions.h"
+#import "NSHTTPURLResponse+Extensions.h"
