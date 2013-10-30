@@ -1675,9 +1675,22 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NSInteger const minimumBeforeHideHappens = 220;
+    BOOL shouldHideStatusImages = NO;
     
-    if (proposedPosition < minimumBeforeHideHappens) {
+    for (UrlCell *cell in [self urlCellArray]) {
+        NSRect statusRect = [[cell statusImage] frame];
+        CGSize sizeOfText = [[[cell textField] stringValue] sizeWithAttributes:@{NSFontNameAttribute: [[cell textField] font]}];
+
+        NSRect textBoxRect = NSMakeRect(cell.textField.frame.origin.x, cell.textField.frame.origin.y, sizeOfText.width, sizeOfText.height);
+    
+        if (NSIntersectsRect(statusRect, textBoxRect)) {
+            shouldHideStatusImages = YES;
+            
+            break;
+        }
+    }
+    
+    if (shouldHideStatusImages) {
         for (UrlCell *cell in [self urlCellArray]) {
             [[[cell statusImage] animator] setAlphaValue:0.0];
         }
@@ -1694,6 +1707,7 @@
         for (ProjectCell *cell in [self projectCellArray]) {
             [[[cell addUrlButton] animator] setAlphaValue:1.0];
         }
+
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:@(proposedPosition) forKey:kSplitViewPosition];

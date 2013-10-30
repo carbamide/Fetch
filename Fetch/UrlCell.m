@@ -39,7 +39,7 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    
     [super awakeFromNib];
     
     [[self textField] setEditable:NO];
