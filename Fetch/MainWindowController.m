@@ -855,7 +855,7 @@
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         
         [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
-
+        
         [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
         
         for (Headers *tempHeader in [self headerDataSource]) {
@@ -1170,6 +1170,21 @@
     [NSMenu popUpContextMenu:[self parseMenu] withEvent:[[NSApplication sharedApplication] currentEvent] forView:sender];
 }
 
+-(IBAction)renameProject:(id)sender
+{
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
+    ProjectCell *cell = [[self projectSourceList] viewAtColumn:0 row:[[self projectSourceList] clickedRow] makeIfNecessary:NO];
+    
+    NSTextField *textField = [cell textField];
+    
+    [textField setEditable:YES];
+    
+    [[self projectSourceList] editColumn:0 row:[[self projectSourceList] clickedRow] withEvent:nil select:YES];
+}
+
 #pragma mark
 #pragma mark NSControlTextDelegate
 
@@ -1220,6 +1235,10 @@
         
         [project setName:[tempTextField stringValue]];
         [project save];
+        
+        NSTextField *textField = [notification object];
+        
+        [textField setEditable:NO];
     }
 }
 
@@ -1580,15 +1599,6 @@
     }
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
-#ifdef DEBUG
-    NSLog(@"%s", __FUNCTION__);
-#endif
-    
-    return YES;
-}
-
 #pragma mark
 #pragma mark NSOutlineViewDelegate Drag Support
 
@@ -1734,14 +1744,12 @@
         if ([item isKindOfClass:[Urls class]]) {
             [self setClickedUrl:item];
             
-            for (NSMenuItem *menuItem in [menu itemArray]) {
-                [menuItem setHidden:NO];
-            }
+            [[menu itemAtIndex:0] setHidden:NO];
+            [[menu itemAtIndex:1] setHidden:YES];
         }
         else {
-            for (NSMenuItem *menuItem in [menu itemArray]) {
-                [menuItem setHidden:YES];
-            }
+            [[menu itemAtIndex:0] setHidden:YES];
+            [[menu itemAtIndex:1] setHidden:NO];
         }
     }
 }

@@ -25,6 +25,18 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
+    [super awakeFromNib];
+    
+    [[self textField] setEditable:NO];
+    [[self textField] setSelectable:NO];
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
 #ifdef DEBUG
