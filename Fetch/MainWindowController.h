@@ -138,6 +138,12 @@
  */
 -(IBAction)duplicateURL:(id)sender;
 
+/**
+ * Rename the selected project
+ * @param sender The caller of this method
+ */
+-(IBAction)renameProject:(id)sender;
+
 ///**
 // * Test CSV using a file
 // * @param sender The caller of this method

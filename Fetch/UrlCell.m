@@ -41,6 +41,9 @@
 #endif
 
     [super awakeFromNib];
+    
+    [[self textField] setEditable:NO];
+    [[self textField] setSelectable:NO];
 }
 
 -(void)viewWillMoveToSuperview:(NSView *)newSuperview
