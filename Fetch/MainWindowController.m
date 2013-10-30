@@ -865,11 +865,9 @@
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
             [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];
-            [[self currentUrl] save];
         }
         else {
             [[self currentUrl] setCustomPayload:nil];
-            [[self currentUrl] save];
             
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
@@ -894,6 +892,10 @@
         
         [self setRequestDict:[request allHTTPHeaderFields]];
         
+        if ([[self currentUrl] hasChanges]) {
+            [[self currentUrl] save];
+        }
+
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
                                                                                                                 NSError *connectionError) {
@@ -938,10 +940,10 @@
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
-        
-        [[self urlCellArray] removeAllObjects];
-        
-        [[self projectSourceList] reloadData];
+//        
+//        [[self urlCellArray] removeAllObjects];
+//        
+//        [[self projectSourceList] reloadData];
     }
 }
 
