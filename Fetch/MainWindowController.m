@@ -61,6 +61,9 @@
 /// Mutable array that holds a reference to all url cells (Used for updating reachability status)
 @property (strong, nonatomic) NSMutableArray *urlCellArray;
 
+/// Mutable array that holds a reference to all project cells
+@property (strong, nonatomic) NSMutableArray *projectCellArray;
+
 /// Used if the user has chosen to check reachability of URLs
 @property (strong, nonatomic) NSTimer *pingTimer;
 
@@ -865,11 +868,9 @@
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
             [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];
-            [[self currentUrl] save];
         }
         else {
             [[self currentUrl] setCustomPayload:nil];
-            [[self currentUrl] save];
             
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
@@ -894,6 +895,10 @@
         
         [self setRequestDict:[request allHTTPHeaderFields]];
         
+        if ([[self currentUrl] hasChanges]) {
+            [[self currentUrl] save];
+        }
+
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                 NSData *data,
                                                                                                                 NSError *connectionError) {
@@ -938,10 +943,10 @@
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
-        
-        [[self urlCellArray] removeAllObjects];
-        
-        [[self projectSourceList] reloadData];
+//        
+//        [[self urlCellArray] removeAllObjects];
+//        
+//        [[self projectSourceList] reloadData];
     }
 }
 
@@ -1483,6 +1488,10 @@
     static NSString *const UrlCellIdentifier = @"UrlCell";
     
     if ([item isKindOfClass:[Projects class]]) {
+        if (![self projectCellArray]) {
+            [self setProjectCellArray:[NSMutableArray array]];
+        }
+        
         ProjectCell *cell = [outlineView makeViewWithIdentifier:CellIdentifier owner:self];
         
         Projects *tempProject = item;
@@ -1492,6 +1501,8 @@
         
         [[cell addUrlButton] setHidden:NO];
         
+        [[self projectCellArray] addObject:cell];
+
         return cell;
     }
     else {
@@ -1663,6 +1674,27 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
+    
+    NSInteger const minimumBeforeHideHappens = 220;
+    
+    if (proposedPosition < minimumBeforeHideHappens) {
+        for (UrlCell *cell in [self urlCellArray]) {
+            [[[cell statusImage] animator] setAlphaValue:0.0];
+        }
+        
+        for (ProjectCell *cell in [self projectCellArray]) {
+            [[[cell addUrlButton] animator] setAlphaValue:0.0];
+        }
+    }
+    else {
+        for (UrlCell *cell in [self urlCellArray]) {
+            [[[cell statusImage] animator] setAlphaValue:1.0];
+        }
+        
+        for (ProjectCell *cell in [self projectCellArray]) {
+            [[[cell addUrlButton] animator] setAlphaValue:1.0];
+        }
+    }
     
     [[NSUserDefaults standardUserDefaults] setObject:@(proposedPosition) forKey:kSplitViewPosition];
     [[NSUserDefaults standardUserDefaults] synchronize];

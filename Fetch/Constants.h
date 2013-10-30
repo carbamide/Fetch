@@ -62,6 +62,8 @@ static NSString *const kJsonViewerWindowXib = @"JsonViewerWindowController";
 #pragma mark Notification Constants
 
 static NSString *const kAddUrlNotification = @"ADD_URL";
+static NSString *const kHideIcons = @"HIDE_ICONS";
+static NSString *const kShowIcons = @"SHOW_ICONS";
 
 #pragma mark Sizing Constants
 
