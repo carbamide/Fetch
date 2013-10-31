@@ -27,6 +27,7 @@
 		29061AB317FD16DB00F390CA /* MiscPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29061AAF17FD16DB00F390CA /* MiscPreferencesViewController.xib */; };
 		29061AB617FD16E600F390CA /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB517FD16E600F390CA /* PreferencesController.m */; };
 		29061ABA17FDB26B00F390CA /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29061AB917FDB26B00F390CA /* NSColor+Extensions.m */; };
+		2915DD411822F16F0039334D /* FetchURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2915DD401822F16F0039334D /* FetchURLConnection.m */; };
 		291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */; };
 		29438AFC17E222E2002BB433 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29438AFB17E222E2002BB433 /* MenuController.m */; };
 		294C8F8217ED6D0C0060EF7E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294C8F8117ED6D0C0060EF7E /* MainWindow.xib */; };
@@ -94,6 +95,8 @@
 		29061AB517FD16E600F390CA /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		29061AB817FDB26B00F390CA /* NSColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extensions.h"; sourceTree = "<group>"; };
 		29061AB917FDB26B00F390CA /* NSColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extensions.m"; sourceTree = "<group>"; };
+		2915DD3F1822F16F0039334D /* FetchURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchURLConnection.h; sourceTree = "<group>"; };
+		2915DD401822F16F0039334D /* FetchURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchURLConnection.m; sourceTree = "<group>"; };
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				295EB4DC17F32D7E00F58FE2 /* CNSplitView */,
 				2977962D18121ACF00BC834C /* CHCSVParser.h */,
 				2977962E18121ACF00BC834C /* CHCSVParser.m */,
+				2915DD3F1822F16F0039334D /* FetchURLConnection.h */,
+				2915DD401822F16F0039334D /* FetchURLConnection.m */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 				291BBA9B17DAEC4800C771F5 /* NSUserDefaults+NSColor.m in Sources */,
 				29F4A7E017D64EFE00FAA098 /* main.m in Sources */,
 				29438AFC17E222E2002BB433 /* MenuController.m in Sources */,
+				2915DD411822F16F0039334D /* FetchURLConnection.m in Sources */,
 				29061ABA17FDB26B00F390CA /* NSColor+Extensions.m in Sources */,
 				29E137EA17E658C40088E1D4 /* JsonHandler.m in Sources */,
 				29E137E717E657B10088E1D4 /* NodeObject.m in Sources */,

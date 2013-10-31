@@ -21,6 +21,7 @@
 #import "NSTimer+Blocks.h"
 #import "CHCSVParser.h"
 #import "Reachability.h"
+#import "FetchURLConnection.h"
 
 @interface NSURLRequest(Private)
 +(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
@@ -73,6 +74,8 @@
 /// Temp property for storying the clicked URL
 @property (strong, nonatomic) Urls *clickedUrl;
 
+/// Reference to currently happening Fetch action
+@property (strong, nonatomic) FetchURLConnection *fetchConnection;
 /**
  * Setup the split view controller and it's controls
  */
@@ -898,10 +901,10 @@
         if ([[self currentUrl] hasChanges]) {
             [[self currentUrl] save];
         }
-
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
-                                                                                                                NSData *data,
-                                                                                                                NSError *connectionError) {
+        
+        _fetchConnection = [FetchURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
+                                                                                                                                      NSData *data,
+                                                                                                                                      NSError *connectionError) {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             
@@ -943,10 +946,6 @@
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
-//        
-//        [[self urlCellArray] removeAllObjects];
-//        
-//        [[self projectSourceList] reloadData];
     }
 }
 
@@ -1502,7 +1501,7 @@
         [[cell addUrlButton] setHidden:NO];
         
         [[self projectCellArray] addObject:cell];
-
+        
         return cell;
     }
     else {
@@ -1680,9 +1679,9 @@
     for (UrlCell *cell in [self urlCellArray]) {
         NSRect statusRect = [[cell statusImage] frame];
         CGSize sizeOfText = [[[cell textField] stringValue] sizeWithAttributes:@{NSFontNameAttribute: [[cell textField] font]}];
-
+        
         NSRect textBoxRect = NSMakeRect(cell.textField.frame.origin.x, cell.textField.frame.origin.y, sizeOfText.width, sizeOfText.height);
-    
+        
         if (NSIntersectsRect(statusRect, textBoxRect)) {
             shouldHideStatusImages = YES;
             
@@ -1707,7 +1706,7 @@
         for (ProjectCell *cell in [self projectCellArray]) {
             [[[cell addUrlButton] animator] setAlphaValue:1.0];
         }
-
+        
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:@(proposedPosition) forKey:kSplitViewPosition];
