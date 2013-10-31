@@ -73,6 +73,9 @@
 /// Temp property for storying the clicked URL
 @property (strong, nonatomic) Urls *clickedUrl;
 
+/// BOOL to set whether a fetch is currently occuring
+@property (nonatomic) BOOL isFetching;
+
 /**
  * Setup the split view controller and it's controls
  */
@@ -355,6 +358,10 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
+    if (!text) {
+        text = @"ERROR";
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
         
@@ -449,6 +456,28 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
+    
+    if ([self isFetching]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Change URL?"
+                                         defaultButton:@"Yes"
+                                       alternateButton:@"Nevermind"
+                                           otherButton:nil
+                             informativeTextWithFormat:@"A Fetch is currently happening.  Are you sure you wish to switch urls?"];
+        
+        NSInteger result = [alert runModal];
+        
+        if (result == NSOKButton) {
+            //FIXME -- need to implement the NSURLConnection delegate so we can actually cancel the request.
+            [[self fetchButton] setHidden:NO];
+            [[self progressIndicator] stopAnimation:self];
+            [[self progressIndicator] setHidden:YES];
+            
+            [self appendToOutput:@"CANCELED REQUEST" color:[[NSUserDefaults standardUserDefaults] colorForKey:kFailureColor]];
+        }
+        else {
+            return;
+        }
+    }
     
     [[self fetchButton] setEnabled:YES];
     
@@ -832,6 +861,8 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
+    [self setIsFetching:YES];
+    
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
@@ -856,8 +887,6 @@
     if ([self addToUrlListIfUnique]) {
         NSMutableString *parameters = [[NSMutableString alloc] init];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        
-        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
         
         [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
         
@@ -898,10 +927,14 @@
         if ([[self currentUrl] hasChanges]) {
             [[self currentUrl] save];
         }
-
+        
+        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
+        
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
-                                                                                                                NSData *data,
-                                                                                                                NSError *connectionError) {
+                                                                                                                 NSData *data,
+                                                                                                                 NSError *connectionError) {
+            [self setIsFetching:NO];
+            
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             
@@ -943,10 +976,10 @@
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
-//        
-//        [[self urlCellArray] removeAllObjects];
-//        
-//        [[self projectSourceList] reloadData];
+        //
+        //        [[self urlCellArray] removeAllObjects];
+        //
+        //        [[self projectSourceList] reloadData];
     }
 }
 
@@ -1502,7 +1535,7 @@
         [[cell addUrlButton] setHidden:NO];
         
         [[self projectCellArray] addObject:cell];
-
+        
         return cell;
     }
     else {
@@ -1680,9 +1713,9 @@
     for (UrlCell *cell in [self urlCellArray]) {
         NSRect statusRect = [[cell statusImage] frame];
         CGSize sizeOfText = [[[cell textField] stringValue] sizeWithAttributes:@{NSFontNameAttribute: [[cell textField] font]}];
-
+        
         NSRect textBoxRect = NSMakeRect(cell.textField.frame.origin.x, cell.textField.frame.origin.y, sizeOfText.width, sizeOfText.height);
-    
+        
         if (NSIntersectsRect(statusRect, textBoxRect)) {
             shouldHideStatusImages = YES;
             
@@ -1707,7 +1740,7 @@
         for (ProjectCell *cell in [self projectCellArray]) {
             [[[cell addUrlButton] animator] setAlphaValue:1.0];
         }
-
+        
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:@(proposedPosition) forKey:kSplitViewPosition];
