@@ -358,6 +358,10 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
+    if (!text) {
+        text = @"ERROR";
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
         
@@ -452,6 +456,28 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
+    
+    if ([self isFetching]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Change URL?"
+                                         defaultButton:@"Yes"
+                                       alternateButton:@"Nevermind"
+                                           otherButton:nil
+                             informativeTextWithFormat:@"A Fetch is currently happening.  Are you sure you wish to switch urls?"];
+        
+        NSInteger result = [alert runModal];
+        
+        if (result == NSOKButton) {
+            //FIXME -- need to implement the NSURLConnection delegate so we can actually cancel the request.
+            [[self fetchButton] setHidden:NO];
+            [[self progressIndicator] stopAnimation:self];
+            [[self progressIndicator] setHidden:YES];
+            
+            [self appendToOutput:@"CANCELED REQUEST" color:[[NSUserDefaults standardUserDefaults] colorForKey:kFailureColor]];
+        }
+        else {
+            return;
+        }
+    }
     
     [[self fetchButton] setEnabled:YES];
     
@@ -835,6 +861,8 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
+    [self setIsFetching:YES];
+    
     [[self fetchButton] setHidden:YES];
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
@@ -859,8 +887,6 @@
     if ([self addToUrlListIfUnique]) {
         NSMutableString *parameters = [[NSMutableString alloc] init];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        
-        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
         
         [request setHTTPMethod:[[self methodCombo] objectValueOfSelectedItem]];
         
