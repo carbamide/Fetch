@@ -24,7 +24,7 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -51,7 +51,7 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    
     [super viewWillMoveToSuperview:newSuperview];
     
     [[self pingTimer] invalidate];
@@ -64,7 +64,7 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    
     [[self pingTimer] invalidate];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -75,7 +75,7 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    
 	[super drawRect:dirtyRect];
 }
 

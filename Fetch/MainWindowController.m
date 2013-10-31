@@ -76,6 +76,10 @@
 
 /// Reference to currently happening Fetch action
 @property (strong, nonatomic) FetchURLConnection *fetchConnection;
+
+/// BOOL to set whether a fetch is currently occuring
+@property (nonatomic) BOOL isFetching;
+
 /**
  * Setup the split view controller and it's controls
  */
@@ -230,6 +234,8 @@
             }
         }
     }
+    
+    [self splitView:[self splitView] constrainSplitPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofSubviewAt:0];
 }
 
 #pragma mark
@@ -467,7 +473,8 @@
         NSInteger result = [alert runModal];
         
         if (result == NSOKButton) {
-            //FIXME -- need to implement the NSURLConnection delegate so we can actually cancel the request.
+            [[self fetchConnection] cancel];
+            
             [[self fetchButton] setHidden:NO];
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
@@ -931,6 +938,9 @@
         _fetchConnection = [FetchURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                                       NSData *data,
                                                                                                                                       NSError *connectionError) {
+            
+            [self setIsFetching:NO];
+            
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             
@@ -972,6 +982,10 @@
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
+        //
+        //        [[self urlCellArray] removeAllObjects];
+        //
+        //        [[self projectSourceList] reloadData];
     }
 }
 
