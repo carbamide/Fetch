@@ -8,6 +8,10 @@
 
 #import "FetchURLConnection.h"
 
+@interface NSURLRequest(Private)
++(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
+@end
+
 @interface FetchURLConnection ()
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) NSHTTPURLResponse *response;
@@ -21,6 +25,8 @@
 + (FetchURLConnection *)sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue completionHandler:(void(^)(NSURLResponse *response, NSData *data, NSError *error))completionHandler
 {
     FetchURLConnection *result = [[FetchURLConnection alloc] init];
+    
+    [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[[request URL] host]];
     
     [result setRequest:request];
     [result setQueue:queue];
@@ -102,6 +108,7 @@
 {
     return [[protectionSpace authenticationMethod] isEqualToString:NSURLAuthenticationMethodServerTrust];
 }
+
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     [[challenge sender] useCredential:[NSURLCredential credentialForTrust:[[challenge protectionSpace] serverTrust] forAuthenticationChallenge:challenge];

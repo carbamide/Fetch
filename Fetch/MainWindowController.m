@@ -23,10 +23,6 @@
 #import "Reachability.h"
 #import "FetchURLConnection.h"
 
-@interface NSURLRequest(Private)
-+(void)setAllowsAnyHTTPSCertificate:(BOOL)inAllow forHost:(NSString *)inHost;
-@end
-
 @interface MainWindowController ()
 
 /// Backing store for headersTableView
