@@ -186,6 +186,7 @@
     [[self splitView] setPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofDividerAtIndex:0];
     
     [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
+    [[self customPayloadTextView] setFont:[NSFont fontWithName:@"Andale Mono" size:12]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
@@ -366,6 +367,8 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
+        
+        [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Andale Mono" size:12] range:NSMakeRange(0, [text length])];
         
         if (color) {
             [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [text length])];

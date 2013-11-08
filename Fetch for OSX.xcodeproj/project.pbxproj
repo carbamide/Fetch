@@ -427,10 +427,10 @@
 		29F4A7D917D64EFC00FAA098 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
-				295EB4DB17F32D7400F58FE2 /* Vendor */,
 				291BBA9C17DAED2500C771F5 /* Catagories */,
 				29EF763817D65E7D00F89D72 /* Classes */,
 				29EF763717D65E6F00F89D72 /* User Interface */,
+				295EB4DB17F32D7400F58FE2 /* Vendor */,
 				29F4A7DA17D64EFD00FAA098 /* Supporting Files */,
 			);
 			path = Fetch;
