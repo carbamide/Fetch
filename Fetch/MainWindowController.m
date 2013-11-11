@@ -167,10 +167,10 @@
     self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
-        [self setHeaderDataSource:[[NSMutableArray alloc] init]];
-        [self setParamDataSource:[[NSMutableArray alloc] init]];
-        [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
-        [self setProjectList:[NSMutableArray array]];
+        _headerDataSource = [[NSMutableArray alloc] init];
+        _paramDataSource = [[NSMutableArray alloc] init];
+        _headerNames = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]];
+        _projectList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -759,6 +759,10 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
+    
+    if (![self projectList]) {
+        [self setProjectList:[[NSMutableArray alloc] init]];
+    }
     
     [self unloadData];
     
