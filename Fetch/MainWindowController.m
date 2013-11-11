@@ -947,7 +947,11 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             
-            [self setResponseDict:[urlResponse allHeaderFields]];
+            NSMutableDictionary *responseDict = [[urlResponse allHeaderFields] mutableCopy];
+            
+            [responseDict addEntriesFromDictionary:@{@"Response Code": [NSString stringWithFormat:@"%ld", (long)[urlResponse statusCode]]}];
+                                                     
+            [self setResponseDict:responseDict];
             
             [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
             [self appendToOutput:[urlResponse responseString] color:[userDefaults colorForKey:[urlResponse isGoodResponse] ? kSuccessColor : kFailureColor]];
