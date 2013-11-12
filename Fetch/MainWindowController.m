@@ -1174,8 +1174,13 @@
         [[[self csvWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"The data is not in the correct format."];
         
+        [errorAlert setAlertStyle:NSCriticalAlertStyle];
         [errorAlert runModal];
     }
 }
@@ -1202,8 +1207,13 @@
         [[[self xmlWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"The data is not in the correct format."];
         
+        [errorAlert setAlertStyle:NSCriticalAlertStyle];
         [errorAlert runModal];
     }
 
