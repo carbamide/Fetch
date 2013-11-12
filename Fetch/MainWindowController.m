@@ -79,6 +79,16 @@
 @property (nonatomic) BOOL isFetching;
 
 /**
+ *  The item currently being dragged
+ */
+@property (strong, nonatomic) Urls *draggedNode;
+
+/**
+ *  The parent being dragged to
+ */
+@property (strong, nonatomic) Projects *receivingNode;
+
+/**
  * Setup the split view controller and it's controls
  */
 -(void)setupSplitviewControls;
@@ -206,7 +216,7 @@
         }
     }
     
-    [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType]];
+    [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType, @"url"]];
     
     [[self menuController] setMainWindowController:self];
     
@@ -1720,7 +1730,23 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    return NSDragOperationCopy;
+    id tempProject = item;
+    
+    if (tempProject && [tempProject isKindOfClass:[Projects class]]) {
+        if ([[tempProject name] isEqualToString:[[_draggedNode project] name]]) {
+            return NSDragOperationNone;
+        }
+        
+        [self setReceivingNode:tempProject];
+    }
+    else if ([tempProject isKindOfClass:[Urls class]]) {
+        tempProject = [tempProject project];
+        
+        [self setReceivingNode:tempProject];
+    }
+
+    
+    return NSDragOperationGeneric;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
@@ -1733,19 +1759,56 @@
     
     NSArray *urls = [pasteboard readObjectsForClasses:@[[NSURL class]] options:0];
     
-    for (NSURL *url in urls) {
-        if ([ProjectHandler importFromPath:[url path]]) {
-            [[self projectList] removeAllObjects];
-            
-            [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-            
-            [[self urlCellArray] removeAllObjects];
-            
-            [[self projectSourceList] reloadData];
+    if ([urls count] != 0) {
+        for (NSURL *url in urls) {
+            if ([ProjectHandler importFromPath:[url path]]) {
+                [[self projectList] removeAllObjects];
+                
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                
+                [[self urlCellArray] removeAllObjects];
+                
+                [[self projectSourceList] reloadData];
+            }
+        }
+    }
+    else {
+        if ([[self receivingNode] isKindOfClass:[Urls class]]) {
+            return NO;
+        }
+        
+        Urls *tempUrl = _draggedNode;
+        
+        if (tempUrl) {
+            if ([self receivingNode]) {
+                [tempUrl setProject:[self receivingNode]];
+                [tempUrl save];
+                
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                [[self projectSourceList] reloadData];
+            }
+        }
+        else {
+#ifdef DEBUG
+            NSLog(@"Unable to finish drag");
+#endif
+            return NO;
         }
     }
     
     return YES;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
+{
+    if ([items[0] isKindOfClass:[Urls class]]) {
+        [pasteboard declareTypes:@[@"url"] owner:self];
+        _draggedNode = [items objectAtIndex:0];
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark
