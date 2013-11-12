@@ -982,12 +982,14 @@
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
                     
-                    if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
-                        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
-                        
-                        [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
-                        [self appendToOutput:attributedString color:nil];
-                        [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                    if ([[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput]) {
+                        if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
+                            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
+                            
+                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                            [self appendToOutput:attributedString color:nil];
+                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                        }
                     }
                 }
                 

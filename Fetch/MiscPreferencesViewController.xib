@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MiscPreferencesViewController">
             <connections>
+                <outlet property="attemptToParseHtmlButton" destination="Qmi-Yx-5un" id="1ir-Ic-HUM"/>
                 <outlet property="checkSiteReachabilityCheckBox" destination="7" id="vdE-BV-57E"/>
                 <outlet property="frequencyToPingLabel" destination="lpT-66-K3f" id="o2t-hm-n4K"/>
+                <outlet property="frequencyToPingSecondsLabel" destination="WgO-nI-khd" id="bIO-VJ-rAj"/>
                 <outlet property="frequencyToPingStepper" destination="n7I-2B-TxT" id="mae-cN-WQK"/>
                 <outlet property="frequencyToPingTextField" destination="RSL-kh-nB3" id="qBB-WT-z6l"/>
                 <outlet property="view" destination="1" id="2"/>
@@ -21,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button id="7">
-                    <rect key="frame" x="34" y="81" width="236" height="18"/>
+                    <rect key="frame" x="34" y="98" width="236" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Ping each url to verify reachability" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="8">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -32,7 +34,7 @@
                     </connections>
                 </button>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="n7I-2B-TxT">
-                    <rect key="frame" x="252" y="42" width="19" height="27"/>
+                    <rect key="frame" x="195" y="59" width="19" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="Ifa-YO-f6y"/>
                     <connections>
@@ -40,7 +42,7 @@
                     </connections>
                 </stepper>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lpT-66-K3f">
-                    <rect key="frame" x="89" y="50" width="122" height="17"/>
+                    <rect key="frame" x="32" y="67" width="122" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Frequency to ping:" id="PMf-MQ-RA6">
                         <font key="font" metaFont="system"/>
@@ -49,7 +51,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="RSL-kh-nB3">
-                    <rect key="frame" x="217" y="45" width="30" height="22"/>
+                    <rect key="frame" x="160" y="62" width="30" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fh3-rV-xbG">
                         <font key="font" metaFont="system"/>
@@ -60,6 +62,33 @@
                         <binding destination="-2" name="value" keyPath="pingFrequency" id="sZs-uL-1lJ"/>
                         <outlet property="delegate" destination="-2" id="t92-AV-e9L"/>
                     </connections>
+                </textField>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="clC-qD-8tL">
+                    <rect key="frame" x="12" y="51" width="281" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button id="Qmi-Yx-5un">
+                    <rect key="frame" x="37" y="29" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Attempt to parse HTML in output" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="btT-Yr-7sZ">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="parseAction:" target="-2" id="ndc-V6-S0e"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="WgO-nI-khd">
+                    <rect key="frame" x="217" y="67" width="55" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="zG1-ps-dQH">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
                 </textField>
             </subviews>
         </customView>

@@ -16,7 +16,10 @@
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-
+    BOOL parseHTML = [[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput];
+    
+    [[self attemptToParseHtmlButton] setState:parseHTML];
+    
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
     NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
@@ -31,11 +34,13 @@
         [[self frequencyToPingLabel] setEnabled:YES];
         [[self frequencyToPingStepper] setEnabled:YES];
         [[self frequencyToPingTextField] setEnabled:YES];
+        [[self frequencyToPingSecondsLabel] setEnabled:YES];
     }
     else {
         [[self frequencyToPingLabel] setEnabled:NO];
         [[self frequencyToPingStepper] setEnabled:NO];
         [[self frequencyToPingTextField] setEnabled:NO];
+        [[self frequencyToPingSecondsLabel] setEnabled:NO];
     }
 }
 
@@ -49,20 +54,36 @@
         [[self frequencyToPingLabel] setEnabled:YES];
         [[self frequencyToPingStepper] setEnabled:YES];
         [[self frequencyToPingTextField] setEnabled:YES];
-        
+        [[self frequencyToPingSecondsLabel] setEnabled:YES];
+
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPingForReachability];
     }
     else {
         [[self frequencyToPingLabel] setEnabled:NO];
         [[self frequencyToPingStepper] setEnabled:NO];
         [[self frequencyToPingTextField] setEnabled:NO];
-        
+        [[self frequencyToPingSecondsLabel] setEnabled:NO];
+
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kPingForReachability];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+-(IBAction)parseAction:(id)sender
+{
+    if ([[self attemptToParseHtmlButton] state] == NSOnState) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kParseHtmlInOutput];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kParseHtmlInOutput];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - 
+#pragma mark NSControlTextDelegate
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
 #ifdef DEBUG

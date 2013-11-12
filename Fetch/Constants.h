@@ -50,6 +50,7 @@ static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
 static NSString *const kPingForReachability = @"ping_for_reachability";
 static NSString *const kFrequencyToPing = @"frequency_to_ping";
 static NSString *const kSplitViewPosition = @"split_view_position";
+static NSString *const kParseHtmlInOutput = @"parse_html_in_output";
 
 #pragma mark File Type Constants
 
