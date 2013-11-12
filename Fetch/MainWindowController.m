@@ -22,6 +22,8 @@
 #import "CHCSVParser.h"
 #import "Reachability.h"
 #import "FetchURLConnection.h"
+#import "XMLReader.h"
+#import "XmlViewerWindowController.h"
 
 @interface MainWindowController ()
 
@@ -99,10 +101,10 @@
 
 /**
  * Append specified output the outputTextView
- * @param text The text to append to the outputTextView
+ * @param text The text to append to the outputTextView.  Accepted NSString or NSAttributedString.
  * @param color The color to show the text in
  */
--(void)appendToOutput:(NSString *)text color:(NSColor *)color;
+-(void)appendToOutput:(id)text color:(NSColor *)color;
 
 /**
  * Log specified NSMutableURLRequest to outputTextView
@@ -355,7 +357,7 @@
 #pragma mark
 #pragma mark Request Logging
 
-- (void)appendToOutput:(NSString *)text color:(NSColor *)color
+- (void)appendToOutput:(id)text color:(NSColor *)color
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
@@ -366,17 +368,23 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
-        
-        [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Andale Mono" size:12] range:NSMakeRange(0, [text length])];
-        
-        if (color) {
-            [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [text length])];
+        if ([text isKindOfClass:[NSString class]]) {
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
+            
+            [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Andale Mono" size:12] range:NSMakeRange(0, [text length])];
+            
+            if (color) {
+                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [text length])];
+            }
+            
+            [[[self outputTextView] textStorage] appendAttributedString:attributedString];
+        }
+        else {
+            [[[self outputTextView] textStorage] appendAttributedString:text];
         }
         
-        [[[self outputTextView] textStorage] appendAttributedString:attributedString];
         [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
-        
+
         [[self clearOutputButton] setEnabled:YES];
     });
 }
@@ -956,7 +964,7 @@
             [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
             [self appendToOutput:[urlResponse responseString] color:[userDefaults colorForKey:[urlResponse isGoodResponse] ? kSuccessColor : kFailureColor]];
             [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
-            
+
             if (!connectionError) {
                 [self setResponseData:data];
                 
@@ -973,6 +981,14 @@
                 }
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
+                    
+                    if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
+                        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
+                        
+                        [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                        [self appendToOutput:attributedString color:nil];
+                        [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                    }
                 }
                 
                 if ([[[self jsonWindow] window] isVisible]) {
@@ -1160,6 +1176,35 @@
         
         [errorAlert runModal];
     }
+}
+
+-(IBAction)showXml:(id)sender
+{
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
+    NSError *parseError = nil;
+    NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:[self responseData] error:&parseError];
+
+    if (xmlDictionary) {
+        if (![self xmlWindow]) {
+            [self setXmlWindow:[[XmlViewerWindowController alloc] initWithWindowNibName:@"XmlViewerWindowController" xml:xmlDictionary]];
+        }
+        else {
+            [[self xmlWindow] setXmlData:xmlDictionary];
+            
+            [[[self xmlWindow] outlineView] reloadData];
+        }
+        
+        [[[self xmlWindow] window] makeKeyAndOrderFront:self];
+    }
+    else {
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The data is not in the correct format."];
+        
+        [errorAlert runModal];
+    }
+
 }
 
 -(IBAction)duplicateURL:(id)sender

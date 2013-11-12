@@ -871,6 +871,12 @@
                         <action selector="showJson:" target="-2" id="MIW-l6-vOd"/>
                     </connections>
                 </menuItem>
+                <menuItem title="XML..." id="fSV-n8-cbc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showXml:" target="-2" id="hjI-j3-Fbz"/>
+                    </connections>
+                </menuItem>
             </items>
         </menu>
         <menu id="kqb-AG-Zfo">

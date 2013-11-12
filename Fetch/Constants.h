@@ -35,8 +35,9 @@ static NSString *const kUrlDescription = @"url_description";
 
 #pragma mark String Constants
 
-static NSString *const kRequestSeparator = @"---------------------------------REQUEST--------------------------------------";
-static NSString *const kResponseSeparator = @"---------------------------------RESPONSE------------------------------------";
+static NSString *const kRequestSeparator =  @"---------------------------------REQUEST--------------------------------------";
+static NSString *const kResponseSeparator = @"---------------------------------RESPONSE-------------------------------------";
+static NSString *const kParsedOutput =      @"------------------------------PARSED OUTPUT-----------------------------------";
 
 #pragma mark User Defaults Names Constants
 
