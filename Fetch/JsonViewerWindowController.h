@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet NSOutlineView *outlineView;
 
 /// The JSON data to represent in outlineView
-@property (strong, nonatomic) NSArray *jsonData;
+@property (strong, nonatomic) id jsonData;
 
 /**
  * Initialization

@@ -22,6 +22,8 @@
 #import "CHCSVParser.h"
 #import "Reachability.h"
 #import "FetchURLConnection.h"
+#import "XMLReader.h"
+#import "XmlViewerWindowController.h"
 
 @interface MainWindowController ()
 
@@ -77,6 +79,16 @@
 @property (nonatomic) BOOL isFetching;
 
 /**
+ *  The item currently being dragged
+ */
+@property (strong, nonatomic) Urls *draggedNode;
+
+/**
+ *  The parent being dragged to
+ */
+@property (strong, nonatomic) Projects *receivingNode;
+
+/**
  * Setup the split view controller and it's controls
  */
 -(void)setupSplitviewControls;
@@ -99,10 +111,10 @@
 
 /**
  * Append specified output the outputTextView
- * @param text The text to append to the outputTextView
+ * @param text The text to append to the outputTextView.  Accepted NSString or NSAttributedString.
  * @param color The color to show the text in
  */
--(void)appendToOutput:(NSString *)text color:(NSColor *)color;
+-(void)appendToOutput:(id)text color:(NSColor *)color;
 
 /**
  * Log specified NSMutableURLRequest to outputTextView
@@ -167,10 +179,10 @@
     self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
-        [self setHeaderDataSource:[[NSMutableArray alloc] init]];
-        [self setParamDataSource:[[NSMutableArray alloc] init]];
-        [self setHeaderNames:[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]]];
-        [self setProjectList:[NSMutableArray array]];
+        _headerDataSource = [[NSMutableArray alloc] init];
+        _paramDataSource = [[NSMutableArray alloc] init];
+        _headerNames = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]];
+        _projectList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -204,7 +216,7 @@
         }
     }
     
-    [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType]];
+    [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType, @"url"]];
     
     [[self menuController] setMainWindowController:self];
     
@@ -355,7 +367,7 @@
 #pragma mark
 #pragma mark Request Logging
 
-- (void)appendToOutput:(NSString *)text color:(NSColor *)color
+- (void)appendToOutput:(id)text color:(NSColor *)color
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
@@ -366,17 +378,23 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
-        
-        [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Andale Mono" size:12] range:NSMakeRange(0, [text length])];
-        
-        if (color) {
-            [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [text length])];
+        if ([text isKindOfClass:[NSString class]]) {
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"]];
+            
+            [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Andale Mono" size:12] range:NSMakeRange(0, [text length])];
+            
+            if (color) {
+                [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, [text length])];
+            }
+            
+            [[[self outputTextView] textStorage] appendAttributedString:attributedString];
+        }
+        else {
+            [[[self outputTextView] textStorage] appendAttributedString:text];
         }
         
-        [[[self outputTextView] textStorage] appendAttributedString:attributedString];
         [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
-        
+
         [[self clearOutputButton] setEnabled:YES];
     });
 }
@@ -760,6 +778,10 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
+    if (![self projectList]) {
+        [self setProjectList:[[NSMutableArray alloc] init]];
+    }
+    
     [self unloadData];
     
     [self setCurrentUrl:nil];
@@ -943,12 +965,16 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
             
-            [self setResponseDict:[urlResponse allHeaderFields]];
+            NSMutableDictionary *responseDict = [[urlResponse allHeaderFields] mutableCopy];
+            
+            [responseDict addEntriesFromDictionary:@{@"Response Code": [NSString stringWithFormat:@"%ld", (long)[urlResponse statusCode]]}];
+                                                     
+            [self setResponseDict:responseDict];
             
             [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
             [self appendToOutput:[urlResponse responseString] color:[userDefaults colorForKey:[urlResponse isGoodResponse] ? kSuccessColor : kFailureColor]];
             [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
-            
+
             if (!connectionError) {
                 [self setResponseData:data];
                 
@@ -965,6 +991,16 @@
                 }
                 else {
                     [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
+                    
+                    if ([[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput]) {
+                        if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
+                            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
+                            
+                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                            [self appendToOutput:attributedString color:nil];
+                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                        }
+                    }
                 }
                 
                 if ([[[self jsonWindow] window] isVisible]) {
@@ -1148,10 +1184,49 @@
         [[[self csvWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"The data is not in the correct format."];
         
+        [errorAlert setAlertStyle:NSCriticalAlertStyle];
         [errorAlert runModal];
     }
+}
+
+-(IBAction)showXml:(id)sender
+{
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
+    NSError *parseError = nil;
+    NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:[self responseData] error:&parseError];
+
+    if (xmlDictionary) {
+        if (![self xmlWindow]) {
+            [self setXmlWindow:[[XmlViewerWindowController alloc] initWithWindowNibName:@"XmlViewerWindowController" xml:xmlDictionary]];
+        }
+        else {
+            [[self xmlWindow] setXmlData:xmlDictionary];
+            
+            [[[self xmlWindow] outlineView] reloadData];
+        }
+        
+        [[[self xmlWindow] window] makeKeyAndOrderFront:self];
+    }
+    else {
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"The data is not in the correct format."];
+        
+        [errorAlert setAlertStyle:NSCriticalAlertStyle];
+        [errorAlert runModal];
+    }
+
 }
 
 -(IBAction)duplicateURL:(id)sender
@@ -1655,7 +1730,23 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    return NSDragOperationCopy;
+    id tempProject = item;
+    
+    if (tempProject && [tempProject isKindOfClass:[Projects class]]) {
+        if ([[tempProject name] isEqualToString:[[_draggedNode project] name]]) {
+            return NSDragOperationNone;
+        }
+        
+        [self setReceivingNode:tempProject];
+    }
+    else if ([tempProject isKindOfClass:[Urls class]]) {
+        tempProject = [tempProject project];
+        
+        [self setReceivingNode:tempProject];
+    }
+
+    
+    return NSDragOperationGeneric;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
@@ -1668,19 +1759,56 @@
     
     NSArray *urls = [pasteboard readObjectsForClasses:@[[NSURL class]] options:0];
     
-    for (NSURL *url in urls) {
-        if ([ProjectHandler importFromPath:[url path]]) {
-            [[self projectList] removeAllObjects];
-            
-            [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-            
-            [[self urlCellArray] removeAllObjects];
-            
-            [[self projectSourceList] reloadData];
+    if ([urls count] != 0) {
+        for (NSURL *url in urls) {
+            if ([ProjectHandler importFromPath:[url path]]) {
+                [[self projectList] removeAllObjects];
+                
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                
+                [[self urlCellArray] removeAllObjects];
+                
+                [[self projectSourceList] reloadData];
+            }
+        }
+    }
+    else {
+        if ([[self receivingNode] isKindOfClass:[Urls class]]) {
+            return NO;
+        }
+        
+        Urls *tempUrl = _draggedNode;
+        
+        if (tempUrl) {
+            if ([self receivingNode]) {
+                [tempUrl setProject:[self receivingNode]];
+                [tempUrl save];
+                
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                [[self projectSourceList] reloadData];
+            }
+        }
+        else {
+#ifdef DEBUG
+            NSLog(@"Unable to finish drag");
+#endif
+            return NO;
         }
     }
     
     return YES;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
+{
+    if ([items[0] isKindOfClass:[Urls class]]) {
+        [pasteboard declareTypes:@[@"url"] owner:self];
+        _draggedNode = [items objectAtIndex:0];
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark

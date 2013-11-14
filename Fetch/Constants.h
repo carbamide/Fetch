@@ -35,8 +35,9 @@ static NSString *const kUrlDescription = @"url_description";
 
 #pragma mark String Constants
 
-static NSString *const kRequestSeparator = @"---------------------------------REQUEST--------------------------------------";
-static NSString *const kResponseSeparator = @"---------------------------------RESPONSE------------------------------------";
+static NSString *const kRequestSeparator =  @"---------------------------------REQUEST--------------------------------------";
+static NSString *const kResponseSeparator = @"---------------------------------RESPONSE-------------------------------------";
+static NSString *const kParsedOutput =      @"------------------------------PARSED OUTPUT-----------------------------------";
 
 #pragma mark User Defaults Names Constants
 
@@ -49,6 +50,7 @@ static NSString *const kJsonSyntaxHighlighting = @"json_syntax_highlighting";
 static NSString *const kPingForReachability = @"ping_for_reachability";
 static NSString *const kFrequencyToPing = @"frequency_to_ping";
 static NSString *const kSplitViewPosition = @"split_view_position";
+static NSString *const kParseHtmlInOutput = @"parse_html_in_output";
 
 #pragma mark File Type Constants
 

@@ -9,7 +9,7 @@
 #import "CNSplitView.h"
 #import "MenuController.h"
 
-@class JsonViewerWindowController, CsvViewerWindowController;
+@class JsonViewerWindowController, CsvViewerWindowController, XmlViewerWindowController;
 
 @interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination, NSMenuDelegate, NSTextDelegate>
 
@@ -82,6 +82,11 @@
 /// Reference to CsvViewerWindowController
 @property (strong, nonatomic) CsvViewerWindowController *csvWindow;
 
+/**
+ *  Reference to XmlViewerWindowController
+ */
+@property (strong, nonatomic) XmlViewerWindowController *xmlWindow;
+
 /// Dictionary that holds a reference to the request headers.  This dictionary is used to populate the requestTableView.
 @property (strong, nonatomic) NSDictionary *requestDict;
 
@@ -131,6 +136,13 @@
  * @param sender The caller of this method
  */
 -(IBAction)showCsv:(id)sender;
+
+/**
+ *  Action that shows the XmlViewerWindowController window
+ *
+ *  @param sender The caller of this method
+ */
+-(IBAction)showXml:(id)sender;
 
 /**
  * Duplicate URL for purposes of adding several similar urls
