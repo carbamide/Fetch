@@ -40,19 +40,19 @@
     return self;
 }
 
--(void)setJsonData:(id)jsonData
+-(void)setXmlData:(id)xmlData
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    if ([jsonData isKindOfClass:[NSArray class]]) {
-        jsonData = @{@"Root": jsonData};
+    if ([xmlData isKindOfClass:[NSArray class]]) {
+        xmlData = @{@"Root": xmlData};
     }
     
     JsonHandler *tempData = [[JsonHandler alloc] init];
     
-    [tempData addEntries:jsonData];
+    [tempData addEntries:xmlData];
     
     [self setDataArray:[tempData dataSource]];
 }
@@ -72,12 +72,21 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NodeObject *tempObject = item;
+    id tempObject = item;
     
-    if ([[tempObject children] count] > 0) {
-        return YES;
+    if ([tempObject isKindOfClass:[NSArray class]]) {
+        if ([tempObject count] > 0) {
+            return YES;
+        }
+        else {
+            return NO;
+        }
     }
-    
+    else {
+        if ([[tempObject children] count] > 0) {
+            return YES;
+        }
+    }
     return NO;
 }
 
@@ -87,13 +96,16 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NodeObject *tempObject = item;
+    id tempObject = item;
     
     if (!tempObject) {
         return [[self dataArray] count];
     }
     else {
-        if ([tempObject children]) {
+        if ([tempObject isKindOfClass:[NSArray class]]) {
+            return [tempObject count];
+        }
+        else {
             return [[tempObject children] count];
         }
     }
@@ -106,12 +118,15 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NodeObject *tempObject = item;
+    id tempObject = item;
     
     if (!tempObject) {
         return [self dataArray][index];
     }
     else {
+        if ([tempObject isKindOfClass:[NSArray class]]) {
+            return tempObject[index];
+        }
         return [tempObject children][index];
     }
     
@@ -124,13 +139,28 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    NodeObject *tempObject = item;
+    id tempObject = item;
     
     if ([[theColumn identifier] isEqualToString:@"Key"]) {
-        return [tempObject nodeTitle];
+        if ([tempObject isKindOfClass:[NSArray class]]) {
+            return [NSString stringWithFormat:@"Dictionary - %lu elements", [tempObject count]];
+        }
+        else {
+            return [tempObject nodeTitle];
+        }
     }
     else {
-        return [tempObject nodeValue];
+        if ([tempObject isKindOfClass:[NSArray class]]) {
+            return [NSString string];
+        }
+        else {
+            if ([[tempObject nodeValue] isKindOfClass:[NSDictionary class]]) {
+                return @"<no value>";
+            }
+            else {
+                return [tempObject nodeValue];
+            }
+        }
     }
     
     return nil;
