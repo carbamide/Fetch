@@ -1210,7 +1210,6 @@
         }
         else {
             [[self xmlWindow] setXmlData:xmlDictionary];
-            
             [[[self xmlWindow] outlineView] reloadData];
         }
         
