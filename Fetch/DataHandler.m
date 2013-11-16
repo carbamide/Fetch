@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "JsonHandler.h"
+#import "DataHandler.h"
 #import "NodeObject.h"
 #import "SeparatorNodeObject.h"
 
-@implementation JsonHandler
+@implementation DataHandler
 
 - (id)init
 {
@@ -111,6 +111,16 @@
         }
         else if ([tempValue isKindOfClass:[NSArray class]]) {
             [self addArray:tempValue node:nodeObject];
+        }
+        else {
+            NodeObject *tempNodeObject = [[NodeObject alloc] init];
+            
+            [tempNodeObject setNodeTitle:@"text"];
+            [tempNodeObject setNodeValue:tempValue];
+            [tempNodeObject setIsArray:NO];
+            [tempNodeObject setIsLeaf:YES];
+            
+            [tempArray addObject:tempNodeObject];
         }
     }
     

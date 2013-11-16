@@ -877,6 +877,12 @@
                         <action selector="showXml:" target="-2" id="hjI-j3-Fbz"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Plist..." id="Uc7-q5-cSW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPlist:" target="-2" id="kRR-Zo-5iI"/>
+                    </connections>
+                </menuItem>
             </items>
         </menu>
         <menu id="kqb-AG-Zfo">

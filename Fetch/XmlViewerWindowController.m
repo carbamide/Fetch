@@ -8,7 +8,7 @@
 
 #import "XmlViewerWindowController.h"
 #import "NodeObject.h"
-#import "JsonHandler.h"
+#import "DataHandler.h"
 
 @interface XmlViewerWindowController ()
 /**
@@ -32,7 +32,7 @@
             xml = @{@"Root": xml};
         }
         
-        JsonHandler *tempData = [[JsonHandler alloc] init];
+        DataHandler *tempData = [[DataHandler alloc] init];
         [tempData addEntries:xml];
         
         [self setDataArray:[tempData dataSource]];
@@ -50,7 +50,7 @@
         xmlData = @{@"Root": xmlData};
     }
     
-    JsonHandler *tempData = [[JsonHandler alloc] init];
+    DataHandler *tempData = [[DataHandler alloc] init];
     
     [tempData addEntries:xmlData];
     
