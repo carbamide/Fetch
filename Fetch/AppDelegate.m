@@ -34,8 +34,7 @@
     NSColor *defaultSuccessColor = [NSColor colorWithCalibratedRed:0.144757 green:0.639582 blue:0.18152 alpha:1];
     NSColor *defaultFailureColor = [NSColor colorWithCalibratedRed:0.680571 green:0.0910357 blue:0.111851 alpha:1];
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kJsonSyntaxHighlighting: @YES,
-                                                              kPingForReachability: @YES,
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kPingForReachability: @YES,
                                                               kFrequencyToPing: @"10",
                                                               kSeparatorColor: [defaultSeparatorColor colorForRegisterDefaults],
                                                               kBackgroundColor: [defaultBackgroundColor colorForRegisterDefaults],

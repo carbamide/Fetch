@@ -37,12 +37,9 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    for (NSWindow *tempWindow in [[NSApp windows] objectEnumerator]) {
-        if ([tempWindow isVisible]) {
-            [tempWindow close];
-            break;
-        }
-    }
+    NSWindow *windowToClose = [NSApp mainWindow];
+    
+    [windowToClose close];
 }
 
 -(IBAction)addUrl:(id)sender
