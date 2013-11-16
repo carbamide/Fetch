@@ -57,4 +57,10 @@
  */
 -(IBAction)saveLog:(id)sender;
 
+/**
+ *  Find text in MainWindowController's outputTextView
+ *
+ *  @param sender The caller of this method
+ */
+-(IBAction)findInOutput:(id)sender;
 @end

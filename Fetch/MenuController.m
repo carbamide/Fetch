@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
+#import "Constants.h"
 #import "MenuController.h"
 #import "PreferencesController.h"
 #import "MainWindowController.h"
@@ -67,5 +68,14 @@
 #endif
     
     [[self mainWindowController] saveLog];
+}
+
+-(IBAction)findInOutput:(id)sender
+{
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
+    [[self mainWindowController] findInOutput];
 }
 @end

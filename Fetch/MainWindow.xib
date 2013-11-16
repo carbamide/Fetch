@@ -26,6 +26,7 @@
                 <outlet property="requestTableView" destination="fbd-bo-9PL" id="R8p-5s-WmW"/>
                 <outlet property="responseTableView" destination="Eok-5b-6zR" id="xwA-Nr-VFp"/>
                 <outlet property="splitView" destination="zbl-nt-5bb" id="PBm-QE-UhW"/>
+                <outlet property="textFinder" destination="L9L-pJ-AKh" id="Cr5-gL-cQz"/>
                 <outlet property="urlDescriptionTextField" destination="5nQ-RV-vW0" id="dai-ec-cPY"/>
                 <outlet property="urlTextField" destination="YCn-i6-brP" id="LWS-ah-Rir"/>
                 <outlet property="window" destination="Nhr-sk-aYE" id="y8V-eU-i52"/>
@@ -47,7 +48,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="506" y="240" width="966" height="712"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="qqI-jX-isR">
                 <rect key="frame" x="0.0" y="0.0" width="966" height="712"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -590,7 +591,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="642" height="213"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textView editable="NO" importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="IgS-DI-zC1">
+                                                                    <textView editable="NO" importsGraphics="NO" findStyle="bar" incrementalSearchingEnabled="YES" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="IgS-DI-zC1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="642" height="213"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -904,6 +905,12 @@
                 <outlet property="delegate" destination="-2" id="Rv4-wr-AzH"/>
             </connections>
         </menu>
+        <textFinder incrementalSearchingShouldDimContentView="YES" id="L9L-pJ-AKh">
+            <connections>
+                <outlet property="client" destination="IgS-DI-zC1" id="7WB-p1-VDE"/>
+                <outlet property="findBarContainer" destination="om5-xj-Ac6" id="UMU-Tq-gHR"/>
+            </connections>
+        </textFinder>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

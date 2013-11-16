@@ -67,6 +67,11 @@
 /// Main split view that is the home to both the project list and the main view
 @property (strong) IBOutlet CNSplitView *splitView;
 
+/**
+ *  NSTextFinder for the outputTextView
+ */
+@property (strong, nonatomic) IBOutlet NSTextFinder *textFinder;
+
 /// Reference to MenuController
 @property (strong, nonatomic) IBOutlet MenuController *menuController;
 
@@ -97,8 +102,6 @@
 
 /// Dictionary that holds a reference to the response headers.  This dictionary is used to populate the responseTableView.
 @property (strong, nonatomic) NSDictionary *responseDict;
-
-
 
 /**
  * Fetch Action
@@ -208,5 +211,10 @@
  * Method that saves the output of outputTextView to a file
  */
 -(void)saveLog;
+
+/**
+ *  Show find bar for outputTextView
+ */
+-(void)findInOutput;
 
 @end

@@ -203,7 +203,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
-    
+
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
     NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
@@ -363,6 +363,11 @@
     
     [[self headersTableView] reloadData];
     [[self parametersTableView] reloadData];
+}
+
+-(void)findInOutput
+{
+    [[self textFinder] performAction:NSTextFinderActionShowFindInterface];
 }
 
 #pragma mark
