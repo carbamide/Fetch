@@ -1,24 +1,25 @@
 //
-//  JsonViewerWindowController.m
-//  Fetch
+//  PlistViewerWindowController.m
+//  Fetch for OSX
 //
-//  Created by Josh on 9/13/13.
+//  Created by Joshua Barrow on 11/15/13.
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "JsonViewerWindowController.h"
-#import "DataHandler.h"
+#import "PlistViewerWindowController.h"
 #import "NodeObject.h"
+#import "DataHandler.h"
 
-@interface JsonViewerWindowController ()
-
+@interface PlistViewerWindowController ()
+/**
+ *  Data source
+ */
 @property (strong, nonatomic) NSArray *dataArray;
-
 @end
 
-@implementation JsonViewerWindowController
+@implementation PlistViewerWindowController
 
-- (id)initWithWindowNibName:(NSString *)nibOrNil json:(id)json
+- (id)initWithWindowNibName:(NSString *)nibOrNil plist:(id)plist
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
@@ -27,32 +28,31 @@
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
         
-        if ([json isKindOfClass:[NSArray class]]) {
-            json = @{@"Root": json};
+        if ([plist isKindOfClass:[NSArray class]]) {
+            plist = @{@"Root": plist};
         }
         
         DataHandler *tempData = [[DataHandler alloc] init];
-        
-        [tempData addEntries:json];
+        [tempData addEntries:plist];
         
         [self setDataArray:[tempData dataSource]];
     }
     return self;
 }
 
--(void)setJsonData:(id)jsonData
+-(void)setPlistData:(id)plistData
 {
 #ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
     
-    if ([jsonData isKindOfClass:[NSArray class]]) {
-        jsonData = @{@"Root": jsonData};
+    if ([plistData isKindOfClass:[NSArray class]]) {
+        plistData = @{@"Root": plistData};
     }
     
     DataHandler *tempData = [[DataHandler alloc] init];
     
-    [tempData addEntries:jsonData];
+    [tempData addEntries:plistData];
     
     [self setDataArray:[tempData dataSource]];
 }
@@ -61,6 +61,7 @@
 {
     [super windowDidLoad];
 }
+
 
 #pragma mark
 #pragma mark NSOutlineViewDataSource
@@ -96,9 +97,6 @@
 #endif
     
     id tempObject = item;
-    
-    NSLog(@"%lu", (unsigned long)[[self dataArray] count]);
-    NSLog(@"%lu", (unsigned long)[[[self dataArray][0] children] count]);
     
     if (!tempObject) {
         return [[self dataArray] count];

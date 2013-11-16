@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JsonHandler : NSObject
+@interface DataHandler : NSObject
 
 /**
  * Initialization

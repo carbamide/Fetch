@@ -24,6 +24,7 @@
 #import "FetchURLConnection.h"
 #import "XMLReader.h"
 #import "XmlViewerWindowController.h"
+#import "PlistViewerWindowController.h"
 
 @interface MainWindowController ()
 
@@ -1225,7 +1226,35 @@
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
         [errorAlert runModal];
     }
+}
 
+-(IBAction)showPlist:(id)sender
+{
+    NSString *errorDescription = nil;
+    NSPropertyListFormat format;
+    NSDictionary *plistDictionary = [NSPropertyListSerialization propertyListFromData:[self responseData] mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&errorDescription];
+    
+    if (plistDictionary) {
+        if (![self plistWindow]) {
+            [self setPlistWindow:[[PlistViewerWindowController alloc] initWithWindowNibName:@"PlistViewerWindowController" plist:plistDictionary]];
+        }
+        else {
+            [[self plistWindow] setPlistData:plistDictionary];
+            [[[self plistWindow] outlineView] reloadData];
+        }
+        
+        [[[self plistWindow] window] makeKeyAndOrderFront:self];
+    }
+    else {
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"The data is not in the correct format."];
+        
+        [errorAlert setAlertStyle:NSCriticalAlertStyle];
+        [errorAlert runModal];
+    }
 }
 
 -(IBAction)duplicateURL:(id)sender
