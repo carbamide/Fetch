@@ -19,12 +19,7 @@
     if (_objectCount > 0) {
         NSString *returnString = nil;
         
-        if (_objectCount == 1) {
-            returnString = [NSString stringWithFormat:@"%@ - %ld object", _nodeTitle, (long)_objectCount];
-        }
-        else {
-            returnString = [NSString stringWithFormat:@"%@ - %ld objects", _nodeTitle, (long)_objectCount];
-        }
+        returnString = [NSString stringWithFormat:@"%@ - %ld %@", _nodeTitle, (long)_objectCount, _objectCount == 1 ? @"object" : @"objects"];
         
         return returnString;
     }

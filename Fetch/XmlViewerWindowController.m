@@ -143,7 +143,7 @@
     
     if ([[theColumn identifier] isEqualToString:@"Key"]) {
         if ([tempObject isKindOfClass:[NSArray class]]) {
-            return [NSString stringWithFormat:@"Dictionary - %lu elements", [tempObject count]];
+            return [NSString stringWithFormat:@"Dictionary - %lu %@", [tempObject count], [tempObject count] == 1 ? @"element" : @"elements"];
         }
         else {
             return [tempObject nodeTitle];
