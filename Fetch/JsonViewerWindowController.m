@@ -97,9 +97,6 @@
     
     id tempObject = item;
     
-    NSLog(@"%lu", (unsigned long)[[self dataArray] count]);
-    NSLog(@"%lu", (unsigned long)[[[self dataArray][0] children] count]);
-    
     if (!tempObject) {
         return [[self dataArray] count];
     }
