@@ -41,6 +41,7 @@
 		295EB4F217F32F5C00F58FE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295EB4F117F32F5C00F58FE2 /* QuartzCore.framework */; };
 		296AE23E1836EA20005D52FB /* PlistViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296AE23C1836EA20005D52FB /* PlistViewerWindowController.m */; };
 		296AE23F1836EA20005D52FB /* PlistViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296AE23D1836EA20005D52FB /* PlistViewerWindowController.xib */; };
+		29730051183886BB0047E9B8 /* StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 29730050183886BB0047E9B8 /* StandardPaths.m */; };
 		2974DC4917E377B700B51CDF /* JsonViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */; };
 		2974DC4A17E377B700B51CDF /* JsonViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */; };
 		2977962F18121ACF00BC834C /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2977962E18121ACF00BC834C /* CHCSVParser.m */; };
@@ -129,6 +130,8 @@
 		296AE23B1836EA20005D52FB /* PlistViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistViewerWindowController.h; sourceTree = "<group>"; };
 		296AE23C1836EA20005D52FB /* PlistViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistViewerWindowController.m; sourceTree = "<group>"; };
 		296AE23D1836EA20005D52FB /* PlistViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlistViewerWindowController.xib; sourceTree = "<group>"; };
+		2973004F183886BB0047E9B8 /* StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardPaths.h; sourceTree = "<group>"; };
+		29730050183886BB0047E9B8 /* StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardPaths.m; sourceTree = "<group>"; };
 		2974DC4617E377B700B51CDF /* JsonViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewerWindowController.h; sourceTree = "<group>"; };
 		2974DC4717E377B700B51CDF /* JsonViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewerWindowController.m; sourceTree = "<group>"; };
 		2974DC4817E377B700B51CDF /* JsonViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonViewerWindowController.xib; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 		295EB4DB17F32D7400F58FE2 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2973004F183886BB0047E9B8 /* StandardPaths.h */,
+				29730050183886BB0047E9B8 /* StandardPaths.m */,
 				29DC62B71832D27600C7BB2B /* XMLReader.h */,
 				29DC62B81832D27600C7BB2B /* XMLReader.m */,
 				29A19A4A181CAE58006C203A /* Reachability.h */,
@@ -676,6 +681,7 @@
 				29BC58E817DE0BFD004168AE /* Urls.m in Sources */,
 				29992B4E17FFADE7003EE651 /* NSString+Extensions.m in Sources */,
 				296AE23E1836EA20005D52FB /* PlistViewerWindowController.m in Sources */,
+				29730051183886BB0047E9B8 /* StandardPaths.m in Sources */,
 				29BC58EB17DE0BFD004168AE /* Headers.m in Sources */,
 				29DC62B91832D27600C7BB2B /* XMLReader.m in Sources */,
 				29A19A4C181CAE58006C203A /* Reachability.m in Sources */,

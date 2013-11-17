@@ -128,6 +128,8 @@
     NSLog(@"%s", __FUNCTION__);
 #endif
 
+    NSLog(@"%@", url);
+    
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
     
     [returnDictionary setObject:[project name] forKey:kProjectName];
@@ -185,6 +187,16 @@
     }
     
     NSData *encodedData = [NSKeyedArchiver archivedDataWithRootObject:returnDictionary];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        NSError *error = nil;
+        
+        [[NSFileManager defaultManager] removeItemAtURL:url error:&error];
+        
+        if (error) {
+            NSLog(@"%@", [error description]);
+        }
+    }
     
     [encodedData writeToURL:url atomically:YES];
     

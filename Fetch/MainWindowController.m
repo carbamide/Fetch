@@ -25,6 +25,7 @@
 #import "XMLReader.h"
 #import "XmlViewerWindowController.h"
 #import "PlistViewerWindowController.h"
+#import "StandardPaths.h"
 
 @interface MainWindowController ()
 
@@ -218,7 +219,9 @@
     }
     
     [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType, @"url"]];
-    
+    [[self projectSourceList] setDraggingSourceOperationMask:NSDragOperationNone forLocal:YES];
+    [[self projectSourceList] setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
+
     [[self menuController] setMainWindowController:self];
     
     [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
@@ -1835,13 +1838,41 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
     if ([items[0] isKindOfClass:[Urls class]]) {
-        [pasteboard declareTypes:@[@"url"] owner:self];
+        [pasteboard declareTypes:@[@"url"] owner:nil];
         _draggedNode = [items objectAtIndex:0];
         
         return YES;
     }
-    
+    else if ([items[0] isKindOfClass:[Projects class]]) {
+        NSString *filePath = [[NSFileManager defaultManager] pathForTemporaryFile:[NSString stringWithFormat:@"%@.fetch", [items[0] name]]];
+        
+        NSLog(@"%@ -- writeItems", filePath.pathExtension);
+        
+        [pasteboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
+        [pasteboard setPropertyList:@[[filePath pathExtension]] forType:NSFilesPromisePboardType];
+        
+        return YES;
+    }
     return NO;
+}
+
+- (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items
+{
+    NSString *filePath = [[NSFileManager defaultManager] pathForTemporaryFile:[NSString stringWithFormat:@"%@.fetch", [items[0] name]]];
+    
+    [ProjectHandler exportProject:(Projects *)items[0] toUrl:[NSURL fileURLWithPath:filePath]];
+    
+    NSError *error = nil;
+    
+    NSLog(@"%@", [dropDestination URLByDeletingLastPathComponent]);
+    
+    [[NSFileManager defaultManager] copyItemAtURL:[NSURL fileURLWithPath:filePath] toURL:[dropDestination URLByDeletingLastPathComponent] error:&error];
+    
+    if (error) {
+        NSLog(@"%@", [error description]);
+    }
+    
+    return @[[filePath lastPathComponent]];
 }
 
 #pragma mark
