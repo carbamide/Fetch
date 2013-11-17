@@ -204,7 +204,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
-
+    
     BOOL checkSiteReachability = [[NSUserDefaults standardUserDefaults] boolForKey:kPingForReachability];
     
     NSString *frequencyToPing = [[NSUserDefaults standardUserDefaults] stringForKey:kFrequencyToPing];
@@ -221,7 +221,7 @@
     [[self projectSourceList] registerForDraggedTypes:@[NSFilenamesPboardType, NSFilesPromisePboardType, @"url"]];
     [[self projectSourceList] setDraggingSourceOperationMask:NSDragOperationNone forLocal:YES];
     [[self projectSourceList] setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
-
+    
     [[self menuController] setMainWindowController:self];
     
     [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
@@ -403,7 +403,7 @@
         }
         
         [[self outputTextView] scrollRangeToVisible:NSMakeRange([[[self outputTextView] string] length], 0)];
-
+        
         [[self clearOutputButton] setEnabled:YES];
     });
 }
@@ -444,7 +444,7 @@
                                                 otherButton:nil
                                   informativeTextWithFormat:@"The url must be prefixed with the URL type.  Valid types are http and https"];
         
-        [errorAlert runModal];
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
         
         return NO;
     }
@@ -496,20 +496,17 @@
                                            otherButton:nil
                              informativeTextWithFormat:@"A Fetch is currently happening.  Are you sure you wish to switch urls?"];
         
-        NSInteger result = [alert runModal];
-        
-        if (result == NSOKButton) {
-            [[self fetchConnection] cancel];
-            
-            [[self fetchButton] setHidden:NO];
-            [[self progressIndicator] stopAnimation:self];
-            [[self progressIndicator] setHidden:YES];
-            
-            [self appendToOutput:@"CANCELED REQUEST" color:[[NSUserDefaults standardUserDefaults] colorForKey:kFailureColor]];
-        }
-        else {
-            return;
-        }
+        [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+            if (response == NSModalResponseOK) {
+                [[self fetchConnection] cancel];
+                
+                [[self fetchButton] setHidden:NO];
+                [[self progressIndicator] stopAnimation:self];
+                [[self progressIndicator] setHidden:YES];
+                
+                [self appendToOutput:@"CANCELED REQUEST" color:[[NSUserDefaults standardUserDefaults] colorForKey:kFailureColor]];
+            }
+        }];
     }
     
     [[self fetchButton] setEnabled:YES];
@@ -776,7 +773,7 @@
         if (error) {
             NSAlert *errorAlert = [NSAlert alertWithError:error];
             
-            [errorAlert runModal];
+            [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
         }
     }
 }
@@ -834,59 +831,67 @@
         
         NSAlert *alert = [NSAlert alertWithMessageText:@"Delete Project?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
         
-        if ([alert runModal] == NSOKButton) {
-            [[self projectList] removeObject:item];
-            
-            if (item == [self currentProject]) {
-                [self setCurrentProject:nil];
+        [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+            if (response == NSModalResponseOK) {
+                [[self projectList] removeObject:item];
                 
-                [[self exportButton] setEnabled:NO];
-                [[self removeButton] setEnabled:NO];
+                if (item == [self currentProject]) {
+                    [self setCurrentProject:nil];
+                    
+                    [[self exportButton] setEnabled:NO];
+                    [[self removeButton] setEnabled:NO];
+                    
+                    [[self parseButton] setEnabled:NO];
+                    [[self fetchButton] setEnabled:NO];
+                    [[self urlTextField] setEnabled:NO];
+                    [[self urlDescriptionTextField] setEnabled:NO];
+                    
+                    [[self headerDataSource] removeAllObjects];
+                    [[self paramDataSource] removeAllObjects];
+                    
+                    [[self headersTableView] reloadData];
+                    [[self parametersTableView] reloadData];
+                }
                 
-                [[self parseButton] setEnabled:NO];
-                [[self fetchButton] setEnabled:NO];
-                [[self urlTextField] setEnabled:NO];
-                [[self urlDescriptionTextField] setEnabled:NO];
+                [item delete];
                 
-                [[self headerDataSource] removeAllObjects];
-                [[self paramDataSource] removeAllObjects];
-                
-                [[self headersTableView] reloadData];
-                [[self parametersTableView] reloadData];
+                [[self urlCellArray] removeAllObjects];
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                [[self projectSourceList] reloadData];
             }
-            
-            [item delete];
-        }
+        }];
     }
     else if ([item isKindOfClass:[Urls class]]) {
         NSString *messageText = @"Delete url? You cannot undo this action.";
         
         NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
         
-        if ([alert runModal] == NSOKButton) {
-            [item delete];
-            
-            if (item == [self currentUrl]) {
-                [[self parseButton] setEnabled:NO];
-                [[self fetchButton] setEnabled:NO];
+        [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+            if (response == NSModalResponseOK) {
+                [item delete];
                 
-                [[self urlTextField] setStringValue:[NSString blankString]];
-                [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
-                
-                [[self methodCombo] setEnabled:NO];
-                
-                [[self headerDataSource] removeAllObjects];
-                [[self paramDataSource] removeAllObjects];
-                
-                [[self headersTableView] reloadData];
-                [[self parametersTableView] reloadData];
+                if (item == [self currentUrl]) {
+                    [[self parseButton] setEnabled:NO];
+                    [[self fetchButton] setEnabled:NO];
+                    
+                    [[self urlTextField] setStringValue:[NSString blankString]];
+                    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
+                    
+                    [[self methodCombo] setEnabled:NO];
+                    
+                    [[self headerDataSource] removeAllObjects];
+                    [[self paramDataSource] removeAllObjects];
+                    
+                    [[self headersTableView] reloadData];
+                    [[self parametersTableView] reloadData];
+                    
+                    [[self urlCellArray] removeAllObjects];
+                    [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                    [[self projectSourceList] reloadData];
+                }
             }
-        }
+        }];
     }
-    
-    [[self urlCellArray] removeAllObjects];
-    
-    [[self projectSourceList] reloadData];
 }
 
 #pragma mark
@@ -912,7 +917,7 @@
         [alert setInformativeText:@"You must specify a URL."];
         [alert setAlertStyle:NSWarningAlertStyle];
         
-        [alert runModal];
+        [alert beginSheetModalForWindow:[self window] completionHandler:nil];
         
         [[self fetchButton] setHidden:NO];
         [[self progressIndicator] stopAnimation:self];
@@ -977,13 +982,13 @@
             NSMutableDictionary *responseDict = [[urlResponse allHeaderFields] mutableCopy];
             
             [responseDict addEntriesFromDictionary:@{@"Response Code": [NSString stringWithFormat:@"%ld", (long)[urlResponse statusCode]]}];
-                                                     
+            
             [self setResponseDict:responseDict];
             
             [self appendToOutput:kResponseSeparator color:[userDefaults colorForKey:kSeparatorColor]];
             [self appendToOutput:[urlResponse responseString] color:[userDefaults colorForKey:[urlResponse isGoodResponse] ? kSuccessColor : kFailureColor]];
             [self appendToOutput:[NSString stringWithFormat:@"%@", [urlResponse allHeaderFields]] color:[userDefaults colorForKey:kSuccessColor]];
-
+            
             if (!connectionError) {
                 [self setResponseData:data];
                 
@@ -1019,17 +1024,13 @@
             else {
                 NSAlert *errorAlert = [NSAlert alertWithError:connectionError];
                 
-                [errorAlert runModal];
+                [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
             }
             
             [[self fetchButton] setHidden:NO];
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
-        //
-        //        [[self urlCellArray] removeAllObjects];
-        //
-        //        [[self projectSourceList] reloadData];
     }
 }
 
@@ -1173,7 +1174,7 @@
     else {
         NSAlert *errorAlert = [NSAlert alertWithError:error];
         
-        [errorAlert runModal];
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
@@ -1200,7 +1201,7 @@
                                   informativeTextWithFormat:@"The data is not in the correct format."];
         
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
-        [errorAlert runModal];
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
@@ -1212,7 +1213,7 @@
     
     NSError *parseError = nil;
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:[self responseData] error:&parseError];
-
+    
     if (xmlDictionary) {
         if (![self xmlWindow]) {
             [self setXmlWindow:[[XmlViewerWindowController alloc] initWithWindowNibName:@"XmlViewerWindowController" xml:xmlDictionary]];
@@ -1232,7 +1233,7 @@
                                   informativeTextWithFormat:@"The data is not in the correct format."];
         
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
-        [errorAlert runModal];
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
@@ -1261,7 +1262,7 @@
                                   informativeTextWithFormat:@"The data is not in the correct format."];
         
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
-        [errorAlert runModal];
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
@@ -1780,7 +1781,7 @@
         
         [self setReceivingNode:tempProject];
     }
-
+    
     
     return NSDragOperationGeneric;
 }
@@ -1837,6 +1838,10 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
+    
     if ([items[0] isKindOfClass:[Urls class]]) {
         [pasteboard declareTypes:@[@"url"] owner:nil];
         _draggedNode = [items objectAtIndex:0];
@@ -1845,8 +1850,6 @@
     }
     else if ([items[0] isKindOfClass:[Projects class]]) {
         NSString *filePath = [[NSFileManager defaultManager] pathForTemporaryFile:[NSString stringWithFormat:@"%@.fetch", [items[0] name]]];
-        
-        NSLog(@"%@ -- writeItems", filePath.pathExtension);
         
         [pasteboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
         [pasteboard setPropertyList:@[[filePath pathExtension]] forType:NSFilesPromisePboardType];
@@ -1858,21 +1861,30 @@
 
 - (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items
 {
-    NSString *filePath = [[NSFileManager defaultManager] pathForTemporaryFile:[NSString stringWithFormat:@"%@.fetch", [items[0] name]]];
+#ifdef DEBUG
+    NSLog(@"%s", __FUNCTION__);
+#endif
     
-    [ProjectHandler exportProject:(Projects *)items[0] toUrl:[NSURL fileURLWithPath:filePath]];
+    [[NSFileManager defaultManager] createDirectoryAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"/fetchTemp/"]
+                              withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    NSString *sourceFilePath = [[NSFileManager defaultManager] pathForTemporaryFile:[NSString stringWithFormat:@"/fetchTemp/%@.fetch", [items[0] name]]];
+    
+    [ProjectHandler exportProject:(Projects *)items[0] toUrl:[NSURL fileURLWithPath:sourceFilePath]];
     
     NSError *error = nil;
     
-    NSLog(@"%@", [dropDestination URLByDeletingLastPathComponent]);
-    
-    [[NSFileManager defaultManager] copyItemAtURL:[NSURL fileURLWithPath:filePath] toURL:[dropDestination URLByDeletingLastPathComponent] error:&error];
+    [[NSFileManager defaultManager] moveItemAtPath:sourceFilePath
+                                            toPath:[[dropDestination path] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.fetch", [items[0] name]]] error:&error];
     
     if (error) {
-        NSLog(@"%@", [error description]);
+        NSAlert *alert = [NSAlert alertWithError:error];
+        
+        [alert beginSheetModalForWindow:[self window] completionHandler:nil];
+
     }
     
-    return @[[filePath lastPathComponent]];
+    return @[[sourceFilePath lastPathComponent]];
 }
 
 #pragma mark
