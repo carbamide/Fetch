@@ -26,10 +26,8 @@
 
 - (void)awakeFromNib
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     if ([super respondsToSelector:_cmd]) {
         [super awakeFromNib];
     }
@@ -39,10 +37,8 @@
 
 - (IBAction)showPreferencesFor:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     NSViewController *newViewController = [self existingViewControllerForToolbarItem:sender];
     
     if (![self currentViewController]) {
@@ -82,20 +78,16 @@
 
 - (void)showPreferencesWindow:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     [[self window] center];
     [[self window] makeKeyAndOrderFront:sender];
 }
 
 - (void)createToolbarItemsToViewControllerMapping
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     [self setViewControllers:[NSArray array]];
     
     if (![self window]) {
@@ -139,10 +131,8 @@
 
 - (NSViewController *)createViewControllerForToolbarItem:(NSToolbarItem *)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     if (!item) {
         return nil;
     }
@@ -169,10 +159,8 @@
 
 - (NSViewController *)existingViewControllerForToolbarItem:(NSToolbarItem *)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     if (item == nil) {
         return nil;
     }

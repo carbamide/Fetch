@@ -15,14 +15,12 @@
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
-
+        
     }
     
     return self;
@@ -30,10 +28,8 @@
 
 - (void)awakeFromNib
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     [super awakeFromNib];
     
     NSColor *defaultSeparatorColor = [NSColor colorWithCalibratedRed:0.194759 green:0.33779 blue:1 alpha:1];
@@ -48,7 +44,7 @@
     
     for (int i = 0; i < [preferenceKeys count]; i++) {
         NSColor *color = [[NSUserDefaults standardUserDefaults] colorForKey:preferenceKeys[i]] ? [[NSUserDefaults standardUserDefaults] colorForKey:preferenceKeys[i]] : defaultColors[i];
-
+        
         switch (i) {
             case 0:
                 [[self separatorColorWell] setColor:color];
@@ -73,10 +69,9 @@
 
 -(IBAction)saveColorForProperty:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
+    
     NSColorWell *colorWell = sender;
     
     switch ([sender tag]) {

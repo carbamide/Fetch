@@ -24,9 +24,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSColor *defaultSeparatorColor = [NSColor colorWithCalibratedRed:0.194759 green:0.33779 blue:1 alpha:1];
     NSColor *defaultBackgroundColor = [NSColor colorWithCalibratedRed:0.813159 green:0.811473 blue:0.829574 alpha:1];
@@ -47,9 +45,9 @@
                                                               }];
     
     [self setMainWindowController:[[MainWindowController alloc] initWithWindowNibName:kMainWindowXib]];
- 
+    
     [[self menuController] setMainWindowController:[self mainWindowController]];
-
+    
     [[self mainWindowController] showWindow:self];
 }
 

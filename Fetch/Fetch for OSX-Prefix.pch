@@ -5,8 +5,14 @@
 //
 
 #ifdef __OBJC__
-#import <ObjectiveRecord/ObjectiveRecord.h>
-#import <ObjectiveSugar/ObjectiveSugar.h>
-#import "Extensions.h"
+    #import <ObjectiveRecord/ObjectiveRecord.h>
+    #import <ObjectiveSugar/ObjectiveSugar.h>
+    #import "Extensions.h"
     #import <Cocoa/Cocoa.h>
+
+    #ifdef DEBUG
+    #   define NSLog(...) NSLog(__VA_ARGS__)
+    #else
+    #   define NSLog(...)
+    #endif
 #endif

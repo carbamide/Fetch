@@ -21,9 +21,7 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     self = [super initWithFrame:frame];
     
@@ -36,9 +34,7 @@
 
 -(void)awakeFromNib
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [super awakeFromNib];
     
@@ -48,9 +44,7 @@
 
 -(void)viewWillMoveToSuperview:(NSView *)newSuperview
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [super viewWillMoveToSuperview:newSuperview];
     
@@ -61,9 +55,7 @@
 
 -(void)dealloc
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self pingTimer] invalidate];
     
@@ -72,9 +64,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
 	[super drawRect:dirtyRect];
 }

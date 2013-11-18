@@ -21,9 +21,7 @@
 
 - (id)initWithWindowNibName:(NSString *)nibOrNil xml:(id)xml
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
@@ -42,9 +40,7 @@
 
 -(void)setXmlData:(id)xmlData
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([xmlData isKindOfClass:[NSArray class]]) {
         xmlData = @{@"Root": xmlData};
@@ -68,9 +64,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)oV isItemExpandable:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id tempObject = item;
     
@@ -92,9 +86,7 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)oV numberOfChildrenOfItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id tempObject = item;
     
@@ -114,9 +106,7 @@
 
 - (id)outlineView:(NSOutlineView *)oV child:(NSInteger)index ofItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id tempObject = item;
     
@@ -135,9 +125,7 @@
 
 - (id)outlineView:(NSOutlineView *)oV objectValueForTableColumn:(NSTableColumn *)theColumn byItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id tempObject = item;
     

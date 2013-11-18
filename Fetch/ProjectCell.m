@@ -14,10 +14,8 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -27,9 +25,7 @@
 
 -(void)awakeFromNib
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [super awakeFromNib];
     
@@ -39,10 +35,8 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
 	[super drawRect:dirtyRect];
 	
     // Drawing code here.
@@ -50,10 +44,8 @@
 
 -(IBAction)addUrl:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kAddUrlNotification object:nil userInfo:@{@"project": [self project]}];
 }
 

@@ -16,27 +16,21 @@
 
 -(IBAction)showPreferences:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self preferencesController] showPreferencesWindow:nil];
 }
 
 -(IBAction)showMainWindow:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[[[self delegate] mainWindowController] window] makeKeyAndOrderFront:self];
 }
 
 -(IBAction)closeWindow:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSWindow *windowToClose = [NSApp mainWindow];
     
@@ -45,36 +39,28 @@
 
 -(IBAction)addUrl:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self mainWindowController] addUrl:sender];
 }
 
 -(IBAction)importProject:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self mainWindowController] importProject:sender];
 }
 
 -(IBAction)saveLog:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self mainWindowController] saveLog];
 }
 
 -(IBAction)findInOutput:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self mainWindowController] findInOutput];
 }

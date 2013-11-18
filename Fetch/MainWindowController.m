@@ -174,9 +174,7 @@
 
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     self = [super initWithWindowNibName:windowNibName];
     
@@ -191,9 +189,7 @@
 
 -(void)windowDidLoad
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [super windowDidLoad];
     
@@ -256,9 +252,7 @@
 
 - (void)setupSplitviewControls
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [self setToolbar:[[CNSplitViewToolbar alloc] init]];
     
@@ -295,9 +289,7 @@
 
 -(void)preferencesChanges:(NSNotification *)aNotification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kBackgroundColor];
     NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kForegroundColor];
@@ -331,9 +323,7 @@
 
 -(void)setupSegmentedControls
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([[self headerDataSource] count] == 0) {
         [[self headerSegCont] setEnabled:NO forSegment:1];
@@ -352,9 +342,7 @@
 
 -(void)unloadData
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self parseButton] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
@@ -378,9 +366,7 @@
 
 - (void)appendToOutput:(id)text color:(NSColor *)color
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (!text) {
         text = @"ERROR";
@@ -410,9 +396,7 @@
 
 -(void)logReqest:(NSMutableURLRequest *)request
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -427,9 +411,7 @@
 
 -(BOOL)addToUrlListIfUnique
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (![[self urlTextField] stringValue] || [[[self urlTextField] stringValue] isEqualToString:[NSString blankString]]) {
         return NO;
@@ -485,9 +467,7 @@
 
 -(void)loadUrl:(Urls *)url
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([self isFetching]) {
         NSAlert *alert = [NSAlert alertWithMessageText:@"Change URL?"
@@ -592,9 +572,7 @@
 
 -(void)addUrl:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     Projects *tempProject = nil;
     
@@ -631,9 +609,7 @@
 
 -(void)importProject:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
@@ -656,9 +632,7 @@
 
 -(void)exportProject:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
@@ -684,9 +658,7 @@
 
 -(void)deleteProject:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
@@ -724,9 +696,7 @@
 
 -(void)loadProject:(Projects *)project
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self headerDataSource] removeAllObjects];
     [[self headersTableView] reloadData];
@@ -756,9 +726,7 @@
 
 -(void)saveLog
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
@@ -780,9 +748,7 @@
 
 -(void)addProject
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (![self projectList]) {
         [self setProjectList:[[NSMutableArray alloc] init]];
@@ -820,9 +786,7 @@
 
 -(void)removeProjectOrUrl
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
@@ -899,9 +863,7 @@
 
 -(IBAction)fetchAction:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [self setIsFetching:YES];
     
@@ -1036,9 +998,7 @@
 
 -(IBAction)headerSegContAction:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSSegmentedControl *tempSegCont = sender;
     
@@ -1079,9 +1039,7 @@
 
 -(IBAction)parameterSegContAction:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSSegmentedControl *tempSegCont = sender;
     
@@ -1121,9 +1079,7 @@
 
 -(IBAction)customPostBodyAction:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([[self customPostBodyCheckBox] state] == NSOnState) {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
@@ -1141,9 +1097,7 @@
 
 -(IBAction)clearOutput:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[self outputTextView] setString:[NSString blankString]];
     
@@ -1152,9 +1106,7 @@
 
 -(IBAction)showJson:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSError *error = nil;
     
@@ -1180,9 +1132,7 @@
 
 -(IBAction)showCsv:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSArray *rows = [NSArray arrayWithContentsOfString:[[NSString alloc] initWithData:[self responseData] encoding:NSUTF8StringEncoding] options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
     
@@ -1207,9 +1157,7 @@
 
 -(IBAction)showXml:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSError *parseError = nil;
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:[self responseData] error:&parseError];
@@ -1239,6 +1187,8 @@
 
 -(IBAction)showPlist:(id)sender
 {
+    NSLog(@"%s", __FUNCTION__);
+    
     NSString *errorDescription = nil;
     NSPropertyListFormat format;
     NSDictionary *plistDictionary = [NSPropertyListSerialization propertyListFromData:[self responseData] mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&errorDescription];
@@ -1268,9 +1218,7 @@
 
 -(IBAction)duplicateURL:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     Projects *tempProject = [[self clickedUrl] project];
     
@@ -1325,9 +1273,7 @@
 
 -(IBAction)renameProject:(id)sender
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     ProjectCell *cell = [[self projectSourceList] viewAtColumn:0 row:[[self projectSourceList] clickedRow] makeIfNecessary:NO];
     
@@ -1343,9 +1289,7 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([notification object] == [self urlTextField]) {
         if ([[[self urlTextField] stringValue] length] > 0) {
@@ -1362,9 +1306,7 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([notification object] == [self urlTextField]) {
         if ([[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement) {
@@ -1397,9 +1339,7 @@
 
 -(void)textDidEndEditing:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([notification object] == [self customPayloadTextView]) {
         Urls *tempUrl = [self currentUrl];
@@ -1419,9 +1359,7 @@
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (tableView == [self headersTableView]) {
         return [[self headerDataSource] count];
@@ -1436,9 +1374,7 @@
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSString *identifier = [tableColumn identifier];
     
@@ -1466,9 +1402,7 @@
 
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSString *identifier = [tableColumn identifier];
     
@@ -1547,9 +1481,7 @@
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([notification object] == [self methodCombo]) {
         if ([self currentUrl]) {
@@ -1566,9 +1498,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (!item) {
         return [[self projectList] objectAtIndex:index];
@@ -1584,9 +1514,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
@@ -1601,18 +1529,14 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     return YES;
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if (!item) {
         return [[self projectList] count];
@@ -1630,9 +1554,7 @@
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     static NSString *const CellIdentifier = @"DataCell";
     static NSString *const UrlCellIdentifier = @"UrlCell";
@@ -1690,9 +1612,7 @@
 
 - (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     Projects *tempProject = item;
     
@@ -1703,9 +1623,7 @@
 
 - (void)outlineViewItemDidExpand:(NSNotification *)notification;
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     Projects *project = [notification userInfo][@"NSObject"];
     
@@ -1715,9 +1633,7 @@
 
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     Projects *project = [notification userInfo][@"NSObject"];
     
@@ -1727,9 +1643,7 @@
 
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSOutlineView *outlineView = [notification object];
     
@@ -1763,9 +1677,7 @@
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     id tempProject = item;
     
@@ -1788,9 +1700,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSPasteboard *pasteboard = [info draggingPasteboard];
     
@@ -1826,9 +1736,8 @@
             }
         }
         else {
-#ifdef DEBUG
             NSLog(@"Unable to finish drag");
-#endif
+            
             return NO;
         }
     }
@@ -1838,9 +1747,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     if ([items[0] isKindOfClass:[Urls class]]) {
         [pasteboard declareTypes:@[@"url"] owner:nil];
@@ -1861,9 +1768,7 @@
 
 - (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     [[NSFileManager defaultManager] createDirectoryAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"/fetchTemp/"]
                               withIntermediateDirectories:YES attributes:nil error:nil];
@@ -1881,7 +1786,7 @@
         NSAlert *alert = [NSAlert alertWithError:error];
         
         [alert beginSheetModalForWindow:[self window] completionHandler:nil];
-
+        
     }
     
     return @[[sourceFilePath lastPathComponent]];
@@ -1892,9 +1797,7 @@
 
 - (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     return kProjectListSplitViewSide;
 }
@@ -1904,18 +1807,14 @@
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     return kMinimumSplitViewSize;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     BOOL shouldHideStatusImages = NO;
     
@@ -1963,9 +1862,7 @@
 
 -(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         
@@ -2000,9 +1897,7 @@
 
 -(NetworkStatus)urlVerification:(NSString *)urlString
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -2018,9 +1913,7 @@
 
 -(void)menuNeedsUpdate:(NSMenu *)menu
 {
-#ifdef DEBUG
     NSLog(@"%s", __FUNCTION__);
-#endif
     
     NSInteger clickedRow = [[self projectSourceList] clickedRow];
     
