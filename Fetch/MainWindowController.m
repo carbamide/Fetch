@@ -826,38 +826,43 @@
         }];
     }
     else if ([item isKindOfClass:[Urls class]]) {
-        NSString *messageText = @"Delete url? You cannot undo this action.";
-        
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
-        
-        [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
-            if (response == NSModalResponseOK) {
-                [item delete];
-                
-                if (item == [self currentUrl]) {
-                    [[self parseButton] setEnabled:NO];
-                    [[self fetchButton] setEnabled:NO];
-                    
-                    [[self urlTextField] setStringValue:[NSString blankString]];
-                    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
-                    
-                    [[self methodCombo] setEnabled:NO];
-                    
-                    [[self headerDataSource] removeAllObjects];
-                    [[self paramDataSource] removeAllObjects];
-                    
-                    [[self headersTableView] reloadData];
-                    [[self parametersTableView] reloadData];
-                    
-                    [[self urlCellArray] removeAllObjects];
-                    [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
-                    [[self projectSourceList] reloadData];
-                }
-            }
-        }];
+        [self deleteURLHandler:item];
     }
 }
 
+-(void)deleteURLHandler:(Urls *)item
+{
+    NSString *messageText = @"Delete url? You cannot undo this action.";
+    
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
+    
+    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+        if (response == NSModalResponseOK) {
+            [item delete];
+            
+            if (item == [self currentUrl]) {
+                [[self parseButton] setEnabled:NO];
+                [[self fetchButton] setEnabled:NO];
+                
+                [[self urlTextField] setStringValue:[NSString blankString]];
+                [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
+                
+                [[self methodCombo] setEnabled:NO];
+                
+                [[self headerDataSource] removeAllObjects];
+                [[self paramDataSource] removeAllObjects];
+                
+                [[self headersTableView] reloadData];
+                [[self parametersTableView] reloadData];
+                
+                [[self urlCellArray] removeAllObjects];
+                [self setProjectList:[[[Projects all] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]] mutableCopy]];
+                [[self projectSourceList] reloadData];
+            }
+        }
+    }];
+    
+}
 #pragma mark
 #pragma mark IBActions
 
@@ -1220,50 +1225,61 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    Projects *tempProject = [[self clickedUrl] project];
-    
-    Urls *oldUrl = [self clickedUrl];
-    Urls *duplicateUrl = [Urls create];
-    
-    NSMutableSet *oldHeaders = [[NSMutableSet alloc] init];
-    NSMutableSet *oldParams = [[NSMutableSet alloc] init];
-    
-    for (Headers *tempHeader in [oldUrl headers]) {
-        Headers *newTempHeader = [Headers create];
+    @try {
+        Projects *tempProject = [[self clickedUrl] project];
         
-        [newTempHeader setValue:[tempHeader value]];
-        [newTempHeader setName:[tempHeader name]];
+        Urls *oldUrl = [self clickedUrl];
+        Urls *duplicateUrl = [Urls create];
         
-        [oldHeaders addObject:newTempHeader];
-    }
-    
-    for (Parameters *tempParam in [oldUrl parameters]) {
-        Parameters *newTempParam = [Headers create];
+        NSMutableSet *oldHeaders = [[NSMutableSet alloc] init];
+        NSMutableSet *oldParams = [[NSMutableSet alloc] init];
         
-        [newTempParam setValue:[tempParam value]];
-        [newTempParam setName:[tempParam name]];
+        for (Headers *tempHeader in [oldUrl headers]) {
+            Headers *newTempHeader = [Headers create];
+            
+            [newTempHeader setValue:[tempHeader value]];
+            [newTempHeader setName:[tempHeader name]];
+            
+            [oldHeaders addObject:newTempHeader];
+        }
         
-        [oldParams addObject:newTempParam];
+        for (Parameters *tempParam in [oldUrl parameters]) {
+            Parameters *newTempParam = [Headers create];
+            
+            [newTempParam setValue:[tempParam value]];
+            [newTempParam setName:[tempParam name]];
+            
+            [oldParams addObject:newTempParam];
+        }
+        
+        [duplicateUrl setUrl:[oldUrl url]];
+        [duplicateUrl setHeaders:oldHeaders];
+        [duplicateUrl setParameters:oldParams];
+        [duplicateUrl setMethod:[oldUrl method]];
+        [duplicateUrl setCustomPayload:[oldUrl customPayload]];
+        [duplicateUrl setCreatedAt:[NSDate date]];
+        
+        if ([[oldUrl urlDescription] length] > 0) {
+            [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl urlDescription]]];
+        }
+        else {
+            [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl url]]];
+        }
+        
+        [tempProject addUrlsObject:duplicateUrl];
+        [tempProject save];
+        
+        [[self projectSourceList] reloadData];
     }
-    
-    [duplicateUrl setUrl:[oldUrl url]];
-    [duplicateUrl setHeaders:oldHeaders];
-    [duplicateUrl setParameters:oldParams];
-    [duplicateUrl setMethod:[oldUrl method]];
-    [duplicateUrl setCustomPayload:[oldUrl customPayload]];
-    [duplicateUrl setCreatedAt:[NSDate date]];
-    
-    if ([[oldUrl urlDescription] length] > 0) {
-        [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl urlDescription]]];
+    @catch (NSException *exception) {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Error"
+                                         defaultButton:@"OK"
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:@"There was an error duplicating the URL."];
+        
+        [alert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
-    else {
-        [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl url]]];
-    }
-    
-    [tempProject addUrlsObject:duplicateUrl];
-    [tempProject save];
-    
-    [[self projectSourceList] reloadData];
 }
 
 -(IBAction)parseAction:(id)sender
@@ -1282,6 +1298,13 @@
     [textField setEditable:YES];
     
     [[self projectSourceList] editColumn:0 row:[[self projectSourceList] clickedRow] withEvent:nil select:YES];
+}
+
+-(IBAction)deleteURLAction:(id)sender
+{
+    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+
+    [self deleteURLHandler:item];
 }
 
 #pragma mark
@@ -1924,11 +1947,16 @@
             [self setClickedUrl:item];
             
             [[menu itemAtIndex:0] setHidden:NO];
-            [[menu itemAtIndex:1] setHidden:YES];
+            [[menu itemAtIndex:1] setHidden:NO];
+            [[menu itemAtIndex:2] setHidden:NO];
+            [[menu itemAtIndex:3] setHidden:YES];
+
         }
         else {
             [[menu itemAtIndex:0] setHidden:YES];
-            [[menu itemAtIndex:1] setHidden:NO];
+            [[menu itemAtIndex:1] setHidden:YES];
+            [[menu itemAtIndex:2] setHidden:YES];
+            [[menu itemAtIndex:3] setHidden:NO];
         }
     }
 }

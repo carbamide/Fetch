@@ -171,6 +171,12 @@
  */
 -(IBAction)renameProject:(id)sender;
 
+/**
+ * Delete selected URL
+ * @param sender The caller of this method
+ */
+-(IBAction)deleteURLAction:(id)sender;
+
 ///**
 // * Test CSV using a file
 // * @param sender The caller of this method
