@@ -247,6 +247,12 @@
     [self splitView:[self splitView] constrainSplitPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofSubviewAt:0];
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAddUrlNotification object:nil];
+}
+
 #pragma mark
 #pragma mark Methods
 
