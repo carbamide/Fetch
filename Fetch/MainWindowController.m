@@ -486,6 +486,8 @@
             if (response == NSModalResponseOK) {
                 [[self fetchConnection] cancel];
                 
+                [self setIsFetching:NO];
+                
                 [[self fetchButton] setHidden:NO];
                 [[self progressIndicator] stopAnimation:self];
                 [[self progressIndicator] setHidden:YES];
