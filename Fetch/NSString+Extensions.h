@@ -28,5 +28,11 @@
  * @return Whether or not NSString has value
  */
 -(BOOL)hasValue;
+/**
+ * Converts NSTimeInterval to friendly string
+ * @param interval The NSTimeInterval to convert
+ * @return Friendly NSString of the interval
+ */
+-(NSString *)formatInterval:(NSTimeInterval)interval;
 
 @end

@@ -90,6 +90,9 @@
  */
 @property (strong, nonatomic) Projects *receivingNode;
 
+/// Reference to the current date
+@property (strong, nonatomic) NSDate *currentDate;
+
 /**
  * Setup the split view controller and it's controls
  */
@@ -879,6 +882,8 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    [self setCurrentDate:[NSDate date]];
+    
     [self setIsFetching:YES];
     
     [[self fetchButton] setHidden:YES];
@@ -998,6 +1003,9 @@
                         [self showJson:nil];
                     }
                 }
+                else {
+                    [self appendToOutput:kNoResponseData color:[userDefaults colorForKey:kSuccessColor]];
+                }
             }
             else {
                 NSAlert *errorAlert = [NSAlert alertWithError:connectionError];
@@ -1005,12 +1013,19 @@
                 [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
             }
             
+            NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:[self currentDate]];
+            
+            timeInterval *= 1000;
+            
+            [self appendToOutput:[[[NSString alloc] init] formatInterval:timeInterval] color:[userDefaults colorForKey:kSuccessColor]];
+            
             [[self fetchButton] setHidden:NO];
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
     }
 }
+
 
 -(IBAction)headerSegContAction:(id)sender
 {
