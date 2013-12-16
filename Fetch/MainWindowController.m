@@ -90,6 +90,9 @@
  */
 @property (strong, nonatomic) Projects *receivingNode;
 
+/// Reference to the current date
+@property (strong, nonatomic) NSDate *currentDate;
+
 /**
  * Setup the split view controller and it's controls
  */
@@ -197,6 +200,7 @@
     
     [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
     [[self customPayloadTextView] setFont:[NSFont fontWithName:@"Andale Mono" size:12]];
+    [[self customPayloadTextView] setAutomaticQuoteSubstitutionEnabled:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanges:) name:NSUserDefaultsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUrl:) name:kAddUrlNotification object:nil];
@@ -907,6 +911,8 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    [self setCurrentDate:[NSDate date]];
+    
     [self setIsFetching:YES];
     
     [[self fetchButton] setHidden:YES];
@@ -998,31 +1004,36 @@
                 
                 [[self parseButton] setEnabled:YES];
                 
-                id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
-                
-                if (jsonData) {
-                    NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
+                if (data) {
+                    id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
                     
-                    if (jsonHolder) {
-                        [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
+                    if (jsonData) {
+                        NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
+                        
+                        if (jsonHolder) {
+                            [self appendToOutput:[[NSString alloc] initWithData:jsonHolder encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
+                        }
+                    }
+                    else {
+                        [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
+                        
+                        if ([[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput]) {
+                            if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
+                                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
+                                
+                                [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                                [self appendToOutput:attributedString color:nil];
+                                [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
+                            }
+                        }
+                    }
+                    
+                    if ([[[self jsonWindow] window] isVisible]) {
+                        [self showJson:nil];
                     }
                 }
                 else {
-                    [self appendToOutput:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] color:[userDefaults colorForKey:kForegroundColor]];
-                    
-                    if ([[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput]) {
-                        if ([[urlResponse allHeaderFields][@"Content-Type"] rangeOfString:@"text/html"].location != NSNotFound) {
-                            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTML:data documentAttributes:nil];
-                            
-                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
-                            [self appendToOutput:attributedString color:nil];
-                            [self appendToOutput:kParsedOutput color:[userDefaults colorForKey:kSeparatorColor]];
-                        }
-                    }
-                }
-                
-                if ([[[self jsonWindow] window] isVisible]) {
-                    [self showJson:nil];
+                    [self appendToOutput:kNoResponseData color:[userDefaults colorForKey:kSuccessColor]];
                 }
             }
             else {
@@ -1031,12 +1042,19 @@
                 [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
             }
             
+            NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:[self currentDate]];
+            
+            timeInterval *= 1000;
+            
+            [self appendToOutput:[[[NSString alloc] init] formatInterval:timeInterval] color:[userDefaults colorForKey:kSuccessColor]];
+            
             [[self fetchButton] setHidden:NO];
             [[self progressIndicator] stopAnimation:self];
             [[self progressIndicator] setHidden:YES];
         }];
     }
 }
+
 
 -(IBAction)headerSegContAction:(id)sender
 {
