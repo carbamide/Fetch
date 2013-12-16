@@ -223,4 +223,8 @@
  */
 -(void)findInOutput;
 
+/**
+ *  Clone headers of current URL to all URLs in current project
+ */
+-(void)cloneHeaders;
 @end

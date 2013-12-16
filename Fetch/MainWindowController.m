@@ -612,6 +612,35 @@
     }
 }
 
+-(void)cloneHeaders
+{
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Clone Headers?"
+                                     defaultButton:@"OK"
+                                   alternateButton:nil
+                                       otherButton:@"Cancel"
+                         informativeTextWithFormat:@"Are you sure you wish to clone the headers from this URL to all the other URLs in this Project?", nil];
+    
+    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+        if (response == NSModalResponseOK) {
+            NSSet *currentHeaders = [[self currentUrl] headers];
+            
+            for (Urls *tempURL in [[self currentProject] urls]) {
+                if (tempURL != [self currentUrl]) {
+                    for (Headers *tempHeader in currentHeaders) {
+                        Headers *header = [Headers create:@{@"name": [tempHeader name], @"value": [tempHeader value]}];
+                        
+                        [header setUrl:tempURL];
+                        [header save];
+                        
+                        [tempURL addHeadersObject:header];
+                        [tempURL save];
+                    }
+                }
+            }
+        }
+    }];
+}
+
 #pragma mark
 #pragma mark Project Handling
 
@@ -1311,7 +1340,7 @@
 -(IBAction)deleteURLAction:(id)sender
 {
     id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-
+    
     [self deleteURLHandler:item];
 }
 
@@ -1958,7 +1987,7 @@
             [[menu itemAtIndex:1] setHidden:NO];
             [[menu itemAtIndex:2] setHidden:NO];
             [[menu itemAtIndex:3] setHidden:YES];
-
+            
         }
         else {
             [[menu itemAtIndex:0] setHidden:YES];

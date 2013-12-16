@@ -63,4 +63,11 @@
  *  @param sender The caller of this method
  */
 -(IBAction)findInOutput:(id)sender;
+
+/**
+ *  Clone headers to all urls in current project
+ *
+ *  @param sender The caller of this method
+ */
+-(IBAction)cloneHeaders:(id)sender;
 @end

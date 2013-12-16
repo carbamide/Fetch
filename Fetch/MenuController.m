@@ -64,4 +64,12 @@
     
     [[self mainWindowController] findInOutput];
 }
+
+-(IBAction)cloneHeaders:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    [[self mainWindowController] cloneHeaders];
+}
+
 @end
