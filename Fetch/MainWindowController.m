@@ -633,11 +633,22 @@
                     for (Headers *tempHeader in currentHeaders) {
                         Headers *header = [Headers create:@{@"name": [tempHeader name], @"value": [tempHeader value]}];
                         
-                        [header setUrl:tempURL];
-                        [header save];
+                        BOOL addHeader = YES;
                         
-                        [tempURL addHeadersObject:header];
-                        [tempURL save];
+                        for (Headers *anotherHeader in [tempURL headers]) {
+                            if ([[anotherHeader name] isEqualToString:[tempHeader name]] && [[anotherHeader value] isEqualToString:[tempHeader value]]) {
+                                addHeader = NO;
+                            }
+                        }
+                        
+                        if (addHeader) {
+                            [header setUrl:tempURL];
+                            [header save];
+                            
+                            [tempURL addHeadersObject:header];
+                            [tempURL save];
+                        }
+   
                     }
                 }
             }
