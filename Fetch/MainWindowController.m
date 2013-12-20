@@ -616,8 +616,20 @@
     }
 }
 
--(void)cloneHeaders
+-(IBAction)cloneHeaders:(id)sender
 {
+    Urls *clickedUrl = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    
+    if (!clickedUrl) {
+        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
+                                              defaultButton:@"OK"
+                                            alternateButton:nil
+                                                otherButton:nil
+                                  informativeTextWithFormat:@"An error has occurred.  Please try again."];
+        
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
+    }
+    
     NSAlert *alert = [NSAlert alertWithMessageText:@"Clone Headers?"
                                      defaultButton:@"OK"
                                    alternateButton:nil
@@ -626,10 +638,10 @@
     
     [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
         if (response == NSModalResponseOK) {
-            NSSet *currentHeaders = [[self currentUrl] headers];
+            NSSet *currentHeaders = [clickedUrl headers];
             
             for (Urls *tempURL in [[self currentProject] urls]) {
-                if (tempURL != [self currentUrl]) {
+                if (tempURL != clickedUrl) {
                     for (Headers *tempHeader in currentHeaders) {
                         Headers *header = [Headers create:@{@"name": [tempHeader name], @"value": [tempHeader value]}];
                         
@@ -2016,6 +2028,8 @@
             [[menu itemAtIndex:1] setHidden:NO];
             [[menu itemAtIndex:2] setHidden:NO];
             [[menu itemAtIndex:3] setHidden:YES];
+            [[menu itemAtIndex:4] setHidden:NO];
+            [[menu itemAtIndex:5] setHidden:NO];
             
         }
         else {
@@ -2023,6 +2037,8 @@
             [[menu itemAtIndex:1] setHidden:YES];
             [[menu itemAtIndex:2] setHidden:YES];
             [[menu itemAtIndex:3] setHidden:NO];
+            [[menu itemAtIndex:4] setHidden:YES];
+            [[menu itemAtIndex:5] setHidden:YES];
         }
     }
 }

@@ -69,7 +69,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [[self mainWindowController] cloneHeaders];
+    [[self mainWindowController] cloneHeaders:sender];
 }
 
 @end

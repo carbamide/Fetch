@@ -225,6 +225,7 @@
 
 /**
  *  Clone headers of current URL to all URLs in current project
+ *  @param sender The caller of this method
  */
--(void)cloneHeaders;
+-(IBAction)cloneHeaders:(id)sender;
 @end
