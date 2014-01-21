@@ -29,6 +29,9 @@
 
 @interface MainWindowController ()
 
+/**
+ * @name Current Project and URL
+ */
 /// Backing store for headersTableView
 @property (strong, nonatomic) NSMutableArray *headerDataSource;
 
@@ -41,14 +44,19 @@
 /// Backing store that holds all known header names
 @property (strong, nonatomic) NSArray *headerNames;
 
+/**
+ * @name Current Project and URL
+ */
+
 /// The current Project
 @property (strong, nonatomic) Projects *currentProject;
 
 /// The current URl
 @property (strong, nonatomic) Urls *currentUrl;
 
-/// JSON Data returns from fetch action.  This is either an NSDictionary or NSArray
-@property (strong, nonatomic) id responseData;
+/**
+ * @name Toolbar Handling
+ */
 
 /// Reference to toolbar
 @property (strong, nonatomic) CNSplitViewToolbar *toolbar;
@@ -59,26 +67,31 @@
 /// Reference to export button in toolbar
 @property (strong, nonatomic) CNSplitViewToolbarButton *exportButton;
 
+/**
+ * @name Cell Storage
+ */
+
 /// Mutable array that holds a reference to all url cells (Used for updating reachability status)
 @property (strong, nonatomic) NSMutableArray *urlCellArray;
 
 /// Mutable array that holds a reference to all project cells
 @property (strong, nonatomic) NSMutableArray *projectCellArray;
 
-/// Used if the user has chosen to check reachability of URLs
-@property (strong, nonatomic) NSTimer *pingTimer;
+/**
+ * @name Booleans
+ */
 
 /// Do you expect the output to be in CSV format?
 @property (nonatomic) BOOL isCSV;
+
+/// BOOL to set whether a fetch is currently occuring
+@property (nonatomic) BOOL isFetching;
 
 /// Temp property for storying the clicked URL
 @property (strong, nonatomic) Urls *clickedUrl;
 
 /// Reference to currently happening Fetch action
 @property (strong, nonatomic) FetchURLConnection *fetchConnection;
-
-/// BOOL to set whether a fetch is currently occuring
-@property (nonatomic) BOOL isFetching;
 
 /**
  *  The item currently being dragged
@@ -92,6 +105,16 @@
 
 /// Reference to the current date
 @property (strong, nonatomic) NSDate *currentDate;
+
+/// Used if the user has chosen to check reachability of URLs
+@property (strong, nonatomic) NSTimer *pingTimer;
+
+/// JSON Data returns from fetch action.  This is either an NSDictionary or NSArray
+@property (strong, nonatomic) id responseData;
+
+/**
+ * @name Internal Methods
+ */
 
 /**
  * Setup the split view controller and it's controls
@@ -267,8 +290,8 @@
     [self setToolbar:[[CNSplitViewToolbar alloc] init]];
     
     NSMenu *contextMenu = [[NSMenu alloc] init];
-    [contextMenu addItemWithTitle:@"Add New Project" action:@selector(addProject) keyEquivalent:[NSString blankString]];
-    [contextMenu addItemWithTitle:@"Add New URL" action:@selector(addUrl:) keyEquivalent:[NSString blankString]];
+    [contextMenu addItemWithTitle:@"Add New Project" action:@selector(addProject) keyEquivalent:[NSString string]];
+    [contextMenu addItemWithTitle:@"Add New URL" action:@selector(addUrl:) keyEquivalent:[NSString string]];
     [contextMenu setDelegate:self];
     
     CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] initWithContextMenu:contextMenu];
@@ -423,7 +446,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    if (![[self urlTextField] stringValue] || [[[self urlTextField] stringValue] isEqualToString:[NSString blankString]]) {
+    if (![[self urlTextField] stringValue] || [[[self urlTextField] stringValue] isEqualToString:[NSString string]]) {
         return NO;
     }
     
@@ -515,7 +538,7 @@
         [[self customPostBodyCheckBox] setState:NSOnState];
     }
     
-    [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString blankString]];
+    [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString string]];
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
     
     int index = 0;
@@ -618,7 +641,14 @@
 
 -(IBAction)cloneHeaders:(id)sender
 {
-    Urls *clickedUrl = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    Urls *clickedUrl = nil;
+    
+    if ([[self projectSourceList] clickedRow] == kNoRowSelected) {
+        clickedUrl = [self currentUrl];
+    }
+    else {
+        clickedUrl = [[self projectSourceList] itemAtRow:[[self projectSourceList] clickedRow]];
+    }
     
     if (!clickedUrl) {
         NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
@@ -630,11 +660,13 @@
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
     
+    NSString *messageString = [NSString stringWithFormat:@"Are you sure you wish to clone the headers from \"%@\" to all the other URLs in this Project?", [clickedUrl urlDescription] ? [clickedUrl urlDescription] : [clickedUrl url]];
+    
     NSAlert *alert = [NSAlert alertWithMessageText:@"Clone Headers?"
                                      defaultButton:@"OK"
                                    alternateButton:nil
                                        otherButton:@"Cancel"
-                         informativeTextWithFormat:@"Are you sure you wish to clone the headers from this URL to all the other URLs in this Project?", nil];
+                         informativeTextWithFormat:messageString, nil];
     
     [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
         if (response == NSModalResponseOK) {
@@ -643,7 +675,7 @@
             for (Urls *tempURL in [[self currentProject] urls]) {
                 if (tempURL != clickedUrl) {
                     for (Headers *tempHeader in currentHeaders) {
-                        Headers *header = [Headers create:@{@"name": [tempHeader name], @"value": [tempHeader value]}];
+                        Headers *header = [Headers create:@{kName: [tempHeader name], kValue: [tempHeader value]}];
                         
                         BOOL addHeader = YES;
                         
@@ -770,10 +802,10 @@
     
     [[self methodCombo] selectItemAtIndex:GET_METHOD];
     
-    [[self urlTextField] setStringValue:[NSString blankString]];
-    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
+    [[self urlTextField] setStringValue:[NSString string]];
+    [[self urlDescriptionTextField] setStringValue:[NSString string]];
     
-    [[self customPayloadTextView] setString:[NSString blankString]];
+    [[self customPayloadTextView] setString:[NSString string]];
     [[self customPostBodyCheckBox] setState:NSOffState];
     
     [self setCurrentProject:project];
@@ -822,8 +854,8 @@
     
     [self setCurrentUrl:nil];
     
-    [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
-    [[self urlTextField] setStringValue:[NSString blankString]];
+    [[self urlDescriptionTextField] setStringValue:[NSString string]];
+    [[self urlTextField] setStringValue:[NSString string]];
     [[self urlDescriptionTextField] setEnabled:NO];
     [[self urlTextField] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
@@ -908,8 +940,8 @@
                 [[self parseButton] setEnabled:NO];
                 [[self fetchButton] setEnabled:NO];
                 
-                [[self urlTextField] setStringValue:[NSString blankString]];
-                [[self urlDescriptionTextField] setStringValue:[NSString blankString]];
+                [[self urlTextField] setStringValue:[NSString string]];
+                [[self urlDescriptionTextField] setStringValue:[NSString string]];
                 
                 [[self methodCombo] setEnabled:NO];
                 
@@ -934,6 +966,8 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
+    NSLog(@"%@", NSStringFromRect([[self progressIndicator] frame]));
+    
     [self setCurrentDate:[NSDate date]];
     
     [self setIsFetching:YES];
@@ -942,7 +976,7 @@
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:self];
     
-    if ([[[self urlTextField] stringValue] isEqualToString:[NSString blankString]] || ![[self urlTextField] stringValue]) {
+    if ([[[self urlTextField] stringValue] isEqualToString:[NSString string]] || ![[self urlTextField] stringValue]) {
         NSAlert *alert = [[NSAlert alloc] init];
         
         [alert addButtonWithTitle:@"OK"];
@@ -1102,7 +1136,7 @@
         [[self headersTableView] endUpdates];
     }
     else {
-        if ([[self headersTableView] selectedRow] == -1) {
+        if ([[self headersTableView] selectedRow] == kNoRowSelected) {
             return;
         }
         
@@ -1142,7 +1176,7 @@
         [[self parametersTableView] endUpdates];
     }
     else {
-        if ([[self parametersTableView] selectedRow] == -1) {
+        if ([[self parametersTableView] selectedRow] == kNoRowSelected) {
             return;
         }
         
@@ -1182,7 +1216,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [[self outputTextView] setString:[NSString blankString]];
+    [[self outputTextView] setString:[NSString string]];
     
     [[self clearOutputButton] setEnabled:NO];
 }
@@ -1766,7 +1800,7 @@
             [[self urlTextField] setStringValue:[tempItem url]];
         }
         else {
-            [[self urlTextField] setStringValue:[NSString blankString]];
+            [[self urlTextField] setStringValue:[NSString string]];
         }
         
         [self loadUrl:tempItem];
@@ -1970,7 +2004,7 @@
         for (UrlCell *cell in [self urlCellArray]) {
             __block __weak UrlCell *tempCell = cell;
             
-            if (![[[tempCell currentUrl] url] isEqualToString:[NSString blankString]]) {
+            if (![[[tempCell currentUrl] url] isEqualToString:[NSString string]]) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     NetworkStatus status = [self urlVerification:[[tempCell currentUrl] url]];
                     
@@ -2018,7 +2052,7 @@
     
     NSInteger clickedRow = [[self projectSourceList] clickedRow];
     
-    if (clickedRow != -1) {
+    if (clickedRow != kNoRowSelected) {
         id item = [[self projectSourceList] itemAtRow:clickedRow];
         
         if ([item isKindOfClass:[Urls class]]) {

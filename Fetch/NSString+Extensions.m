@@ -10,11 +10,6 @@
 
 @implementation NSString (Extensions)
 
-+(NSString *)blankString
-{
-    return @"";
-}
-
 -(BOOL)hasValidURLPrefix
 {
     BOOL validPrefix = NO;

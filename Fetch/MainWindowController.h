@@ -13,6 +13,10 @@
 
 @interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination, NSMenuDelegate, NSTextDelegate>
 
+/**
+ * @name IBOutlets
+ */
+
 /// The url text field
 @property (weak) IBOutlet NSTextField *urlTextField;
 
@@ -81,6 +85,10 @@
 /// Button that activates parseMenu to let the user choose how to parse the response from the fetchAction
 @property (strong, nonatomic) IBOutlet NSButton *parseButton;
 
+/**
+ * @name Window References
+ */
+
 /// Reference to JsonViewerWindowController
 @property (strong, nonatomic) JsonViewerWindowController *jsonWindow;
 
@@ -97,11 +105,19 @@
  */
 @property (strong, nonatomic) PlistViewerWindowController *plistWindow;
 
+/**
+ * @name Request and Response Dictionaries
+ */
+
 /// Dictionary that holds a reference to the request headers.  This dictionary is used to populate the requestTableView.
 @property (strong, nonatomic) NSDictionary *requestDict;
 
 /// Dictionary that holds a reference to the response headers.  This dictionary is used to populate the responseTableView.
 @property (strong, nonatomic) NSDictionary *responseDict;
+
+/**
+ * @name IBActions
+ */
 
 /**
  * Fetch Action
@@ -177,17 +193,21 @@
  */
 -(IBAction)deleteURLAction:(id)sender;
 
-///**
-// * Test CSV using a file
-// * @param sender The caller of this method
-// */
-//-(IBAction)testCSV:(id)sender;
+/**
+ *  Clone headers of current URL to all URLs in current project
+ *  @param sender The caller of this method
+ */
+-(IBAction)cloneHeaders:(id)sender;
 
 /**
  * Activate the parseMenu
  * @param sender The caller of this method
  */
 -(IBAction)parseAction:(id)sender;
+
+/**
+ * @name Project Methods
+ */
 
 /**
  * Begins the process of exporting a project
@@ -208,6 +228,10 @@
 -(void)deleteProject:(id)sender;
 
 /**
+ * @name URL Methods
+ */
+
+/**
  * Adds url to current project
  * @param sender The caller of this method
  */
@@ -223,9 +247,4 @@
  */
 -(void)findInOutput;
 
-/**
- *  Clone headers of current URL to all URLs in current project
- *  @param sender The caller of this method
- */
--(IBAction)cloneHeaders:(id)sender;
 @end

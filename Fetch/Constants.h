@@ -71,3 +71,5 @@ static NSString *const kFindInOutput = @"FIND_IN_OUTPUT";
 
 static int const kProjectListSplitViewSide = 0;
 static int const kMinimumSplitViewSize = 300;
+static int const kNoRowSelected = -1;
+
