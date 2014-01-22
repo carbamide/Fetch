@@ -196,6 +196,8 @@
     
     [super windowDidLoad];
     
+    [[self fetchButton] setToolTip:@"Initiates the Fetch request.  Hold ⌘ while clicking to clear output."];
+    
     [[self splitView] setPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofDividerAtIndex:0];
     
     [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
@@ -933,6 +935,11 @@
 -(IBAction)fetchAction:(id)sender
 {
     NSLog(@"%s", __FUNCTION__);
+    
+    if (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask)) {
+        [self clearOutput:nil];
+    }
+
     
     [self setCurrentDate:[NSDate date]];
     
