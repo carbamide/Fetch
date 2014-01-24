@@ -62,12 +62,12 @@
     completionHandler = nil;
 }
 
-- (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSHTTPURLResponse *)response
+- (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSHTTPURLResponse *)response
 {
     _response = response;
 }
 
-- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data
+- (void)connection:(NSURLConnection *)aConnection didReceiveData:(NSData *)data
 {
     if (!_responseData) {
         _responseData = [NSMutableData dataWithData:data];
@@ -95,7 +95,7 @@
     _connection = nil;
     
     if (completionHandler) {
-        void(^b)(NSURLResponse *response, NSData *data, NSError *error) = completionHandler;
+        void(^b)(NSURLResponse *response, NSData *data, NSError *urlError) = completionHandler;
         
         completionHandler = nil;
         

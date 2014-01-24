@@ -68,9 +68,6 @@
 /// Used if the user has chosen to check reachability of URLs
 @property (strong, nonatomic) NSTimer *pingTimer;
 
-/// Do you expect the output to be in CSV format?
-@property (nonatomic) BOOL isCSV;
-
 /// Temp property for storying the clicked URL
 @property (strong, nonatomic) Urls *clickedUrl;
 
@@ -336,20 +333,9 @@
 -(void)setupSegmentedControls
 {
     NSLog(@"%s", __FUNCTION__);
-    
-    if ([[self headerDataSource] count] == 0) {
-        [[self headerSegCont] setEnabled:NO forSegment:1];
-    }
-    else {
-        [[self headerSegCont] setEnabled:YES forSegment:1];
-    }
-    
-    if ([[self paramDataSource] count] == 0) {
-        [[self paramSegCont] setEnabled:NO forSegment:1];
-    }
-    else {
-        [[self paramSegCont] setEnabled:YES forSegment:1];
-    }
+
+    [[self headerSegCont] setEnabled:[[self headerDataSource] count] != 0 forSegment:1];
+    [[self paramSegCont] setEnabled:[[self paramDataSource] count] != 0 forSegment:1];
 }
 
 -(void)unloadData
@@ -636,7 +622,7 @@
                                      defaultButton:@"OK"
                                    alternateButton:nil
                                        otherButton:@"Cancel"
-                         informativeTextWithFormat:@"Are you sure you wish to clone the headers from this URL to all the other URLs in this Project?", nil];
+                         informativeTextWithFormat:@"Are you sure you wish to clone the headers from this URL to all the other URLs in this Project?"];
     
     [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
         if (response == NSModalResponseOK) {
@@ -720,44 +706,6 @@
     if ([savePanel runModal] == NSOKButton) {
         [ProjectHandler exportProject:selectedProject toUrl:[savePanel URL]];
     }
-}
-
--(void)deleteProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-    
-    if ([item isKindOfClass:[Projects class]]) {
-        Projects *tempProject = item;
-        
-        [[self projectList] removeObject:tempProject];
-        
-        if (tempProject == [self currentProject]) {
-            [self setCurrentProject:nil];
-            [[self exportButton] setEnabled:NO];
-            [[self removeButton] setEnabled:NO];
-            
-            [self unloadData];
-        }
-        
-        [tempProject delete];
-    }
-    else {
-        Urls *tempUrl = item;
-        
-        if (tempUrl == [self currentUrl]) {
-            [self setCurrentUrl:nil];
-            
-            [self unloadData];
-        }
-        
-        [tempUrl delete];
-    }
-    
-    [[self urlCellArray] removeAllObjects];
-    
-    [[self projectSourceList] reloadData];
 }
 
 -(void)loadProject:(Projects *)project

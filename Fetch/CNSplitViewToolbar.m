@@ -30,9 +30,6 @@
 
 
 #import "CNSplitView.h"
-#import "CNSplitViewToolbar.h"
-#import "CNSplitViewToolbarButton.h"
-#import "CNSplitViewToolbarButtonCell.h"
 #import "CNSplitViewDraggingHandle.h"
 
 

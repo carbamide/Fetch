@@ -6,12 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import <SystemConfiguration/SystemConfiguration.h>
-
 #import "UrlCell.h"
-#import "Urls.h"
-#import "NSTimer+Blocks.h"
-#import "Constants.h"
 
 @interface UrlCell()
 @property (strong, nonatomic) NSTimer *pingTimer;

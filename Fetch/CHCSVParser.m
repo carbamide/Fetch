@@ -423,7 +423,7 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
         unichar next = [self _peekCharacter];
         if (next == '\0') { break; }
         
-        if (isBackslashEscaped == NO) {
+        if (!isBackslashEscaped) {
             if (next == BACKSLASH && _recognizesBackslashesAsEscapes) {
                 isBackslashEscaped = YES;
                 [self _advance];

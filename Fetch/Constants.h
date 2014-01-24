@@ -10,9 +10,6 @@
 
 enum {
     GET_METHOD = 0,
-    POST_METHOD = 1,
-    PUT_METHOD = 2,
-    DELETE_METHOD = 3
 };
 typedef NSUInteger HttpMethod;
 

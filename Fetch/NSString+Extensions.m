@@ -32,11 +32,7 @@
 
 -(BOOL)hasValue
 {
-    if (self && [self length] > 0) {
-        return YES;
-    }
-    
-    return NO;
+    return self && [self length] > 0;
 }
 
 -(NSString *)formatInterval:(NSTimeInterval)interval

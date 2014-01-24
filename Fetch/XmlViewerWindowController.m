@@ -69,12 +69,7 @@
     id tempObject = item;
     
     if ([tempObject isKindOfClass:[NSArray class]]) {
-        if ([tempObject count] > 0) {
-            return YES;
-        }
-        else {
-            return NO;
-        }
+        return [tempObject count] > 0;
     }
     else {
         if ([[tempObject children] count] > 0) {
@@ -101,7 +96,6 @@
             return [[tempObject children] count];
         }
     }
-    return 0;
 }
 
 - (id)outlineView:(NSOutlineView *)oV child:(NSInteger)index ofItem:(id)item
@@ -119,8 +113,6 @@
         }
         return [tempObject children][index];
     }
-    
-    return nil;
 }
 
 - (id)outlineView:(NSOutlineView *)oV objectValueForTableColumn:(NSTableColumn *)theColumn byItem:(id)item
@@ -150,8 +142,6 @@
             }
         }
     }
-    
-    return nil;
 }
 
 @end
