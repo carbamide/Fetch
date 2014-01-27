@@ -193,7 +193,11 @@
     
     [super windowDidLoad];
     
+    [[self logRequestCheckBox] setToolTip:@"Log the HTTP request to the output."];
+    [[self customPostBodyCheckBox] setToolTip:@"Add a custom payload, usually a JSON string, to the HTTP request."];
     [[self fetchButton] setToolTip:@"Initiates the Fetch request.  Hold ⌘ while clicking to clear output."];
+    [[self parseButton] setToolTip:@"Attempt to parse the returned data as one of the available datatypes."];
+    [[self clearOutputButton] setToolTip:@"Clear the contents of the output."];
     
     [[self splitView] setPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofDividerAtIndex:0];
     
@@ -272,18 +276,21 @@
     
     CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] initWithContextMenu:contextMenu];
     [addButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateAdd];
+    [addButton setToolTip:@"Add Project or URL"];
     
     _removeButton = [[CNSplitViewToolbarButton alloc] init];
     [[self removeButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateRemove];
     [[self removeButton] setTarget:self];
     [[self removeButton] setAction:@selector(removeProjectOrUrl)];
     [[self removeButton] setEnabled:NO];
+    [[self removeButton] setToolTip:@"Remove Item"];
     
     _exportButton = [[CNSplitViewToolbarButton alloc] init];
     [[self exportButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateShare];
     [[self exportButton] setTarget:self];
     [[self exportButton] setAction:@selector(exportProject:)];
     [[self exportButton] setEnabled:NO];
+    [[self exportButton] setToolTip:@"Export Project"];
     
     [[self toolbar] addItem:addButton align:CNSplitViewToolbarItemAlignLeft];
     [[self toolbar] addItem:[self removeButton] align:CNSplitViewToolbarItemAlignLeft];
