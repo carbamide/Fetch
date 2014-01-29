@@ -990,7 +990,11 @@
                 [[self parseButton] setEnabled:YES];
                 
                 if (data) {
-                    id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
+                    id jsonData = nil;
+                    
+                    if ([NSJSONSerialization isValidJSONObject:data]) {
+                        jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
+                    }
                     
                     if (jsonData) {
                         NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
