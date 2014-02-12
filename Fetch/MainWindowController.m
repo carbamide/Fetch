@@ -207,8 +207,9 @@
     if (self) {
         _headerDataSource = [[NSMutableArray alloc] init];
         _paramDataSource = [[NSMutableArray alloc] init];
-        _headerNames = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]];
         _projectList = [[NSMutableArray alloc] init];
+        
+        _headerNames = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeaderNames" ofType:@"plist"]];
     }
     return self;
 }
@@ -2064,7 +2065,6 @@
             [[menu itemAtIndex:3] setHidden:YES];
             [[menu itemAtIndex:4] setHidden:NO];
             [[menu itemAtIndex:5] setHidden:NO];
-            
         }
         else {
             [[menu itemAtIndex:0] setHidden:YES];
