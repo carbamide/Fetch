@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/CHCSVWriter.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/CHCSVWriter</TokenIdentifier>
+			<Abstract type="html">Copyright (c) 2012 Dave DeLong</Abstract>
+			<DeclaredIn>CHCSVParser.h</DeclaredIn>
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+	</File>
+</Tokens>

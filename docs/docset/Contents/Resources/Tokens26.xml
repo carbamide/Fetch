@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSMutableArray+ObjectiveSugar.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSMutableArray(ObjectiveSugar)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSMutableArray+ObjectiveSugar.h</DeclaredIn>
+			
+			<NodeRef refid="26"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSMutableArray(ObjectiveSugar)/shift</TokenIdentifier>
+			<Abstract type="html">method removes the first item of an array, and returns that item
+Note: This method changes the length of an array!</Abstract>
+			<DeclaredIn>NSMutableArray+ObjectiveSugar.h</DeclaredIn>			
+			
+			<Declaration>- (id)shift</Declaration>
+			
+			<ReturnValue><Abstract type="html">First array item or nil.</Abstract></ReturnValue>
+			<Anchor>//api/name/shift</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSMutableArray(ObjectiveSugar)/shift:</TokenIdentifier>
+			<Abstract type="html">method removes N first items of an array, and returns that items
+Note: This method changes the length of an array!</Abstract>
+			<DeclaredIn>NSMutableArray+ObjectiveSugar.h</DeclaredIn>			
+			
+			<Declaration>- (NSArray *)shift:(NSUInteger)numberOfElements</Declaration>
+			
+			<ReturnValue><Abstract type="html">Array of first N items or empty array.</Abstract></ReturnValue>
+			<Anchor>//api/name/shift:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSMutableArray(ObjectiveSugar)/keepIf:</TokenIdentifier>
+			<Abstract type="html">Deletes every element of the array for which the given block evaluates to NO.</Abstract>
+			<DeclaredIn>NSMutableArray+ObjectiveSugar.h</DeclaredIn>			
+			
+			<Declaration>- (NSArray *)keepIf:(BOOL ( ^ ) ( id object ))block</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>A</Name>
+					<Abstract type="html">block that returns YES/NO</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An array of elements</Abstract></ReturnValue>
+			<Anchor>//api/name/keepIf:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

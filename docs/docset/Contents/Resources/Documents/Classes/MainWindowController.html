@@ -1,0 +1,4818 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MainWindowController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Fetch </a></h1>
+				<a id="developerHome" href="../index.html">Jukaela Enterprices</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MainWindowController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/clearOutputButton">&nbsp;&nbsp;&nbsp;&nbsp;clearOutputButton</option>
+	
+	<option value="//api/name/clickedUrl">&nbsp;&nbsp;&nbsp;&nbsp;clickedUrl</option>
+	
+	<option value="//api/name/csvWindow">&nbsp;&nbsp;&nbsp;&nbsp;csvWindow</option>
+	
+	<option value="//api/name/currentDate">&nbsp;&nbsp;&nbsp;&nbsp;currentDate</option>
+	
+	<option value="//api/name/currentProject">&nbsp;&nbsp;&nbsp;&nbsp;currentProject</option>
+	
+	<option value="//api/name/currentUrl">&nbsp;&nbsp;&nbsp;&nbsp;currentUrl</option>
+	
+	<option value="//api/name/customPayloadTextView">&nbsp;&nbsp;&nbsp;&nbsp;customPayloadTextView</option>
+	
+	<option value="//api/name/customPostBodyCheckBox">&nbsp;&nbsp;&nbsp;&nbsp;customPostBodyCheckBox</option>
+	
+	<option value="//api/name/draggedNode">&nbsp;&nbsp;&nbsp;&nbsp;draggedNode</option>
+	
+	<option value="//api/name/exportButton">&nbsp;&nbsp;&nbsp;&nbsp;exportButton</option>
+	
+	<option value="//api/name/fetchButton">&nbsp;&nbsp;&nbsp;&nbsp;fetchButton</option>
+	
+	<option value="//api/name/fetchConnection">&nbsp;&nbsp;&nbsp;&nbsp;fetchConnection</option>
+	
+	<option value="//api/name/headerDataSource">&nbsp;&nbsp;&nbsp;&nbsp;headerDataSource</option>
+	
+	<option value="//api/name/headerNames">&nbsp;&nbsp;&nbsp;&nbsp;headerNames</option>
+	
+	<option value="//api/name/headerSegCont">&nbsp;&nbsp;&nbsp;&nbsp;headerSegCont</option>
+	
+	<option value="//api/name/headersTableView">&nbsp;&nbsp;&nbsp;&nbsp;headersTableView</option>
+	
+	<option value="//api/name/isCSV">&nbsp;&nbsp;&nbsp;&nbsp;isCSV</option>
+	
+	<option value="//api/name/isFetching">&nbsp;&nbsp;&nbsp;&nbsp;isFetching</option>
+	
+	<option value="//api/name/jsonWindow">&nbsp;&nbsp;&nbsp;&nbsp;jsonWindow</option>
+	
+	<option value="//api/name/logRequestCheckBox">&nbsp;&nbsp;&nbsp;&nbsp;logRequestCheckBox</option>
+	
+	<option value="//api/name/menuController">&nbsp;&nbsp;&nbsp;&nbsp;menuController</option>
+	
+	<option value="//api/name/methodCombo">&nbsp;&nbsp;&nbsp;&nbsp;methodCombo</option>
+	
+	<option value="//api/name/outputTextView">&nbsp;&nbsp;&nbsp;&nbsp;outputTextView</option>
+	
+	<option value="//api/name/paramDataSource">&nbsp;&nbsp;&nbsp;&nbsp;paramDataSource</option>
+	
+	<option value="//api/name/paramSegCont">&nbsp;&nbsp;&nbsp;&nbsp;paramSegCont</option>
+	
+	<option value="//api/name/parametersTableView">&nbsp;&nbsp;&nbsp;&nbsp;parametersTableView</option>
+	
+	<option value="//api/name/parseButton">&nbsp;&nbsp;&nbsp;&nbsp;parseButton</option>
+	
+	<option value="//api/name/parseMenu">&nbsp;&nbsp;&nbsp;&nbsp;parseMenu</option>
+	
+	<option value="//api/name/pingTimer">&nbsp;&nbsp;&nbsp;&nbsp;pingTimer</option>
+	
+	<option value="//api/name/plistWindow">&nbsp;&nbsp;&nbsp;&nbsp;plistWindow</option>
+	
+	<option value="//api/name/progressIndicator">&nbsp;&nbsp;&nbsp;&nbsp;progressIndicator</option>
+	
+	<option value="//api/name/projectCellArray">&nbsp;&nbsp;&nbsp;&nbsp;projectCellArray</option>
+	
+	<option value="//api/name/projectList">&nbsp;&nbsp;&nbsp;&nbsp;projectList</option>
+	
+	<option value="//api/name/projectSourceList">&nbsp;&nbsp;&nbsp;&nbsp;projectSourceList</option>
+	
+	<option value="//api/name/receivingNode">&nbsp;&nbsp;&nbsp;&nbsp;receivingNode</option>
+	
+	<option value="//api/name/removeButton">&nbsp;&nbsp;&nbsp;&nbsp;removeButton</option>
+	
+	<option value="//api/name/requestDict">&nbsp;&nbsp;&nbsp;&nbsp;requestDict</option>
+	
+	<option value="//api/name/requestTableView">&nbsp;&nbsp;&nbsp;&nbsp;requestTableView</option>
+	
+	<option value="//api/name/responseData">&nbsp;&nbsp;&nbsp;&nbsp;responseData</option>
+	
+	<option value="//api/name/responseDict">&nbsp;&nbsp;&nbsp;&nbsp;responseDict</option>
+	
+	<option value="//api/name/responseTableView">&nbsp;&nbsp;&nbsp;&nbsp;responseTableView</option>
+	
+	<option value="//api/name/splitView">&nbsp;&nbsp;&nbsp;&nbsp;splitView</option>
+	
+	<option value="//api/name/textFinder">&nbsp;&nbsp;&nbsp;&nbsp;textFinder</option>
+	
+	<option value="//api/name/toolbar">&nbsp;&nbsp;&nbsp;&nbsp;toolbar</option>
+	
+	<option value="//api/name/urlCellArray">&nbsp;&nbsp;&nbsp;&nbsp;urlCellArray</option>
+	
+	<option value="//api/name/urlTextField">&nbsp;&nbsp;&nbsp;&nbsp;urlTextField</option>
+	
+	<option value="//api/name/xmlWindow">&nbsp;&nbsp;&nbsp;&nbsp;xmlWindow</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addProject">&nbsp;&nbsp;&nbsp;&nbsp;- addProject</option>
+	
+	<option value="//api/name/addToUrlListIfUnique">&nbsp;&nbsp;&nbsp;&nbsp;- addToUrlListIfUnique</option>
+	
+	<option value="//api/name/addUrl:">&nbsp;&nbsp;&nbsp;&nbsp;- addUrl:</option>
+	
+	<option value="//api/name/appendToOutput:color:">&nbsp;&nbsp;&nbsp;&nbsp;- appendToOutput:color:</option>
+	
+	<option value="//api/name/clearOutput:">&nbsp;&nbsp;&nbsp;&nbsp;- clearOutput:</option>
+	
+	<option value="//api/name/cloneHeaders:">&nbsp;&nbsp;&nbsp;&nbsp;- cloneHeaders:</option>
+	
+	<option value="//api/name/createTimerWithTimeInterval:">&nbsp;&nbsp;&nbsp;&nbsp;- createTimerWithTimeInterval:</option>
+	
+	<option value="//api/name/customPostBodyAction:">&nbsp;&nbsp;&nbsp;&nbsp;- customPostBodyAction:</option>
+	
+	<option value="//api/name/deleteProject:">&nbsp;&nbsp;&nbsp;&nbsp;- deleteProject:</option>
+	
+	<option value="//api/name/deleteURLAction:">&nbsp;&nbsp;&nbsp;&nbsp;- deleteURLAction:</option>
+	
+	<option value="//api/name/duplicateURL:">&nbsp;&nbsp;&nbsp;&nbsp;- duplicateURL:</option>
+	
+	<option value="//api/name/exportProject:">&nbsp;&nbsp;&nbsp;&nbsp;- exportProject:</option>
+	
+	<option value="//api/name/fetchAction:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchAction:</option>
+	
+	<option value="//api/name/findInOutput">&nbsp;&nbsp;&nbsp;&nbsp;- findInOutput</option>
+	
+	<option value="//api/name/headerSegContAction:">&nbsp;&nbsp;&nbsp;&nbsp;- headerSegContAction:</option>
+	
+	<option value="//api/name/importProject:">&nbsp;&nbsp;&nbsp;&nbsp;- importProject:</option>
+	
+	<option value="//api/name/loadProject:">&nbsp;&nbsp;&nbsp;&nbsp;- loadProject:</option>
+	
+	<option value="//api/name/loadUrl:">&nbsp;&nbsp;&nbsp;&nbsp;- loadUrl:</option>
+	
+	<option value="//api/name/logReqest:">&nbsp;&nbsp;&nbsp;&nbsp;- logReqest:</option>
+	
+	<option value="//api/name/parameterSegContAction:">&nbsp;&nbsp;&nbsp;&nbsp;- parameterSegContAction:</option>
+	
+	<option value="//api/name/parseAction:">&nbsp;&nbsp;&nbsp;&nbsp;- parseAction:</option>
+	
+	<option value="//api/name/preferencesChanges:">&nbsp;&nbsp;&nbsp;&nbsp;- preferencesChanges:</option>
+	
+	<option value="//api/name/removeProjectOrUrl">&nbsp;&nbsp;&nbsp;&nbsp;- removeProjectOrUrl</option>
+	
+	<option value="//api/name/renameProject:">&nbsp;&nbsp;&nbsp;&nbsp;- renameProject:</option>
+	
+	<option value="//api/name/saveLog">&nbsp;&nbsp;&nbsp;&nbsp;- saveLog</option>
+	
+	<option value="//api/name/setupSegmentedControls">&nbsp;&nbsp;&nbsp;&nbsp;- setupSegmentedControls</option>
+	
+	<option value="//api/name/setupSplitviewControls">&nbsp;&nbsp;&nbsp;&nbsp;- setupSplitviewControls</option>
+	
+	<option value="//api/name/showCsv:">&nbsp;&nbsp;&nbsp;&nbsp;- showCsv:</option>
+	
+	<option value="//api/name/showJson:">&nbsp;&nbsp;&nbsp;&nbsp;- showJson:</option>
+	
+	<option value="//api/name/showPlist:">&nbsp;&nbsp;&nbsp;&nbsp;- showPlist:</option>
+	
+	<option value="//api/name/showXml:">&nbsp;&nbsp;&nbsp;&nbsp;- showXml:</option>
+	
+	<option value="//api/name/toolbarAttachedSubviewIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- toolbarAttachedSubviewIndex:</option>
+	
+	<option value="//api/name/unloadData">&nbsp;&nbsp;&nbsp;&nbsp;- unloadData</option>
+	
+	<option value="//api/name/urlVerification:">&nbsp;&nbsp;&nbsp;&nbsp;- urlVerification:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_IBOutlets">IBOutlets</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Window References">Window References</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Request and Response Dictionaries">Request and Response Dictionaries</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_IBActions">IBActions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Project Methods">Project Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_URL Methods">URL Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Extension Methods">Extension Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearOutputButton">clearOutputButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clickedUrl">clickedUrl</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/csvWindow">csvWindow</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentDate">currentDate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentProject">currentProject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUrl">currentUrl</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/customPayloadTextView">customPayloadTextView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/customPostBodyCheckBox">customPostBodyCheckBox</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/draggedNode">draggedNode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/exportButton">exportButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchButton">fetchButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnection">fetchConnection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headerDataSource">headerDataSource</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headerNames">headerNames</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headerSegCont">headerSegCont</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headersTableView">headersTableView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isCSV">isCSV</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isFetching">isFetching</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/jsonWindow">jsonWindow</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logRequestCheckBox">logRequestCheckBox</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/menuController">menuController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/methodCombo">methodCombo</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outputTextView">outputTextView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/paramDataSource">paramDataSource</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/paramSegCont">paramSegCont</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parametersTableView">parametersTableView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseButton">parseButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseMenu">parseMenu</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pingTimer">pingTimer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/plistWindow">plistWindow</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/progressIndicator">progressIndicator</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/projectCellArray">projectCellArray</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/projectList">projectList</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/projectSourceList">projectSourceList</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/receivingNode">receivingNode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeButton">removeButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestDict">requestDict</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestTableView">requestTableView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/responseData">responseData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/responseDict">responseDict</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/responseTableView">responseTableView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/splitView">splitView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textFinder">textFinder</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toolbar">toolbar</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlCellArray">urlCellArray</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlTextField">urlTextField</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/xmlWindow">xmlWindow</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addProject">addProject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addToUrlListIfUnique">addToUrlListIfUnique</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addUrl:">addUrl:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appendToOutput:color:">appendToOutput:color:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearOutput:">clearOutput:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cloneHeaders:">cloneHeaders:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createTimerWithTimeInterval:">createTimerWithTimeInterval:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/customPostBodyAction:">customPostBodyAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteProject:">deleteProject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteURLAction:">deleteURLAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/duplicateURL:">duplicateURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/exportProject:">exportProject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchAction:">fetchAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/findInOutput">findInOutput</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headerSegContAction:">headerSegContAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/importProject:">importProject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadProject:">loadProject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadUrl:">loadUrl:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logReqest:">logReqest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parameterSegContAction:">parameterSegContAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseAction:">parseAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/preferencesChanges:">preferencesChanges:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeProjectOrUrl">removeProjectOrUrl</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renameProject:">renameProject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveLog">saveLog</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setupSegmentedControls">setupSegmentedControls</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setupSplitviewControls">setupSplitviewControls</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showCsv:">showCsv:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showJson:">showJson:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showPlist:">showPlist:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showXml:">showXml:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toolbarAttachedSubviewIndex:">toolbarAttachedSubviewIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unloadData">unloadData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlVerification:">urlVerification:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MainWindowController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MainWindowController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSWindowController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/CNSplitViewToolbarDelegate.html">CNSplitViewToolbarDelegate</a><br />NSComboBoxDataSource<br />NSComboBoxDelegate<br />NSControlTextEditingDelegate<br />NSDraggingDestination<br />NSMenuDelegate<br />NSOutlineViewDataSource<br />NSOutlineViewDelegate<br />NSSplitViewDelegate<br />NSTableViewDataSource<br />NSTableViewDelegate<br />NSTextDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MainWindowController.h<br />MainWindowController.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="IBOutlets" name="task_IBOutlets"></a>
+						<h3 class="subsubtitle task-title">IBOutlets</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlTextField">&nbsp;&nbsp;urlTextField</a></code>
+		<span class="tooltip"><p>The url text field</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/methodCombo">&nbsp;&nbsp;methodCombo</a></code>
+		<span class="tooltip"><p>Lets the user specify the HTTP method to use when fetching the current url</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchButton">&nbsp;&nbsp;fetchButton</a></code>
+		<span class="tooltip"><p>Button for performing the fetch action</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/customPostBodyCheckBox">&nbsp;&nbsp;customPostBodyCheckBox</a></code>
+		<span class="tooltip"><p>Button that shows or hides an NSTextView that allows the user to specify custom data to pass when fetching</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logRequestCheckBox">&nbsp;&nbsp;logRequestCheckBox</a></code>
+		<span class="tooltip"><p>NSButton (checkbox) that lets the user specify whether the request to the server should be logged to output</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearOutputButton">&nbsp;&nbsp;clearOutputButton</a></code>
+		<span class="tooltip"><p>NSButton that clears the output in the main window</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headersTableView">&nbsp;&nbsp;headersTableView</a></code>
+		<span class="tooltip"><p>Table that shows the headers and allows you to add additional headers</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parametersTableView">&nbsp;&nbsp;parametersTableView</a></code>
+		<span class="tooltip"><p>Table that shows the parameters and allows you to add additional parameters</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headerSegCont">&nbsp;&nbsp;headerSegCont</a></code>
+		<span class="tooltip"><p>Segmented control that allows you to add or remove headers from the <a href="#//api/name/headersTableView">headersTableView</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/paramSegCont">&nbsp;&nbsp;paramSegCont</a></code>
+		<span class="tooltip"><p>Segmented control that allows you to add or remove parameters from the <a href="#//api/name/parametersTableView">parametersTableView</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/projectSourceList">&nbsp;&nbsp;projectSourceList</a></code>
+		<span class="tooltip"><p>NSOutlineView that shows the <a href="../Classes/Projects.html">Projects</a> that have been saved and their associated URLs</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outputTextView">&nbsp;&nbsp;outputTextView</a></code>
+		<span class="tooltip"><p>Output of the fetch request</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/customPayloadTextView">&nbsp;&nbsp;customPayloadTextView</a></code>
+		<span class="tooltip"><p>Text view that allows you to specify a custom payload for the fetch request</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/progressIndicator">&nbsp;&nbsp;progressIndicator</a></code>
+		<span class="tooltip"><p>Indeterminate progress indicator that shows when a fetch request it being made and hides when it is completed</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestTableView">&nbsp;&nbsp;requestTableView</a></code>
+		<span class="tooltip"><p>Table that shows the headers from the request</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/responseTableView">&nbsp;&nbsp;responseTableView</a></code>
+		<span class="tooltip"><p>Table that shows the response headers from the fetch request</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/splitView">&nbsp;&nbsp;splitView</a></code>
+		<span class="tooltip"><p>Main split view that is the home to both the project list and the main view</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/textFinder">&nbsp;&nbsp;textFinder</a></code>
+		<span class="tooltip"><p>NSTextFinder for the <a href="#//api/name/outputTextView">outputTextView</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/menuController">&nbsp;&nbsp;menuController</a></code>
+		<span class="tooltip"><p>Reference to <a href="../Classes/MenuController.html">MenuController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parseMenu">&nbsp;&nbsp;parseMenu</a></code>
+		<span class="tooltip"><p>NSMenu that lets the user choose what to parse as</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parseButton">&nbsp;&nbsp;parseButton</a></code>
+		<span class="tooltip"><p>Button that activates <a href="#//api/name/parseMenu">parseMenu</a> to let the user choose how to parse the response from the fetchAction</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Window References" name="task_Window References"></a>
+						<h3 class="subsubtitle task-title">Window References</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/jsonWindow">&nbsp;&nbsp;jsonWindow</a></code>
+		<span class="tooltip"><p>Reference to <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/csvWindow">&nbsp;&nbsp;csvWindow</a></code>
+		<span class="tooltip"><p>Reference to <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/xmlWindow">&nbsp;&nbsp;xmlWindow</a></code>
+		<span class="tooltip"><p>Reference to <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/plistWindow">&nbsp;&nbsp;plistWindow</a></code>
+		<span class="tooltip"><p>Reference to <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Request and Response Dictionaries" name="task_Request and Response Dictionaries"></a>
+						<h3 class="subsubtitle task-title">Request and Response Dictionaries</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestDict">&nbsp;&nbsp;requestDict</a></code>
+		<span class="tooltip"><p>Dictionary that holds a reference to the request headers.  This dictionary is used to populate the <a href="#//api/name/requestTableView">requestTableView</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/responseDict">&nbsp;&nbsp;responseDict</a></code>
+		<span class="tooltip"><p>Dictionary that holds a reference to the response headers.  This dictionary is used to populate the <a href="#//api/name/responseTableView">responseTableView</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="IBActions" name="task_IBActions"></a>
+						<h3 class="subsubtitle task-title">IBActions</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchAction:">&ndash;&nbsp;fetchAction:</a></code>
+		<span class="tooltip"><p>Fetch Action</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headerSegContAction:">&ndash;&nbsp;headerSegContAction:</a></code>
+		<span class="tooltip"><p>Action that adds or removes headers from the current URL object</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parameterSegContAction:">&ndash;&nbsp;parameterSegContAction:</a></code>
+		<span class="tooltip"><p>Action that adds or removes parameters from the current URL object</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/customPostBodyAction:">&ndash;&nbsp;customPostBodyAction:</a></code>
+		<span class="tooltip"><p>Action that shows or hides the <a href="#//api/name/customPayloadTextView">customPayloadTextView</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearOutput:">&ndash;&nbsp;clearOutput:</a></code>
+		<span class="tooltip"><p>Action that clears the output in <a href="#//api/name/outputTextView">outputTextView</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showJson:">&ndash;&nbsp;showJson:</a></code>
+		<span class="tooltip"><p>Action that shows the <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a> window</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showCsv:">&ndash;&nbsp;showCsv:</a></code>
+		<span class="tooltip"><p>Action that shows the <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a> window</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showXml:">&ndash;&nbsp;showXml:</a></code>
+		<span class="tooltip"><p>Action that shows the <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a> window</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showPlist:">&ndash;&nbsp;showPlist:</a></code>
+		<span class="tooltip"><p>Action that shows the <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a> window</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/duplicateURL:">&ndash;&nbsp;duplicateURL:</a></code>
+		<span class="tooltip"><p>Duplicate URL for purposes of adding several similar urls</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renameProject:">&ndash;&nbsp;renameProject:</a></code>
+		<span class="tooltip"><p>Rename the selected project</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteURLAction:">&ndash;&nbsp;deleteURLAction:</a></code>
+		<span class="tooltip"><p>Delete selected URL</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cloneHeaders:">&ndash;&nbsp;cloneHeaders:</a></code>
+		<span class="tooltip"><p>Clone headers of current URL to all URLs in current project</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parseAction:">&ndash;&nbsp;parseAction:</a></code>
+		<span class="tooltip"><p>Activate the <a href="#//api/name/parseMenu">parseMenu</a></p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Project Methods" name="task_Project Methods"></a>
+						<h3 class="subsubtitle task-title">Project Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/exportProject:">&ndash;&nbsp;exportProject:</a></code>
+		<span class="tooltip"><p>Begins the process of exporting a project</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/importProject:">&ndash;&nbsp;importProject:</a></code>
+		<span class="tooltip"><p>Begins the process of importing a project</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteProject:">&ndash;&nbsp;deleteProject:</a></code>
+		<span class="tooltip"><p>Deletes current project</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="URL Methods" name="task_URL Methods"></a>
+						<h3 class="subsubtitle task-title">URL Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addUrl:">&ndash;&nbsp;addUrl:</a></code>
+		<span class="tooltip"><p>Adds url to current project</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/saveLog">&ndash;&nbsp;saveLog</a></code>
+		<span class="tooltip"><p>Method that saves the output of <a href="#//api/name/outputTextView">outputTextView</a> to a file</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/findInOutput">&ndash;&nbsp;findInOutput</a></code>
+		<span class="tooltip"><p>Show find bar for <a href="#//api/name/outputTextView">outputTextView</a></p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setupSplitviewControls">&ndash;&nbsp;setupSplitviewControls</a></code>
+		<span class="tooltip"><p>Setup the split view controller and it&rsquo;s controls</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/preferencesChanges:">&ndash;&nbsp;preferencesChanges:</a></code>
+		<span class="tooltip"><ul>
+<li>Monitor NSUserDefaults for changes</li>
+</ul>
+</span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setupSegmentedControls">&ndash;&nbsp;setupSegmentedControls</a></code>
+		<span class="tooltip"><p>Setup the segmented controls</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unloadData">&ndash;&nbsp;unloadData</a></code>
+		<span class="tooltip"><p>Unload all project and url data</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appendToOutput:color:">&ndash;&nbsp;appendToOutput:color:</a></code>
+		<span class="tooltip"><p>Append specified output the <a href="#//api/name/outputTextView">outputTextView</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logReqest:">&ndash;&nbsp;logReqest:</a></code>
+		<span class="tooltip"><p>Log specified NSMutableURLRequest to <a href="#//api/name/outputTextView">outputTextView</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addToUrlListIfUnique">&ndash;&nbsp;addToUrlListIfUnique</a></code>
+		<span class="tooltip"><p>Add URL to <a href="../Classes/Projects.html">Projects</a> URL list if unique</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadUrl:">&ndash;&nbsp;loadUrl:</a></code>
+		<span class="tooltip"><p>Load the URL into the user interface</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadProject:">&ndash;&nbsp;loadProject:</a></code>
+		<span class="tooltip"><p>Load Specified Project into the user interface</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addProject">&ndash;&nbsp;addProject</a></code>
+		<span class="tooltip"><p>Add Project to Project Source List</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeProjectOrUrl">&ndash;&nbsp;removeProjectOrUrl</a></code>
+		<span class="tooltip"><p>Remvoe the clicked or selected Project or URL from the source list</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/toolbarAttachedSubviewIndex:">&ndash;&nbsp;toolbarAttachedSubviewIndex:</a></code>
+		<span class="tooltip"><p>Asks the delegate about the index of the subview where the toolbar is attached to.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createTimerWithTimeInterval:">&ndash;&nbsp;createTimerWithTimeInterval:</a></code>
+		<span class="tooltip"><p>Create a timer with the specified time interval</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlVerification:">&ndash;&nbsp;urlVerification:</a></code>
+		<span class="tooltip"><p>Check URL status for specified urlString</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Extension Methods" name="task_Extension Methods"></a>
+						<h3 class="subsubtitle task-title">Extension Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headerDataSource">&nbsp;&nbsp;headerDataSource</a></code>
+		<span class="tooltip"><p>Backing store for <a href="#//api/name/headersTableView">headersTableView</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/paramDataSource">&nbsp;&nbsp;paramDataSource</a></code>
+		<span class="tooltip"><p>Backing store for <a href="#//api/name/parametersTableView">parametersTableView</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/projectList">&nbsp;&nbsp;projectList</a></code>
+		<span class="tooltip"><p>Backing store for <a href="#//api/name/projectSourceList">projectSourceList</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headerNames">&nbsp;&nbsp;headerNames</a></code>
+		<span class="tooltip"><p>Backing store that holds all known header names</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentProject">&nbsp;&nbsp;currentProject</a></code>
+		<span class="tooltip"><p>The current Project</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentUrl">&nbsp;&nbsp;currentUrl</a></code>
+		<span class="tooltip"><p>The current URl</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/toolbar">&nbsp;&nbsp;toolbar</a></code>
+		<span class="tooltip"><p>Reference to toolbar</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeButton">&nbsp;&nbsp;removeButton</a></code>
+		<span class="tooltip"><p>Reference to remove button in <a href="#//api/name/toolbar">toolbar</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/exportButton">&nbsp;&nbsp;exportButton</a></code>
+		<span class="tooltip"><p>Reference to export button in <a href="#//api/name/toolbar">toolbar</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlCellArray">&nbsp;&nbsp;urlCellArray</a></code>
+		<span class="tooltip"><p>Mutable array that holds a reference to all url cells (Used for updating reachability status)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/projectCellArray">&nbsp;&nbsp;projectCellArray</a></code>
+		<span class="tooltip"><p>Mutable array that holds a reference to all project cells</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isCSV">&nbsp;&nbsp;isCSV</a></code>
+		<span class="tooltip"><p>Do you expect the output to be in CSV format?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isFetching">&nbsp;&nbsp;isFetching</a></code>
+		<span class="tooltip"><p>BOOL to set whether a fetch is currently occuring</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clickedUrl">&nbsp;&nbsp;clickedUrl</a></code>
+		<span class="tooltip"><p>Temp property for storying the clicked URL</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchConnection">&nbsp;&nbsp;fetchConnection</a></code>
+		<span class="tooltip"><p>Reference to currently happening Fetch action</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/draggedNode">&nbsp;&nbsp;draggedNode</a></code>
+		<span class="tooltip"><p>The item currently being dragged</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/receivingNode">&nbsp;&nbsp;receivingNode</a></code>
+		<span class="tooltip"><p>The parent being dragged to</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentDate">&nbsp;&nbsp;currentDate</a></code>
+		<span class="tooltip"><p>Reference to the current date</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pingTimer">&nbsp;&nbsp;pingTimer</a></code>
+		<span class="tooltip"><p>Used if the user has chosen to check reachability of URLs</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/responseData">&nbsp;&nbsp;responseData</a></code>
+		<span class="tooltip"><p>JSON Data returns from fetch action.  This is either an NSDictionary or NSArray</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/clearOutputButton" title="clearOutputButton"></a>
+	<h3 class="subsubtitle method-title">clearOutputButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSButton that clears the output in the main window</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSButton *clearOutputButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSButton that clears the output in the main window</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clickedUrl" title="clickedUrl"></a>
+	<h3 class="subsubtitle method-title">clickedUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Temp property for storying the clicked URL</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) Urls *clickedUrl</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Temp property for storying the clicked URL</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/csvWindow" title="csvWindow"></a>
+	<h3 class="subsubtitle method-title">csvWindow</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) CsvViewerWindowController *csvWindow</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentDate" title="currentDate"></a>
+	<h3 class="subsubtitle method-title">currentDate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to the current date</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSDate *currentDate</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to the current date</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentProject" title="currentProject"></a>
+	<h3 class="subsubtitle method-title">currentProject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The current Project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) Projects *currentProject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The current Project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentUrl" title="currentUrl"></a>
+	<h3 class="subsubtitle method-title">currentUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The current URl</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) Urls *currentUrl</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The current URl</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/customPayloadTextView" title="customPayloadTextView"></a>
+	<h3 class="subsubtitle method-title">customPayloadTextView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Text view that allows you to specify a custom payload for the fetch request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Text view that allows you to specify a custom payload for the fetch request</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/customPostBodyCheckBox" title="customPostBodyCheckBox"></a>
+	<h3 class="subsubtitle method-title">customPostBodyCheckBox</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Button that shows or hides an NSTextView that allows the user to specify custom data to pass when fetching</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSButton *customPostBodyCheckBox</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Button that shows or hides an NSTextView that allows the user to specify custom data to pass when fetching</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/draggedNode" title="draggedNode"></a>
+	<h3 class="subsubtitle method-title">draggedNode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The item currently being dragged</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) Urls *draggedNode</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The item currently being dragged</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/exportButton" title="exportButton"></a>
+	<h3 class="subsubtitle method-title">exportButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to export button in <a href="#//api/name/toolbar">toolbar</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) CNSplitViewToolbarButton *exportButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to export button in <a href="#//api/name/toolbar">toolbar</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchButton" title="fetchButton"></a>
+	<h3 class="subsubtitle method-title">fetchButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Button for performing the fetch action</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSButton *fetchButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Button for performing the fetch action</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchConnection" title="fetchConnection"></a>
+	<h3 class="subsubtitle method-title">fetchConnection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to currently happening Fetch action</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) FetchURLConnection *fetchConnection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to currently happening Fetch action</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headerDataSource" title="headerDataSource"></a>
+	<h3 class="subsubtitle method-title">headerDataSource</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Backing store for <a href="#//api/name/headersTableView">headersTableView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableArray *headerDataSource</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Backing store for <a href="#//api/name/headersTableView">headersTableView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headerNames" title="headerNames"></a>
+	<h3 class="subsubtitle method-title">headerNames</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Backing store that holds all known header names</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSArray *headerNames</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Backing store that holds all known header names</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headerSegCont" title="headerSegCont"></a>
+	<h3 class="subsubtitle method-title">headerSegCont</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Segmented control that allows you to add or remove headers from the <a href="#//api/name/headersTableView">headersTableView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSSegmentedControl *headerSegCont</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Segmented control that allows you to add or remove headers from the <a href="#//api/name/headersTableView">headersTableView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headersTableView" title="headersTableView"></a>
+	<h3 class="subsubtitle method-title">headersTableView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Table that shows the headers and allows you to add additional headers</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSTableView *headersTableView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Table that shows the headers and allows you to add additional headers</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isCSV" title="isCSV"></a>
+	<h3 class="subsubtitle method-title">isCSV</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do you expect the output to be in CSV format?</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL isCSV</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Do you expect the output to be in CSV format?</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isFetching" title="isFetching"></a>
+	<h3 class="subsubtitle method-title">isFetching</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>BOOL to set whether a fetch is currently occuring</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL isFetching</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>BOOL to set whether a fetch is currently occuring</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/jsonWindow" title="jsonWindow"></a>
+	<h3 class="subsubtitle method-title">jsonWindow</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) JsonViewerWindowController *jsonWindow</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logRequestCheckBox" title="logRequestCheckBox"></a>
+	<h3 class="subsubtitle method-title">logRequestCheckBox</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSButton (checkbox) that lets the user specify whether the request to the server should be logged to output</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSButton *logRequestCheckBox</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSButton (checkbox) that lets the user specify whether the request to the server should be logged to output</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/menuController" title="menuController"></a>
+	<h3 class="subsubtitle method-title">menuController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to <a href="../Classes/MenuController.html">MenuController</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) IBOutlet MenuController *menuController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to <a href="../Classes/MenuController.html">MenuController</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/methodCombo" title="methodCombo"></a>
+	<h3 class="subsubtitle method-title">methodCombo</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lets the user specify the HTTP method to use when fetching the current url</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSComboBox *methodCombo</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Lets the user specify the HTTP method to use when fetching the current url</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outputTextView" title="outputTextView"></a>
+	<h3 class="subsubtitle method-title">outputTextView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Output of the fetch request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (unsafe_unretained) IBOutlet NSTextView *outputTextView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Output of the fetch request</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/paramDataSource" title="paramDataSource"></a>
+	<h3 class="subsubtitle method-title">paramDataSource</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Backing store for <a href="#//api/name/parametersTableView">parametersTableView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableArray *paramDataSource</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Backing store for <a href="#//api/name/parametersTableView">parametersTableView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/paramSegCont" title="paramSegCont"></a>
+	<h3 class="subsubtitle method-title">paramSegCont</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Segmented control that allows you to add or remove parameters from the <a href="#//api/name/parametersTableView">parametersTableView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSSegmentedControl *paramSegCont</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Segmented control that allows you to add or remove parameters from the <a href="#//api/name/parametersTableView">parametersTableView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parametersTableView" title="parametersTableView"></a>
+	<h3 class="subsubtitle method-title">parametersTableView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Table that shows the parameters and allows you to add additional parameters</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSTableView *parametersTableView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Table that shows the parameters and allows you to add additional parameters</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parseButton" title="parseButton"></a>
+	<h3 class="subsubtitle method-title">parseButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Button that activates <a href="#//api/name/parseMenu">parseMenu</a> to let the user choose how to parse the response from the fetchAction</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) IBOutlet NSButton *parseButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Button that activates <a href="#//api/name/parseMenu">parseMenu</a> to let the user choose how to parse the response from the fetchAction</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parseMenu" title="parseMenu"></a>
+	<h3 class="subsubtitle method-title">parseMenu</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSMenu that lets the user choose what to parse as</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) IBOutlet NSMenu *parseMenu</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSMenu that lets the user choose what to parse as</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pingTimer" title="pingTimer"></a>
+	<h3 class="subsubtitle method-title">pingTimer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Used if the user has chosen to check reachability of URLs</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSTimer *pingTimer</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Used if the user has chosen to check reachability of URLs</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/plistWindow" title="plistWindow"></a>
+	<h3 class="subsubtitle method-title">plistWindow</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) PlistViewerWindowController *plistWindow</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/progressIndicator" title="progressIndicator"></a>
+	<h3 class="subsubtitle method-title">progressIndicator</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indeterminate progress indicator that shows when a fetch request it being made and hides when it is completed</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSProgressIndicator *progressIndicator</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indeterminate progress indicator that shows when a fetch request it being made and hides when it is completed</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/projectCellArray" title="projectCellArray"></a>
+	<h3 class="subsubtitle method-title">projectCellArray</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Mutable array that holds a reference to all project cells</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableArray *projectCellArray</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Mutable array that holds a reference to all project cells</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/projectList" title="projectList"></a>
+	<h3 class="subsubtitle method-title">projectList</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Backing store for <a href="#//api/name/projectSourceList">projectSourceList</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableArray *projectList</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Backing store for <a href="#//api/name/projectSourceList">projectSourceList</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/projectSourceList" title="projectSourceList"></a>
+	<h3 class="subsubtitle method-title">projectSourceList</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSOutlineView that shows the <a href="../Classes/Projects.html">Projects</a> that have been saved and their associated URLs</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSOutlineView *projectSourceList</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSOutlineView that shows the <a href="../Classes/Projects.html">Projects</a> that have been saved and their associated URLs</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/receivingNode" title="receivingNode"></a>
+	<h3 class="subsubtitle method-title">receivingNode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The parent being dragged to</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) Projects *receivingNode</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The parent being dragged to</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeButton" title="removeButton"></a>
+	<h3 class="subsubtitle method-title">removeButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to remove button in <a href="#//api/name/toolbar">toolbar</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) CNSplitViewToolbarButton *removeButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to remove button in <a href="#//api/name/toolbar">toolbar</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestDict" title="requestDict"></a>
+	<h3 class="subsubtitle method-title">requestDict</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Dictionary that holds a reference to the request headers.  This dictionary is used to populate the <a href="#//api/name/requestTableView">requestTableView</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSDictionary *requestDict</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Dictionary that holds a reference to the request headers.  This dictionary is used to populate the <a href="#//api/name/requestTableView">requestTableView</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestTableView" title="requestTableView"></a>
+	<h3 class="subsubtitle method-title">requestTableView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Table that shows the headers from the request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSTableView *requestTableView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Table that shows the headers from the request</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/responseData" title="responseData"></a>
+	<h3 class="subsubtitle method-title">responseData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>JSON Data returns from fetch action.  This is either an NSDictionary or NSArray</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) id responseData</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>JSON Data returns from fetch action.  This is either an NSDictionary or NSArray</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/responseDict" title="responseDict"></a>
+	<h3 class="subsubtitle method-title">responseDict</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Dictionary that holds a reference to the response headers.  This dictionary is used to populate the <a href="#//api/name/responseTableView">responseTableView</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSDictionary *responseDict</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Dictionary that holds a reference to the response headers.  This dictionary is used to populate the <a href="#//api/name/responseTableView">responseTableView</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/responseTableView" title="responseTableView"></a>
+	<h3 class="subsubtitle method-title">responseTableView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Table that shows the response headers from the fetch request</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSTableView *responseTableView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Table that shows the response headers from the fetch request</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/splitView" title="splitView"></a>
+	<h3 class="subsubtitle method-title">splitView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Main split view that is the home to both the project list and the main view</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong) IBOutlet CNSplitView *splitView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Main split view that is the home to both the project list and the main view</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/textFinder" title="textFinder"></a>
+	<h3 class="subsubtitle method-title">textFinder</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSTextFinder for the <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) IBOutlet NSTextFinder *textFinder</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NSTextFinder for the <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/toolbar" title="toolbar"></a>
+	<h3 class="subsubtitle method-title">toolbar</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to toolbar</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) CNSplitViewToolbar *toolbar</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to toolbar</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlCellArray" title="urlCellArray"></a>
+	<h3 class="subsubtitle method-title">urlCellArray</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Mutable array that holds a reference to all url cells (Used for updating reachability status)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableArray *urlCellArray</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Mutable array that holds a reference to all url cells (Used for updating reachability status)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlTextField" title="urlTextField"></a>
+	<h3 class="subsubtitle method-title">urlTextField</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The url text field</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (weak) IBOutlet NSTextField *urlTextField</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The url text field</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/xmlWindow" title="xmlWindow"></a>
+	<h3 class="subsubtitle method-title">xmlWindow</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reference to <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) XmlViewerWindowController *xmlWindow</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reference to <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addProject" title="addProject"></a>
+	<h3 class="subsubtitle method-title">addProject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add Project to Project Source List</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addProject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Add Project to Project Source List</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addToUrlListIfUnique" title="addToUrlListIfUnique"></a>
+	<h3 class="subsubtitle method-title">addToUrlListIfUnique</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add URL to <a href="../Classes/Projects.html">Projects</a> URL list if unique</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)addToUrlListIfUnique</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns YES if the url was unique and added, NO if not</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Add URL to <a href="../Classes/Projects.html">Projects</a> URL list if unique</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addUrl:" title="addUrl:"></a>
+	<h3 class="subsubtitle method-title">addUrl:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds url to current project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addUrl:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Adds url to current project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/appendToOutput:color:" title="appendToOutput:color:"></a>
+	<h3 class="subsubtitle method-title">appendToOutput:color:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Append specified output the <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)appendToOutput:(id)<em>text</em> color:(NSColor *)<em>color</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>text</em></dt>
+			<dd><p>The text to append to the <a href="#//api/name/outputTextView">outputTextView</a>.  Accepted NSString or NSAttributedString.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>color</em></dt>
+			<dd><p>The color to show the text in</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Append specified output the <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearOutput:" title="clearOutput:"></a>
+	<h3 class="subsubtitle method-title">clearOutput:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that clears the output in <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)clearOutput:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that clears the output in <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cloneHeaders:" title="cloneHeaders:"></a>
+	<h3 class="subsubtitle method-title">cloneHeaders:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Clone headers of current URL to all URLs in current project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)cloneHeaders:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Clone headers of current URL to all URLs in current project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createTimerWithTimeInterval:" title="createTimerWithTimeInterval:"></a>
+	<h3 class="subsubtitle method-title">createTimerWithTimeInterval:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create a timer with the specified time interval</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)createTimerWithTimeInterval:(NSTimeInterval)<em>timeInterval</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>timeInterval</em></dt>
+			<dd><p>The time interval to create the timer</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Create a timer with the specified time interval</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/customPostBodyAction:" title="customPostBodyAction:"></a>
+	<h3 class="subsubtitle method-title">customPostBodyAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that shows or hides the <a href="#//api/name/customPayloadTextView">customPayloadTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)customPostBodyAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that shows or hides the <a href="#//api/name/customPayloadTextView">customPayloadTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteProject:" title="deleteProject:"></a>
+	<h3 class="subsubtitle method-title">deleteProject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Deletes current project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)deleteProject:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Deletes current project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteURLAction:" title="deleteURLAction:"></a>
+	<h3 class="subsubtitle method-title">deleteURLAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delete selected URL</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)deleteURLAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Delete selected URL</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/duplicateURL:" title="duplicateURL:"></a>
+	<h3 class="subsubtitle method-title">duplicateURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Duplicate URL for purposes of adding several similar urls</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)duplicateURL:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Duplicate URL for purposes of adding several similar urls</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/exportProject:" title="exportProject:"></a>
+	<h3 class="subsubtitle method-title">exportProject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Begins the process of exporting a project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)exportProject:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Begins the process of exporting a project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchAction:" title="fetchAction:"></a>
+	<h3 class="subsubtitle method-title">fetchAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Fetch Action</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)fetchAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Fetch Action</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/findInOutput" title="findInOutput"></a>
+	<h3 class="subsubtitle method-title">findInOutput</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Show find bar for <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)findInOutput</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Show find bar for <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headerSegContAction:" title="headerSegContAction:"></a>
+	<h3 class="subsubtitle method-title">headerSegContAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that adds or removes headers from the current URL object</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)headerSegContAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that adds or removes headers from the current URL object</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/importProject:" title="importProject:"></a>
+	<h3 class="subsubtitle method-title">importProject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Begins the process of importing a project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)importProject:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Begins the process of importing a project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadProject:" title="loadProject:"></a>
+	<h3 class="subsubtitle method-title">loadProject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load Specified Project into the user interface</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)loadProject:(Projects *)<em>project</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>project</em></dt>
+			<dd><p>The Project to load</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load Specified Project into the user interface</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadUrl:" title="loadUrl:"></a>
+	<h3 class="subsubtitle method-title">loadUrl:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load the URL into the user interface</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)loadUrl:(Urls *)<em>url</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>URL to load</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load the URL into the user interface</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logReqest:" title="logReqest:"></a>
+	<h3 class="subsubtitle method-title">logReqest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Log specified NSMutableURLRequest to <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)logReqest:(NSMutableURLRequest *)<em>request</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>The NSMutableURLRequest to log</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Log specified NSMutableURLRequest to <a href="#//api/name/outputTextView">outputTextView</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parameterSegContAction:" title="parameterSegContAction:"></a>
+	<h3 class="subsubtitle method-title">parameterSegContAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that adds or removes parameters from the current URL object</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)parameterSegContAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that adds or removes parameters from the current URL object</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parseAction:" title="parseAction:"></a>
+	<h3 class="subsubtitle method-title">parseAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Activate the <a href="#//api/name/parseMenu">parseMenu</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)parseAction:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Activate the <a href="#//api/name/parseMenu">parseMenu</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/preferencesChanges:" title="preferencesChanges:"></a>
+	<h3 class="subsubtitle method-title">preferencesChanges:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<ul>
+<li>Monitor NSUserDefaults for changes</li>
+</ul>
+
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)preferencesChanges:(NSNotification *)<em>aNotification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aNotification</em></dt>
+			<dd><p>The notification that is produced when NSUserDefaults changes</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<ul>
+<li>Monitor NSUserDefaults for changes</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeProjectOrUrl" title="removeProjectOrUrl"></a>
+	<h3 class="subsubtitle method-title">removeProjectOrUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Remvoe the clicked or selected Project or URL from the source list</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeProjectOrUrl</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Remvoe the clicked or selected Project or URL from the source list</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renameProject:" title="renameProject:"></a>
+	<h3 class="subsubtitle method-title">renameProject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Rename the selected project</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)renameProject:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Rename the selected project</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/saveLog" title="saveLog"></a>
+	<h3 class="subsubtitle method-title">saveLog</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method that saves the output of <a href="#//api/name/outputTextView">outputTextView</a> to a file</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)saveLog</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Method that saves the output of <a href="#//api/name/outputTextView">outputTextView</a> to a file</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setupSegmentedControls" title="setupSegmentedControls"></a>
+	<h3 class="subsubtitle method-title">setupSegmentedControls</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Setup the segmented controls</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setupSegmentedControls</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Setup the segmented controls</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setupSplitviewControls" title="setupSplitviewControls"></a>
+	<h3 class="subsubtitle method-title">setupSplitviewControls</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Setup the split view controller and it&rsquo;s controls</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setupSplitviewControls</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Setup the split view controller and it&rsquo;s controls</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showCsv:" title="showCsv:"></a>
+	<h3 class="subsubtitle method-title">showCsv:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that shows the <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a> window</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)showCsv:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that shows the <a href="../Classes/CsvViewerWindowController.html">CsvViewerWindowController</a> window</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showJson:" title="showJson:"></a>
+	<h3 class="subsubtitle method-title">showJson:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that shows the <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a> window</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)showJson:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that shows the <a href="../Classes/JsonViewerWindowController.html">JsonViewerWindowController</a> window</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showPlist:" title="showPlist:"></a>
+	<h3 class="subsubtitle method-title">showPlist:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that shows the <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a> window</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)showPlist:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that shows the <a href="../Classes/PlistViewerWindowController.html">PlistViewerWindowController</a> window</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showXml:" title="showXml:"></a>
+	<h3 class="subsubtitle method-title">showXml:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action that shows the <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a> window</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)showXml:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>The caller of this method</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Action that shows the <a href="../Classes/XmlViewerWindowController.html">XmlViewerWindowController</a> window</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/toolbarAttachedSubviewIndex:" title="toolbarAttachedSubviewIndex:"></a>
+	<h3 class="subsubtitle method-title">toolbarAttachedSubviewIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Asks the delegate about the index of the subview where the toolbar is attached to.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)<em>theToolbar</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Asks the delegate about the index of the subview where the toolbar is attached to.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">CNSplitViewToolbarDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unloadData" title="unloadData"></a>
+	<h3 class="subsubtitle method-title">unloadData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unload all project and url data</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)unloadData</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Unload all project and url data</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlVerification:" title="urlVerification:"></a>
+	<h3 class="subsubtitle method-title">urlVerification:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check URL status for specified urlString</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkStatus)urlVerification:(NSString *)<em>urlString</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>urlString</em></dt>
+			<dd><p>The url to check the status of</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NetworkStatus of the specified URL</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Check URL status for specified urlString</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MainWindowController.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Jukaela Enterprices. All rights reserved. (Last updated: 2013-12-20)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSView+CNSplitViewToolbar.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSView(CNSplitViewToolbar)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSView+CNSplitViewToolbar.h</DeclaredIn>
+			
+			<NodeRef refid="30"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSView(CNSplitViewToolbar)/toolbarItemAlign</TokenIdentifier>
+			<Abstract type="html">Returns the receivers horizontal alignment inside the CNSplitViewToolbar.</Abstract>
+			<DeclaredIn>NSView+CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (CNSplitViewToolbarItemAlign)toolbarItemAlign</Declaration>
+			
+			<ReturnValue><Abstract type="html">A value of type CNSplitViewToolbarItemAlign.</Abstract></ReturnValue>
+			<Anchor>//api/name/toolbarItemAlign</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSView(CNSplitViewToolbar)/setToolbarItemAlign:</TokenIdentifier>
+			<Abstract type="html">Set the receivers horizontal alignment inside the CNSplitViewToolbar.</Abstract>
+			<DeclaredIn>NSView+CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)setToolbarItemAlign:(CNSplitViewToolbarItemAlign)theAlign</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theAlign</Name>
+					<Abstract type="html">A value of type CNSplitViewToolbarItemAlign.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setToolbarItemAlign:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSView(CNSplitViewToolbar)/toolbarItemWidth</TokenIdentifier>
+			<Abstract type="html">Returns the receivers width.</Abstract>
+			<DeclaredIn>NSView+CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (CGFloat)toolbarItemWidth</Declaration>
+			
+			<ReturnValue><Abstract type="html">The width of the receiver in points.</Abstract></ReturnValue>
+			<Anchor>//api/name/toolbarItemWidth</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSView(CNSplitViewToolbar)/setToolbarItemWidth:</TokenIdentifier>
+			<Abstract type="html">Set the receivers width.</Abstract>
+			<DeclaredIn>NSView+CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)setToolbarItemWidth:(CGFloat)theItemWidth</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theItemWidth</Name>
+					<Abstract type="html">The width of the receiver.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setToolbarItemWidth:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

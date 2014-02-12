@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--output</key>
+	<array>
+		<string>docs</string>
+	</array>
+	<key>--project-name</key>
+	<string>Fetch</string>
+	<key>--project-company</key>
+	<string>Jukaela Enterprices</string>
+	<key>--company-id</key>
+	<string>com.jukaela</string>
+	<key>--keep-intermediate-files</key>
+	<true/>
+	<key>--verbose</key>
+	<integer>4</integer>
+	<key>--create-docset</key>
+	<true/>
+	<key>--logformat</key>
+	<integer>1</integer>
+	<key>--ignore</key>
+	<array>
+		<string>Libraries</string>
+		<string>Frameworks</string>
+		<string>AFNetworking</string>
+		<string>SociocastDemo</string>
+	</array>
+	<key>--install-docset</key>
+	<true/>
+</dict>
+</plist>

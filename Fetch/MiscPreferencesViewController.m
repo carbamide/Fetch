@@ -71,12 +71,7 @@
 {
     NSLog(@"%s", __FUNCTION__);
 
-    if ([[self attemptToParseHtmlButton] state] == NSOnState) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kParseHtmlInOutput];
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kParseHtmlInOutput];
-    }
+    [[NSUserDefaults standardUserDefaults] setBool:[[self attemptToParseHtmlButton] state] == NSOnState forKey:kParseHtmlInOutput];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

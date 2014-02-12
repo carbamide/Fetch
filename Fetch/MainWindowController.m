@@ -81,9 +81,6 @@
  * @name Booleans
  */
 
-/// Do you expect the output to be in CSV format?
-@property (nonatomic) BOOL isCSV;
-
 /// BOOL to set whether a fetch is currently occuring
 @property (nonatomic) BOOL isFetching;
 
@@ -220,6 +217,12 @@
     
     [super windowDidLoad];
     
+    [[self logRequestCheckBox] setToolTip:@"Log the HTTP request to the output."];
+    [[self customPostBodyCheckBox] setToolTip:@"Add a custom payload, usually a JSON string, to the HTTP request."];
+    [[self fetchButton] setToolTip:@"Initiates the Fetch request.  Hold ⌘ while clicking to clear output."];
+    [[self parseButton] setToolTip:@"Attempt to parse the returned data as one of the available datatypes."];
+    [[self clearOutputButton] setToolTip:@"Clear the contents of the output."];
+    
     [[self splitView] setPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofDividerAtIndex:0];
     
     [[self customPayloadTextView] setAutomaticTextReplacementEnabled:NO];
@@ -297,18 +300,21 @@
     
     CNSplitViewToolbarButton *addButton = [[CNSplitViewToolbarButton alloc] initWithContextMenu:contextMenu];
     [addButton setImageTemplate:CNSplitViewToolbarButtonImageTemplateAdd];
+    [addButton setToolTip:@"Add Project or URL"];
     
     _removeButton = [[CNSplitViewToolbarButton alloc] init];
     [[self removeButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateRemove];
     [[self removeButton] setTarget:self];
     [[self removeButton] setAction:@selector(removeProjectOrUrl)];
     [[self removeButton] setEnabled:NO];
+    [[self removeButton] setToolTip:@"Remove Item"];
     
     _exportButton = [[CNSplitViewToolbarButton alloc] init];
     [[self exportButton] setImageTemplate:CNSplitViewToolbarButtonImageTemplateShare];
     [[self exportButton] setTarget:self];
     [[self exportButton] setAction:@selector(exportProject:)];
     [[self exportButton] setEnabled:NO];
+    [[self exportButton] setToolTip:@"Export Project"];
     
     [[self toolbar] addItem:addButton align:CNSplitViewToolbarItemAlignLeft];
     [[self toolbar] addItem:[self removeButton] align:CNSplitViewToolbarItemAlignLeft];
@@ -358,20 +364,9 @@
 -(void)setupSegmentedControls
 {
     NSLog(@"%s", __FUNCTION__);
-    
-    if ([[self headerDataSource] count] == 0) {
-        [[self headerSegCont] setEnabled:NO forSegment:1];
-    }
-    else {
-        [[self headerSegCont] setEnabled:YES forSegment:1];
-    }
-    
-    if ([[self paramDataSource] count] == 0) {
-        [[self paramSegCont] setEnabled:NO forSegment:1];
-    }
-    else {
-        [[self paramSegCont] setEnabled:YES forSegment:1];
-    }
+
+    [[self headerSegCont] setEnabled:[[self headerDataSource] count] != 0 forSegment:1];
+    [[self paramSegCont] setEnabled:[[self paramDataSource] count] != 0 forSegment:1];
 }
 
 -(void)unloadData
@@ -753,44 +748,6 @@
     }
 }
 
--(void)deleteProject:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-    
-    id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
-    
-    if ([item isKindOfClass:[Projects class]]) {
-        Projects *tempProject = item;
-        
-        [[self projectList] removeObject:tempProject];
-        
-        if (tempProject == [self currentProject]) {
-            [self setCurrentProject:nil];
-            [[self exportButton] setEnabled:NO];
-            [[self removeButton] setEnabled:NO];
-            
-            [self unloadData];
-        }
-        
-        [tempProject delete];
-    }
-    else {
-        Urls *tempUrl = item;
-        
-        if (tempUrl == [self currentUrl]) {
-            [self setCurrentUrl:nil];
-            
-            [self unloadData];
-        }
-        
-        [tempUrl delete];
-    }
-    
-    [[self urlCellArray] removeAllObjects];
-    
-    [[self projectSourceList] reloadData];
-}
-
 -(void)loadProject:(Projects *)project
 {
     NSLog(@"%s", __FUNCTION__);
@@ -967,7 +924,9 @@
 {
     NSLog(@"%s", __FUNCTION__);
     
-    NSLog(@"%@", NSStringFromRect([[self progressIndicator] frame]));
+    if (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask)) {
+        [self clearOutput:nil];
+    }
     
     [self setCurrentDate:[NSDate date]];
     
@@ -1065,7 +1024,7 @@
                 if (data) {
                     id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:nil];
                     
-                    if (jsonData) {
+                    if (jsonData && [NSJSONSerialization isValidJSONObject:jsonData]) {
                         NSData *jsonHolder = [NSJSONSerialization dataWithJSONObject:jsonData options:NSJSONWritingPrettyPrinted error:nil];
                         
                         if (jsonHolder) {

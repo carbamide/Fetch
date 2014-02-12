@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/AppDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/AppDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMainWindowController:</TokenIdentifier>
+			<Abstract type="html">Reference to the MainWindowController</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) MainWindowController *mainWindowController</Declaration>
+			
+			
+			<Anchor>//api/name/mainWindowController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mainWindowController</TokenIdentifier>
+			<Abstract type="html">Reference to the MainWindowController</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) MainWindowController *mainWindowController</Declaration>
+			
+			
+			<Anchor>//api/name/mainWindowController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMenuController:</TokenIdentifier>
+			<Abstract type="html">Reference to MenuController</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MenuController *menuController</Declaration>
+			
+			
+			<Anchor>//api/name/menuController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/menuController</TokenIdentifier>
+			<Abstract type="html">Reference to MenuController</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MenuController *menuController</Declaration>
+			
+			
+			<Anchor>//api/name/menuController</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

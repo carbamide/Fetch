@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UrlCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UrlCell</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UrlCell.h</DeclaredIn>
+			
+			<NodeRef refid="21"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UrlCell/setStatusImage:</TokenIdentifier>
+			<Abstract type="html">Shows the current up, down, or indeterminate status of the url specified in currentURL</Abstract>
+			<DeclaredIn>UrlCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSImageView *statusImage</Declaration>
+			
+			
+			<Anchor>//api/name/statusImage</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UrlCell/statusImage</TokenIdentifier>
+			<Abstract type="html">Shows the current up, down, or indeterminate status of the url specified in currentURL</Abstract>
+			<DeclaredIn>UrlCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSImageView *statusImage</Declaration>
+			
+			
+			<Anchor>//api/name/statusImage</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UrlCell/setCurrentUrl:</TokenIdentifier>
+			<Abstract type="html">The URLs object that the cell is showing</Abstract>
+			<DeclaredIn>UrlCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *currentUrl</Declaration>
+			
+			
+			<Anchor>//api/name/currentUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UrlCell/currentUrl</TokenIdentifier>
+			<Abstract type="html">The URLs object that the cell is showing</Abstract>
+			<DeclaredIn>UrlCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *currentUrl</Declaration>
+			
+			
+			<Anchor>//api/name/currentUrl</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

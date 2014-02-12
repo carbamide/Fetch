@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/CNSplitViewToolbarDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/CNSplitViewToolbarDelegate</TokenIdentifier>
+			<Abstract type="html">Each of these delegate methods will also perform a notification post with the sender (CNSplitView instance) as notification object and a userInfo dictionary (except toolbarAttachedSubviewIndex:.
+The userInfo dictionary contains two elements that are accessible by these constants:</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>
+			
+			<NodeRef refid="32"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CNSplitViewToolbarDelegate/toolbarAttachedSubviewIndex:</TokenIdentifier>
+			<Abstract type="html">Asks the delegate about the index of the subview where the toolbar is attached to.</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/toolbarAttachedSubviewIndex:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CNSplitViewToolbarDelegate/splitView:willShowToolbar:onEdge:</TokenIdentifier>
+			<Abstract type="html">Informs the delegate that the splitview will show the specified toolbar on the given edge.</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)splitView:(CNSplitView *)theSplitView willShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theSplitView</Name>
+					<Abstract type="html">The splitview that sends the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>theToolbar</Name>
+					<Abstract type="html">The toolbar that will be visible.</Abstract>
+				</Parameter><Parameter>
+					<Name>theEdge</Name>
+					<Abstract type="html">The edge the toolbar is attached to.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/splitView:willShowToolbar:onEdge:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CNSplitViewToolbarDelegate/splitView:didShowToolbar:onEdge:</TokenIdentifier>
+			<Abstract type="html">Informs the delegate that the splitview did show the specified toolbar on the given edge.</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)splitView:(CNSplitView *)theSplitView didShowToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theSplitView</Name>
+					<Abstract type="html">The splitview that sends the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>theToolbar</Name>
+					<Abstract type="html">The toolbar that is now visible.</Abstract>
+				</Parameter><Parameter>
+					<Name>theEdge</Name>
+					<Abstract type="html">The edge the toolbar is attached to.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/splitView:didShowToolbar:onEdge:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CNSplitViewToolbarDelegate/splitView:willHideToolbar:onEdge:</TokenIdentifier>
+			<Abstract type="html">Informs the delegate that the splitview will hide the specified toolbar on the given edge.</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)splitView:(CNSplitView *)theSplitView willHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theSplitView</Name>
+					<Abstract type="html">The splitview that sends the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>theToolbar</Name>
+					<Abstract type="html">The toolbar that will be hidden.</Abstract>
+				</Parameter><Parameter>
+					<Name>theEdge</Name>
+					<Abstract type="html">The edge the toolbar is attached to.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/splitView:willHideToolbar:onEdge:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CNSplitViewToolbarDelegate/splitView:didHideToolbar:onEdge:</TokenIdentifier>
+			<Abstract type="html">Informs the delegate that the splitview did hide the specified toolbar on the given edge.</Abstract>
+			<DeclaredIn>CNSplitViewToolbarDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)splitView:(CNSplitView *)theSplitView didHideToolbar:(CNSplitViewToolbar *)theToolbar onEdge:(CNSplitViewToolbarEdge)theEdge</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theSplitView</Name>
+					<Abstract type="html">The splitview that sends the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>theToolbar</Name>
+					<Abstract type="html">The toolbar that is now hidden.</Abstract>
+				</Parameter><Parameter>
+					<Name>theEdge</Name>
+					<Abstract type="html">The edge the toolbar is attached to.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/splitView:didHideToolbar:onEdge:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

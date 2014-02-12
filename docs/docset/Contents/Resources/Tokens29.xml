@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSUserDefaults+NSColor.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSUserDefaults(NSColor)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSUserDefaults+NSColor.h</DeclaredIn>
+			
+			<NodeRef refid="29"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSUserDefaults(NSColor)/setColor:forKey:</TokenIdentifier>
+			<Abstract type="html">This method is for saving an NSColor to NSUserDefaults.  It archives the NSColor as NSData and saves it</Abstract>
+			<DeclaredIn>NSUserDefaults+NSColor.h</DeclaredIn>			
+			
+			<Declaration>- (void)setColor:(NSColor *)color forKey:(NSString *)key</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>color</Name>
+					<Abstract type="html">The NSColor to save</Abstract>
+				</Parameter><Parameter>
+					<Name>key</Name>
+					<Abstract type="html">The key to save the NSColor to</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setColor:forKey:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSUserDefaults(NSColor)/colorForKey:</TokenIdentifier>
+			<Abstract type="html">The method returns an NSColor for a specified key</Abstract>
+			<DeclaredIn>NSUserDefaults+NSColor.h</DeclaredIn>			
+			
+			<Declaration>- (NSColor *)colorForKey:(NSString *)key</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>key</Name>
+					<Abstract type="html">The key to look in for a color</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">NSColor object from specified key</Abstract></ReturnValue>
+			<Anchor>//api/name/colorForKey:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

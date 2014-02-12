@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ColorsPreferencesViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ColorsPreferencesViewController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/setSeparatorColorWell:</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified separator color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *separatorColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/separatorColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ColorsPreferencesViewController/separatorColorWell</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified separator color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *separatorColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/separatorColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/setBackgroundColorWell:</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified background color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *backgroundColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ColorsPreferencesViewController/backgroundColorWell</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified background color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *backgroundColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/backgroundColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/setForegroundColorWell:</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified foreground color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *foregroundColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/foregroundColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ColorsPreferencesViewController/foregroundColorWell</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified foreground color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *foregroundColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/foregroundColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/setSuccessColorWell:</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified success color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *successColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/successColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ColorsPreferencesViewController/successColorWell</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified success color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *successColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/successColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/setFailureColorWell:</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified failure color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *failureColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/failureColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ColorsPreferencesViewController/failureColorWell</TokenIdentifier>
+			<Abstract type="html">Reference to NSColorWell that is displaying the specified failure color.</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSColorWell *failureColorWell</Declaration>
+			
+			
+			<Anchor>//api/name/failureColorWell</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ColorsPreferencesViewController/saveColorForProperty:</TokenIdentifier>
+			<Abstract type="html">Saves the color for the specified property
+@sender The NSColorWell object that is calling this method</Abstract>
+			<DeclaredIn>ColorsPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)saveColorForProperty:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/saveColorForProperty:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

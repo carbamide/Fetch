@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MenuController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MenuController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>
+			
+			<NodeRef refid="12"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/setMainWindowController:</TokenIdentifier>
+			<Abstract type="html">MainWindowController object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) MainWindowController *mainWindowController</Declaration>
+			
+			
+			<Anchor>//api/name/mainWindowController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuController/mainWindowController</TokenIdentifier>
+			<Abstract type="html">MainWindowController object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) MainWindowController *mainWindowController</Declaration>
+			
+			
+			<Anchor>//api/name/mainWindowController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/setPreferencesController:</TokenIdentifier>
+			<Abstract type="html">PreferencesController object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet PreferencesController *preferencesController</Declaration>
+			
+			
+			<Anchor>//api/name/preferencesController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuController/preferencesController</TokenIdentifier>
+			<Abstract type="html">PreferencesController object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet PreferencesController *preferencesController</Declaration>
+			
+			
+			<Anchor>//api/name/preferencesController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/setDelegate:</TokenIdentifier>
+			<Abstract type="html">AppDelegate object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak, nonatomic) IBOutlet AppDelegate *delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuController/delegate</TokenIdentifier>
+			<Abstract type="html">AppDelegate object</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak, nonatomic) IBOutlet AppDelegate *delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/showPreferences:</TokenIdentifier>
+			<Abstract type="html">Shows the prefernce window</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showPreferences:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showPreferences:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/closeWindow:</TokenIdentifier>
+			<Abstract type="html">Closes the prefernce window</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)closeWindow:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/closeWindow:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/showMainWindow:</TokenIdentifier>
+			<Abstract type="html">Shows the main window</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showMainWindow:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showMainWindow:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/addUrl:</TokenIdentifier>
+			<Abstract type="html">Adds url to currentProject of mainWindowController</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)addUrl:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addUrl:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/importProject:</TokenIdentifier>
+			<Abstract type="html">Begins the import process</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)importProject:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/importProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/saveLog:</TokenIdentifier>
+			<Abstract type="html">Saves current output of mainWindowController&apos;s outputTextView to file</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)saveLog:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/saveLog:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/findInOutput:</TokenIdentifier>
+			<Abstract type="html">Find text in MainWindowController&apos;s outputTextView</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)findInOutput:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/findInOutput:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuController/cloneHeaders:</TokenIdentifier>
+			<Abstract type="html">Clone headers to all urls in current project</Abstract>
+			<DeclaredIn>MenuController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)cloneHeaders:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/cloneHeaders:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

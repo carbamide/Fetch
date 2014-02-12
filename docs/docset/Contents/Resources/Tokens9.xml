@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/DataHandler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/DataHandler</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>DataHandler.h</DeclaredIn>
+			
+			<NodeRef refid="9"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/DataHandler/init</TokenIdentifier>
+			<Abstract type="html">Initialization</Abstract>
+			<DeclaredIn>DataHandler.h</DeclaredIn>			
+			
+			<Declaration>- (id)init</Declaration>
+			
+			<ReturnValue><Abstract type="html">JsonHandler object</Abstract></ReturnValue>
+			<Anchor>//api/name/init</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/DataHandler/addEntries:</TokenIdentifier>
+			<Abstract type="html">Add entries to the JsonHandler</Abstract>
+			<DeclaredIn>DataHandler.h</DeclaredIn>			
+			
+			<Declaration>- (void)addEntries:(id)entries</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>entries</Name>
+					<Abstract type="html">Entries to add to the handler</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addEntries:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/DataHandler/setDataSource:</TokenIdentifier>
+			<Abstract type="html">Data source for JsonHandler</Abstract>
+			<DeclaredIn>DataHandler.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/DataHandler/dataSource</TokenIdentifier>
+			<Abstract type="html">Data source for JsonHandler</Abstract>
+			<DeclaredIn>DataHandler.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

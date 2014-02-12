@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MiscPreferencesViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MiscPreferencesViewController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setCheckSiteReachabilityCheckBox:</TokenIdentifier>
+			<Abstract type="html">Button (checkbox) that lets the user decide whether to check site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *checkSiteReachabilityCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/checkSiteReachabilityCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/checkSiteReachabilityCheckBox</TokenIdentifier>
+			<Abstract type="html">Button (checkbox) that lets the user decide whether to check site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *checkSiteReachabilityCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/checkSiteReachabilityCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setFrequencyToPingLabel:</TokenIdentifier>
+			<Abstract type="html">Label for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/frequencyToPingLabel</TokenIdentifier>
+			<Abstract type="html">Label for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setFrequencyToPingSecondsLabel:</TokenIdentifier>
+			<Abstract type="html">Label for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingSecondsLabel</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingSecondsLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/frequencyToPingSecondsLabel</TokenIdentifier>
+			<Abstract type="html">Label for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingSecondsLabel</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingSecondsLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setFrequencyToPingTextField:</TokenIdentifier>
+			<Abstract type="html">TextField that lets the user specify how often to check the site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingTextField</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingTextField</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/frequencyToPingTextField</TokenIdentifier>
+			<Abstract type="html">TextField that lets the user specify how often to check the site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *frequencyToPingTextField</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingTextField</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setFrequencyToPingStepper:</TokenIdentifier>
+			<Abstract type="html">Stepper to let the user increment the interval to check site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSStepper *frequencyToPingStepper</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingStepper</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/frequencyToPingStepper</TokenIdentifier>
+			<Abstract type="html">Stepper to let the user increment the interval to check site reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSStepper *frequencyToPingStepper</Declaration>
+			
+			
+			<Anchor>//api/name/frequencyToPingStepper</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setAttemptToParseHtmlButton:</TokenIdentifier>
+			<Abstract type="html">Button that allows the user to select whether or not to attemp to parse HTML in the output from the fetch</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSButton *attemptToParseHtmlButton</Declaration>
+			
+			
+			<Anchor>//api/name/attemptToParseHtmlButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/attemptToParseHtmlButton</TokenIdentifier>
+			<Abstract type="html">Button that allows the user to select whether or not to attemp to parse HTML in the output from the fetch</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSButton *attemptToParseHtmlButton</Declaration>
+			
+			
+			<Anchor>//api/name/attemptToParseHtmlButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/setPingFrequency:</TokenIdentifier>
+			<Abstract type="html">Backing store for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) int pingFrequency</Declaration>
+			
+			
+			<Anchor>//api/name/pingFrequency</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MiscPreferencesViewController/pingFrequency</TokenIdentifier>
+			<Abstract type="html">Backing store for frequencyToPingTextField</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) int pingFrequency</Declaration>
+			
+			
+			<Anchor>//api/name/pingFrequency</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/pingReachabilityAction:</TokenIdentifier>
+			<Abstract type="html">Method to save user preference of whether or not to ping sites for reachability</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)pingReachabilityAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pingReachabilityAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MiscPreferencesViewController/parseAction:</TokenIdentifier>
+			<Abstract type="html">Action that sets whether or not to attempt to parse html output in the outputTextView</Abstract>
+			<DeclaredIn>MiscPreferencesViewController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)parseAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/parseAction:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

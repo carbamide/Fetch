@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/CsvViewerWindowController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/CsvViewerWindowController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>
+			
+			<NodeRef refid="8"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CsvViewerWindowController/setDataSource:</TokenIdentifier>
+			<Abstract type="html">NSArray holding CSV data source</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSArray *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CsvViewerWindowController/dataSource</TokenIdentifier>
+			<Abstract type="html">NSArray holding CSV data source</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSArray *dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CsvViewerWindowController/setCsvTableView:</TokenIdentifier>
+			<Abstract type="html">NSTableView to display parsed CSV</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSTableView *csvTableView</Declaration>
+			
+			
+			<Anchor>//api/name/csvTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CsvViewerWindowController/csvTableView</TokenIdentifier>
+			<Abstract type="html">NSTableView to display parsed CSV</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSTableView *csvTableView</Declaration>
+			
+			
+			<Anchor>//api/name/csvTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CsvViewerWindowController/setRowCountLabel:</TokenIdentifier>
+			<Abstract type="html">Label to hold number of rows in table</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *rowCountLabel</Declaration>
+			
+			
+			<Anchor>//api/name/rowCountLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CsvViewerWindowController/rowCountLabel</TokenIdentifier>
+			<Abstract type="html">Label to hold number of rows in table</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet NSTextField *rowCountLabel</Declaration>
+			
+			
+			<Anchor>//api/name/rowCountLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CsvViewerWindowController/setNumberOfColumns:</TokenIdentifier>
+			<Abstract type="html">Number of CSV columns</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) NSInteger numberOfColumns</Declaration>
+			
+			
+			<Anchor>//api/name/numberOfColumns</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CsvViewerWindowController/numberOfColumns</TokenIdentifier>
+			<Abstract type="html">Number of CSV columns</Abstract>
+			<DeclaredIn>CsvViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) NSInteger numberOfColumns</Declaration>
+			
+			
+			<Anchor>//api/name/numberOfColumns</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

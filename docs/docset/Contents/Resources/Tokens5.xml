@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/CNSplitViewToolbar.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/CNSplitViewToolbar</TokenIdentifier>
+			<Abstract type="html">CNSplitViewToolbar is a flexible and easy to use anchored button bar that will be placed on the
+bottom or top edge of a spcified split view divider.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/setHeight:</TokenIdentifier>
+			<Abstract type="html">Property that specifies the height of the toolbar.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CGFloat height</Declaration>
+			
+			
+			<Anchor>//api/name/height</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CNSplitViewToolbar/height</TokenIdentifier>
+			<Abstract type="html">Property that specifies the height of the toolbar.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CGFloat height</Declaration>
+			
+			
+			<Anchor>//api/name/height</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/setAnchorEdge:</TokenIdentifier>
+			<Abstract type="html">Property that specifies the edge the toolbar will be attached to.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CNSplitViewToolbarEdge anchorEdge</Declaration>
+			
+			
+			<Anchor>//api/name/anchorEdge</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CNSplitViewToolbar/anchorEdge</TokenIdentifier>
+			<Abstract type="html">Property that specifies the edge the toolbar will be attached to.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CNSplitViewToolbarEdge anchorEdge</Declaration>
+			
+			
+			<Anchor>//api/name/anchorEdge</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/setItemDelimiterEnabled:</TokenIdentifier>
+			<Abstract type="html">Property that indicates wheter a delimiter between toolbar items should be displayed.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (assign, nonatomic, getter=isItemDelimiterEnabled) BOOL itemDelimiterEnabled</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemDelimiterEnabled</Name>
+					<Abstract type="html">YES the item delimiter should be visible, otherwise NO.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/itemDelimiterEnabled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CNSplitViewToolbar/itemDelimiterEnabled</TokenIdentifier>
+			<Abstract type="html">Property that indicates wheter a delimiter between toolbar items should be displayed.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (assign, nonatomic, getter=isItemDelimiterEnabled) BOOL itemDelimiterEnabled</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>itemDelimiterEnabled</Name>
+					<Abstract type="html">YES the item delimiter should be visible, otherwise NO.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/itemDelimiterEnabled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/setContentAlign:</TokenIdentifier>
+			<Abstract type="html">Property that specifies the alignment of all toolbar items.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (assign, nonatomic) CNSplitViewToolbarContentAlign contentAlign</Declaration>
+			
+			
+			<Anchor>//api/name/contentAlign</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CNSplitViewToolbar/contentAlign</TokenIdentifier>
+			<Abstract type="html">Property that specifies the alignment of all toolbar items.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>@property (assign, nonatomic) CNSplitViewToolbarContentAlign contentAlign</Declaration>
+			
+			
+			<Anchor>//api/name/contentAlign</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/addItem:align:</TokenIdentifier>
+			<Abstract type="html">Adds an item to the CNSplitViewToolbar with the specified itemAlign.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)addItem:(id)theItem align:(CNSplitViewToolbarItemAlign)itemAlign</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>theItem</Name>
+					<Abstract type="html">A NSControl subclass eg. NSButton, NSSlider etc.</Abstract>
+				</Parameter><Parameter>
+					<Name>itemAlign</Name>
+					<Abstract type="html">The horizontal alignment of the item.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addItem:align:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/removeItem:</TokenIdentifier>
+			<Abstract type="html">Removes a given CNAnchoredButton.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)removeItem:(id)theItem</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>button</Name>
+					<Abstract type="html">A present CNAnchoredButton object that should be removed.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/removeItem:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/removeAllItems</TokenIdentifier>
+			<Abstract type="html">Removes all placed items.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)removeAllItems</Declaration>
+			
+			
+			<Anchor>//api/name/removeAllItems</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/disable</TokenIdentifier>
+			<Abstract type="html">Disable all receivers items.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)disable</Declaration>
+			
+			
+			<Anchor>//api/name/disable</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/enable</TokenIdentifier>
+			<Abstract type="html">Enable all receivers items.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.h</DeclaredIn>			
+			
+			<Declaration>- (void)enable</Declaration>
+			
+			
+			<Anchor>//api/name/enable</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/sizeForToolbarItem:</TokenIdentifier>
+			<Abstract type="html">text only</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.m</DeclaredIn>			
+			
+			<Declaration>- (NSSize)sizeForToolbarItem:(NSView *)theItem</Declaration>
+			
+			
+			<Anchor>//api/name/sizeForToolbarItem:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CNSplitViewToolbar/containsSubView:</TokenIdentifier>
+			<Abstract type="html">the first item needs to get space for an additional delimiter on its left side.</Abstract>
+			<DeclaredIn>CNSplitViewToolbar.m</DeclaredIn>			
+			
+			<Declaration>- (BOOL)containsSubView:(NSView *)subview</Declaration>
+			
+			
+			<Anchor>//api/name/containsSubView:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

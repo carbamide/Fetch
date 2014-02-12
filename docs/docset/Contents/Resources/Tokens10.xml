@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/JsonViewerWindowController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/JsonViewerWindowController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/JsonViewerWindowController/setOutlineView:</TokenIdentifier>
+			<Abstract type="html">The outline view that shows a representation of the specified JSON data</Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSOutlineView *outlineView</Declaration>
+			
+			
+			<Anchor>//api/name/outlineView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/JsonViewerWindowController/outlineView</TokenIdentifier>
+			<Abstract type="html">The outline view that shows a representation of the specified JSON data</Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSOutlineView *outlineView</Declaration>
+			
+			
+			<Anchor>//api/name/outlineView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/JsonViewerWindowController/setJsonData:</TokenIdentifier>
+			<Abstract type="html">The JSON data to represent in outlineView</Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) id jsonData</Declaration>
+			
+			
+			<Anchor>//api/name/jsonData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/JsonViewerWindowController/jsonData</TokenIdentifier>
+			<Abstract type="html">The JSON data to represent in outlineView</Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) id jsonData</Declaration>
+			
+			
+			<Anchor>//api/name/jsonData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/JsonViewerWindowController/initWithWindowNibName:json:</TokenIdentifier>
+			<Abstract type="html">Initialization</Abstract>
+			<DeclaredIn>JsonViewerWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithWindowNibName:(NSString *)nibOrNil json:(id)json</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>nibOrNil</Name>
+					<Abstract type="html">Name of nib or nil</Abstract>
+				</Parameter><Parameter>
+					<Name>json</Name>
+					<Abstract type="html">JSON data that the user wishes to represent in JsonViewerWindowController</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">JsonViewerWindowController object</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithWindowNibName:json:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

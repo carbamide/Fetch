@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSManagedObject+Mappings.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSManagedObject(Mappings)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSManagedObject+Mappings.h</DeclaredIn>
+			
+			<NodeRef refid="25"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSManagedObject(Mappings)/mappings</TokenIdentifier>
+			<Abstract type="html">Needs to be overriden in your entity. Not required if you don&apos;t have mappings</Abstract>
+			<DeclaredIn>NSManagedObject+Mappings.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)mappings</Declaration>
+			
+			
+			<Anchor>//api/name/mappings</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/NSManagedObject(Mappings)/keyForRemoteKey:</TokenIdentifier>
+			<Abstract type="html">If your web service returns first_name, and locally you have firstName this method handles mapped keys</Abstract>
+			<DeclaredIn>NSManagedObject+Mappings.h</DeclaredIn>			
+			
+			<Declaration>- (id)keyForRemoteKey:(NSString *)key</Declaration>
+			
+			
+			<Anchor>//api/name/keyForRemoteKey:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -7,11 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainWindowController.h"
-#import "MenuController.h"
 #import "Constants.h"
-#import "NSUserDefaults+NSColor.h"
-#import "NSColor+Extensions.h"
 
 @interface AppDelegate()
 

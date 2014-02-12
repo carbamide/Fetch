@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ProjectCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ProjectCell</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>
+			
+			<NodeRef refid="17"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProjectCell/setAddUrlButton:</TokenIdentifier>
+			<Abstract type="html">Button to add a url to the Projects object that the cell is showing</Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *addUrlButton</Declaration>
+			
+			
+			<Anchor>//api/name/addUrlButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProjectCell/addUrlButton</TokenIdentifier>
+			<Abstract type="html">Button to add a url to the Projects object that the cell is showing</Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *addUrlButton</Declaration>
+			
+			
+			<Anchor>//api/name/addUrlButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProjectCell/setProject:</TokenIdentifier>
+			<Abstract type="html">Projects object that the cell is showing</Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *project</Declaration>
+			
+			
+			<Anchor>//api/name/project</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProjectCell/project</TokenIdentifier>
+			<Abstract type="html">Projects object that the cell is showing</Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *project</Declaration>
+			
+			
+			<Anchor>//api/name/project</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProjectCell/addUrl:</TokenIdentifier>
+			<Abstract type="html">Adds url to the project that the cell is displaying</Abstract>
+			<DeclaredIn>ProjectCell.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)addUrl:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addUrl:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

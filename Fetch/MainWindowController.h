@@ -222,16 +222,6 @@
 -(void)importProject:(id)sender;
 
 /**
- * Deletes current project
- * @param sender The caller of this method
- */
--(void)deleteProject:(id)sender;
-
-/**
- * @name URL Methods
- */
-
-/**
  * Adds url to current project
  * @param sender The caller of this method
  */

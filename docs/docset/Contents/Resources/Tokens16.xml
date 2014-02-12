@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/PreferencesController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/PreferencesController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PreferencesController.h</DeclaredIn>
+			
+			<NodeRef refid="16"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PreferencesController/setWindow:</TokenIdentifier>
+			<Abstract type="html">The PreferencesController window</Abstract>
+			<DeclaredIn>PreferencesController.h</DeclaredIn>			
+			
+			<Declaration>@property (readwrite, strong, nonatomic) IBOutlet NSWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PreferencesController/window</TokenIdentifier>
+			<Abstract type="html">The PreferencesController window</Abstract>
+			<DeclaredIn>PreferencesController.h</DeclaredIn>			
+			
+			<Declaration>@property (readwrite, strong, nonatomic) IBOutlet NSWindow *window</Declaration>
+			
+			
+			<Anchor>//api/name/window</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PreferencesController/showPreferencesFor:</TokenIdentifier>
+			<Abstract type="html">Method to show the preferences NSViewController for the specified sender</Abstract>
+			<DeclaredIn>PreferencesController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showPreferencesFor:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showPreferencesFor:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PreferencesController/showPreferencesWindow:</TokenIdentifier>
+			<Abstract type="html">Show the preferences window if hidden</Abstract>
+			<DeclaredIn>PreferencesController.h</DeclaredIn>			
+			
+			<Declaration>- (void)showPreferencesWindow:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this action</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showPreferencesWindow:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

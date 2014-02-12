@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import "Constants.h"
 #import "MenuController.h"
 #import "PreferencesController.h"
 #import "MainWindowController.h"

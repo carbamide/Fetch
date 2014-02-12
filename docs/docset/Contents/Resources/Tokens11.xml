@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MainWindowController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MainWindowController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>
+			
+			<NodeRef refid="11"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setUrlTextField:</TokenIdentifier>
+			<Abstract type="html">The url text field</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTextField *urlTextField</Declaration>
+			
+			
+			<Anchor>//api/name/urlTextField</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/urlTextField</TokenIdentifier>
+			<Abstract type="html">The url text field</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTextField *urlTextField</Declaration>
+			
+			
+			<Anchor>//api/name/urlTextField</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setMethodCombo:</TokenIdentifier>
+			<Abstract type="html">Lets the user specify the HTTP method to use when fetching the current url</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSComboBox *methodCombo</Declaration>
+			
+			
+			<Anchor>//api/name/methodCombo</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/methodCombo</TokenIdentifier>
+			<Abstract type="html">Lets the user specify the HTTP method to use when fetching the current url</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSComboBox *methodCombo</Declaration>
+			
+			
+			<Anchor>//api/name/methodCombo</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setFetchButton:</TokenIdentifier>
+			<Abstract type="html">Button for performing the fetch action</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *fetchButton</Declaration>
+			
+			
+			<Anchor>//api/name/fetchButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/fetchButton</TokenIdentifier>
+			<Abstract type="html">Button for performing the fetch action</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *fetchButton</Declaration>
+			
+			
+			<Anchor>//api/name/fetchButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCustomPostBodyCheckBox:</TokenIdentifier>
+			<Abstract type="html">Button that shows or hides an NSTextView that allows the user to specify custom data to pass when fetching</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *customPostBodyCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/customPostBodyCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/customPostBodyCheckBox</TokenIdentifier>
+			<Abstract type="html">Button that shows or hides an NSTextView that allows the user to specify custom data to pass when fetching</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *customPostBodyCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/customPostBodyCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setLogRequestCheckBox:</TokenIdentifier>
+			<Abstract type="html">NSButton (checkbox) that lets the user specify whether the request to the server should be logged to output</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *logRequestCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/logRequestCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/logRequestCheckBox</TokenIdentifier>
+			<Abstract type="html">NSButton (checkbox) that lets the user specify whether the request to the server should be logged to output</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *logRequestCheckBox</Declaration>
+			
+			
+			<Anchor>//api/name/logRequestCheckBox</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setClearOutputButton:</TokenIdentifier>
+			<Abstract type="html">NSButton that clears the output in the main window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *clearOutputButton</Declaration>
+			
+			
+			<Anchor>//api/name/clearOutputButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/clearOutputButton</TokenIdentifier>
+			<Abstract type="html">NSButton that clears the output in the main window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSButton *clearOutputButton</Declaration>
+			
+			
+			<Anchor>//api/name/clearOutputButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setHeadersTableView:</TokenIdentifier>
+			<Abstract type="html">Table that shows the headers and allows you to add additional headers</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *headersTableView</Declaration>
+			
+			
+			<Anchor>//api/name/headersTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/headersTableView</TokenIdentifier>
+			<Abstract type="html">Table that shows the headers and allows you to add additional headers</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *headersTableView</Declaration>
+			
+			
+			<Anchor>//api/name/headersTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setParametersTableView:</TokenIdentifier>
+			<Abstract type="html">Table that shows the parameters and allows you to add additional parameters</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *parametersTableView</Declaration>
+			
+			
+			<Anchor>//api/name/parametersTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/parametersTableView</TokenIdentifier>
+			<Abstract type="html">Table that shows the parameters and allows you to add additional parameters</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *parametersTableView</Declaration>
+			
+			
+			<Anchor>//api/name/parametersTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setHeaderSegCont:</TokenIdentifier>
+			<Abstract type="html">Segmented control that allows you to add or remove headers from the headersTableView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSSegmentedControl *headerSegCont</Declaration>
+			
+			
+			<Anchor>//api/name/headerSegCont</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/headerSegCont</TokenIdentifier>
+			<Abstract type="html">Segmented control that allows you to add or remove headers from the headersTableView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSSegmentedControl *headerSegCont</Declaration>
+			
+			
+			<Anchor>//api/name/headerSegCont</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setParamSegCont:</TokenIdentifier>
+			<Abstract type="html">Segmented control that allows you to add or remove parameters from the parametersTableView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSSegmentedControl *paramSegCont</Declaration>
+			
+			
+			<Anchor>//api/name/paramSegCont</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/paramSegCont</TokenIdentifier>
+			<Abstract type="html">Segmented control that allows you to add or remove parameters from the parametersTableView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSSegmentedControl *paramSegCont</Declaration>
+			
+			
+			<Anchor>//api/name/paramSegCont</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setProjectSourceList:</TokenIdentifier>
+			<Abstract type="html">NSOutlineView that shows the Projects that have been saved and their associated URLs</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSOutlineView *projectSourceList</Declaration>
+			
+			
+			<Anchor>//api/name/projectSourceList</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/projectSourceList</TokenIdentifier>
+			<Abstract type="html">NSOutlineView that shows the Projects that have been saved and their associated URLs</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSOutlineView *projectSourceList</Declaration>
+			
+			
+			<Anchor>//api/name/projectSourceList</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setOutputTextView:</TokenIdentifier>
+			<Abstract type="html">Output of the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (unsafe_unretained) IBOutlet NSTextView *outputTextView</Declaration>
+			
+			
+			<Anchor>//api/name/outputTextView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/outputTextView</TokenIdentifier>
+			<Abstract type="html">Output of the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (unsafe_unretained) IBOutlet NSTextView *outputTextView</Declaration>
+			
+			
+			<Anchor>//api/name/outputTextView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCustomPayloadTextView:</TokenIdentifier>
+			<Abstract type="html">Text view that allows you to specify a custom payload for the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView</Declaration>
+			
+			
+			<Anchor>//api/name/customPayloadTextView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/customPayloadTextView</TokenIdentifier>
+			<Abstract type="html">Text view that allows you to specify a custom payload for the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (unsafe_unretained) IBOutlet NSTextView *customPayloadTextView</Declaration>
+			
+			
+			<Anchor>//api/name/customPayloadTextView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setProgressIndicator:</TokenIdentifier>
+			<Abstract type="html">Indeterminate progress indicator that shows when a fetch request it being made and hides when it is completed</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSProgressIndicator *progressIndicator</Declaration>
+			
+			
+			<Anchor>//api/name/progressIndicator</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/progressIndicator</TokenIdentifier>
+			<Abstract type="html">Indeterminate progress indicator that shows when a fetch request it being made and hides when it is completed</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSProgressIndicator *progressIndicator</Declaration>
+			
+			
+			<Anchor>//api/name/progressIndicator</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setRequestTableView:</TokenIdentifier>
+			<Abstract type="html">Table that shows the headers from the request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *requestTableView</Declaration>
+			
+			
+			<Anchor>//api/name/requestTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/requestTableView</TokenIdentifier>
+			<Abstract type="html">Table that shows the headers from the request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *requestTableView</Declaration>
+			
+			
+			<Anchor>//api/name/requestTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setResponseTableView:</TokenIdentifier>
+			<Abstract type="html">Table that shows the response headers from the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *responseTableView</Declaration>
+			
+			
+			<Anchor>//api/name/responseTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/responseTableView</TokenIdentifier>
+			<Abstract type="html">Table that shows the response headers from the fetch request</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (weak) IBOutlet NSTableView *responseTableView</Declaration>
+			
+			
+			<Anchor>//api/name/responseTableView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setSplitView:</TokenIdentifier>
+			<Abstract type="html">Main split view that is the home to both the project list and the main view</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet CNSplitView *splitView</Declaration>
+			
+			
+			<Anchor>//api/name/splitView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/splitView</TokenIdentifier>
+			<Abstract type="html">Main split view that is the home to both the project list and the main view</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) IBOutlet CNSplitView *splitView</Declaration>
+			
+			
+			<Anchor>//api/name/splitView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setTextFinder:</TokenIdentifier>
+			<Abstract type="html">NSTextFinder for the outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSTextFinder *textFinder</Declaration>
+			
+			
+			<Anchor>//api/name/textFinder</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/textFinder</TokenIdentifier>
+			<Abstract type="html">NSTextFinder for the outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSTextFinder *textFinder</Declaration>
+			
+			
+			<Anchor>//api/name/textFinder</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setMenuController:</TokenIdentifier>
+			<Abstract type="html">Reference to MenuController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MenuController *menuController</Declaration>
+			
+			
+			<Anchor>//api/name/menuController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/menuController</TokenIdentifier>
+			<Abstract type="html">Reference to MenuController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MenuController *menuController</Declaration>
+			
+			
+			<Anchor>//api/name/menuController</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setParseMenu:</TokenIdentifier>
+			<Abstract type="html">NSMenu that lets the user choose what to parse as</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSMenu *parseMenu</Declaration>
+			
+			
+			<Anchor>//api/name/parseMenu</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/parseMenu</TokenIdentifier>
+			<Abstract type="html">NSMenu that lets the user choose what to parse as</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSMenu *parseMenu</Declaration>
+			
+			
+			<Anchor>//api/name/parseMenu</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setParseButton:</TokenIdentifier>
+			<Abstract type="html">Button that activates parseMenu to let the user choose how to parse the response from the fetchAction</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *parseButton</Declaration>
+			
+			
+			<Anchor>//api/name/parseButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/parseButton</TokenIdentifier>
+			<Abstract type="html">Button that activates parseMenu to let the user choose how to parse the response from the fetchAction</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet NSButton *parseButton</Declaration>
+			
+			
+			<Anchor>//api/name/parseButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setJsonWindow:</TokenIdentifier>
+			<Abstract type="html">Reference to JsonViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) JsonViewerWindowController *jsonWindow</Declaration>
+			
+			
+			<Anchor>//api/name/jsonWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/jsonWindow</TokenIdentifier>
+			<Abstract type="html">Reference to JsonViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) JsonViewerWindowController *jsonWindow</Declaration>
+			
+			
+			<Anchor>//api/name/jsonWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCsvWindow:</TokenIdentifier>
+			<Abstract type="html">Reference to CsvViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CsvViewerWindowController *csvWindow</Declaration>
+			
+			
+			<Anchor>//api/name/csvWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/csvWindow</TokenIdentifier>
+			<Abstract type="html">Reference to CsvViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CsvViewerWindowController *csvWindow</Declaration>
+			
+			
+			<Anchor>//api/name/csvWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setXmlWindow:</TokenIdentifier>
+			<Abstract type="html">Reference to XmlViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) XmlViewerWindowController *xmlWindow</Declaration>
+			
+			
+			<Anchor>//api/name/xmlWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/xmlWindow</TokenIdentifier>
+			<Abstract type="html">Reference to XmlViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) XmlViewerWindowController *xmlWindow</Declaration>
+			
+			
+			<Anchor>//api/name/xmlWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setPlistWindow:</TokenIdentifier>
+			<Abstract type="html">Reference to PlistViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) PlistViewerWindowController *plistWindow</Declaration>
+			
+			
+			<Anchor>//api/name/plistWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/plistWindow</TokenIdentifier>
+			<Abstract type="html">Reference to PlistViewerWindowController</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) PlistViewerWindowController *plistWindow</Declaration>
+			
+			
+			<Anchor>//api/name/plistWindow</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setRequestDict:</TokenIdentifier>
+			<Abstract type="html">Dictionary that holds a reference to the request headers.  This dictionary is used to populate the requestTableView.</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDictionary *requestDict</Declaration>
+			
+			
+			<Anchor>//api/name/requestDict</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/requestDict</TokenIdentifier>
+			<Abstract type="html">Dictionary that holds a reference to the request headers.  This dictionary is used to populate the requestTableView.</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDictionary *requestDict</Declaration>
+			
+			
+			<Anchor>//api/name/requestDict</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setResponseDict:</TokenIdentifier>
+			<Abstract type="html">Dictionary that holds a reference to the response headers.  This dictionary is used to populate the responseTableView.</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDictionary *responseDict</Declaration>
+			
+			
+			<Anchor>//api/name/responseDict</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/responseDict</TokenIdentifier>
+			<Abstract type="html">Dictionary that holds a reference to the response headers.  This dictionary is used to populate the responseTableView.</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDictionary *responseDict</Declaration>
+			
+			
+			<Anchor>//api/name/responseDict</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/fetchAction:</TokenIdentifier>
+			<Abstract type="html">Fetch Action</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)fetchAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/fetchAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/headerSegContAction:</TokenIdentifier>
+			<Abstract type="html">Action that adds or removes headers from the current URL object</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)headerSegContAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/headerSegContAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/parameterSegContAction:</TokenIdentifier>
+			<Abstract type="html">Action that adds or removes parameters from the current URL object</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)parameterSegContAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/parameterSegContAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/customPostBodyAction:</TokenIdentifier>
+			<Abstract type="html">Action that shows or hides the customPayloadTextView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)customPostBodyAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/customPostBodyAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/clearOutput:</TokenIdentifier>
+			<Abstract type="html">Action that clears the output in outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)clearOutput:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/clearOutput:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/showJson:</TokenIdentifier>
+			<Abstract type="html">Action that shows the JsonViewerWindowController window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showJson:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showJson:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/showCsv:</TokenIdentifier>
+			<Abstract type="html">Action that shows the CsvViewerWindowController window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showCsv:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showCsv:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/showXml:</TokenIdentifier>
+			<Abstract type="html">Action that shows the XmlViewerWindowController window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showXml:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showXml:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/showPlist:</TokenIdentifier>
+			<Abstract type="html">Action that shows the PlistViewerWindowController window</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)showPlist:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showPlist:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/duplicateURL:</TokenIdentifier>
+			<Abstract type="html">Duplicate URL for purposes of adding several similar urls</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)duplicateURL:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/duplicateURL:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/renameProject:</TokenIdentifier>
+			<Abstract type="html">Rename the selected project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)renameProject:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/renameProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/deleteURLAction:</TokenIdentifier>
+			<Abstract type="html">Delete selected URL</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)deleteURLAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteURLAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/cloneHeaders:</TokenIdentifier>
+			<Abstract type="html">Clone headers of current URL to all URLs in current project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)cloneHeaders:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/cloneHeaders:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/parseAction:</TokenIdentifier>
+			<Abstract type="html">Activate the parseMenu</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (IBAction)parseAction:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/parseAction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/exportProject:</TokenIdentifier>
+			<Abstract type="html">Begins the process of exporting a project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)exportProject:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/exportProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/importProject:</TokenIdentifier>
+			<Abstract type="html">Begins the process of importing a project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)importProject:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/importProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/deleteProject:</TokenIdentifier>
+			<Abstract type="html">Deletes current project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)deleteProject:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/addUrl:</TokenIdentifier>
+			<Abstract type="html">Adds url to current project</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)addUrl:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">The caller of this method</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addUrl:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/saveLog</TokenIdentifier>
+			<Abstract type="html">Method that saves the output of outputTextView to a file</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)saveLog</Declaration>
+			
+			
+			<Anchor>//api/name/saveLog</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/findInOutput</TokenIdentifier>
+			<Abstract type="html">Show find bar for outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.h</DeclaredIn>			
+			
+			<Declaration>- (void)findInOutput</Declaration>
+			
+			
+			<Anchor>//api/name/findInOutput</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setupSplitviewControls</TokenIdentifier>
+			<Abstract type="html">Setup the split view controller and it&apos;s controls</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)setupSplitviewControls</Declaration>
+			
+			
+			<Anchor>//api/name/setupSplitviewControls</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/preferencesChanges:</TokenIdentifier>
+			<Abstract type="html">* Monitor NSUserDefaults for changes</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)preferencesChanges:(NSNotification *)aNotification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aNotification</Name>
+					<Abstract type="html">The notification that is produced when NSUserDefaults changes</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/preferencesChanges:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setupSegmentedControls</TokenIdentifier>
+			<Abstract type="html">Setup the segmented controls</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)setupSegmentedControls</Declaration>
+			
+			
+			<Anchor>//api/name/setupSegmentedControls</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/unloadData</TokenIdentifier>
+			<Abstract type="html">Unload all project and url data</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)unloadData</Declaration>
+			
+			
+			<Anchor>//api/name/unloadData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/appendToOutput:color:</TokenIdentifier>
+			<Abstract type="html">Append specified output the outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)appendToOutput:(id)text color:(NSColor *)color</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>text</Name>
+					<Abstract type="html">The text to append to the outputTextView.  Accepted NSString or NSAttributedString.</Abstract>
+				</Parameter><Parameter>
+					<Name>color</Name>
+					<Abstract type="html">The color to show the text in</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/appendToOutput:color:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/logReqest:</TokenIdentifier>
+			<Abstract type="html">Log specified NSMutableURLRequest to outputTextView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)logReqest:(NSMutableURLRequest *)request</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>request</Name>
+					<Abstract type="html">The NSMutableURLRequest to log</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/logReqest:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/addToUrlListIfUnique</TokenIdentifier>
+			<Abstract type="html">Add URL to Projects URL list if unique</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (BOOL)addToUrlListIfUnique</Declaration>
+			
+			<ReturnValue><Abstract type="html">Returns YES if the url was unique and added, NO if not</Abstract></ReturnValue>
+			<Anchor>//api/name/addToUrlListIfUnique</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/loadUrl:</TokenIdentifier>
+			<Abstract type="html">Load the URL into the user interface</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)loadUrl:(Urls *)url</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">URL to load</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/loadUrl:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/loadProject:</TokenIdentifier>
+			<Abstract type="html">Load Specified Project into the user interface</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)loadProject:(Projects *)project</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>project</Name>
+					<Abstract type="html">The Project to load</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/loadProject:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/addProject</TokenIdentifier>
+			<Abstract type="html">Add Project to Project Source List</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)addProject</Declaration>
+			
+			
+			<Anchor>//api/name/addProject</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/removeProjectOrUrl</TokenIdentifier>
+			<Abstract type="html">Remvoe the clicked or selected Project or URL from the source list</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)removeProjectOrUrl</Declaration>
+			
+			
+			<Anchor>//api/name/removeProjectOrUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/toolbarAttachedSubviewIndex:</TokenIdentifier>
+			<Abstract type="html">Asks the delegate about the index of the subview where the toolbar is attached to.</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/toolbarAttachedSubviewIndex:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/createTimerWithTimeInterval:</TokenIdentifier>
+			<Abstract type="html">Create a timer with the specified time interval</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>timeInterval</Name>
+					<Abstract type="html">The time interval to create the timer</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/createTimerWithTimeInterval:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/urlVerification:</TokenIdentifier>
+			<Abstract type="html">Check URL status for specified urlString</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>- (NetworkStatus)urlVerification:(NSString *)urlString</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>urlString</Name>
+					<Abstract type="html">The url to check the status of</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">NetworkStatus of the specified URL</Abstract></ReturnValue>
+			<Anchor>//api/name/urlVerification:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setHeaderDataSource:</TokenIdentifier>
+			<Abstract type="html">Backing store for headersTableView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *headerDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/headerDataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/headerDataSource</TokenIdentifier>
+			<Abstract type="html">Backing store for headersTableView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *headerDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/headerDataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setParamDataSource:</TokenIdentifier>
+			<Abstract type="html">Backing store for parametersTableView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *paramDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/paramDataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/paramDataSource</TokenIdentifier>
+			<Abstract type="html">Backing store for parametersTableView</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *paramDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/paramDataSource</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setProjectList:</TokenIdentifier>
+			<Abstract type="html">Backing store for projectSourceList</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *projectList</Declaration>
+			
+			
+			<Anchor>//api/name/projectList</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/projectList</TokenIdentifier>
+			<Abstract type="html">Backing store for projectSourceList</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *projectList</Declaration>
+			
+			
+			<Anchor>//api/name/projectList</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setHeaderNames:</TokenIdentifier>
+			<Abstract type="html">Backing store that holds all known header names</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSArray *headerNames</Declaration>
+			
+			
+			<Anchor>//api/name/headerNames</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/headerNames</TokenIdentifier>
+			<Abstract type="html">Backing store that holds all known header names</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSArray *headerNames</Declaration>
+			
+			
+			<Anchor>//api/name/headerNames</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCurrentProject:</TokenIdentifier>
+			<Abstract type="html">The current Project</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *currentProject</Declaration>
+			
+			
+			<Anchor>//api/name/currentProject</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/currentProject</TokenIdentifier>
+			<Abstract type="html">The current Project</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *currentProject</Declaration>
+			
+			
+			<Anchor>//api/name/currentProject</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCurrentUrl:</TokenIdentifier>
+			<Abstract type="html">The current URl</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *currentUrl</Declaration>
+			
+			
+			<Anchor>//api/name/currentUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/currentUrl</TokenIdentifier>
+			<Abstract type="html">The current URl</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *currentUrl</Declaration>
+			
+			
+			<Anchor>//api/name/currentUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setToolbar:</TokenIdentifier>
+			<Abstract type="html">Reference to toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbar *toolbar</Declaration>
+			
+			
+			<Anchor>//api/name/toolbar</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/toolbar</TokenIdentifier>
+			<Abstract type="html">Reference to toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbar *toolbar</Declaration>
+			
+			
+			<Anchor>//api/name/toolbar</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setRemoveButton:</TokenIdentifier>
+			<Abstract type="html">Reference to remove button in toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbarButton *removeButton</Declaration>
+			
+			
+			<Anchor>//api/name/removeButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/removeButton</TokenIdentifier>
+			<Abstract type="html">Reference to remove button in toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbarButton *removeButton</Declaration>
+			
+			
+			<Anchor>//api/name/removeButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setExportButton:</TokenIdentifier>
+			<Abstract type="html">Reference to export button in toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbarButton *exportButton</Declaration>
+			
+			
+			<Anchor>//api/name/exportButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/exportButton</TokenIdentifier>
+			<Abstract type="html">Reference to export button in toolbar</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) CNSplitViewToolbarButton *exportButton</Declaration>
+			
+			
+			<Anchor>//api/name/exportButton</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setUrlCellArray:</TokenIdentifier>
+			<Abstract type="html">Mutable array that holds a reference to all url cells (Used for updating reachability status)</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *urlCellArray</Declaration>
+			
+			
+			<Anchor>//api/name/urlCellArray</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/urlCellArray</TokenIdentifier>
+			<Abstract type="html">Mutable array that holds a reference to all url cells (Used for updating reachability status)</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *urlCellArray</Declaration>
+			
+			
+			<Anchor>//api/name/urlCellArray</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setProjectCellArray:</TokenIdentifier>
+			<Abstract type="html">Mutable array that holds a reference to all project cells</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *projectCellArray</Declaration>
+			
+			
+			<Anchor>//api/name/projectCellArray</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/projectCellArray</TokenIdentifier>
+			<Abstract type="html">Mutable array that holds a reference to all project cells</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSMutableArray *projectCellArray</Declaration>
+			
+			
+			<Anchor>//api/name/projectCellArray</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setIsCSV:</TokenIdentifier>
+			<Abstract type="html">Do you expect the output to be in CSV format?</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) BOOL isCSV</Declaration>
+			
+			
+			<Anchor>//api/name/isCSV</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/isCSV</TokenIdentifier>
+			<Abstract type="html">Do you expect the output to be in CSV format?</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) BOOL isCSV</Declaration>
+			
+			
+			<Anchor>//api/name/isCSV</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setIsFetching:</TokenIdentifier>
+			<Abstract type="html">BOOL to set whether a fetch is currently occuring</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) BOOL isFetching</Declaration>
+			
+			
+			<Anchor>//api/name/isFetching</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/isFetching</TokenIdentifier>
+			<Abstract type="html">BOOL to set whether a fetch is currently occuring</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) BOOL isFetching</Declaration>
+			
+			
+			<Anchor>//api/name/isFetching</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setClickedUrl:</TokenIdentifier>
+			<Abstract type="html">Temp property for storying the clicked URL</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *clickedUrl</Declaration>
+			
+			
+			<Anchor>//api/name/clickedUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/clickedUrl</TokenIdentifier>
+			<Abstract type="html">Temp property for storying the clicked URL</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *clickedUrl</Declaration>
+			
+			
+			<Anchor>//api/name/clickedUrl</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setFetchConnection:</TokenIdentifier>
+			<Abstract type="html">Reference to currently happening Fetch action</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) FetchURLConnection *fetchConnection</Declaration>
+			
+			
+			<Anchor>//api/name/fetchConnection</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/fetchConnection</TokenIdentifier>
+			<Abstract type="html">Reference to currently happening Fetch action</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) FetchURLConnection *fetchConnection</Declaration>
+			
+			
+			<Anchor>//api/name/fetchConnection</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setDraggedNode:</TokenIdentifier>
+			<Abstract type="html">The item currently being dragged</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *draggedNode</Declaration>
+			
+			
+			<Anchor>//api/name/draggedNode</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/draggedNode</TokenIdentifier>
+			<Abstract type="html">The item currently being dragged</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Urls *draggedNode</Declaration>
+			
+			
+			<Anchor>//api/name/draggedNode</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setReceivingNode:</TokenIdentifier>
+			<Abstract type="html">The parent being dragged to</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *receivingNode</Declaration>
+			
+			
+			<Anchor>//api/name/receivingNode</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/receivingNode</TokenIdentifier>
+			<Abstract type="html">The parent being dragged to</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) Projects *receivingNode</Declaration>
+			
+			
+			<Anchor>//api/name/receivingNode</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setCurrentDate:</TokenIdentifier>
+			<Abstract type="html">Reference to the current date</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDate *currentDate</Declaration>
+			
+			
+			<Anchor>//api/name/currentDate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/currentDate</TokenIdentifier>
+			<Abstract type="html">Reference to the current date</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSDate *currentDate</Declaration>
+			
+			
+			<Anchor>//api/name/currentDate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setPingTimer:</TokenIdentifier>
+			<Abstract type="html">Used if the user has chosen to check reachability of URLs</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSTimer *pingTimer</Declaration>
+			
+			
+			<Anchor>//api/name/pingTimer</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/pingTimer</TokenIdentifier>
+			<Abstract type="html">Used if the user has chosen to check reachability of URLs</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) NSTimer *pingTimer</Declaration>
+			
+			
+			<Anchor>//api/name/pingTimer</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MainWindowController/setResponseData:</TokenIdentifier>
+			<Abstract type="html">JSON Data returns from fetch action.  This is either an NSDictionary or NSArray</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) id responseData</Declaration>
+			
+			
+			<Anchor>//api/name/responseData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MainWindowController/responseData</TokenIdentifier>
+			<Abstract type="html">JSON Data returns from fetch action.  This is either an NSDictionary or NSArray</Abstract>
+			<DeclaredIn>MainWindowController.m</DeclaredIn>			
+			
+			<Declaration>@property (strong, nonatomic) id responseData</Declaration>
+			
+			
+			<Anchor>//api/name/responseData</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

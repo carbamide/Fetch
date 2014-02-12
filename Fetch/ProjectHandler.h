@@ -21,14 +21,6 @@
 +(BOOL)importFromPath:(NSString *)path;
 
 /**
- * Import Project from data
- *
- * @param data The data to load the project from
- * @return Success or failure boolean
- */
-+(BOOL)importFromData:(NSData *)data;
-
-/**
  * Export project
  *
  * @param project The Project to export

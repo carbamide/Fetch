@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/jbarrow/Library/Developer/Shared/Documentation/DocSets/com.jukaela.Fetch.docset
+Time: 2013-12-20 20:12:37 +0000

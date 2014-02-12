@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ProjectHandler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ProjectHandler</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ProjectHandler.h</DeclaredIn>
+			
+			<NodeRef refid="18"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ProjectHandler/importFromPath:</TokenIdentifier>
+			<Abstract type="html">Import Project from Path</Abstract>
+			<DeclaredIn>ProjectHandler.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)importFromPath:(NSString *)path</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>path</Name>
+					<Abstract type="html">The path to load the project from</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Success or failure boolean</Abstract></ReturnValue>
+			<Anchor>//api/name/importFromPath:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ProjectHandler/importFromData:</TokenIdentifier>
+			<Abstract type="html">Import Project from data</Abstract>
+			<DeclaredIn>ProjectHandler.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)importFromData:(NSData *)data</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">The data to load the project from</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Success or failure boolean</Abstract></ReturnValue>
+			<Anchor>//api/name/importFromData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ProjectHandler/exportProject:toUrl:</TokenIdentifier>
+			<Abstract type="html">Export project</Abstract>
+			<DeclaredIn>ProjectHandler.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>project</Name>
+					<Abstract type="html">The Project to export</Abstract>
+				</Parameter><Parameter>
+					<Name>url</Name>
+					<Abstract type="html">The url to save the Project to</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">NSDictionary representation of the exported Project</Abstract></ReturnValue>
+			<Anchor>//api/name/exportProject:toUrl:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

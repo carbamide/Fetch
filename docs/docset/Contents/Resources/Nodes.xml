@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocSetNodes version="1.0">
+    <TOC>
+        <Node type="folder">
+            <Name>Fetch</Name>
+            <Path>index.html</Path>
+			<Subnodes>
+                
+				
+				<Node type="folder">
+					<Name>Classes</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="1"/>
+						<NodeRef refid="2"/>
+						<NodeRef refid="3"/>
+						<NodeRef refid="4"/>
+						<NodeRef refid="5"/>
+						<NodeRef refid="6"/>
+						<NodeRef refid="7"/>
+						<NodeRef refid="8"/>
+						<NodeRef refid="9"/>
+						<NodeRef refid="10"/>
+						<NodeRef refid="11"/>
+						<NodeRef refid="12"/>
+						<NodeRef refid="13"/>
+						<NodeRef refid="14"/>
+						<NodeRef refid="15"/>
+						<NodeRef refid="16"/>
+						<NodeRef refid="17"/>
+						<NodeRef refid="18"/>
+						<NodeRef refid="19"/>
+						<NodeRef refid="20"/>
+						<NodeRef refid="21"/>
+						<NodeRef refid="22"/>
+						
+					</Subnodes>
+				</Node>
+				
+				
+				<Node type="folder">
+					<Name>Categories</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="23"/>
+						<NodeRef refid="24"/>
+						<NodeRef refid="25"/>
+						<NodeRef refid="26"/>
+						<NodeRef refid="27"/>
+						<NodeRef refid="28"/>
+						<NodeRef refid="29"/>
+						<NodeRef refid="30"/>
+						
+					</Subnodes>
+				</Node>
+				
+				
+				<Node type="folder">
+					<Name>Protocols</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="31"/>
+						<NodeRef refid="32"/>
+						
+					</Subnodes>
+				</Node>
+				
+			</Subnodes>
+        </Node>
+    </TOC>
+	<Library>
+		
+		<Node id="1">
+			<Name>AppDelegate</Name>
+			<Path>Classes/AppDelegate.html</Path>
+		</Node>
+		<Node id="2">
+			<Name>CHCSVWriter</Name>
+			<Path>Classes/CHCSVWriter.html</Path>
+		</Node>
+		<Node id="3">
+			<Name>CNSplitView</Name>
+			<Path>Classes/CNSplitView.html</Path>
+		</Node>
+		<Node id="4">
+			<Name>CNSplitViewDraggingHandle</Name>
+			<Path>Classes/CNSplitViewDraggingHandle.html</Path>
+		</Node>
+		<Node id="5">
+			<Name>CNSplitViewToolbar</Name>
+			<Path>Classes/CNSplitViewToolbar.html</Path>
+		</Node>
+		<Node id="6">
+			<Name>CNSplitViewToolbarButton</Name>
+			<Path>Classes/CNSplitViewToolbarButton.html</Path>
+		</Node>
+		<Node id="7">
+			<Name>ColorsPreferencesViewController</Name>
+			<Path>Classes/ColorsPreferencesViewController.html</Path>
+		</Node>
+		<Node id="8">
+			<Name>CsvViewerWindowController</Name>
+			<Path>Classes/CsvViewerWindowController.html</Path>
+		</Node>
+		<Node id="9">
+			<Name>DataHandler</Name>
+			<Path>Classes/DataHandler.html</Path>
+		</Node>
+		<Node id="10">
+			<Name>JsonViewerWindowController</Name>
+			<Path>Classes/JsonViewerWindowController.html</Path>
+		</Node>
+		<Node id="11">
+			<Name>MainWindowController</Name>
+			<Path>Classes/MainWindowController.html</Path>
+		</Node>
+		<Node id="12">
+			<Name>MenuController</Name>
+			<Path>Classes/MenuController.html</Path>
+		</Node>
+		<Node id="13">
+			<Name>MiscPreferencesViewController</Name>
+			<Path>Classes/MiscPreferencesViewController.html</Path>
+		</Node>
+		<Node id="14">
+			<Name>NodeObject</Name>
+			<Path>Classes/NodeObject.html</Path>
+		</Node>
+		<Node id="15">
+			<Name>PlistViewerWindowController</Name>
+			<Path>Classes/PlistViewerWindowController.html</Path>
+		</Node>
+		<Node id="16">
+			<Name>PreferencesController</Name>
+			<Path>Classes/PreferencesController.html</Path>
+		</Node>
+		<Node id="17">
+			<Name>ProjectCell</Name>
+			<Path>Classes/ProjectCell.html</Path>
+		</Node>
+		<Node id="18">
+			<Name>ProjectHandler</Name>
+			<Path>Classes/ProjectHandler.html</Path>
+		</Node>
+		<Node id="19">
+			<Name>Reachability</Name>
+			<Path>Classes/Reachability.html</Path>
+		</Node>
+		<Node id="20">
+			<Name>SeparatorNodeObject</Name>
+			<Path>Classes/SeparatorNodeObject.html</Path>
+		</Node>
+		<Node id="21">
+			<Name>UrlCell</Name>
+			<Path>Classes/UrlCell.html</Path>
+		</Node>
+		<Node id="22">
+			<Name>XmlViewerWindowController</Name>
+			<Path>Classes/XmlViewerWindowController.html</Path>
+		</Node>
+		
+		<Node id="23">
+			<Name>NSArray(ObjectiveSugar)</Name>
+			<Path>Categories/NSArray+ObjectiveSugar.html</Path>
+		</Node>
+		<Node id="24">
+			<Name>NSColor(Extensions)</Name>
+			<Path>Categories/NSColor+Extensions.html</Path>
+		</Node>
+		<Node id="25">
+			<Name>NSManagedObject(Mappings)</Name>
+			<Path>Categories/NSManagedObject+Mappings.html</Path>
+		</Node>
+		<Node id="26">
+			<Name>NSMutableArray(ObjectiveSugar)</Name>
+			<Path>Categories/NSMutableArray+ObjectiveSugar.html</Path>
+		</Node>
+		<Node id="27">
+			<Name>NSString(Extensions)</Name>
+			<Path>Categories/NSString+Extensions.html</Path>
+		</Node>
+		<Node id="28">
+			<Name>NSString(ObjectiveSugar)</Name>
+			<Path>Categories/NSString+ObjectiveSugar.html</Path>
+		</Node>
+		<Node id="29">
+			<Name>NSUserDefaults(NSColor)</Name>
+			<Path>Categories/NSUserDefaults+NSColor.html</Path>
+		</Node>
+		<Node id="30">
+			<Name>NSView(CNSplitViewToolbar)</Name>
+			<Path>Categories/NSView+CNSplitViewToolbar.html</Path>
+		</Node>
+		
+		<Node id="31">
+			<Name>CHCSVParserDelegate</Name>
+			<Path>Protocols/CHCSVParserDelegate.html</Path>
+		</Node>
+		<Node id="32">
+			<Name>CNSplitViewToolbarDelegate</Name>
+			<Path>Protocols/CNSplitViewToolbarDelegate.html</Path>
+		</Node>
+		
+	</Library>
+</DocSetNodes>
