@@ -4,20 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-ObjectiveRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ObjectiveSugar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C8A01DD9C7144DB8B3819C3F</key>
+		<key>03103BA08BB440A8B80322FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA7ABA4F743D442CA864E01B</key>
+		<key>2B3C6C121DB043589F6A3443</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C98196FCFE70449491A2E393</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -15,6 +15,6 @@
 // ObjectiveSugar
 #define COCOAPODS_POD_AVAILABLE_ObjectiveSugar
 #define COCOAPODS_VERSION_MAJOR_ObjectiveSugar 1
-#define COCOAPODS_VERSION_MINOR_ObjectiveSugar 0
+#define COCOAPODS_VERSION_MINOR_ObjectiveSugar 1
 #define COCOAPODS_VERSION_PATCH_ObjectiveSugar 0
 
