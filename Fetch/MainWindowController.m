@@ -2072,6 +2072,8 @@
 
 -(void)accessDenied
 {
+    NSLog(@"%s", __FUNCTION__);
+
     NSAlert *accessDeniedAlert = [NSAlert alertWithMessageText:@"Access Denied"
                                                  defaultButton:@"OK"
                                                alternateButton:nil
