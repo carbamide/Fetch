@@ -32,6 +32,14 @@
         [tempUrl setUrl:tempDict[kUrl]];
         [tempUrl setMethod:tempDict[kMethod]];
         
+        if ([tempDict hasKey:kAuthUsername]) {
+            [tempUrl setUsername:tempDict[kAuthUsername]];
+        }
+        
+        if ([tempDict hasKey:kAuthPassword]) {
+            [tempUrl setPassword:tempDict[kAuthPassword]];
+        }
+        
         if ([tempDict hasKey:kUrlDescription]) {
             [tempUrl setUrlDescription:tempDict[kUrlDescription]];
         }
@@ -117,6 +125,14 @@
         
         if ([parameterArray count] > 0) {
             [tempDict setObject:parameterArray forKey:kParameters];
+        }
+        
+        if ([[tempUrl username] length] > 0) {
+            [tempDict setObject:[tempUrl username] forKey:kAuthUsername];
+        }
+        
+        if ([[tempUrl password] length] > 0) {
+            [tempDict setObject:[tempUrl password] forKey:kAuthPassword];
         }
         
         [urlArray addObject:tempDict];

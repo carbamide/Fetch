@@ -188,6 +188,11 @@
  */
 -(NetworkStatus)urlVerification:(NSString *)urlString;
 
+/**
+ *  Alert the user that access has been denied from the server.  A 401 has occurred.
+ */
+-(void)accessDenied;
+
 @end
 
 @implementation MainWindowController
@@ -1021,6 +1026,22 @@
             [[self currentUrl] save];
         }
         
+        if ([[[self currentUrl] username] length] > 0 && [[[self currentUrl] password] length] > 0) {
+            NSString *authString = [NSString stringWithFormat:@"%@:%@", [[self currentUrl] username], [[self currentUrl] password]];
+            NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
+            
+            NSString *authValue = nil;
+            
+            if ([authData respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
+                authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+            }
+            else {
+                authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
+            }
+            
+            [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+        }
+        
         _fetchConnection = [FetchURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,
                                                                                                                                       NSData *data,
                                                                                                                                       NSError *connectionError) {
@@ -1029,6 +1050,10 @@
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)response;
+            
+            if ([urlResponse statusCode] == 401) {
+                [self accessDenied];
+            }
             
             NSMutableDictionary *responseDict = [[urlResponse allHeaderFields] mutableCopy];
             
@@ -1354,6 +1379,8 @@
         [duplicateUrl setMethod:[oldUrl method]];
         [duplicateUrl setCustomPayload:[oldUrl customPayload]];
         [duplicateUrl setCreatedAt:[NSDate date]];
+        [duplicateUrl setUsername:[oldUrl username]];
+        [duplicateUrl setPassword:[oldUrl password]];
         
         if ([[oldUrl urlDescription] length] > 0) {
             [duplicateUrl setUrlDescription:[NSString stringWithFormat:@"%@ (Duplicate)", [oldUrl urlDescription]]];
@@ -1419,6 +1446,22 @@
         }
         else {
             [[self fetchButton] setEnabled:NO];
+        }
+    }
+    else if ([notification object] == [self usernameTextField]) {
+        if ([[[self usernameTextField] stringValue] length] > 0) {
+            if ([self currentUrl]) {
+                [[self currentUrl] setUsername:[[self usernameTextField] stringValue]];
+                [[self currentUrl] save];
+            }
+        }
+    }
+    else if ([notification object] == [self passwordTextField]) {
+        if ([[[self passwordTextField] stringValue] length] > 0) {
+            if ([self currentUrl]) {
+                [[self currentUrl] setPassword:[[self passwordTextField] stringValue]];
+                [[self currentUrl] save];
+            }
         }
     }
 }
@@ -2025,6 +2068,13 @@
     NetworkStatus status = [reachability currentReachabilityStatus];
     
     return status;
+}
+
+-(void)accessDenied
+{
+    NSAlert *accessDeniedAlert = [NSAlert alertWithMessageText:@"Access Denied" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The server has returned a status code of 401.  This usually means that your authorization username or password is incorrect."];
+    
+    [accessDeniedAlert beginSheetModalForWindow:[self window] completionHandler:nil];
 }
 
 #pragma mark -
