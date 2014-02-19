@@ -599,6 +599,23 @@
         [[self paramSegCont] setEnabled:YES];
         [[[self paramSegCont] animator] setAlphaValue:1.0];
     }
+    
+    [[self usernameTextField] setEnabled:YES];
+    [[self passwordTextField] setEnabled:YES];
+    
+    if ([tempUrl username]) {
+        [[self usernameTextField] setStringValue:[tempUrl username]];
+    }
+    else {
+        [[self usernameTextField] setStringValue:[NSString string]];
+    }
+    
+    if ([tempUrl password]) {
+        [[self passwordTextField] setStringValue:[tempUrl password]];
+    }
+    else {
+        [[self passwordTextField] setStringValue:[NSString string]];
+    }
 }
 
 -(void)addUrl:(id)sender
@@ -963,6 +980,13 @@
             [request setValue:[tempHeader value] forHTTPHeaderField:[tempHeader name]];
         }
         
+        if (![[[self usernameTextField] stringValue] isEqualToString:[[self currentUrl] username]] || ![[[self passwordTextField] stringValue] isEqualToString:[[self currentUrl] password]]) {
+            [[self currentUrl] setUsername:[[self usernameTextField] stringValue]];
+            [[self currentUrl] setPassword:[[self passwordTextField] stringValue]];
+            
+            [[self currentUrl] save];
+        }
+                                                                                                      
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
             [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];

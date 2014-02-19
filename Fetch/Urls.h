@@ -22,6 +22,8 @@
 @property (nonatomic, retain) NSSet *headers;
 @property (nonatomic, retain) NSString *siteStatus;
 @property (nonatomic, retain) NSDate *createdAt;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
 
 @end
 

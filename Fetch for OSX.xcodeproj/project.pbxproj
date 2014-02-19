@@ -107,6 +107,7 @@
 		291BBA9917DAEC4800C771F5 /* NSUserDefaults+NSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NSColor.h"; sourceTree = "<group>"; };
 		291BBA9A17DAEC4800C771F5 /* NSUserDefaults+NSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NSColor.m"; sourceTree = "<group>"; };
 		291BBA9D17DAF18200C771F5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2920116918B502AD00044A21 /* Fetch for OSX 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Fetch for OSX 2.xcdatamodel"; sourceTree = "<group>"; };
 		29438AFA17E222E2002BB433 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		29438AFB17E222E2002BB433 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		294C8F8117ED6D0C0060EF7E /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -901,9 +902,10 @@
 		2983B07617DABE6F001852F2 /* Fetch for OSX.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2920116918B502AD00044A21 /* Fetch for OSX 2.xcdatamodel */,
 				2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */,
 			);
-			currentVersion = 2983B07717DABE6F001852F2 /* Fetch for OSX.xcdatamodel */;
+			currentVersion = 2920116918B502AD00044A21 /* Fetch for OSX 2.xcdatamodel */;
 			path = "Fetch for OSX.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

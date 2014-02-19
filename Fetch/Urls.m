@@ -19,5 +19,7 @@
 @dynamic urlDescription;
 @dynamic siteStatus;
 @dynamic createdAt;
+@dynamic username;
+@dynamic password;
 
 @end

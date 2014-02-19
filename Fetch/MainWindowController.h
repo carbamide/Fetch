@@ -72,6 +72,16 @@
 @property (strong) IBOutlet CNSplitView *splitView;
 
 /**
+ *  Username text field - used for basic auth
+ */
+@property (weak) IBOutlet NSTextField *usernameTextField;
+
+/**
+ *  Password text field - used for basic auth
+ */
+@property (weak) IBOutlet NSTextField *passwordTextField;
+
+/**
  *  NSTextFinder for the outputTextView
  */
 @property (strong, nonatomic) IBOutlet NSTextFinder *textFinder;
