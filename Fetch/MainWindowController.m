@@ -2072,7 +2072,11 @@
 
 -(void)accessDenied
 {
-    NSAlert *accessDeniedAlert = [NSAlert alertWithMessageText:@"Access Denied" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The server has returned a status code of 401.  This usually means that your authorization username or password is incorrect."];
+    NSAlert *accessDeniedAlert = [NSAlert alertWithMessageText:@"Access Denied"
+                                                 defaultButton:@"OK"
+                                               alternateButton:nil
+                                                   otherButton:nil
+                                     informativeTextWithFormat:@"The server has returned a status code of 401.  This usually means that your authorization username or password is incorrect."];
     
     [accessDeniedAlert beginSheetModalForWindow:[self window] completionHandler:nil];
 }
