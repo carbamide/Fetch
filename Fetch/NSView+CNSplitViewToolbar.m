@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 cocoa:naut. All rights reserved.
 //
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 #import "NSView+CNSplitViewToolbar.h"
 
 

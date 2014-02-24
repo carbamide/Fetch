@@ -5,7 +5,7 @@
 //  Copyright 2010 Troy Brant. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 
 @interface XMLReader : NSObject <NSXMLParserDelegate>

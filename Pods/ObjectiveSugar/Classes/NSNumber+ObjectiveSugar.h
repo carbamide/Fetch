@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 mneorr.com | @mneorr | mneorr@gmail.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSNumber (ObjectiveSugar)
 

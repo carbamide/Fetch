@@ -28,7 +28,7 @@
  THE SOFTWARE.
  */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface CNSplitViewDraggingHandle : NSView
 

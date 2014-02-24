@@ -837,6 +837,13 @@
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch for OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"\"-isystem${PODS_ROOT}/Headers\"",
+					"\"-isystem${PODS_ROOT}/Headers/ObjectiveRecord\"",
+					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
+					"-Weverything",
+				);
 				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
 			};
@@ -861,6 +868,13 @@
 				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Fetch/Fetch for OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"\"-isystem${PODS_ROOT}/Headers\"",
+					"\"-isystem${PODS_ROOT}/Headers/ObjectiveRecord\"",
+					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
+					"-Weverything",
+				);
 				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
 			};

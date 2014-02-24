@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 cocoa:naut. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "CNSplitViewDefinitions.h"
 
 

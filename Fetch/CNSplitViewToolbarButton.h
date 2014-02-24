@@ -29,7 +29,7 @@
  */
 
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #import "CNSplitViewDefinitions.h"
 
 

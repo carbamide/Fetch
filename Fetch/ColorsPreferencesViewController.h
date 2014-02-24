@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jukaela Enterprises. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface ColorsPreferencesViewController : NSViewController
 
@@ -27,7 +27,7 @@
 
 /**
  * Saves the color for the specified property
- * @sender The NSColorWell object that is calling this method
+ * @param sender The NSColorWell object that is calling this method
  */
 -(IBAction)saveColorForProperty:(id)sender;
 

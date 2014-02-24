@@ -86,7 +86,7 @@ static CGFloat kDefaultImageFraction, kDefaultImageEnabledFraction, kDefaultImag
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Drawing
 
-- (void)drawBezelWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
+- (void)drawBezelWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
     NSBezierPath *buttonPath = [NSBezierPath bezierPathWithRect:cellFrame];
     switch (self.isHighlighted) {

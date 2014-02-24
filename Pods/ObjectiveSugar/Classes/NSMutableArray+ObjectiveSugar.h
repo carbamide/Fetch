@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 @mneorr | mneorr.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSMutableArray (ObjectiveSugar)
 

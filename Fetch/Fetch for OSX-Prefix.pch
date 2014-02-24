@@ -8,11 +8,9 @@
     #import <ObjectiveRecord/ObjectiveRecord.h>
     #import <ObjectiveSugar/ObjectiveSugar.h>
     #import "Extensions.h"
-    #import <Cocoa/Cocoa.h>
+    @import Cocoa;
 
     #ifdef DEBUG
     #   define NSLog(...) NSLog(__VA_ARGS__)
-    #else
-    #   define NSLog(...)
     #endif
 #endif

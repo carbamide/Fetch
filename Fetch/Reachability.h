@@ -45,15 +45,15 @@
  
  */
 
-#import <Foundation/Foundation.h>
-#import <SystemConfiguration/SystemConfiguration.h>
+@import Foundation;
+@import SystemConfiguration;
 
-#import <sys/socket.h>
-#import <netinet/in.h>
+@import Darwin.POSIX.sys.socket;
+@import Darwin.POSIX.netinet.in;
 #import <netinet6/in6.h>
-#import <arpa/inet.h>
+@import Darwin.POSIX.arpa.inet;
 #import <ifaddrs.h>
-#import <netdb.h>
+@import Darwin.POSIX.netdb;
 
 /**
  * Does ARC support GCD objects?

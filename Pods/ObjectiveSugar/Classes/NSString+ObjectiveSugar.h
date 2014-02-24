@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 @mneorr | mneorr.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 NSString *NSStringWithFormat(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 

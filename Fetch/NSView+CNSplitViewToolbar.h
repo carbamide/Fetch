@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 cocoa:naut. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #import "CNSplitViewDefinitions.h"
 
 @interface NSView (CNSplitViewToolbar)

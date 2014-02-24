@@ -28,7 +28,7 @@
  THE SOFTWARE.
 */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #import "CNSplitViewDefinitions.h"
 #import "CNSplitViewToolbar.h"
 #import "CNSplitViewToolbarButton.h"

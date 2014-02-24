@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 mneorr.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import <CoreData/CoreData.h>
 
 @interface CoreDataManager : NSObject
