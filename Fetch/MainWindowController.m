@@ -1001,10 +1001,10 @@
             
             for (Parameters *tempParam in [self paramDataSource]) {
                 if (tempParam == [[self paramDataSource] first]) {
-                    [parameters appendString:[NSString stringWithFormat:@"?%@=%@", [tempParam name], [tempParam value]]];
+                    [parameters appendString:[NSString stringWithFormat:@"?%@=%@", [[tempParam name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[tempParam value] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
                 }
                 else {
-                    [parameters appendString:[NSString stringWithFormat:@"&%@=%@", [tempParam name], [tempParam value]]];
+                    [parameters appendString:[NSString stringWithFormat:@"&%@=%@", [[tempParam name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[tempParam value] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
                 }
             }
         }

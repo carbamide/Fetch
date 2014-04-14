@@ -842,7 +842,7 @@
 					"\"-isystem${PODS_ROOT}/Headers\"",
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveRecord\"",
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
-					"-Weverything",
+					"-Wno-unreachable-code",
 				);
 				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
@@ -873,7 +873,7 @@
 					"\"-isystem${PODS_ROOT}/Headers\"",
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveRecord\"",
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
-					"-Weverything",
+					"-Wno-unreachable-code",
 				);
 				PRODUCT_NAME = "Fetch for OSX";
 				WRAPPER_EXTENSION = app;
