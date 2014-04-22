@@ -538,6 +538,10 @@
         [[self customPayloadTextView] setString:[tempUrl customPayload]];
         [[self customPostBodyCheckBox] setState:NSOnState];
     }
+    else {
+        [[self customPayloadTextView] setString:[NSString string]];
+        [[self customPostBodyCheckBox] setState:NSOffState];
+    }
     
     [[self urlDescriptionTextField] setStringValue:[[tempUrl urlDescription] hasValue] ? [tempUrl urlDescription] : [NSString string]];
     [[self methodCombo] selectItemAtIndex:[[tempUrl method] integerValue]];
