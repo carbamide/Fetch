@@ -10,29 +10,29 @@
 	<string>Fetch for OSX</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FC811AEE-464F-4B93-9025-26E009C2EA81</key>
+		<key>3C04380886274B56A9680C97706FFB37D19843D6</key>
 		<string>https://github.com/carbamide/Fetch.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Fetch for OSX.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FC811AEE-464F-4B93-9025-26E009C2EA81</key>
+		<key>3C04380886274B56A9680C97706FFB37D19843D6</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/carbamide/Fetch.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FC811AEE-464F-4B93-9025-26E009C2EA81</string>
+	<string>3C04380886274B56A9680C97706FFB37D19843D6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FC811AEE-464F-4B93-9025-26E009C2EA81</string>
+			<string>3C04380886274B56A9680C97706FFB37D19843D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Fetch</string>
 		</dict>
