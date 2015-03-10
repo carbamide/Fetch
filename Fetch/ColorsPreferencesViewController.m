@@ -14,8 +14,6 @@
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
@@ -27,8 +25,6 @@
 
 - (void)awakeFromNib
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super awakeFromNib];
     
     NSColor *defaultSeparatorColor = [NSColor colorWithCalibratedRed:0.194759 green:0.33779 blue:1 alpha:1];
@@ -68,8 +64,6 @@
 
 -(IBAction)saveColorForProperty:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     
     NSColorWell *colorWell = sender;
     

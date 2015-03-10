@@ -14,8 +14,6 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -25,8 +23,6 @@
 
 -(void)awakeFromNib
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super awakeFromNib];
     
     [[self textField] setEditable:NO];
@@ -35,8 +31,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSLog(@"%s", __FUNCTION__);
-    
 	[super drawRect:dirtyRect];
 	
     // Drawing code here.
@@ -44,8 +38,6 @@
 
 -(IBAction)addUrl:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:kAddUrlNotification object:nil userInfo:@{@"project": [self project]}];
 }
 

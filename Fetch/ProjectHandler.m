@@ -17,8 +17,6 @@
 
 +(BOOL)importFromPath:(NSString *)path
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSDictionary *importedDictionary = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     
     Projects *tempProject = [Projects create];
@@ -76,8 +74,6 @@
 
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
     
     [returnDictionary setObject:[project name] forKey:kProjectName];
@@ -157,5 +153,82 @@
     [encodedData writeToURL:url atomically:YES];
     
     return returnDictionary;
+}
+
++(NSString *)exportProjectAsPlainText:(Projects *)project toUrl:(NSURL *)url
+{
+    NSMutableString *returnString = [[NSMutableString alloc] init];
+    
+    [returnString appendFormat:@"Project Name: %@\n", [project name]];
+    
+    NSMutableString *urlsString = [[NSMutableString alloc] init];
+    
+    for (Urls *tempUrl in [project urls]) {
+        NSMutableString *urlString = [[NSMutableString alloc] init];
+        [urlString appendFormat:@"URL: %@\n", [tempUrl url]];
+        [urlString appendFormat:@"URL Description: %@\n", [tempUrl urlDescription]];
+        [urlString appendFormat:@"Method: %@\n", [ProjectHandler methodStringForMethodType:[[tempUrl method] intValue]]];
+        [urlString appendFormat:@"Custom Payload: %@\n", [tempUrl customPayload]];
+        
+        NSMutableString *headerString = [[NSMutableString alloc] init];
+        NSMutableString *parameterString = [[NSMutableString alloc] init];
+        
+        for (Headers *tempHeader in [tempUrl headers]) {
+            [headerString appendFormat:@"Header Name: %@\nHeader Value: %@\n", [tempHeader name], [tempHeader value]];
+        }
+        
+        for (Parameters *tempParameter in [tempUrl parameters]) {
+            [parameterString appendFormat:@"Parameter Name: %@\nParameter Value: %@\n", [tempParameter name], [tempParameter value]];
+        }
+        
+        [urlString appendFormat:@"Headers: \n%@\n", headerString];
+        [urlString appendFormat:@"Parameters: \n%@\n", parameterString];
+        [urlString appendFormat:@"Username: %@\n", [tempUrl username]];
+        [urlString appendFormat:@"Password: %@\n", [tempUrl password]];
+        [urlString appendString:@"\n____________\n"];
+        
+        [urlsString appendFormat:@"%@\n", urlString];
+    }
+    
+    [returnString appendFormat:@"URLs: \n%@\n", urlsString];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        NSError *error = nil;
+        
+        [[NSFileManager defaultManager] removeItemAtURL:url error:&error];
+        
+        if (error) {
+            NSLog(@"%@", [error description]);
+        }
+    }
+    
+    [returnString writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    return returnString;
+}
+
++(NSString *)methodStringForMethodType:(int) method
+{
+    NSString *returnString = nil;
+    
+    switch (method) {
+        case 0:
+            returnString = @"GET";
+            break;
+        case 1:
+            returnString = @"POST";
+            break;
+        case 2:
+            returnString = @"PUT";
+            break;
+        case 3:
+            returnString = @"DELETE";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return returnString;
 }
 @end

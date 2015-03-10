@@ -91,6 +91,11 @@
 @property (strong, nonatomic) FetchURLConnection *fetchConnection;
 
 /**
+ *  Current activity - used for hand off purposes
+ */
+@property (strong, nonatomic) NSUserActivity *currentActivity;
+
+/**
  *  The item currently being dragged
  */
 @property (strong, nonatomic) Urls *draggedNode;
@@ -202,8 +207,6 @@
 
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
@@ -218,9 +221,16 @@
 
 -(void)windowDidLoad
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super windowDidLoad];
+    
+    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.jukaela.fetch"];
+    [activity setTitle:@"Fetch"];
+    
+    [self setCurrentActivity:activity];
+    [[self currentActivity] becomeCurrent];
+    
+    [[self currentActivity] setDelegate:self];
+    [[self currentActivity] setNeedsSave:YES];
     
     [[self logRequestCheckBox] setToolTip:@"Log the HTTP request to the output."];
     [[self customPostBodyCheckBox] setToolTip:@"Add a custom payload, usually a JSON string, to the HTTP request."];
@@ -283,6 +293,11 @@
     [self splitView:[self splitView] constrainSplitPosition:[[[NSUserDefaults standardUserDefaults] valueForKey:kSplitViewPosition] floatValue] ofSubviewAt:0];
 }
 
+-(void)updateUserActivityState:(NSUserActivity *)activity
+{
+    [super updateUserActivityState:activity];
+}
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
@@ -294,8 +309,6 @@
 
 - (void)setupSplitviewControls
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [self setToolbar:[[CNSplitViewToolbar alloc] init]];
     
     NSMenu *contextMenu = [[NSMenu alloc] init];
@@ -334,8 +347,6 @@
 
 -(void)preferencesChanges:(NSNotification *)aNotification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSColor *backgroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kBackgroundColor];
     NSColor *foregroundColor = [[NSUserDefaults standardUserDefaults] colorForKey:kForegroundColor];
     
@@ -368,7 +379,6 @@
 
 -(void)setupSegmentedControls
 {
-    NSLog(@"%s", __FUNCTION__);
 
     [[self headerSegCont] setEnabled:[[self headerDataSource] count] != 0 forSegment:1];
     [[self paramSegCont] setEnabled:[[self paramDataSource] count] != 0 forSegment:1];
@@ -376,8 +386,6 @@
 
 -(void)unloadData
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self parseButton] setEnabled:NO];
     [[self fetchButton] setEnabled:NO];
     [[self urlTextField] setEnabled:NO];
@@ -400,8 +408,6 @@
 
 - (void)appendToOutput:(id)text color:(NSColor *)color
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (!text) {
         text = @"ERROR";
     }
@@ -430,8 +436,6 @@
 
 -(void)logReqest:(NSMutableURLRequest *)request
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self appendToOutput:kRequestSeparator color:[userDefaults colorForKey:kSeparatorColor]];
@@ -445,8 +449,6 @@
 
 -(BOOL)addToUrlListIfUnique
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (![[self urlTextField] stringValue] || [[[self urlTextField] stringValue] isEqualToString:[NSString string]]) {
         return NO;
     }
@@ -454,11 +456,11 @@
     BOOL validPrefix = [[[self urlTextField] stringValue] hasValidURLPrefix];
     
     if (!validPrefix) {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Invalid URL"
-                                              defaultButton:@"OK"
-                                            alternateButton:nil
-                                                otherButton:nil
-                                  informativeTextWithFormat:@"The url must be prefixed with the URL type.  Valid types are http and https"];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
+        
+        [errorAlert setMessageText:@"Invalid URL"];
+        [errorAlert setInformativeText:@"The url must be prefixed with the URL type.  Valid types are http and https."];
+        [errorAlert addButtonWithTitle:@"OK"];
         
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
         
@@ -501,14 +503,13 @@
 
 -(void)loadUrl:(Urls *)url
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([self isFetching]) {
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Change URL?"
-                                         defaultButton:@"Yes"
-                                       alternateButton:@"Nevermind"
-                                           otherButton:nil
-                             informativeTextWithFormat:@"A Fetch is currently happening.  Are you sure you wish to switch urls?"];
+        NSAlert *alert = [[NSAlert alloc] init];
+        
+        [alert setMessageText:@"Change URL?"];
+        [alert setInformativeText:@"A Fetch is currently happening.  Are you sure you wish to switch urls?"];
+        [alert addButtonWithTitle:@"Yes"];
+        [alert addButtonWithTitle:@"Nevermind"];
         
         [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
             if (response == NSModalResponseOK) {
@@ -629,8 +630,6 @@
 
 -(void)addUrl:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     Projects *tempProject = nil;
     
     if ([sender isKindOfClass:[NSNotification class]]) {
@@ -673,22 +672,23 @@
     }
     
     if (!clickedUrl) {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
-                                              defaultButton:@"OK"
-                                            alternateButton:nil
-                                                otherButton:nil
-                                  informativeTextWithFormat:@"An error has occurred.  Please try again."];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
+        
+        [errorAlert setMessageText:@"Error"];
+        [errorAlert setInformativeText:@"An error has occurred.  Please try again."];
+        [errorAlert addButtonWithTitle:@"OK"];
         
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
     
     NSString *messageString = [NSString stringWithFormat:@"Are you sure you wish to clone the headers from \"%@\" to all the other URLs in this Project?", [clickedUrl urlDescription] ? [clickedUrl urlDescription] : [clickedUrl url]];
     
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Clone Headers?"
-                                     defaultButton:@"OK"
-                                   alternateButton:nil
-                                       otherButton:@"Cancel"
-                         informativeTextWithFormat:messageString, nil];
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setMessageText:@"Clone Headers?"];
+    [alert setInformativeText:messageString];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
     
     [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
         if (response == NSModalResponseOK) {
@@ -727,15 +727,13 @@
 
 -(void)importProject:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
     [openPanel setTitle:@"Import"];
     [openPanel setAllowedFileTypes:@[@"fetch"]];
     [openPanel setAllowsMultipleSelection:NO];
     
-    if ([openPanel runModal] == NSOKButton) {
+    if ([openPanel runModal] == NSModalResponseOK) {
         if ([ProjectHandler importFromPath:[[openPanel URL] path]]) {
             [[self projectList] removeAllObjects];
             
@@ -750,34 +748,71 @@
 
 -(void)exportProject:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
+    NSString *messageText = @"Would you like to export the project as plain text, or as a .fetch file that can be imported into another instance of Fetch or the Fetch for iOS client?";
     
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    NSAlert *alert = [[NSAlert alloc] init];
     
-    id selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+    [alert setMessageText:@"Export Project?"];
+    [alert setInformativeText:messageText];
+    [alert addButtonWithTitle:@".Fetch File"];
+    [alert addButtonWithTitle:@"Plain Text"];
+    [alert addButtonWithTitle:@"Cancel"];
     
-    if ([selectedProject isKindOfClass:[Urls class]]) {
-        selectedProject = [selectedProject project];
-    }
+    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+        if (response == 1000) {
+            NSSavePanel *savePanel = [NSSavePanel savePanel];
+            
+            id selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+            
+            if ([selectedProject isKindOfClass:[Urls class]]) {
+                selectedProject = [selectedProject project];
+            }
+            
+            if (!selectedProject) {
+                selectedProject = [self currentProject];
+            }
+            
+            NSAssert(selectedProject, @"selectedProject cannot be nil in %s", __FUNCTION__);
+            
+            [savePanel setTitle:@"Export"];
+            [savePanel setNameFieldStringValue:[[selectedProject name] stringByAppendingPathExtension:@"fetch"]];
+            
+            if ([savePanel runModal] == NSModalResponseOK) {
+                [ProjectHandler exportProject:selectedProject toUrl:[savePanel URL]];
+            }
+        }
+        else if (response == 1001) {
+            NSSavePanel *savePanel = [NSSavePanel savePanel];
+            
+            id selectedProject = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
+            
+            if ([selectedProject isKindOfClass:[Urls class]]) {
+                selectedProject = [selectedProject project];
+            }
+            
+            if (!selectedProject) {
+                selectedProject = [self currentProject];
+            }
+            
+            NSAssert(selectedProject, @"selectedProject cannot be nil in %s", __FUNCTION__);
+            
+            [savePanel setTitle:@"Export"];
+            [savePanel setNameFieldStringValue:[[selectedProject name] stringByAppendingPathExtension:@"txt"]];
+            
+            if ([savePanel runModal] == NSModalResponseOK) {
+                [ProjectHandler exportProjectAsPlainText:selectedProject toUrl:[savePanel URL]];
+            }
+        }
+        else {
+            return;
+        }
+    }];
     
-    if (!selectedProject) {
-        selectedProject = [self currentProject];
-    }
     
-    NSAssert(selectedProject, @"selectedProject cannot be nil in %s", __FUNCTION__);
-    
-    [savePanel setTitle:@"Export"];
-    [savePanel setNameFieldStringValue:[[selectedProject name] stringByAppendingPathExtension:@"fetch"]];
-    
-    if ([savePanel runModal] == NSOKButton) {
-        [ProjectHandler exportProject:selectedProject toUrl:[savePanel URL]];
-    }
 }
 
 -(void)loadProject:(Projects *)project
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self headerDataSource] removeAllObjects];
     [[self headersTableView] reloadData];
     
@@ -806,14 +841,12 @@
 
 -(void)saveLog
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     
     [savePanel setTitle:@"Save Log"];
     [savePanel setNameFieldStringValue:[@"LogFile" stringByAppendingPathExtension:@"txt"]];
     
-    if ([savePanel runModal] == NSOKButton) {
+    if ([savePanel runModal] == NSModalResponseOK) {
         NSError *error = nil;
         
         [[[self outputTextView] string] writeToFile:[[savePanel URL] path] atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -828,8 +861,6 @@
 
 -(void)addProject
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (![self projectList]) {
         [self setProjectList:[[NSMutableArray alloc] init]];
     }
@@ -866,14 +897,17 @@
 
 -(void)removeProjectOrUrl
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id item = [[self projectSourceList] itemAtRow:[[self projectSourceList] selectedRow]];
     
     if ([item isKindOfClass:[Projects class]]) {
         NSString *messageText = [NSString stringWithFormat:@"Delete project \"%@\"?  You cannot undo this action.", [item name]];
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Delete Project?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
+        NSAlert *alert = [[NSAlert alloc] init];
+        
+        [alert setMessageText:@"Delete Project?"];
+        [alert setInformativeText:messageText];
+        [alert addButtonWithTitle:@"Delete"];
+        [alert addButtonWithTitle:@"Cancel"];
         
         [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
             if (response == NSModalResponseOK) {
@@ -914,10 +948,15 @@
 {
     NSString *messageText = @"Delete url? You cannot undo this action.";
     
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Delete URL?" defaultButton:@"Delete" alternateButton:nil otherButton:@"Cancel" informativeTextWithFormat:messageText, nil];
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setMessageText:@"Delete URL?"];
+    [alert setInformativeText:messageText];
+    [alert addButtonWithTitle:@"Delete"];
+    [alert addButtonWithTitle:@"Cancel"];
     
     [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
-        if (response == NSModalResponseOK) {
+        if (response == 1000) {
             [item delete];
             
             if (item == [self currentUrl]) {
@@ -948,8 +987,6 @@
 
 -(IBAction)fetchAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask)) {
         [self clearOutput:nil];
     }
@@ -1034,14 +1071,7 @@
             NSString *authString = [NSString stringWithFormat:@"%@:%@", [[self currentUrl] username], [[self currentUrl] password]];
             NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
             
-            NSString *authValue = nil;
-            
-            if ([authData respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
-                authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
-            }
-            else {
-                authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
-            }
+            NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
             
             [request setValue:authValue forHTTPHeaderField:@"Authorization"];
         }
@@ -1128,8 +1158,6 @@
 
 -(IBAction)headerSegContAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSSegmentedControl *tempSegCont = sender;
     
     if ([tempSegCont selectedSegment] == 0) {
@@ -1169,8 +1197,6 @@
 
 -(IBAction)parameterSegContAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSSegmentedControl *tempSegCont = sender;
     
     if ([tempSegCont selectedSegment] == 0) {
@@ -1209,8 +1235,6 @@
 
 -(IBAction)customPostBodyAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([[self customPostBodyCheckBox] state] == NSOnState) {
         [[[self customPayloadTextView] enclosingScrollView] setHidden:NO];
         
@@ -1227,8 +1251,6 @@
 
 -(IBAction)clearOutput:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self outputTextView] setString:[NSString string]];
     
     [[self clearOutputButton] setEnabled:NO];
@@ -1236,8 +1258,6 @@
 
 -(IBAction)showJson:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSError *error = nil;
     
     id jsonData = [NSJSONSerialization JSONObjectWithData:[self responseData] options:0 error:&error];
@@ -1262,8 +1282,6 @@
 
 -(IBAction)showCsv:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSArray *rows = [NSArray arrayWithContentsOfString:[[NSString alloc] initWithData:[self responseData] encoding:NSUTF8StringEncoding] options:CHCSVParserOptionsSanitizesFields|CHCSVParserOptionsStripsLeadingAndTrailingWhitespace];
     
     if (rows) {
@@ -1274,21 +1292,19 @@
         [[[self csvWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
-                                              defaultButton:@"OK"
-                                            alternateButton:nil
-                                                otherButton:nil
-                                  informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
         
+        [errorAlert setMessageText:@"Error"];
+        [errorAlert setInformativeText:@"The data is not in the correct format."];
+        [errorAlert addButtonWithTitle:@"OK"];
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
+        
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
 -(IBAction)showXml:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSError *parseError = nil;
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:[self responseData] error:&parseError];
     
@@ -1304,24 +1320,22 @@
         [[[self xmlWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
-                                              defaultButton:@"OK"
-                                            alternateButton:nil
-                                                otherButton:nil
-                                  informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
         
+        [errorAlert setMessageText:@"Error"];
+        [errorAlert setInformativeText:@"The data is not in the correct format."];
+        [errorAlert addButtonWithTitle:@"OK"];
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
+        
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
 -(IBAction)showPlist:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
-    NSString *errorDescription = nil;
+    NSError *error = nil;
     NSPropertyListFormat format;
-    NSDictionary *plistDictionary = [NSPropertyListSerialization propertyListFromData:[self responseData] mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&errorDescription];
+    NSDictionary *plistDictionary = [NSPropertyListSerialization propertyListWithData:[self responseData] options:NSPropertyListImmutable format:&format error:&error];
     
     if (plistDictionary) {
         if (![self plistWindow]) {
@@ -1335,21 +1349,19 @@
         [[[self plistWindow] window] makeKeyAndOrderFront:self];
     }
     else {
-        NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Error"
-                                              defaultButton:@"OK"
-                                            alternateButton:nil
-                                                otherButton:nil
-                                  informativeTextWithFormat:@"The data is not in the correct format."];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
         
+        [errorAlert setMessageText:@"Error"];
+        [errorAlert setInformativeText:@"The data is not in the correct format."];
+        [errorAlert addButtonWithTitle:@"OK"];
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
+
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
 -(IBAction)duplicateURL:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     @try {
         Projects *tempProject = [[self clickedUrl] project];
         
@@ -1399,13 +1411,13 @@
         [[self projectSourceList] reloadData];
     }
     @catch (NSException *exception) {
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Error"
-                                         defaultButton:@"OK"
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:@"There was an error duplicating the URL."];
+        NSAlert *errorAlert = [[NSAlert alloc] init];
         
-        [alert beginSheetModalForWindow:[self window] completionHandler:nil];
+        [errorAlert setMessageText:@"Error"];
+        [errorAlert setInformativeText:@"There was an error duplicating the URL."];
+        [errorAlert addButtonWithTitle:@"OK"];
+        
+        [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
 
@@ -1416,8 +1428,6 @@
 
 -(IBAction)renameProject:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     ProjectCell *cell = [[self projectSourceList] viewAtColumn:0 row:[[self projectSourceList] clickedRow] makeIfNecessary:NO];
     
     NSTextField *textField = [cell textField];
@@ -1439,8 +1449,6 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([notification object] == [self urlTextField]) {
         if ([[[self urlTextField] stringValue] length] > 0) {
             if ([self currentUrl]) {
@@ -1472,8 +1480,6 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([notification object] == [self urlTextField]) {
         if ([[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement) {
             [self fetchAction:nil];
@@ -1505,8 +1511,6 @@
 
 -(void)textDidEndEditing:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([notification object] == [self customPayloadTextView]) {
         Urls *tempUrl = [self currentUrl];
         
@@ -1525,8 +1529,6 @@
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (tableView == [self headersTableView]) {
         return [[self headerDataSource] count];
     }
@@ -1540,8 +1542,6 @@
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSString *identifier = [tableColumn identifier];
     
     if (tableView == [self headersTableView]) {
@@ -1568,8 +1568,6 @@
 
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSString *identifier = [tableColumn identifier];
     
     if ([self currentProject]) {
@@ -1647,8 +1645,6 @@
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([notification object] == [self methodCombo]) {
         if ([self currentUrl]) {
             [self addToUrlListIfUnique];
@@ -1664,8 +1660,6 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (!item) {
         return [[self projectList] objectAtIndex:index];
     }
@@ -1680,8 +1674,6 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([item isKindOfClass:[Projects class]]) {
         Projects *tempProject = item;
         
@@ -1695,15 +1687,11 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     return YES;
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (!item) {
         return [[self projectList] count];
     }
@@ -1720,8 +1708,6 @@
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     static NSString *const CellIdentifier = @"DataCell";
     static NSString *const UrlCellIdentifier = @"UrlCell";
     
@@ -1778,8 +1764,6 @@
 
 - (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     Projects *tempProject = item;
     
     [tempProject setName:object];
@@ -1789,8 +1773,6 @@
 
 - (void)outlineViewItemDidExpand:(NSNotification *)notification;
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     Projects *project = [notification userInfo][@"NSObject"];
     
     [project setExpanded:@YES];
@@ -1799,8 +1781,6 @@
 
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     Projects *project = [notification userInfo][@"NSObject"];
     
     [project setExpanded:@NO];
@@ -1809,8 +1789,6 @@
 
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSOutlineView *outlineView = [notification object];
     
     id selectedItem = [outlineView itemAtRow:[outlineView selectedRow]];
@@ -1843,8 +1821,6 @@
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id tempProject = item;
     
     if (tempProject && [tempProject isKindOfClass:[Projects class]]) {
@@ -1866,8 +1842,6 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSPasteboard *pasteboard = [info draggingPasteboard];
     
     NSArray *urls = [pasteboard readObjectsForClasses:@[[NSURL class]] options:0];
@@ -1913,8 +1887,6 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([items[0] isKindOfClass:[Urls class]]) {
         [pasteboard declareTypes:@[@"url"] owner:nil];
         _draggedNode = [items objectAtIndex:0];
@@ -1934,8 +1906,6 @@
 
 - (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[NSFileManager defaultManager] createDirectoryAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"/fetchTemp/"]
                               withIntermediateDirectories:YES attributes:nil error:nil];
     
@@ -1963,8 +1933,6 @@
 
 - (NSUInteger)toolbarAttachedSubviewIndex:(CNSplitViewToolbar *)theToolbar
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     return kProjectListSplitViewSide;
 }
 
@@ -1973,15 +1941,11 @@
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     return kMinimumSplitViewSize;
 }
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     BOOL shouldHideStatusImages = NO;
     
     for (UrlCell *cell in [self urlCellArray]) {
@@ -2028,8 +1992,6 @@
 
 -(void)createTimerWithTimeInterval:(NSTimeInterval)timeInterval
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     _pingTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval block:^{
         
         for (UrlCell *cell in [self urlCellArray]) {
@@ -2063,8 +2025,6 @@
 
 -(NetworkStatus)urlVerification:(NSString *)urlString
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSURL *url = [NSURL URLWithString:urlString];
     
     Reachability *reachability = [Reachability reachabilityWithHostname:[url host]];
@@ -2076,13 +2036,12 @@
 
 -(void)accessDenied
 {
-    NSLog(@"%s", __FUNCTION__);
 
-    NSAlert *accessDeniedAlert = [NSAlert alertWithMessageText:@"Access Denied"
-                                                 defaultButton:@"OK"
-                                               alternateButton:nil
-                                                   otherButton:nil
-                                     informativeTextWithFormat:@"The server has returned a status code of 401.  This usually means that your authorization username or password is incorrect."];
+    NSAlert *accessDeniedAlert = [[NSAlert alloc] init];
+    
+    [accessDeniedAlert setMessageText:@"Access Denied"];
+    [accessDeniedAlert setInformativeText:@"The server has returned a status code of 401.  This usually means that your authorization username or password is incorrect."];
+    [accessDeniedAlert addButtonWithTitle:@"OK"];
     
     [accessDeniedAlert beginSheetModalForWindow:[self window] completionHandler:nil];
 }
@@ -2092,8 +2051,6 @@
 
 -(void)menuNeedsUpdate:(NSMenu *)menu
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSInteger clickedRow = [[self projectSourceList] clickedRow];
     
     if (clickedRow != kNoRowSelected) {

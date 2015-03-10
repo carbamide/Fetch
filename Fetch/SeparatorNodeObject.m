@@ -12,8 +12,6 @@
 
 -(id)init
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super init];
     
     if (self) {

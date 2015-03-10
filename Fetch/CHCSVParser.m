@@ -417,7 +417,6 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
 }
 
 - (BOOL)_parseUnescapedField {
-    
     BOOL isBackslashEscaped = NO;
     while (1) {
         unichar next = [self _peekCharacter];

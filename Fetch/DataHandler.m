@@ -14,8 +14,6 @@
 
 - (id)init
 {
-    NSLog(@"%s", __FUNCTION__);
-    
 	self = [super init];
     
     if (self) {
@@ -27,8 +25,6 @@
 
 -(void)addEntries:(id)entries
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSAssert([entries isKindOfClass:[NSDictionary class]], @"Entries must be a dictionary", nil);
     
     if ([entries isKindOfClass:[NSDictionary class]]) {
@@ -38,8 +34,6 @@
 
 -(void)addDictionary:(NSDictionary *)dict array:(NSMutableArray **)array separator:(BOOL)needsSeparator
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:[NSArray class]]) {
             NodeObject *tempArrayObject = [[NodeObject alloc] init];
@@ -90,8 +84,6 @@
 
 -(void)addArray:(NSArray *)array node:(NodeObject *)nodeObject
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSMutableArray *tempArray = [NSMutableArray array];
     
     NSInteger objectCount = 0;
@@ -139,8 +131,6 @@
 
 -(void)addChildren:(NSDictionary *)dict parent:(NodeObject *)parent
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSMutableArray *tempArray = [NSMutableArray array];
     
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {

@@ -15,22 +15,16 @@
 
 -(IBAction)showPreferences:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self preferencesController] showPreferencesWindow:nil];
 }
 
 -(IBAction)showMainWindow:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[[[self delegate] mainWindowController] window] makeKeyAndOrderFront:self];
 }
 
 -(IBAction)closeWindow:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSWindow *windowToClose = [NSApp mainWindow];
     
     [windowToClose close];
@@ -38,35 +32,26 @@
 
 -(IBAction)addUrl:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self mainWindowController] addUrl:sender];
 }
 
 -(IBAction)importProject:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self mainWindowController] importProject:sender];
 }
 
 -(IBAction)saveLog:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self mainWindowController] saveLog];
 }
 
 -(IBAction)findInOutput:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self mainWindowController] findInOutput];
 }
 
 -(IBAction)cloneHeaders:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
 
     [[self mainWindowController] cloneHeaders:sender];
 }

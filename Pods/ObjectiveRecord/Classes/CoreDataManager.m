@@ -116,7 +116,6 @@
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithStoreType:(NSString *const)storeType
                                                                  storeURL:(NSURL *)storeURL {
-    
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES,

@@ -27,7 +27,6 @@
 @implementation NSManagedObject (Mappings)
 
 - (id)keyForRemoteKey:(NSString *)remoteKey {
-    
     if (self.cachedMappings[remoteKey])
         return self.cachedMappings[remoteKey];
     

@@ -29,4 +29,15 @@
  */
 +(NSDictionary *)exportProject:(Projects *)project toUrl:(NSURL *)url;
 
+/**
+ * Export project as plain text
+ *
+ * @param project The Project to export
+ * @param url The url to save the Project to
+ * @return NSString representation of the exported Project
+ */
++(NSString *)exportProjectAsPlainText:(Projects *)project toUrl:(NSURL *)url;
+
++(NSString *)methodStringForMethodType:(int) method;
+
 @end

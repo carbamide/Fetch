@@ -11,7 +11,7 @@
 
 @class JsonViewerWindowController, CsvViewerWindowController, XmlViewerWindowController, PlistViewerWindowController;
 
-@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination, NSMenuDelegate, NSTextDelegate>
+@interface MainWindowController : NSWindowController <NSControlTextEditingDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuDelegate, CNSplitViewToolbarDelegate, NSSplitViewDelegate, NSDraggingDestination, NSMenuDelegate, NSTextDelegate, NSUserActivityDelegate>
 
 /**
  * @name IBOutlets

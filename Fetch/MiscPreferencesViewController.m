@@ -13,8 +13,6 @@
 
 -(void)awakeFromNib
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     BOOL parseHTML = [[NSUserDefaults standardUserDefaults] boolForKey:kParseHtmlInOutput];
     
     [[self attemptToParseHtmlButton] setState:parseHTML];
@@ -45,8 +43,6 @@
 
 -(IBAction)pingReachabilityAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([[self checkSiteReachabilityCheckBox] state] == NSOnState) {
         [[self frequencyToPingLabel] setEnabled:YES];
         [[self frequencyToPingStepper] setEnabled:YES];
@@ -69,7 +65,6 @@
 
 -(IBAction)parseAction:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
 
     [[NSUserDefaults standardUserDefaults] setBool:[[self attemptToParseHtmlButton] state] == NSOnState forKey:kParseHtmlInOutput];
     
@@ -80,8 +75,6 @@
 #pragma mark NSControlTextDelegate
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[NSUserDefaults standardUserDefaults] setValue:[[self frequencyToPingTextField] stringValue] forKey:kFrequencyToPing];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

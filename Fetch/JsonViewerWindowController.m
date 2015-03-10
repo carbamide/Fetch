@@ -20,8 +20,6 @@
 
 - (id)initWithWindowNibName:(NSString *)nibOrNil json:(id)json
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithWindowNibName:nibOrNil];
     if (self) {
         
@@ -40,8 +38,6 @@
 
 -(void)setJsonData:(id)jsonData
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if ([jsonData isKindOfClass:[NSArray class]]) {
         jsonData = @{@"Root": jsonData};
     }
@@ -63,8 +59,6 @@
 
 - (BOOL)outlineView:(NSOutlineView *)oV isItemExpandable:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id tempObject = item;
     
     if ([tempObject isKindOfClass:[NSArray class]]) {
@@ -80,8 +74,6 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)oV numberOfChildrenOfItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id tempObject = item;
     
     if (!tempObject) {
@@ -99,8 +91,6 @@
 
 - (id)outlineView:(NSOutlineView *)oV child:(NSInteger)index ofItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id tempObject = item;
     
     if (!tempObject) {
@@ -116,8 +106,6 @@
 
 - (id)outlineView:(NSOutlineView *)oV objectValueForTableColumn:(NSTableColumn *)theColumn byItem:(id)item
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     id tempObject = item;
     
     if ([[theColumn identifier] isEqualToString:@"Key"]) {

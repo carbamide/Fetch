@@ -16,8 +16,6 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -29,8 +27,6 @@
 
 -(void)awakeFromNib
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super awakeFromNib];
     
     [[self textField] setEditable:NO];
@@ -39,8 +35,6 @@
 
 -(void)viewWillMoveToSuperview:(NSView *)newSuperview
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super viewWillMoveToSuperview:newSuperview];
     
     [[self pingTimer] invalidate];
@@ -50,8 +44,6 @@
 
 -(void)dealloc
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[self pingTimer] invalidate];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -59,8 +51,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSLog(@"%s", __FUNCTION__);
-    
 	[super drawRect:dirtyRect];
 }
 

@@ -15,8 +15,6 @@
 
 - (id)initWithWindowNibName:(NSString *)windowNibName dataSource:(NSArray *)dataSource
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     self = [super initWithWindowNibName:windowNibName];
     
     if (self) {
@@ -27,8 +25,6 @@
 
 - (void)windowDidLoad
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     [super windowDidLoad];
     
     [[self rowCountLabel] setStringValue:[NSString stringWithFormat:@"%ld Rows", (long)[[self csvTableView] numberOfRows]]];
@@ -53,16 +49,12 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     
     return [[self dataSource] count] - 2;
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSArray *tempArray = [self dataSource][rowIndex];
     
     for (int columnIndex = 0; columnIndex < [self numberOfColumns]; columnIndex++) {

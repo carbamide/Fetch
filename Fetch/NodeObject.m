@@ -12,8 +12,6 @@
 
 -(NSString *)nodeTitle
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     if (_objectCount > 0) {
         NSString *returnString = nil;
         

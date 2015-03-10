@@ -20,8 +20,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSLog(@"%s", __FUNCTION__);
-    
     NSColor *defaultSeparatorColor = [NSColor colorWithCalibratedRed:0.194759 green:0.33779 blue:1 alpha:1];
     NSColor *defaultBackgroundColor = [NSColor colorWithCalibratedRed:0.813159 green:0.811473 blue:0.829574 alpha:1];
     NSColor *defaultForegroundColor = [NSColor colorWithCalibratedRed:0.248374 green:0.23825 blue:0.242783 alpha:1];
@@ -46,5 +44,19 @@
     
     [[self mainWindowController] showWindow:self];
 }
+
+- (BOOL)application:(NSApplication *)application
+continueUserActivity: (NSUserActivity *)userActivity
+ restorationHandler: (void (^)(NSArray *))restorationHandler {
+    
+    BOOL handled = YES;
+    
+    return handled;
+}
+
+//-(BOOL)application:(NSApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler
+//{
+//    return true;
+//}
 
 @end
