@@ -223,6 +223,8 @@
 {
     [super windowDidLoad];
     
+    [[self window] setTitle:@"Fetch"];
+    
     NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.jukaela.fetch"];
     [activity setTitle:@"Fetch"];
     
@@ -379,7 +381,7 @@
 
 -(void)setupSegmentedControls
 {
-
+    
     [[self headerSegCont] setEnabled:[[self headerDataSource] count] != 0 forSegment:1];
     [[self paramSegCont] setEnabled:[[self paramDataSource] count] != 0 forSegment:1];
 }
@@ -714,7 +716,7 @@
                             [tempURL addHeadersObject:header];
                             [tempURL save];
                         }
-   
+                        
                     }
                 }
             }
@@ -1032,7 +1034,7 @@
             
             [[self currentUrl] save];
         }
-                                                                                                      
+        
         if ([[self customPostBodyCheckBox] state] == NSOnState) {
             [request setHTTPBody:[[[self customPayloadTextView] string] dataUsingEncoding:NSUTF8StringEncoding]];
             [[self currentUrl] setCustomPayload:[[self customPayloadTextView] string]];
@@ -1355,7 +1357,7 @@
         [errorAlert setInformativeText:@"The data is not in the correct format."];
         [errorAlert addButtonWithTitle:@"OK"];
         [errorAlert setAlertStyle:NSCriticalAlertStyle];
-
+        
         [errorAlert beginSheetModalForWindow:[self window] completionHandler:nil];
     }
 }
@@ -1381,7 +1383,7 @@
         }
         
         for (Parameters *tempParam in [oldUrl parameters]) {
-            Parameters *newTempParam = [Headers create];
+            Parameters *newTempParam = [Parameters create];
             
             [newTempParam setValue:[tempParam value]];
             [newTempParam setName:[tempParam name]];
@@ -2036,7 +2038,7 @@
 
 -(void)accessDenied
 {
-
+    
     NSAlert *accessDeniedAlert = [[NSAlert alloc] init];
     
     [accessDeniedAlert setMessageText:@"Access Denied"];

@@ -533,8 +533,13 @@
 		29F4A7C817D64EFC00FAA098 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jukaela Enterprises";
+				TargetAttributes = {
+					29F4A7CF17D64EFC00FAA098 = {
+						DevelopmentTeam = RG2JJ52ENN;
+					};
+				};
 			};
 			buildConfigurationList = 29F4A7CB17D64EFC00FAA098 /* Build configuration list for PBXProject "Fetch for OSX" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -765,6 +770,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -824,6 +830,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -844,7 +851,9 @@
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
 					"-Wno-unreachable-code",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jukaela.Fetch-for-iOS";
 				PRODUCT_NAME = "Fetch for OSX";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -855,6 +864,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -875,7 +885,9 @@
 					"\"-isystem${PODS_ROOT}/Headers/ObjectiveSugar\"",
 					"-Wno-unreachable-code",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jukaela.Fetch-for-iOS";
 				PRODUCT_NAME = "Fetch for OSX";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
